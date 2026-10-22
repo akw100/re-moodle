@@ -1,0 +1,19 @@
+{
+  "_note": "Shapes of the live HUJI responses on 2026-10-23 (trimmed to the fields the extension needs). Same 4 events as fixtures/dashboard.html. Expected classify(): 33794 info, 28754 done, 30587 todo, 33795 todo.",
+  "core_calendar_get_calendar_upcoming_view": {
+    "events": [
+      {"id": 33794, "name": "Quiz 4 + Lab Prep: Specs, Markdown, skills and the wire opens", "modulename": "quiz", "eventtype": "open", "isactionevent": true, "timestart": 1793138460, "timesort": 1793138460, "url": "/mod/quiz/view.php?id=99730", "course": {"id": 1001, "shortname": "67723-Agentic Programming"}},
+      {"id": 28754, "name": "Quiz 3: Git, permissions &amp; neural-net basics closes", "modulename": "quiz", "eventtype": "close", "isactionevent": true, "timestart": 1793224500, "timesort": 1793224500, "url": "/mod/quiz/view.php?id=74369", "course": {"id": 1001, "shortname": "67723-Agentic Programming"}},
+      {"id": 30587, "name": "Lab 3 report is due", "modulename": "assign", "eventtype": "due", "isactionevent": true, "timestart": 1793310900, "timesort": 1793310900, "url": "/mod/assign/view.php?id=86371", "course": {"id": 1001, "shortname": "67723-Agentic Programming"}, "action": {"name": "Add submission", "actionable": false, "itemcount": 1, "url": "/mod/assign/view.php?id=86371&action=editsubmission"}},
+      {"id": 33795, "name": "Quiz 4 + Lab Prep: Specs, Markdown, skills and the wire closes", "modulename": "quiz", "eventtype": "close", "isactionevent": true, "timestart": 1793829300, "timesort": 1793829300, "url": "/mod/quiz/view.php?id=99730", "course": {"id": 1001, "shortname": "67723-Agentic Programming"}, "action": {"name": "Attempt quiz now", "actionable": false, "itemcount": 1, "url": "/mod/quiz/view.php?id=99730"}}
+    ]
+  },
+  "core_calendar_get_action_events_by_timesort": {
+    "events": [
+      {"id": 30587, "name": "Lab 3 report is due", "modulename": "assign", "timesort": 1793310900},
+      {"id": 33795, "name": "Quiz 4 + Lab Prep: Specs, Markdown, skills and the wire closes", "modulename": "quiz", "timesort": 1793829300}
+    ],
+    "firstid": 30587,
+    "lastid": 33795
+  }
+}

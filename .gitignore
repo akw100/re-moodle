@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+research/codex.log
+research/codex-refs.log

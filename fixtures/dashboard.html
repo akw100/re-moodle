@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- Sanitized skeleton of the real HUJI Moodle dashboard (https://moodle.huji.ac.il/2026-27/my/, theme "osiris" = Boost child, Bootstrap 5),
+     captured 2026-10-23. Class names, data-* attributes and nesting match the live page; texts/ids shortened.
+     Real page loads theme CSS from MOODLE/theme/styles.php/osiris/<rev>/all (auth-free but not reachable from CI); Bootstrap CDN approximates it. -->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Dashboard | HUJI Learning Web sites 2026-2027</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<script>
+  // Moodle exposes this global on every page. Real wwwroot: https://moodle.huji.ac.il/2026-27
+  window.M = {cfg: {wwwroot: location.origin, sesskey: 'FAKE', theme: 'osiris'}};
+</script>
+</head>
+<body id="page-my-index" class="limitedwidth format-site path-my chrome dir-ltr lang-en pagelayout-mydashboard course-1 theme uses-drawers jsenabled">
+<div id="page-wrapper" class="d-print-block">
+  <nav class="navbar fixed-top bg-white navbar-expand" aria-label="Site navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand d-none d-md-flex align-items-center" href="#"><img class="logo me-1" alt="HUJI" src="data:,"></a>
+      <div class="primary-navigation">
+        <nav class="moremenu navigation observed">
+          <ul class="nav more-nav navbar-nav">
+            <li class="nav-item"><a class="nav-link active" href="/my/">Dashboard</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">2026-27</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Moodle Exam</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Links</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div id="usernavigation" class="navbar-nav ms-auto">
+        <div class="usermenu"><span class="userbutton"><span class="usertext me-1">Student Name</span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="page" data-region="mainpage" class="drawers drag-container" style="margin-top:60px">
+    <div id="topofscroll" class="main-inner">
+      <div class="drawer-toggles d-flex"></div>
+
+      <header id="page-header" class="header-maxwidth d-print-none" data-for="page-heading">
+        <div class="w-100">
+          <div class="d-flex flex-wrap"><div class="ms-auto d-flex"></div><div id="course-header"></div></div>
+          <div class="d-flex align-items-center">
+            <div class="me-auto d-flex flex-column">
+              <div>
+                <div class="page-context-header d-flex flex-wrap align-items-center">
+                  <div class="page-header-headings col"><h1 class="h2">Dashboard</h1></div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div class="header-actions-container ms-auto" data-region="header-actions-container"></div>
+          </div>
+          <div class="header-extras-container ms-auto" data-region="header-extras-container"></div>
+        </div>
+      </header>
+
+      <div id="page-content" class="pb-3 d-print-block">
+        <div id="region-main-box">
+          <div id="region-main">
+            <span class="notifications" id="user-notifications"></span>
+            <div role="main"><span id="maincontent"></span>
+              <aside id="block-region-content" class="block-region" data-blockregion="content" data-droptarget="1">
+
+                <section id="inst1" class="block_myoverview block card mb-3" role="region" data-block="myoverview">
+                  <div class="card-body p-3"><h3 class="h5 card-title">Course overview</h3><div class="card-text content mt-3">(course cards)</div></div>
+                </section>
+
+                <section id="inst2" class="block_news_items block block-info card mb-3" role="region" data-block="news_items">
+                  <div class="card-body p-3"><h3 class="h5 card-title">Latest announcements</h3><div class="card-text content mt-3">(announcements)</div></div>
+                </section>
+
+                <section id="inst72894" class="block_calendar_upcoming block block-info card mb-3" role="region" data-block="calendar_upcoming" data-instance-id="72894">
+                  <div class="card-body p-3">
+                    <div class="d-flex"><h3 id="instance-72894-header" class="h5 card-title">Upcoming events</h3></div>
+                    <div class="card-text content mt-3">
+                      <div class="card-text content calendarwrapper" id="month-upcoming-mini-1" data-context-id="2" data-courseid="1" data-categoryid="0" data-template="core_calendar/upcoming_mini">
+                        <span class="overlay-icon-container hidden" data-region="overlay-icon-container"></span>
+
+                        <!-- "open" event: informational, never an action -->
+                        <div class="event d-flex border-bottom pt-2 pb-3" data-eventtype-course="1" data-region="event-item">
+                          <div class="activityiconcontainer small courseicon me-2 assessment"><img class="icon activityicon" alt="" src="data:,"></div>
+                          <div class="overflow-auto">
+                            <h4 class="d-flex mb-1 h6"><a class="text-truncate" data-type="event" data-action="view-event" data-event-id="33794" href="/mod/quiz/view.php?id=99730">Quiz 4 + Lab Prep: Specs, Markdown, skills and the wire opens</a></h4>
+                            <h6 class="mt-2 text-truncate text-primary">67723-Agentic Programming</h6>
+                            <div class="date small"><a href="#">Tuesday, 28 October</a>, 12:01 AM</div>
+                          </div>
+                        </div>
+
+                        <!-- quiz "close" event the student ALREADY FINISHED (not in action-events list) -> should move to Done -->
+                        <div class="event d-flex border-bottom pt-2 pb-3" data-eventtype-course="1" data-region="event-item">
+                          <div class="activityiconcontainer small courseicon me-2 assessment"><img class="icon activityicon" alt="" src="data:,"></div>
+                          <div class="overflow-auto">
+                            <h4 class="d-flex mb-1 h6"><a class="text-truncate" data-type="event" data-action="view-event" data-event-id="28754" href="/mod/quiz/view.php?id=74369">Quiz 3: Git, permissions &amp; neural-net basics closes</a></h4>
+                            <h6 class="mt-2 text-truncate text-primary">67723-Agentic Programming</h6>
+                            <div class="date small"><a href="#">Tomorrow</a>, 11:55 PM</div>
+                          </div>
+                        </div>
+
+                        <!-- assignment due, not submitted yet -> To do -->
+                        <div class="event d-flex border-bottom pt-2 pb-3" data-eventtype-course="1" data-region="event-item">
+                          <div class="activityiconcontainer small courseicon me-2 assessment"><img class="icon activityicon" alt="" src="data:,"></div>
+                          <div class="overflow-auto">
+                            <h4 class="d-flex mb-1 h6"><a class="text-truncate" data-type="event" data-action="view-event" data-event-id="30587" href="/mod/assign/view.php?id=86371">Lab 3 report is due</a></h4>
+                            <h6 class="mt-2 text-truncate text-primary">67723-Agentic Programming</h6>
+                            <div class="date small"><a href="#">Thursday, 30 October</a>, 11:55 PM</div>
+                          </div>
+                        </div>
+
+                        <!-- quiz close, not attempted -> To do -->
+                        <div class="event d-flex border-bottom pt-2 pb-3" data-eventtype-course="1" data-region="event-item">
+                          <div class="activityiconcontainer small courseicon me-2 assessment"><img class="icon activityicon" alt="" src="data:,"></div>
+                          <div class="overflow-auto">
+                            <h4 class="d-flex mb-1 h6"><a class="text-truncate" data-type="event" data-action="view-event" data-event-id="33795" href="/mod/quiz/view.php?id=99730">Quiz 4 + Lab Prep: Specs, Markdown, skills and the wire closes</a></h4>
+                            <h6 class="mt-2 text-truncate text-primary">67723-Agentic Programming</h6>
+                            <div class="date small"><a href="#">Wednesday, 5 November</a>, 11:55 PM</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="footer"><div class="gotocal"><a href="/calendar/view.php?view=upcoming">Go to calendar...</a></div></div>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="inst4" class="block_calendar_month block block-info card mb-3" role="region" data-block="calendar_month">
+                  <div class="card-body p-3"><h3 class="h5 card-title">Calendar</h3><div class="card-text content mt-3">(month grid)</div></div>
+                </section>
+                <section id="inst5" class="block_recentlyaccesseditems block card mb-3" role="region" data-block="recentlyaccesseditems">
+                  <div class="card-body p-3"><h3 class="h5 card-title">Recently accessed items</h3><div class="card-text content mt-3">(items)</div></div>
+                </section>
+                <section id="inst6" class="block_timeline block card mb-3" role="region" data-block="timeline">
+                  <div class="card-body p-3"><h3 class="h5 card-title">Timeline</h3><div class="card-text content mt-3">(timeline)</div></div>
+                </section>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
