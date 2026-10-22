@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Nicer Moodle",
+  "version": "0.1.0",
+  "description": "Themes, a done list, todos, shortcuts, confetti and a tiny game for Moodle.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {"service_worker": "src/background.js"},
+  "action": {"default_popup": "popup/popup.html", "default_title": "Nicer Moodle"},
+  "content_scripts": [
+    {
+      "matches": ["https://moodle.huji.ac.il/*"],
+      "run_at": "document_start",
+      "js": ["src/early.js"],
+      "css": [
+        "src/base.css",
+        "themes/quiet-focus.css",
+        "themes/night-operator.css",
+        "themes/daily-quest.css",
+        "themes/campus-pop.css"
+      ]
+    },
+    {
+      "matches": ["https://moodle.huji.ac.il/*"],
+      "run_at": "document_end",
+      "world": "MAIN",
+      "js": ["src/bridge.js"]
+    },
+    {
+      "matches": ["https://moodle.huji.ac.il/*"],
+      "run_at": "document_idle",
+      "js": [
+        "src/core.js",
+        "src/classify.js",
+        "src/features/confetti.js",
+        "src/features/upcoming.js",
+        "src/features/todo.js",
+        "src/features/shortcuts.js",
+        "src/features/game.js",
+        "src/main.js"
+      ],
+      "css": [
+        "src/features/upcoming.css",
+        "src/features/todo.css",
+        "src/features/shortcuts.css",
+        "src/features/game.css"
+      ]
+    }
+  ]
+}

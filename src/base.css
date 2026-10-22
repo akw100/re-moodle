@@ -1,0 +1,53 @@
+/* Design tokens every widget uses. Defaults blend into stock Moodle; each theme file overrides them
+   under html[data-nm-theme="<id>"] and also restyles Moodle's own chrome. */
+:root {
+  --nm-bg: var(--bs-body-bg, #fff);
+  --nm-surface: #fff;
+  --nm-surface-2: #f5f6f8;
+  --nm-text: var(--bs-body-color, #1d2125);
+  --nm-text-muted: #6a737b;
+  --nm-border: var(--bs-border-color, #dee2e6);
+  --nm-accent: var(--bs-primary, #0f6cbf);
+  --nm-accent-contrast: #fff;
+  --nm-success: #357a32;
+  --nm-warning: #f0ad4e;
+  --nm-danger: #ca3120;
+  --nm-radius: .5rem;
+  --nm-shadow: none;
+  --nm-font: inherit;
+  --nm-heading-font: inherit;
+  --nm-border-width: 1px;
+  --nm-confetti: #0f6cbf, #f0ad4e, #357a32, #ca3120, #8e44ad;
+}
+
+/* Header row next to "Dashboard" */
+#page-header .page-context-header:has(.nm-header-slot) { flex-wrap: wrap; gap: .5rem 1rem; }
+#page-header .page-context-header:has(.nm-header-slot) .page-header-headings { flex: 0 0 auto; width: auto; }
+.nm-header-slot { display: flex; align-items: center; gap: .5rem; flex: 1 1 320px; min-width: 0; }
+
+.nm-btn, .nm-icon-btn {
+  font: inherit; font-family: var(--nm-font); cursor: pointer;
+  border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nm-radius);
+  background: var(--nm-surface); color: var(--nm-text);
+}
+.nm-btn { padding: .35rem .8rem; }
+.nm-btn-primary { background: var(--nm-accent); color: var(--nm-accent-contrast); border-color: var(--nm-accent); }
+.nm-icon-btn { inline-size: 2.25rem; block-size: 2.25rem; display: inline-grid; place-items: center; padding: 0; font-size: 1.05rem; }
+.nm-btn:focus-visible, .nm-icon-btn:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+
+.nm-theme-wrap { position: relative; margin-inline-start: auto; }
+.nm-theme-menu {
+  position: absolute; inset-inline-end: 0; top: calc(100% + .4rem); z-index: 1050; min-width: 13rem; padding: .35rem;
+  background: var(--nm-surface); color: var(--nm-text); border: var(--nm-border-width) solid var(--nm-border);
+  border-radius: var(--nm-radius); box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+.nm-theme-menu[hidden] { display: none; }
+.nm-theme-option {
+  display: flex; align-items: center; gap: .6rem; width: 100%; padding: .45rem .6rem; border: 0; border-radius: calc(var(--nm-radius) * .7);
+  background: none; color: inherit; font: inherit; text-align: start; cursor: pointer;
+}
+.nm-theme-option:hover, .nm-theme-option[aria-checked="true"] { background: var(--nm-surface-2); }
+.nm-theme-option[aria-checked="true"]::after { content: "✓"; margin-inline-start: auto; color: var(--nm-accent); }
+.nm-swatch { inline-size: 1.1rem; block-size: 1.1rem; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); flex: none; }
+
+.nm-block-content { font-family: var(--nm-font); }

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <script>
   // Moodle exposes this global on every page. Real wwwroot: https://moodle.huji.ac.il/2026-27
-  window.M = {cfg: {wwwroot: location.origin, sesskey: 'FAKE', theme: 'osiris'}};
+  window.M = {cfg: {wwwroot: location.href.replace(/\/my\/.*$/, ''), sesskey: 'FAKE', theme: 'osiris'}};
 </script>
 </head>
 <body id="page-my-index" class="limitedwidth format-site path-my chrome dir-ltr lang-en pagelayout-mydashboard course-1 theme uses-drawers jsenabled">
@@ -64,11 +64,54 @@
               <aside id="block-region-content" class="block-region" data-blockregion="content" data-droptarget="1">
 
                 <section id="inst1" class="block_myoverview block card mb-3" role="region" data-block="myoverview">
-                  <div class="card-body p-3"><h3 class="h5 card-title">Course overview</h3><div class="card-text content mt-3">(course cards)</div></div>
+                  <div class="card-body p-3"><h3 class="h5 card-title">Course overview</h3><div class="card-text content mt-3"><div id="block-myoverview" class="block-myoverview block-cards" data-region="myoverview" role="navigation">
+                    <div class="d-flex align-items-center flex-wrap mb-3" data-region="filter"><div class="dropdown mb-1 me-1"><button class="btn btn-outline-secondary dropdown-toggle" type="button">All (except removed from view)</button></div><div class="me-auto"><input type="text" class="form-control" placeholder="Search"></div><div class="dropdown mb-1 me-1"><button class="btn btn-outline-secondary dropdown-toggle" type="button">Sort by course name</button></div><div class="dropdown mb-1"><button class="btn btn-outline-secondary dropdown-toggle" type="button">Card</button></div></div>
+                    <div class="container-fluid p-0"><div class="card-grid mx-0 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" role="list" data-region="courses-view">
+                      <div class="card dashboard-card" role="listitem" data-region="course-content" data-course-id="1001">
+                        <a href="/course/view.php?id=1001" tabindex="-1"><div class="card-img dashboard-card-img" style="background-image: linear-gradient(135deg, hsl(210 60% 55%), hsl(250 60% 45%));"><span class="visually-hidden">Course image</span></div></a>
+                        <div class="card-body pe-1 course-info-container" id="course-info-container-1001">
+                          <div class="d-flex align-items-start"><div class="w-100 text-truncate">
+                            <div class="text-muted muted d-flex mb-1 flex-wrap"><span class="visually-hidden">Course category</span><span class="categoryname text-truncate">Computer Science</span></div>
+                            <a href="/course/view.php?id=1001" class="aalink coursename me-2 mb-1"><span class="visually-hidden">Course name</span><span class="multiline">67723-Agentic Programming</span></a>
+                          </div></div>
+                        </div>
+                        <div class="card-footer dashboard-card-footer border-0 bg-white w-100"><div class="progress-text"><span class="sr-only">Course progress:</span><strong>62%</strong> complete</div><div class="progress bg-white border"><div class="progress-bar bar" role="progressbar" style="width: 62%"></div></div></div>
+                      </div>
+<div class="card dashboard-card" role="listitem" data-region="course-content" data-course-id="1002">
+                        <a href="/course/view.php?id=1002" tabindex="-1"><div class="card-img dashboard-card-img" style="background-image: linear-gradient(135deg, hsl(20 60% 55%), hsl(60 60% 45%));"><span class="visually-hidden">Course image</span></div></a>
+                        <div class="card-body pe-1 course-info-container" id="course-info-container-1002">
+                          <div class="d-flex align-items-start"><div class="w-100 text-truncate">
+                            <div class="text-muted muted d-flex mb-1 flex-wrap"><span class="visually-hidden">Course category</span><span class="categoryname text-truncate">Business School</span></div>
+                            <a href="/course/view.php?id=1002" class="aalink coursename me-2 mb-1"><span class="visually-hidden">Course name</span><span class="multiline">55510-Strategic Management</span></a>
+                          </div></div>
+                        </div>
+                        <div class="card-footer dashboard-card-footer border-0 bg-white w-100"><div class="progress-text"><span class="sr-only">Course progress:</span><strong>35%</strong> complete</div><div class="progress bg-white border"><div class="progress-bar bar" role="progressbar" style="width: 35%"></div></div></div>
+                      </div>
+<div class="card dashboard-card" role="listitem" data-region="course-content" data-course-id="1003">
+                        <a href="/course/view.php?id=1003" tabindex="-1"><div class="card-img dashboard-card-img" style="background-image: linear-gradient(135deg, hsl(140 60% 55%), hsl(180 60% 45%));"><span class="visually-hidden">Course image</span></div></a>
+                        <div class="card-body pe-1 course-info-container" id="course-info-container-1003">
+                          <div class="d-flex align-items-start"><div class="w-100 text-truncate">
+                            <div class="text-muted muted d-flex mb-1 flex-wrap"><span class="visually-hidden">Course category</span><span class="categoryname text-truncate">Business School</span></div>
+                            <a href="/course/view.php?id=1003" class="aalink coursename me-2 mb-1"><span class="visually-hidden">Course name</span><span class="multiline">55506-Operations Management</span></a>
+                          </div></div>
+                        </div>
+                        <div class="card-footer dashboard-card-footer border-0 bg-white w-100"><div class="progress-text"><span class="sr-only">Course progress:</span><strong>48%</strong> complete</div><div class="progress bg-white border"><div class="progress-bar bar" role="progressbar" style="width: 48%"></div></div></div>
+                      </div>
+<div class="card dashboard-card" role="listitem" data-region="course-content" data-course-id="1004">
+                        <a href="/course/view.php?id=1004" tabindex="-1"><div class="card-img dashboard-card-img" style="background-image: linear-gradient(135deg, hsl(300 60% 55%), hsl(340 60% 45%));"><span class="visually-hidden">Course image</span></div></a>
+                        <div class="card-body pe-1 course-info-container" id="course-info-container-1004">
+                          <div class="d-flex align-items-start"><div class="w-100 text-truncate">
+                            <div class="text-muted muted d-flex mb-1 flex-wrap"><span class="visually-hidden">Course category</span><span class="categoryname text-truncate">Business School</span></div>
+                            <a href="/course/view.php?id=1004" class="aalink coursename me-2 mb-1"><span class="visually-hidden">Course name</span><span class="multiline">55826-Digital Communication &amp; Advertising</span></a>
+                          </div></div>
+                        </div>
+                        <div class="card-footer dashboard-card-footer border-0 bg-white w-100"><div class="progress-text"><span class="sr-only">Course progress:</span><strong>20%</strong> complete</div><div class="progress bg-white border"><div class="progress-bar bar" role="progressbar" style="width: 20%"></div></div></div>
+                      </div>
+                    </div></div></div></div></div>
                 </section>
 
                 <section id="inst2" class="block_news_items block block-info card mb-3" role="region" data-block="news_items">
-                  <div class="card-body p-3"><h3 class="h5 card-title">Latest announcements</h3><div class="card-text content mt-3">(announcements)</div></div>
+                  <div class="card-body p-3"><h3 class="h5 card-title">Latest announcements</h3><div class="card-text content mt-3"><div class="post"><div class="date">22 Oct, 14:05</div><div class="name">Lecturer</div><div class="info"><a href="/mod/forum/discuss.php?d=1">Lab 3 rooms moved to Rothberg B-220</a></div></div><div class="post"><div class="date">20 Oct, 09:12</div><div class="name">TA</div><div class="info"><a href="/mod/forum/discuss.php?d=2">Quiz 3 grades are out</a></div></div><div class="footer"><a href="/mod/forum/view.php?f=1">Older topics ...</a></div></div></div>
                 </section>
 
                 <section id="inst72894" class="block_calendar_upcoming block block-info card mb-3" role="region" data-block="calendar_upcoming" data-instance-id="72894">
@@ -124,13 +167,13 @@
                 </section>
 
                 <section id="inst4" class="block_calendar_month block block-info card mb-3" role="region" data-block="calendar_month">
-                  <div class="card-body p-3"><h3 class="h5 card-title">Calendar</h3><div class="card-text content mt-3">(month grid)</div></div>
+                  <div class="card-body p-3"><h3 class="h5 card-title">Calendar</h3><div class="card-text content mt-3"><div class="calendarwrapper"><div class="header d-flex flex-wrap p-1"><a class="arrow_link previous" href="#">◀</a><h4 class="current text-center flex-grow-1">October 2026</h4><a class="arrow_link next" href="#">▶</a></div><table class="minicalendar calendartable"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody><tr><td class="dayblank"></td><td class="dayblank"></td><td class="dayblank"></td><td class="dayblank"></td><td class="day text-center" data-day="1"><span class="day-number">1</span></td><td class="day text-center" data-day="2"><span class="day-number">2</span></td><td class="day text-center" data-day="3"><span class="day-number">3</span></td><td class="day text-center" data-day="4"><span class="day-number">4</span></td></tr><tr><td class="day text-center" data-day="5"><span class="day-number">5</span></td><td class="day text-center" data-day="6"><span class="day-number">6</span></td><td class="day text-center" data-day="7"><span class="day-number">7</span></td><td class="day text-center" data-day="8"><span class="day-number">8</span></td><td class="day text-center" data-day="9"><span class="day-number">9</span></td><td class="day text-center" data-day="10"><span class="day-number">10</span></td><td class="day text-center" data-day="11"><span class="day-number">11</span></td></tr><tr><td class="day text-center" data-day="12"><span class="day-number">12</span></td><td class="day text-center" data-day="13"><span class="day-number">13</span></td><td class="day text-center" data-day="14"><span class="day-number">14</span></td><td class="day text-center" data-day="15"><span class="day-number">15</span></td><td class="day text-center" data-day="16"><span class="day-number">16</span></td><td class="day text-center" data-day="17"><span class="day-number">17</span></td><td class="day text-center" data-day="18"><span class="day-number">18</span></td></tr><tr><td class="day text-center" data-day="19"><span class="day-number">19</span></td><td class="day text-center" data-day="20"><span class="day-number">20</span></td><td class="day text-center" data-day="21"><span class="day-number">21</span></td><td class="day text-center" data-day="22"><span class="day-number">22</span></td><td class="day text-center today" data-day="23"><span class="day-number">23</span></td><td class="day text-center" data-day="24"><span class="day-number">24</span></td><td class="day text-center" data-day="25"><span class="day-number">25</span></td></tr><tr><td class="day text-center" data-day="26"><span class="day-number">26</span></td><td class="day text-center" data-day="27"><span class="day-number">27</span></td><td class="day text-center hasevent" data-day="28"><span class="day-number">28</span></td><td class="day text-center hasevent" data-day="29"><span class="day-number">29</span></td><td class="day text-center" data-day="30"><span class="day-number">30</span></td><td class="day text-center" data-day="31"><span class="day-number">31</span></td></tr></tbody></table></div></div></div>
                 </section>
                 <section id="inst5" class="block_recentlyaccesseditems block card mb-3" role="region" data-block="recentlyaccesseditems">
-                  <div class="card-body p-3"><h3 class="h5 card-title">Recently accessed items</h3><div class="card-text content mt-3">(items)</div></div>
+                  <div class="card-body p-3"><h3 class="h5 card-title">Recently accessed items</h3><div class="card-text content mt-3"><div class="d-flex flex-wrap" data-region="recentlyaccesseditems-view"><a class="card text-decoration-none mb-2 me-2" href="/mod/quiz/view.php?id=74369" style="width:14rem"><div class="card-body p-2 d-flex"><div class="activityiconcontainer small me-2 assessment"></div><div class="w-100 text-truncate"><h6 class="mb-0 text-truncate">Quiz 3: Git, permissions</h6><small class="text-muted">67723-Agentic Programming</small></div></div></a><a class="card text-decoration-none mb-2 me-2" href="/mod/resource/view.php?id=5" style="width:14rem"><div class="card-body p-2 d-flex"><div class="activityiconcontainer small me-2 content"></div><div class="w-100 text-truncate"><h6 class="mb-0 text-truncate">Week 2 slides</h6><small class="text-muted">55510-Strategic Management</small></div></div></a></div></div></div>
                 </section>
                 <section id="inst6" class="block_timeline block card mb-3" role="region" data-block="timeline">
-                  <div class="card-body p-3"><h3 class="h5 card-title">Timeline</h3><div class="card-text content mt-3">(timeline)</div></div>
+                  <div class="card-body p-3"><h3 class="h5 card-title">Timeline</h3><div class="card-text content mt-3"><div data-region="timeline"><div class="d-flex mb-2"><button class="btn btn-outline-secondary btn-sm me-2">Next 7 days</button><button class="btn btn-outline-secondary btn-sm">Sort by dates</button></div><div class="list-group list-group-flush"><h5 class="h6 mt-3 mb-0 fw-bold">Thursday, 30 October 2026</h5><div class="list-group-item timeline-event-list-item d-flex px-0"><div class="activityiconcontainer small me-3 assessment"></div><div class="event-name-container flex-grow-1"><a href="/mod/assign/view.php?id=86371" class="event-name text-truncate">Lab 3 report is due</a><small class="text-muted d-block">Assignment is due · 67723-Agentic Programming</small></div><a class="btn btn-outline-secondary btn-sm" href="/mod/assign/view.php?id=86371&action=editsubmission">Add submission</a></div></div></div></div></div>
                 </section>
               </aside>
             </div>

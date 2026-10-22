@@ -1,0 +1,24 @@
+{
+  "name": "nicer-moodle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/classify.test.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akw100/nicer-moodle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akw100/nicer-moodle/issues"
+  },
+  "homepage": "https://github.com/akw100/nicer-moodle#readme",
+  "devDependencies": {
+    "playwright": "^1.57.0"
+  },
+  "type": "commonjs"
+}
