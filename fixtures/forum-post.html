@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- Forum reply form (mod/forum/post.php?reply=…).
+     Boost/osiris skeleton modeled on fixtures/dashboard.html (same <html>/<body> structure and window.M script). IDs are test-only. -->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Q&amp;A forum: Reply | HUJI Learning Web sites 2026-2027</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<script>
+  // Moodle exposes this global on every page. Real wwwroot: https://moodle.huji.ac.il/2026-27
+  window.M = {cfg: {wwwroot: location.href.replace(/\/mod\/.*$/, ''), sesskey: 'FAKE', theme: 'osiris'}};
+</script>
+</head>
+<body id="page-mod-forum-post" class="format-topics path-mod path-mod-forum chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam pagelayout-incourse course-1001 context-412401 cmid-90001 cm-type-forum theme uses-drawers jsenabled">
+<div id="page-wrapper" class="d-print-block">
+  <nav class="navbar fixed-top bg-white navbar-expand" aria-label="Site navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand d-none d-md-flex align-items-center" href="#"><img class="logo me-1" alt="HUJI" src="data:,"></a>
+      <div class="primary-navigation">
+        <nav class="moremenu navigation observed">
+          <ul class="nav more-nav navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/my/">Dashboard</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">2026-27</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Moodle Exam</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Links</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div id="usernavigation" class="navbar-nav ms-auto">
+        <div class="usermenu"><span class="userbutton"><span class="usertext me-1">Student Name</span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="page" data-region="mainpage" class="drawers drag-container" style="margin-top:60px">
+    <div id="topofscroll" class="main-inner">
+      <div class="drawer-toggles d-flex"></div>
+
+      <header id="page-header" class="header-maxwidth d-print-none" data-for="page-heading">
+        <div class="w-100">
+          <div class="d-flex flex-wrap">
+            <div id="page-navbar"><nav aria-label="Navigation bar"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">67723</a></li><li class="breadcrumb-item"><a href="#">Q&amp;A forum</a></li><li class="breadcrumb-item"><a href="#">Lab 3 deadline</a></li><li class="breadcrumb-item"><span aria-current="page">Reply</span></li></ol></nav></div>
+            <div class="ms-auto d-flex"></div><div id="course-header"></div>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="me-auto d-flex flex-column">
+              <div>
+                <div class="page-context-header d-flex flex-wrap align-items-center">
+                  <div class="page-header-headings col"><h1 class="h2">67723-Agentic Programming</h1></div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div class="header-actions-container ms-auto" data-region="header-actions-container"></div>
+          </div>
+          <div class="header-extras-container ms-auto" data-region="header-extras-container"></div>
+        </div>
+      </header>
+
+      <div id="page-content" class="pb-3 d-print-block">
+        <div id="region-main-box">
+          <section id="region-main" aria-label="Content">
+            <span class="notifications" id="user-notifications"></span>
+            <div role="main"><span id="maincontent"></span>
+              <h2>Q&amp;A forum</h2>
+              <h3 class="h4">Your reply</h3>
+              <form autocomplete="off" action="discuss.php?d=777#p9001" method="post" accept-charset="utf-8" id="mform1_fP0st" class="mform">
+                <!-- Real Moodle posts to post.php, which redirects to discuss.php?d=…#p<newid>. Posting straight to discuss.php here
+                     lets the harness serve fixtures/forum-discuss.html. -->
+                <div style="display: none;"><input name="reply" type="hidden" value="8990"><input name="forum" type="hidden" value="31"><input name="discussion" type="hidden" value="777"><input name="sesskey" type="hidden" value="FAKE"><input name="_qf__mod_forum_post_form" type="hidden" value="1"></div>
+                <div class="mb-3 row fitem"><div class="col-md-3 col-form-label"><label for="id_subject">Subject</label></div><div class="col-md-9 felement"><input type="text" class="form-control" name="subject" id="id_subject" value="Re: Lab 3 deadline"></div></div>
+                <div class="mb-3 row fitem"><div class="col-md-3 col-form-label"><label for="id_message">Message</label></div><div class="col-md-9 felement"><textarea class="form-control" name="message[text]" id="id_message" rows="6"></textarea></div></div>
+                <div class="mb-3 row fitem femptylabel" data-groupname="buttonar"><div class="col-md-3"></div><div class="col-md-9 d-flex flex-wrap align-items-center">
+                  <div class="mb-3 fitem"><input type="submit" class="btn btn-primary" name="submitbutton" id="id_submitbutton" value="Post to forum"></div>
+                  <div class="mb-3 fitem btn-cancel"><input type="submit" class="btn btn-secondary" name="cancel" id="id_cancel" value="Cancel" data-skip-validation="1" data-cancel="1" formnovalidate></div>
+                </div></div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

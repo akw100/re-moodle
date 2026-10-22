@@ -1,1 +1,926 @@
-/* placeholder: quiet-focus theme */
+
+/* ==========================================================================
+   Quiet Focus — follows ONE reference: Todoist (Today / Inbox views).
+   White canvas, warm off-white chrome (#FCFAF8), restrained red (#C83C2D),
+   hairline rules, 14px type, circular task checkboxes, a centred agenda column.
+   Every rule is scoped under html[data-nm-theme="quiet-focus"].
+   ========================================================================== */
+
+html[data-nm-theme="quiet-focus"] {
+  /* --- nm tokens (every injected widget reads these) --- */
+  --nm-bg: #ffffff;
+  --nm-surface: #ffffff;
+  --nm-surface-2: #faf9f7;
+  --nm-text: #202020;
+  --nm-text-muted: #6f6f6f;
+  --nm-border: #eeeeee;
+  --nm-accent: #c83c2d;
+  --nm-accent-contrast: #ffffff;
+  --nm-success: #058527;
+  --nm-warning: #ad6200;
+  --nm-danger: #c83c2d;
+  --nm-radius: 6px;
+  --nm-shadow: none;
+  --nm-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Hebrew", Arial, sans-serif;
+  --nm-heading-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Hebrew", Arial, sans-serif;
+  --nm-border-width: 1px;
+  --nm-confetti: #dc4c3e, #f5a623, #058527, #246fe0, #692fc2, #ffefe5;
+
+  /* --- theme-private helpers --- */
+  --qf-chrome: #fcfaf8;          /* Todoist sidebar */
+  --qf-hover: #f2efed;           /* Todoist row hover */
+  --qf-active: #ffefe5;          /* Todoist active nav row (peach) */
+  --qf-active-text: #b8352a;     /* red on peach, AA */
+  --qf-rule: #f0f0f0;            /* task separators */
+  --qf-check: #8f8f8f;           /* priority-4 circle outline */
+  --qf-date: #058527;            /* "Today" green date label */
+  --qf-project: #a970ff;         /* "#" project glyph */
+  --qf-red-tint: rgba(200, 60, 45, .1);
+  --qf-ring: 0 0 0 3px rgba(200, 60, 45, .22);
+  --qf-ease: 120ms ease;
+
+  /* --- Bootstrap 5 / Boost variables --- */
+  --bs-body-bg: #ffffff;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-color: #202020;
+  --bs-body-color-rgb: 32, 32, 32;
+  --bs-body-font-family: var(--nm-font);
+  --bs-body-font-size: .875rem;
+  --bs-emphasis-color: #202020;
+  --bs-secondary-color: #6f6f6f;
+  --bs-secondary-color-rgb: 111, 111, 111;
+  --bs-tertiary-color: #808080;
+  --bs-secondary-bg: #faf9f7;
+  --bs-tertiary-bg: #fcfaf8;
+  --bs-primary: #c83c2d;
+  --bs-primary-rgb: 200, 60, 45;
+  --bs-primary-text-emphasis: #8f2a20;
+  --bs-primary-bg-subtle: #ffefe5;
+  --bs-primary-border-subtle: #f5c6bd;
+  --bs-secondary: #6f6f6f;
+  --bs-secondary-rgb: 111, 111, 111;
+  --bs-success: #058527;
+  --bs-success-rgb: 5, 133, 39;
+  --bs-warning: #ad6200;
+  --bs-danger: #c83c2d;
+  --bs-danger-rgb: 200, 60, 45;
+  --bs-info: #246fe0;
+  --bs-link-color: #c83c2d;
+  --bs-link-color-rgb: 200, 60, 45;
+  --bs-link-hover-color: #a3291d;
+  --bs-link-hover-color-rgb: 163, 41, 29;
+  --bs-link-decoration: none;
+  --bs-border-color: #eeeeee;
+  --bs-border-color-translucent: rgba(0, 0, 0, .07);
+  --bs-border-radius: 6px;
+  --bs-border-radius-sm: 5px;
+  --bs-border-radius-lg: 10px;
+  --bs-focus-ring-color: rgba(200, 60, 45, .25);
+  --bs-heading-color: #202020;
+  --bs-card-bg: #ffffff;
+  color-scheme: light;
+}
+
+/* ---------- Page canvas & type ---------- */
+html[data-nm-theme="quiet-focus"] body {
+  background: #ffffff;
+  color: var(--nm-text);
+  font-family: var(--nm-font);
+  font-size: .875rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html[data-nm-theme="quiet-focus"] #page,
+html[data-nm-theme="quiet-focus"] #page-wrapper,
+html[data-nm-theme="quiet-focus"] #topofscroll,
+html[data-nm-theme="quiet-focus"] #page-content,
+html[data-nm-theme="quiet-focus"] #region-main,
+html[data-nm-theme="quiet-focus"] #region-main-box { background: transparent; }
+html[data-nm-theme="quiet-focus"] :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+  font-family: var(--nm-heading-font);
+  color: var(--nm-text);
+  letter-spacing: 0;
+}
+html[data-nm-theme="quiet-focus"] ::selection { background: var(--qf-active); color: var(--nm-text); }
+
+/* The agenda column: Todoist centres a narrow list in a lot of white. */
+html[data-nm-theme="quiet-focus"] #page .main-inner,
+html[data-nm-theme="quiet-focus"] #topofscroll {
+  max-inline-size: 60rem;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  padding-block-start: 1.75rem;
+}
+
+/* ---------- Links ---------- */
+html[data-nm-theme="quiet-focus"] a {
+  color: var(--nm-accent);
+  text-decoration: none;
+  transition: color var(--qf-ease), background-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] a:hover { color: #a3291d; text-decoration: underline; text-underline-offset: 2px; }
+html[data-nm-theme="quiet-focus"] :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--nm-accent);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+html[data-nm-theme="quiet-focus"] .text-primary { color: var(--nm-accent) !important; }
+html[data-nm-theme="quiet-focus"] :is(.text-muted, .muted, .text-secondary) { color: var(--nm-text-muted) !important; }
+
+/* ---------- Top bar = Todoist's warm sidebar, laid flat ---------- */
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top {
+  background: var(--qf-chrome) !important;
+  border-block-end: 1px solid #f0ece8;
+  box-shadow: none;
+  min-block-size: 60px;
+  font-family: var(--nm-font);
+}
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-brand {
+  color: var(--nm-text);
+  font-weight: 700;
+}
+/* Todoist's red logo square stands in for the (often missing) HUJI logo image. */
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-brand::before {
+  content: "";
+  inline-size: 26px; block-size: 26px; flex: none;
+  margin-inline-end: .5rem;
+  border-radius: 7px;
+  background:
+    linear-gradient(#fff, #fff) 6px 8px / 14px 2px no-repeat,
+    linear-gradient(#fff, #fff) 6px 12px / 14px 2px no-repeat,
+    linear-gradient(#fff, #fff) 6px 16px / 14px 2px no-repeat,
+    linear-gradient(160deg, #e44332, #c83c2d);
+}
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-brand img.logo[src="data:,"] { display: none; }
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top :is(.nav-link, .usertext, .userbutton) {
+  color: var(--nm-text);
+}
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-nav { gap: 2px; align-items: center; }
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link,
+html[data-nm-theme="quiet-focus"] .primary-navigation .navigation .nav-link {
+  display: flex;
+  align-items: center;
+  block-size: auto;
+  padding: .375rem .625rem !important;
+  border: 0 !important;
+  border-radius: 5px;
+  font-size: .875rem;
+  font-weight: 400;
+  color: var(--nm-text);
+  transition: background-color var(--qf-ease), color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link:hover,
+html[data-nm-theme="quiet-focus"] .primary-navigation .navigation .nav-link:hover {
+  background: var(--qf-hover);
+  text-decoration: none;
+  color: var(--nm-text);
+}
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link.active,
+html[data-nm-theme="quiet-focus"] .primary-navigation .navigation .nav-link.active,
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link[aria-current="true"] {
+  background: var(--qf-active);
+  color: var(--qf-active-text);
+  font-weight: 500;
+}
+html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .dropdown-toggle::after {
+  border: 0;
+  inline-size: .45em; block-size: .45em;
+  margin-inline-start: .45em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-.15em) rotate(45deg);
+  opacity: .55;
+}
+html[data-nm-theme="quiet-focus"] .dropdown-menu {
+  border: 1px solid var(--nm-border);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+  padding: .25rem;
+  font-size: .8125rem;
+}
+html[data-nm-theme="quiet-focus"] .dropdown-item { border-radius: 5px; padding: .35rem .6rem; color: var(--nm-text); }
+html[data-nm-theme="quiet-focus"] .dropdown-item:is(:hover, :focus) { background: var(--qf-hover); color: var(--nm-text); }
+html[data-nm-theme="quiet-focus"] .dropdown-item:is(.active, :active) { background: var(--qf-active); color: var(--qf-active-text); }
+
+/* ---------- Page header: "Today"-style title ---------- */
+html[data-nm-theme="quiet-focus"] #page-header { margin-block-end: 2rem; }
+html[data-nm-theme="quiet-focus"] #page-header h1 {
+  font-size: 1.625rem;   /* 26px, Todoist view title */
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--nm-text);
+}
+/* let the header slot (shortcuts + theme button) run to the end edge, like Todoist's "Display" */
+html[data-nm-theme="quiet-focus"] #page-header .me-auto:has(.nm-header-slot) { flex: 1 1 auto; min-inline-size: 0; }
+html[data-nm-theme="quiet-focus"] #page-header .page-context-header:has(.nm-header-slot) { align-items: flex-start; }
+/* the "✓ n tasks" line under Todoist's title */
+html[data-nm-theme="quiet-focus"] body.pagelayout-mydashboard #page-header .page-header-headings::after {
+  content: "Your courses, deadlines and notes";
+  display: flex;
+  align-items: center;
+  gap: .375rem;
+  margin-block-start: .375rem;
+  font-size: .8125rem;
+  color: var(--nm-text-muted);
+  padding-inline-start: 1.25rem;
+  background: no-repeat left center / 14px 14px
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.5' fill='none' stroke='%236f6f6f' stroke-width='1.2'/%3E%3Cpath d='M5.2 8.2l1.9 1.8 3.7-3.8' fill='none' stroke='%236f6f6f' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+html[data-nm-theme="quiet-focus"][dir="rtl"] body.pagelayout-mydashboard #page-header .page-header-headings::after { background-position: right center; }
+
+/* ---------- Blocks: borderless sections on white, hairline under the heading ---------- */
+html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin-block-end: 2.25rem !important;
+  color: var(--nm-text);
+}
+html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) > .card-body {
+  padding: 0 !important;
+}
+html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) .card-title,
+html[data-nm-theme="quiet-focus"] .nm-block-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  padding-block-end: .5rem;
+  color: var(--nm-text);
+}
+html[data-nm-theme="quiet-focus"] .block.card > .card-body > .card-title,
+html[data-nm-theme="quiet-focus"] .block.card > .card-body > .d-flex:first-child,
+html[data-nm-theme="quiet-focus"] .nm-block-head {
+  border-block-end: 1px solid var(--nm-border);
+}
+html[data-nm-theme="quiet-focus"] .block.card > .card-body > .d-flex:first-child .card-title { border: 0; }
+html[data-nm-theme="quiet-focus"] .block.card .card-text.content { margin-block-start: .75rem !important; }
+html[data-nm-theme="quiet-focus"] .block.card .card-text .card-text.content { margin-block-start: 0 !important; }
+
+/* Block footers ("Go to calendar…", "Older topics…") read like Todoist's red "+ Add task" row. */
+html[data-nm-theme="quiet-focus"] .block.card .footer {
+  margin-block-start: .5rem;
+  padding: 0;
+  border: 0;
+}
+html[data-nm-theme="quiet-focus"] .block.card .footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .35rem .25rem;
+  color: var(--nm-text-muted);
+  font-size: .875rem;
+}
+html[data-nm-theme="quiet-focus"] .block.card .footer a::before {
+  content: "";
+  inline-size: 13px; block-size: 13px;
+  background:
+    linear-gradient(var(--nm-accent), var(--nm-accent)) center / 13px 1.5px no-repeat,
+    linear-gradient(var(--nm-accent), var(--nm-accent)) center / 1.5px 13px no-repeat;
+  transition: transform var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .block.card .footer a:hover { color: var(--nm-accent); text-decoration: none; }
+html[data-nm-theme="quiet-focus"] .block.card .footer a:hover::before {
+  background-color: var(--nm-accent);
+  border-radius: 50%;
+  background-image:
+    linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  background-size: 9px 1.5px, 1.5px 9px;
+}
+
+/* ---------- Buttons & forms ---------- */
+html[data-nm-theme="quiet-focus"] .btn {
+  --bs-btn-font-family: var(--nm-font);
+  font-family: var(--nm-font);
+  font-size: .8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: .4375rem .75rem;
+  border-radius: 5px;
+  box-shadow: none;
+  transition: background-color var(--qf-ease), color var(--qf-ease), border-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .btn-sm { font-size: .75rem; padding: .3125rem .625rem; }
+html[data-nm-theme="quiet-focus"] .btn-primary {
+  --bs-btn-bg: #c83c2d; --bs-btn-border-color: #c83c2d;
+  --bs-btn-hover-bg: #b03224; --bs-btn-hover-border-color: #b03224;
+  --bs-btn-active-bg: #9c2b1f; --bs-btn-active-border-color: #9c2b1f;
+  background: #c83c2d;
+  border-color: #c83c2d;
+  color: #fff;
+}
+html[data-nm-theme="quiet-focus"] .btn-primary:is(:hover, :focus-visible) { background: #b03224; border-color: #b03224; color: #fff; }
+html[data-nm-theme="quiet-focus"] .btn-primary:active { background: #9c2b1f; border-color: #9c2b1f; }
+html[data-nm-theme="quiet-focus"] :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default) {
+  background: #f5f5f5;
+  border: 1px solid transparent;
+  color: #444444;
+}
+html[data-nm-theme="quiet-focus"] :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default):is(:hover, :focus-visible),
+html[data-nm-theme="quiet-focus"] :is(.btn-secondary, .btn-outline-secondary).show {
+  background: #ebebeb;
+  border-color: transparent;
+  color: #202020;
+}
+html[data-nm-theme="quiet-focus"] .btn-outline-primary { background: transparent; color: var(--nm-accent); border-color: var(--nm-accent); }
+html[data-nm-theme="quiet-focus"] .btn-outline-primary:hover { background: var(--qf-red-tint); color: #a3291d; }
+html[data-nm-theme="quiet-focus"] .btn-link { color: var(--nm-accent); font-weight: 600; }
+html[data-nm-theme="quiet-focus"] .btn.dropdown-toggle::after {
+  border: 0;
+  inline-size: .42em; block-size: .42em;
+  margin-inline-start: .55em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-.2em) rotate(45deg);
+  vertical-align: middle;
+  opacity: .6;
+}
+html[data-nm-theme="quiet-focus"] .btn:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; box-shadow: none; }
+
+html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select) {
+  font-family: var(--nm-font);
+  font-size: .875rem;
+  color: var(--nm-text);
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: .4375rem .625rem;
+  box-shadow: none;
+  transition: border-color var(--qf-ease), box-shadow var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select)::placeholder { color: #8a8a8a; }
+html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select):hover { border-color: #c4c4c4; }
+html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select):focus {
+  border-color: var(--nm-accent);
+  box-shadow: var(--qf-ring);
+  outline: 0;
+}
+/* Todoist's search field carries a magnifier */
+html[data-nm-theme="quiet-focus"] [data-region="filter"] input.form-control,
+html[data-nm-theme="quiet-focus"] input.form-control[placeholder="Search"] {
+  padding-inline-start: 2rem;
+  background: #fff no-repeat .625rem center / 14px
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='7' cy='7' r='5' fill='none' stroke='%23808080' stroke-width='1.3'/%3E%3Cpath d='M10.8 10.8L14 14' stroke='%23808080' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+html[data-nm-theme="quiet-focus"][dir="rtl"] [data-region="filter"] input.form-control,
+html[data-nm-theme="quiet-focus"][dir="rtl"] input.form-control[placeholder="Search"] { background-position: right .625rem center; }
+html[data-nm-theme="quiet-focus"] .form-check-input:checked { background-color: var(--nm-accent); border-color: var(--nm-accent); }
+html[data-nm-theme="quiet-focus"] .form-check-input:focus { border-color: var(--nm-accent); box-shadow: var(--qf-ring); }
+
+/* ---------- Course overview ---------- */
+html[data-nm-theme="quiet-focus"] [data-region="filter"] { gap: .5rem; margin-block-end: 1rem !important; }
+html[data-nm-theme="quiet-focus"] [data-region="filter"] > * { margin: 0 !important; }
+html[data-nm-theme="quiet-focus"] .card-grid { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; row-gap: 1rem; margin-inline: -.5rem !important; }
+html[data-nm-theme="quiet-focus"] .card-grid > .dashboard-card { padding-inline: .5rem; }
+html[data-nm-theme="quiet-focus"] .dashboard-card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin-block-end: 0;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card > a,
+html[data-nm-theme="quiet-focus"] .dashboard-card .dashboard-card-img {
+  display: block;
+  border-radius: 10px;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .dashboard-card-img {
+  block-size: 6.5rem;
+  aspect-ratio: auto;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(0, 0, 0, .05);
+  filter: saturate(.72) brightness(1.04);
+  transition: filter var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card:hover .dashboard-card-img { filter: saturate(.9) brightness(1); }
+html[data-nm-theme="quiet-focus"] .dashboard-card .course-info-container {
+  padding: .625rem .125rem .25rem !important;
+  background: transparent;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .coursename {
+  display: block;
+  color: var(--nm-text);
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  white-space: normal;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .coursename:hover { color: var(--nm-text); text-decoration: underline; text-decoration-color: #c4c4c4; }
+html[data-nm-theme="quiet-focus"] .dashboard-card .categoryname {
+  font-size: .75rem;
+  color: var(--nm-text-muted);
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .categoryname::before {
+  content: "# ";
+  color: var(--qf-project);
+  font-weight: 600;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .dashboard-card-footer {
+  background: transparent !important;
+  border: 0 !important;
+  padding: .25rem .125rem 0 !important;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .progress-text {
+  font-size: .75rem;
+  color: var(--nm-text-muted);
+  margin-block-end: .3rem;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .progress-text strong { color: var(--nm-text); font-weight: 600; }
+html[data-nm-theme="quiet-focus"] .progress {
+  block-size: 4px;
+  background: #f0f0f0 !important;
+  border: 0 !important;
+  border-radius: 999px;
+  overflow: hidden;
+}
+html[data-nm-theme="quiet-focus"] .progress-bar {
+  background: var(--nm-accent);
+  border-radius: 999px;
+}
+html[data-nm-theme="quiet-focus"] .dashboard-card .coursemenubtn { background: transparent; color: var(--nm-text-muted); }
+
+/* list / summary views of course overview */
+html[data-nm-theme="quiet-focus"] .block_myoverview .list-group-item,
+html[data-nm-theme="quiet-focus"] .block_myoverview .course-listitem {
+  background: transparent;
+  border: 0;
+  border-block-end: 1px solid var(--qf-rule);
+  border-radius: 0;
+  padding-inline: 0;
+}
+
+/* ---------- Upcoming events = Todoist task rows ---------- */
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] {
+  display: flex;
+  align-items: flex-start;
+  gap: .625rem;
+  padding: .625rem 0 .75rem !important;
+  border-block-end: 1px solid var(--qf-rule) !important;
+  border-color: var(--qf-rule) !important;
+  background: transparent;
+  transition: background-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .activityiconcontainer {
+  inline-size: 18px !important; block-size: 18px !important;
+  min-inline-size: 18px; flex: none;
+  margin: 2px 0 0 !important;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--qf-check);
+  background: transparent !important;
+  box-shadow: none;
+  position: relative;
+  transition: background-color var(--qf-ease), border-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .activityiconcontainer img { display: none; }
+/* hover tick, exactly like Todoist's circle */
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .activityiconcontainer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: no-repeat center / 10px
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 6.3l2.4 2.3 5.2-5.2' fill='none' stroke='%238f8f8f' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  opacity: 0;
+  transition: opacity var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"]:hover .activityiconcontainer::after { opacity: 1; }
+/* an injected real checkbox replaces the decorative circle */
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"]:has(input[type="checkbox"], [class*="nm-up-check"]) .activityiconcontainer { display: none; }
+
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] > .overflow-auto {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "title title" "date course";
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: .2rem;
+  overflow: visible !important;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h4 {
+  grid-area: title;
+  margin: 0 !important;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h4 a {
+  color: var(--nm-text);
+  white-space: normal;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h4 a:hover { color: var(--nm-text); text-decoration: underline; text-decoration-color: #c4c4c4; }
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h6 {
+  grid-area: course;
+  margin: 0 !important;
+  font-size: .75rem;
+  font-weight: 400;
+  color: var(--nm-text-muted) !important;
+  justify-self: end;
+  max-inline-size: 16rem;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h6::after {
+  content: "#";
+  margin-inline-start: .4rem;
+  color: var(--qf-project);
+  font-weight: 600;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .date {
+  grid-area: date;
+  display: block;
+  font-size: .75rem;
+  color: var(--qf-date);
+  line-height: 1.3;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .date::before {
+  content: "";
+  display: inline-block;
+  vertical-align: -2px;
+  margin-inline-end: .3rem;
+  inline-size: 12px; block-size: 12px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='1' y='1.5' width='10' height='9.5' rx='2' fill='none' stroke='black' stroke-width='1.1'/%3E%3Cpath d='M1.5 4.5h9' stroke='black' stroke-width='1.1'/%3E%3Crect x='3' y='6.3' width='3' height='2.5' rx='.5' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='1' y='1.5' width='10' height='9.5' rx='2' fill='none' stroke='black' stroke-width='1.1'/%3E%3Cpath d='M1.5 4.5h9' stroke='black' stroke-width='1.1'/%3E%3Crect x='3' y='6.3' width='3' height='2.5' rx='.5' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .date a { color: inherit; }
+
+/* ---------- Timeline ---------- */
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] h5 {
+  font-size: .8125rem;
+  font-weight: 700 !important;
+  padding-block-end: .4rem;
+  margin-block-start: 1.25rem !important;
+  border-block-end: 1px solid var(--nm-border);
+}
+html[data-nm-theme="quiet-focus"] .list-group { --bs-list-group-bg: transparent; --bs-list-group-border-color: var(--qf-rule); }
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] .list-group-item {
+  background: transparent;
+  border-color: var(--qf-rule) !important;
+  border-width: 0 0 1px !important;
+  padding-block: .625rem !important;
+  align-items: center;
+  gap: .25rem;
+}
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] .activityiconcontainer {
+  inline-size: 18px !important; block-size: 18px !important;
+  min-inline-size: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--qf-check);
+  background: transparent !important;
+  align-self: flex-start;
+  margin-block-start: 2px;
+}
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] .activityiconcontainer img { display: none; }
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] .event-name { color: var(--nm-text); font-size: .875rem; }
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] .event-name:hover { color: var(--nm-text); }
+html[data-nm-theme="quiet-focus"] [data-region="timeline"] small { font-size: .75rem; margin-block-start: .15rem; }
+
+/* ---------- Announcements ---------- */
+html[data-nm-theme="quiet-focus"] .block_news_items .post {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: .4rem;
+  padding-block: .625rem .7rem;
+  padding-inline: 1.75rem 0;
+  border-block-end: 1px solid var(--qf-rule);
+  position: relative;
+}
+html[data-nm-theme="quiet-focus"] .block_news_items .post::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: .8rem;
+  inline-size: 16px; block-size: 16px;
+  background: var(--nm-text-muted);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 3.5h11v7.5h-6.5l-3 2.5v-2.5h-1.5z' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 3.5h11v7.5h-6.5l-3 2.5v-2.5h-1.5z' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+html[data-nm-theme="quiet-focus"] .block_news_items .post .info {
+  order: -1;
+  flex: 1 0 100%;
+  font-size: .875rem;
+  margin-block-end: .15rem;
+}
+html[data-nm-theme="quiet-focus"] .block_news_items .post .info a { color: var(--nm-text); }
+html[data-nm-theme="quiet-focus"] .block_news_items .post .info a:hover { color: var(--nm-text); text-decoration-color: #c4c4c4; }
+html[data-nm-theme="quiet-focus"] .block_news_items .post :is(.date, .name) { font-size: .75rem; color: var(--nm-text-muted); }
+html[data-nm-theme="quiet-focus"] .block_news_items .post .name::before { content: "·"; margin-inline-end: .4rem; }
+
+/* ---------- Mini calendar (Todoist scheduler grid) ---------- */
+html[data-nm-theme="quiet-focus"] .block_calendar_month .calendarwrapper { max-inline-size: 22rem; }
+html[data-nm-theme="quiet-focus"] .block_calendar_month .calendarwrapper .header {
+  align-items: center;
+  padding: 0 0 .5rem !important;
+  gap: .25rem;
+}
+html[data-nm-theme="quiet-focus"] .block_calendar_month .header .current {
+  order: -1;
+  flex: 1 1 auto;
+  text-align: start !important;
+  font-size: .875rem;
+  font-weight: 700;
+  margin: 0;
+}
+html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 28px; block-size: 28px;
+  border-radius: 5px;
+  color: transparent;
+  font-size: 0;
+  position: relative;
+}
+html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link::before {
+  content: "";
+  inline-size: 7px; block-size: 7px;
+  border-inline-start: 1.5px solid #666;
+  border-block-end: 1.5px solid #666;
+  transform: rotate(45deg);
+  margin-inline-start: 3px;
+}
+html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link.next::before { transform: rotate(-135deg); margin-inline: 0 3px; }
+html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link:hover { background: var(--qf-hover); text-decoration: none; }
+html[data-nm-theme="quiet-focus"] table.minicalendar {
+  inline-size: 100%;
+  max-inline-size: 22rem;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 2px;
+  font-size: .8125rem;
+}
+html[data-nm-theme="quiet-focus"] table.minicalendar th {
+  font-size: .6875rem;
+  font-weight: 500;
+  color: var(--nm-text-muted);
+  text-align: center;
+  padding-block: .25rem .4rem;
+  border: 0;
+}
+html[data-nm-theme="quiet-focus"] table.minicalendar td {
+  text-align: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  position: relative;
+  block-size: 32px;
+}
+html[data-nm-theme="quiet-focus"] table.minicalendar td.day > :is(.day-number, a) {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 28px; block-size: 28px;
+  border-radius: 50%;
+  color: var(--nm-text);
+  transition: background-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] table.minicalendar td.day:hover > :is(.day-number, a) { background: var(--qf-hover); }
+html[data-nm-theme="quiet-focus"] table.minicalendar td.today > :is(.day-number, a),
+html[data-nm-theme="quiet-focus"] table.minicalendar td.today:hover > :is(.day-number, a) {
+  background: var(--nm-accent);
+  color: #fff;
+  font-weight: 700;
+}
+html[data-nm-theme="quiet-focus"] table.minicalendar td.hasevent > :is(.day-number, a) { font-weight: 600; }
+html[data-nm-theme="quiet-focus"] table.minicalendar td.hasevent::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-end: 0;
+  inline-size: 4px; block-size: 4px;
+  margin-inline-start: -2px;
+  border-radius: 50%;
+  background: var(--nm-accent);
+}
+html[data-nm-theme="quiet-focus"] table.minicalendar td.weekend > :is(.day-number, a) { color: var(--nm-text-muted); }
+
+/* ---------- Recently accessed items ---------- */
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] { gap: .5rem; }
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] > .card {
+  margin: 0 !important;
+  background: #fff;
+  border: 1px solid var(--nm-border);
+  border-radius: 8px;
+  box-shadow: none;
+  transition: background-color var(--qf-ease), border-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] > .card:hover { background: var(--qf-chrome); border-color: #e4e0dc; text-decoration: none; }
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .card-body { padding: .625rem .75rem !important; align-items: center; }
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] h6 { font-size: .8125rem; font-weight: 500; color: var(--nm-text); }
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] small { font-size: .75rem; }
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer {
+  inline-size: 28px; block-size: 28px;
+  border-radius: 6px;
+  background: var(--qf-active) !important;
+  flex: none;
+}
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer:empty { display: grid; place-items: center; }
+html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer:empty::before {
+  content: "";
+  inline-size: 14px; block-size: 14px;
+  background: var(--qf-active-text);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.5h5.5L13 5v9.5H4z M9.5 1.5V5H13' fill='none' stroke='black' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.5h5.5L13 5v9.5H4z M9.5 1.5V5H13' fill='none' stroke='black' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ---------- Generic Bootstrap bits ---------- */
+html[data-nm-theme="quiet-focus"] .card { --bs-card-border-color: var(--nm-border); --bs-card-bg: #fff; }
+html[data-nm-theme="quiet-focus"] .border-bottom { border-color: var(--qf-rule) !important; }
+html[data-nm-theme="quiet-focus"] hr { border-color: var(--nm-border); opacity: 1; }
+html[data-nm-theme="quiet-focus"] :is(.badge.bg-primary, .badge-primary) { background: var(--qf-active) !important; color: var(--qf-active-text) !important; }
+html[data-nm-theme="quiet-focus"] .alert { border-radius: 8px; }
+html[data-nm-theme="quiet-focus"] .page-item.active .page-link { background: var(--nm-accent); border-color: var(--nm-accent); }
+html[data-nm-theme="quiet-focus"] .nav-tabs .nav-link.active { color: var(--nm-text); border-block-end: 2px solid var(--nm-accent); }
+
+/* ---------- Injected primitives ---------- */
+html[data-nm-theme="quiet-focus"] .nm-header-slot { gap: .375rem; }
+html[data-nm-theme="quiet-focus"] .nm-btn {
+  font-family: var(--nm-font);
+  font-size: .8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: .4375rem .75rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: #f5f5f5;
+  color: #444;
+  transition: background-color var(--qf-ease), color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .nm-btn:hover { background: #ebebeb; color: #202020; }
+html[data-nm-theme="quiet-focus"] .nm-btn.nm-btn-primary,
+html[data-nm-theme="quiet-focus"] .nm-btn-primary {
+  background: var(--nm-accent);
+  border-color: var(--nm-accent);
+  color: #fff;
+}
+html[data-nm-theme="quiet-focus"] .nm-btn.nm-btn-primary:hover { background: #b03224; border-color: #b03224; color: #fff; }
+html[data-nm-theme="quiet-focus"] :is(.nm-btn, .nm-btn-primary):disabled { opacity: .5; cursor: not-allowed; }
+html[data-nm-theme="quiet-focus"] .nm-icon-btn {
+  inline-size: 2rem; block-size: 2rem;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #666;
+  font-size: .95rem;
+  transition: background-color var(--qf-ease), color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .nm-icon-btn:hover { background: var(--qf-hover); color: var(--nm-text); }
+html[data-nm-theme="quiet-focus"] .nm-icon-btn[aria-expanded="true"] { background: var(--qf-hover); }
+html[data-nm-theme="quiet-focus"] :is(.nm-btn, .nm-icon-btn):focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+
+/* Theme menu = Todoist popover */
+html[data-nm-theme="quiet-focus"] .nm-theme-menu {
+  min-inline-size: 15rem;
+  padding: .25rem;
+  background: #fff;
+  border: 1px solid var(--nm-border);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .06), 0 10px 28px rgba(0, 0, 0, .12);
+  font-family: var(--nm-font);
+  font-size: .8125rem;
+  animation: qf-pop 120ms ease-out;
+}
+html[data-nm-theme="quiet-focus"] .nm-theme-menu::before {
+  content: "Theme";
+  display: block;
+  padding: .45rem .6rem .35rem;
+  font-size: .6875rem;
+  font-weight: 600;
+  color: var(--nm-text-muted);
+  border-block-end: 1px solid var(--qf-rule);
+  margin-block-end: .25rem;
+}
+html[data-nm-theme="quiet-focus"] .nm-theme-option {
+  gap: .625rem;
+  padding: .4rem .6rem;
+  border-radius: 5px;
+  color: var(--nm-text);
+  transition: background-color var(--qf-ease);
+}
+html[data-nm-theme="quiet-focus"] .nm-theme-option:hover { background: var(--qf-hover); }
+html[data-nm-theme="quiet-focus"] .nm-theme-option[aria-checked="true"] { background: var(--qf-active); color: var(--qf-active-text); font-weight: 500; }
+html[data-nm-theme="quiet-focus"] .nm-theme-option[aria-checked="true"]::after { color: var(--qf-active-text); font-weight: 700; }
+html[data-nm-theme="quiet-focus"] .nm-swatch { inline-size: 1rem; block-size: 1rem; border: 1px solid rgba(0, 0, 0, .12); }
+@keyframes qf-pop { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+
+html[data-nm-theme="quiet-focus"] .nm-block-content { font-family: var(--nm-font); font-size: .875rem; }
+
+/* ---------- Light signature touches for feature widgets ---------- */
+/* Upcoming done-split: Todoist circle checkbox, grey fill when completed */
+html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-box {
+  border: 1px solid var(--qf-check);
+  border-radius: 50%;
+  background: transparent;
+}
+html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-box::after { border-color: var(--qf-check); border-width: 0 1.5px 1.5px 0; }
+html[data-nm-theme="quiet-focus"] .nm-up-check:hover .nm-up-box { border-color: var(--qf-check); }
+html[data-nm-theme="quiet-focus"] .nm-up-check:hover .nm-up-box::after { transform: rotate(45deg) scale(1); }
+html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-cb:checked + .nm-up-box { background: var(--qf-check); border-color: var(--qf-check); }
+html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-cb:checked + .nm-up-box::after { border-color: #fff; }
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-lead { margin-inline-end: .625rem; margin-block-start: .125rem; inline-size: 18px; block-size: 18px; }
+/* the lead (checkbox or spacer) takes the place of the decorative circle */
+html[data-nm-theme="quiet-focus"] .event[data-region="event-item"]:has(.nm-up-lead) .activityiconcontainer { display: none; }
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-row-done h4 a { color: var(--nm-text-muted); }
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-meta { grid-column: 1 / -1; margin-block-start: .15rem; }
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-row-info .activityiconcontainer { opacity: 1; }
+/* "Done" toggle = Todoist's red "Add section" divider */
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary {
+  background: transparent;
+  padding-inline: 0;
+  color: var(--nm-accent);
+  font-size: .8125rem;
+  font-weight: 600;
+}
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary:hover { background: transparent; color: #a3291d; }
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary::before { border-color: var(--nm-accent); }
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary::after {
+  content: "";
+  flex: 1 1 auto;
+  block-size: 1px;
+  margin-inline-start: .5rem;
+  background: var(--nm-accent);
+  opacity: .85;
+}
+html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-hint { font-weight: 400; }
+
+/* Todos: Todoist circle (todo.css already draws one; match its weight and colours) */
+html[data-nm-theme="quiet-focus"] .nm-todo-check { border-width: 1px; border-color: var(--qf-check); }
+html[data-nm-theme="quiet-focus"] .nm-todo-check:checked { background: var(--qf-check); border-color: var(--qf-check); }
+
+/* Shortcut chips: compact, softly tinted rectangles; favicon before plain text */
+html[data-nm-theme="quiet-focus"] .nm-sc-chip .nm-sc-link {
+  background: var(--nm-surface-2);
+  border: 1px solid var(--nm-border);
+  border-radius: 5px;
+  color: var(--nm-text);
+  font-size: .8125rem;
+  text-decoration: none;
+}
+html[data-nm-theme="quiet-focus"] .nm-sc-chip .nm-sc-link:hover { background: var(--qf-hover); border-color: #e6e1dc; color: var(--nm-text); text-decoration: none; }
+/* "+ Add" reads like Todoist's red-plus "Add task" row */
+html[data-nm-theme="quiet-focus"] .nm-sc-add,
+html[data-nm-theme="quiet-focus"] .nm-sc-edit-toggle {
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  color: var(--nm-text-muted);
+  font-family: var(--nm-font);
+  font-size: .8125rem;
+}
+html[data-nm-theme="quiet-focus"] .nm-sc-add { color: var(--nm-text-muted); }
+html[data-nm-theme="quiet-focus"] .nm-sc-add :is(svg, .nm-sc-icon) { color: var(--nm-accent); }
+html[data-nm-theme="quiet-focus"] :is(.nm-sc-add, .nm-sc-edit-toggle):hover { background: var(--qf-hover); color: var(--nm-accent); }
+html[data-nm-theme="quiet-focus"] .nm-sc-letter { background: var(--qf-active); color: var(--qf-active-text); }
+/* Todoist's dark toast ("Date updated to … Undo") */
+html[data-nm-theme="quiet-focus"] :is(.nm-sc-toast, [class*="nm-todo-toast"]) {
+  background: #202020;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+}
+html[data-nm-theme="quiet-focus"] :is(.nm-sc-toast, [class*="nm-todo-toast"]) :is(a, button) { color: #ff9a8a; }
+/* popovers/cards share the Todoist popover look */
+html[data-nm-theme="quiet-focus"] :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) {
+  background: #fff;
+  border: 1px solid var(--nm-border);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .06), 0 10px 28px rgba(0, 0, 0, .12);
+}
+html[data-nm-theme="quiet-focus"] .nm-sc-input:focus { border-color: var(--nm-accent); box-shadow: var(--qf-ring); outline: 0; }
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 575.98px) {
+  html[data-nm-theme="quiet-focus"] #page .main-inner,
+  html[data-nm-theme="quiet-focus"] #topofscroll { padding-inline: 1rem; padding-block-start: 1.25rem; }
+  html[data-nm-theme="quiet-focus"] #page-header h1 { font-size: 1.5rem; }
+  html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] > .overflow-auto {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "title" "date" "course";
+  }
+  html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h6 { justify-self: start; max-inline-size: 100%; }
+  html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) { margin-block-end: 1.75rem !important; }
+  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link { padding-inline: .5rem !important; white-space: nowrap; }
+  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top > .container-fluid { flex-wrap: nowrap; gap: .5rem; }
+  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .primary-navigation { flex: 1 1 auto; min-inline-size: 0; overflow-x: auto; scrollbar-width: none; }
+  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .primary-navigation .navbar-nav { flex-wrap: nowrap; }
+  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .usertext { white-space: nowrap; font-size: .8125rem; }
+}
+
+/* ---------- Motion off ---------- */
+html[data-nm-theme="quiet-focus"][data-nm-motion="off"] *,
+html[data-nm-theme="quiet-focus"][data-nm-motion="off"] *::before,
+html[data-nm-theme="quiet-focus"][data-nm-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-nm-theme="quiet-focus"] *,
+  html[data-nm-theme="quiet-focus"] *::before,
+  html[data-nm-theme="quiet-focus"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,1 +1,884 @@
-/* placeholder: night-operator theme */
+
+/* =====================================================================================
+   Night Operator: one reference only, Linear (dark).
+   Near-black rail, a slightly raised rounded main panel, hairline borders, 13px Inter,
+   dense rows, Linear-style group-header strips with status glyphs, violet reserved for
+   selected / primary states. Everything is scoped to html[data-nm-theme="night-operator"].
+   ===================================================================================== */
+
+html[data-nm-theme="night-operator"] {
+  color-scheme: dark;
+
+  /* Linear surfaces, darkest to lightest */
+  --no-rail: #08090a;          /* app background behind the main panel */
+  --no-panel: #0f1011;         /* main panel */
+  --no-raised: #141517;        /* board cards, inputs */
+  --no-strip: #18191b;         /* group header strips, hover rows */
+  --no-hover: #1d1e21;
+  --no-elevated: #1c1d20;      /* menus, popovers */
+  --no-line: #212225;          /* hairline borders */
+  --no-line-strong: #2c2d31;   /* control borders */
+  --no-text: #eeeff1;
+  --no-text-2: #d0d3d9;        /* secondary text */
+  --no-text-3: #8a8f98;        /* muted: ids, dates (5.8:1 on panel) */
+  --no-violet: #7772d8;        /* the reference violet, for glyphs and rings */
+  --no-violet-text: #a29df2;   /* violet as text on dark (7.8:1) */
+  --no-violet-soft: rgba(119, 114, 216, .16);
+  --no-glow: 0 0 0 1px rgba(119, 114, 216, .55), 0 0 18px -2px rgba(119, 114, 216, .45);
+  --no-yellow: #f2c94c;        /* "In progress" glyph */
+  --no-ease: 100ms cubic-bezier(.25, .46, .45, .94);
+
+  /* Shared tokens for every injected widget */
+  --nm-bg: var(--no-rail);
+  --nm-surface: var(--no-raised);
+  --nm-surface-2: var(--no-strip);
+  --nm-text: var(--no-text);
+  --nm-text-muted: var(--no-text-3);
+  --nm-border: var(--no-line);
+  --nm-accent: #6b66d6;        /* white text on it = 4.67:1 */
+  --nm-accent-text: #a09cf5;        /* violet text on near-black needs to be lighter */
+  --nm-accent-contrast: #ffffff;
+  --nm-success: #4daa83;
+  --nm-warning: #d8bd54;
+  --nm-danger: #e47743;
+  --nm-radius: 6px;
+  --nm-shadow: none;
+  --nm-font: "Inter", "Noto Sans Hebrew", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --nm-heading-font: "Inter", "Noto Sans Hebrew", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --nm-border-width: 1px;
+  --nm-confetti: #7772d8, #a29df2, #5e6ad2, #4daa83, #f2c94c, #eeeff1;
+
+  /* Bootstrap 5 variables */
+  --bs-body-bg: var(--no-rail);
+  --bs-body-bg-rgb: 8, 9, 10;
+  --bs-body-color: var(--no-text);
+  --bs-body-color-rgb: 238, 239, 241;
+  --bs-body-font-family: var(--nm-font);
+  --bs-font-sans-serif: var(--nm-font);
+  --bs-body-font-size: 13px;
+  --bs-body-line-height: 1.5;
+  --bs-emphasis-color: #ffffff;
+  --bs-emphasis-color-rgb: 255, 255, 255;
+  --bs-heading-color: var(--no-text);
+  --bs-secondary-color: var(--no-text-3);
+  --bs-secondary-color-rgb: 138, 143, 152;
+  --bs-secondary-bg: var(--no-strip);
+  --bs-secondary-bg-rgb: 24, 25, 27;
+  --bs-tertiary-color: var(--no-text-3);
+  --bs-tertiary-bg: var(--no-raised);
+  --bs-tertiary-bg-rgb: 20, 21, 23;
+  --bs-primary: var(--no-violet);
+  --bs-primary-rgb: 119, 114, 216;
+  --bs-primary-text-emphasis: var(--no-violet-text);
+  --bs-primary-bg-subtle: rgba(119, 114, 216, .14);
+  --bs-primary-border-subtle: rgba(119, 114, 216, .4);
+  --bs-secondary: #8a8f98;
+  --bs-secondary-rgb: 138, 143, 152;
+  --bs-success: #4daa83;
+  --bs-success-rgb: 77, 170, 131;
+  --bs-warning: #d8bd54;
+  --bs-warning-rgb: 216, 189, 84;
+  --bs-danger: #e47743;
+  --bs-danger-rgb: 228, 119, 67;
+  --bs-info: #4ea7fc;
+  --bs-info-rgb: 78, 167, 252;
+  --bs-light-rgb: 24, 25, 27;
+  --bs-dark-rgb: 8, 9, 10;
+  --bs-link-color: var(--no-violet-text);
+  --bs-link-color-rgb: 162, 157, 242;
+  --bs-link-hover-color: #c4c0f7;
+  --bs-link-hover-color-rgb: 196, 192, 247;
+  --bs-border-color: var(--no-line);
+  --bs-border-color-translucent: rgba(255, 255, 255, .06);
+  --bs-border-radius: 6px;
+  --bs-border-radius-sm: 4px;
+  --bs-border-radius-lg: 8px;
+  --bs-focus-ring-color: rgba(119, 114, 216, .35);
+  --bs-form-valid-color: #4daa83;
+  --bs-form-invalid-color: #eb5757;
+  --bs-code-color: var(--no-violet-text);
+  --bs-highlight-bg: rgba(242, 201, 76, .25);
+  --bs-highlight-color: var(--no-text);
+
+  background: var(--no-rail);
+  scrollbar-color: #2c2d31 transparent;
+}
+
+/* ---------- Base type ---------- */
+html[data-nm-theme="night-operator"] body {
+  background: var(--no-rail) !important;
+  color: var(--no-text);
+  font-family: var(--nm-font);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -.003em;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html[data-nm-theme="night-operator"] :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+  font-family: var(--nm-heading-font);
+  color: var(--no-text);
+  letter-spacing: -.01em;
+}
+html[data-nm-theme="night-operator"] ::selection { background: rgba(119, 114, 216, .45); color: #fff; }
+html[data-nm-theme="night-operator"] a { color: var(--bs-link-color); text-decoration: none; transition: color var(--no-ease); }
+html[data-nm-theme="night-operator"] a:hover { color: var(--bs-link-hover-color); }
+html[data-nm-theme="night-operator"] :is(.text-muted, .text-body-secondary, .text-secondary, .muted, .dimmed_text) { color: var(--no-text-3) !important; }
+html[data-nm-theme="night-operator"] :is(.text-primary, .text-info) { color: var(--no-violet-text) !important; }
+html[data-nm-theme="night-operator"] :is(.text-dark, .text-body, .text-black) { color: var(--no-text) !important; }
+html[data-nm-theme="night-operator"] :is(.border, .border-top, .border-bottom, .border-start, .border-end) { border-color: var(--no-line) !important; }
+html[data-nm-theme="night-operator"] hr { border-color: var(--no-line); opacity: 1; }
+html[data-nm-theme="night-operator"] :is(code, kbd, pre) { background: var(--no-strip); color: var(--no-text-2); border-radius: 4px; }
+
+/* Every hard-coded white / light surface Bootstrap and Boost ship */
+html[data-nm-theme="night-operator"] :is(.bg-white, .bg-light, .bg-body, .bg-body-tertiary, .bg-body-secondary, .bg-gray-100, .bg-gray-200) {
+  background-color: var(--no-panel) !important;
+  color: var(--no-text);
+}
+html[data-nm-theme="night-operator"] .bg-dark { background-color: var(--no-rail) !important; }
+
+/* ---------- Page: black rail with a raised rounded panel (Linear's app frame) ---------- */
+html[data-nm-theme="night-operator"] :is(#page-wrapper, #page, #page.drawers, #page-content, #region-main-box, #region-main, [data-region="mainpage"]) {
+  background: transparent !important;
+  color: var(--no-text);
+}
+html[data-nm-theme="night-operator"] #region-main { border: 0 !important; box-shadow: none !important; padding: 0; }
+html[data-nm-theme="night-operator"] #page { margin-top: 48px !important; padding: 8px 8px 8px; }
+html[data-nm-theme="night-operator"] #topofscroll,
+html[data-nm-theme="night-operator"] .main-inner {
+  background:
+    radial-gradient(1200px 320px at 50% -120px, rgba(119, 114, 216, .07), transparent 70%),
+    var(--no-panel) !important;
+  border: 1px solid var(--no-line);
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .02) inset;
+  padding: 20px 24px 28px;
+  margin: 0 auto;
+}
+html[data-nm-theme="night-operator"] :is(.drawer, .drawer-left, .drawer-right, #theme_boost-drawers-courseindex, #theme_boost-drawers-blocks) {
+  background: var(--no-rail) !important;
+  border-color: var(--no-line) !important;
+  color: var(--no-text);
+}
+html[data-nm-theme="night-operator"] :is(#page-footer, footer#page-footer) {
+  background: var(--no-rail) !important;
+  color: var(--no-text-3) !important;
+  border-top: 1px solid var(--no-line);
+}
+
+/* ---------- Top navbar: the almost-black rail ---------- */
+html[data-nm-theme="night-operator"] nav.navbar.fixed-top,
+html[data-nm-theme="night-operator"] nav.navbar.fixed-top.bg-white {
+  background: var(--no-rail) !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  min-height: 48px;
+  height: 48px;
+  padding-block: 0;
+  font-size: 13px;
+}
+html[data-nm-theme="night-operator"] nav.navbar.fixed-top .container-fluid { gap: 8px; }
+html[data-nm-theme="night-operator"] nav.navbar.fixed-top .logo { filter: grayscale(1) brightness(1.6); opacity: .9; max-height: 24px; }
+html[data-nm-theme="night-operator"] nav.navbar .nav-link,
+html[data-nm-theme="night-operator"] nav.navbar .navbar-nav .nav-link {
+  color: var(--no-text-3) !important;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 5px 10px !important;
+  margin-inline: 1px;
+  border: 0 !important;
+  border-radius: 6px;
+  line-height: 18px;
+  transition: background-color var(--no-ease), color var(--no-ease);
+}
+html[data-nm-theme="night-operator"] nav.navbar .nav-link:hover { color: var(--no-text) !important; background: var(--no-strip); }
+html[data-nm-theme="night-operator"] nav.navbar :is(.nav-link.active, .nav-link[aria-current="true"], .nav-link[aria-current="page"]) {
+  color: var(--no-text) !important;
+  background: var(--no-hover) !important;
+  border-bottom: 0 !important;
+}
+html[data-nm-theme="night-operator"] .moremenu .nav-link.active { border-bottom-color: transparent !important; }
+html[data-nm-theme="night-operator"] nav.navbar .dropdown-toggle::after { opacity: .6; margin-inline-start: 6px; vertical-align: .15em; border-top-width: .28em; border-inline-width: .28em; }
+html[data-nm-theme="night-operator"] :is(.usermenu, .userbutton, .usertext, #usernavigation) { color: var(--no-text-2) !important; }
+html[data-nm-theme="night-operator"] .usermenu .userbutton { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+html[data-nm-theme="night-operator"] .usermenu .usertext::before {
+  content: ""; display: inline-block; inline-size: 18px; block-size: 18px; border-radius: 50%;
+  background: linear-gradient(135deg, #8f8be6, #5e6ad2); vertical-align: -4px; margin-inline-end: 8px;
+}
+html[data-nm-theme="night-operator"] .navbar :is(.btn, .icon) { color: var(--no-text-3); }
+
+/* ---------- Page header ---------- */
+html[data-nm-theme="night-operator"] #page-header { margin-bottom: 16px; padding: 0; }
+html[data-nm-theme="night-operator"] #page-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.25;
+  margin: 0;
+  color: #f7f8f8;
+}
+
+/* ---------- Blocks: Linear panels with a group-header strip ---------- */
+html[data-nm-theme="night-operator"] .block.card,
+html[data-nm-theme="night-operator"] section.block,
+html[data-nm-theme="night-operator"] .nm-block {
+  --bs-card-bg: transparent;
+  --bs-card-color: var(--no-text);
+  --bs-card-border-color: var(--no-line);
+  --bs-card-cap-bg: var(--no-strip);
+  background: rgba(255, 255, 255, .012) !important;
+  color: var(--no-text);
+  border: 1px solid var(--no-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  margin-bottom: 12px !important;
+  overflow: visible;
+}
+html[data-nm-theme="night-operator"] .block.card > .card-body { padding: 6px !important; }
+html[data-nm-theme="night-operator"] .block.card .card-text.content { margin-top: 0 !important; padding: 8px 10px 6px; }
+
+/* Group-header strip: "◔ In Progress" */
+html[data-nm-theme="night-operator"] .block.card .card-title,
+html[data-nm-theme="night-operator"] .nm-block .nm-block-title {
+  --no-glyph: var(--no-text-3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 !important;
+  padding: 7px 10px;
+  min-height: 34px;
+  background: var(--no-strip);
+  border-radius: 6px;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: -.005em;
+  line-height: 20px;
+  color: var(--no-text) !important;
+}
+html[data-nm-theme="night-operator"] .block.card .card-title::before,
+html[data-nm-theme="night-operator"] .nm-block .nm-block-title::before {
+  content: "";
+  flex: none;
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--no-glyph);
+}
+/* Strip spans the block width when the title sits in a flex row (upcoming, injected blocks) */
+html[data-nm-theme="night-operator"] .block.card .card-body > .d-flex:first-child:has(> .card-title),
+html[data-nm-theme="night-operator"] .nm-block .nm-block-head { display: flex; background: var(--no-strip); border-radius: 6px; align-items: center; gap: 6px; padding-inline-end: 6px; }
+html[data-nm-theme="night-operator"] .block.card .card-body > .d-flex:first-child > .card-title,
+html[data-nm-theme="night-operator"] .nm-block .nm-block-head > .nm-block-title { flex: 1 1 auto; background: transparent; }
+
+/* Status glyphs per block, like Linear's issue statuses */
+html[data-nm-theme="night-operator"] .block.card[data-block="myoverview"] .card-title::before {            /* In progress: half-filled yellow */
+  border-color: var(--no-yellow);
+  background: conic-gradient(var(--no-yellow) 0 50%, transparent 50% 100%) content-box;
+  padding: 2px;
+}
+html[data-nm-theme="night-operator"] .block.card[data-block="news_items"] .card-title::before {            /* Backlog: dashed ring */
+  border-style: dashed;
+  border-color: #6f747c;
+}
+html[data-nm-theme="night-operator"] .block.card[data-block="calendar_upcoming"] .card-title::before,
+html[data-nm-theme="night-operator"] .block.card[data-block="timeline"] .card-title::before {             /* Todo: ring */
+  border-color: #c9ccd1;
+}
+html[data-nm-theme="night-operator"] .block.card[data-block="calendar_month"] .card-title::before {
+  border-radius: 3px;
+  border-color: #8a8f98;
+}
+html[data-nm-theme="night-operator"] .block.card[data-block="recentlyaccesseditems"] .card-title::before {
+  border-color: #4ea7fc;
+  background: conic-gradient(#4ea7fc 0 25%, transparent 25% 100%) content-box;
+  padding: 2px;
+}
+html[data-nm-theme="night-operator"] .block.card.nm-block .nm-block-title::before {                         /* Done: filled violet check */
+  border: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4 7.2l2 2 4-4.4' fill='none' stroke='%2308090a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat,
+    var(--no-violet);
+}
+
+/* ---------- Buttons ---------- */
+html[data-nm-theme="night-operator"] .btn {
+  --bs-btn-font-size: 12px;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 4px;
+  --bs-btn-padding-x: 10px;
+  --bs-btn-border-radius: 6px;
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(119, 114, 216, .35);
+  font-family: var(--nm-font);
+  line-height: 18px;
+  letter-spacing: -.005em;
+  box-shadow: none;
+  transition: background-color var(--no-ease), border-color var(--no-ease), color var(--no-ease), box-shadow var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .btn-sm { --bs-btn-padding-y: 3px; --bs-btn-padding-x: 9px; --bs-btn-font-size: 12px; }
+html[data-nm-theme="night-operator"] :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-outline-light, .btn-default, .btn-outline-dark, .btn-dark) {
+  --bs-btn-color: var(--no-text-2);
+  --bs-btn-bg: var(--no-raised);
+  --bs-btn-border-color: var(--no-line-strong);
+  --bs-btn-hover-color: var(--no-text);
+  --bs-btn-hover-bg: var(--no-hover);
+  --bs-btn-hover-border-color: #36373c;
+  --bs-btn-active-color: var(--no-text);
+  --bs-btn-active-bg: #232428;
+  --bs-btn-active-border-color: #3a3b40;
+  --bs-btn-disabled-color: #62666d;
+  --bs-btn-disabled-bg: var(--no-raised);
+  --bs-btn-disabled-border-color: var(--no-line);
+}
+html[data-nm-theme="night-operator"] :is(.btn-primary, .btn-outline-primary:hover, .btn-outline-primary:active) {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--nm-accent);
+  --bs-btn-border-color: #7c77e0;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #7772d8;
+  --bs-btn-hover-border-color: #8f8be6;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #5f5ac8;
+  --bs-btn-active-border-color: #7772d8;
+}
+html[data-nm-theme="night-operator"] .btn-primary:hover { box-shadow: var(--no-glow); }
+html[data-nm-theme="night-operator"] .btn-outline-primary {
+  --bs-btn-color: var(--no-violet-text);
+  --bs-btn-border-color: rgba(119, 114, 216, .5);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--nm-accent);
+}
+html[data-nm-theme="night-operator"] .btn-link { --bs-btn-color: var(--no-violet-text); --bs-btn-hover-color: #c4c0f7; }
+html[data-nm-theme="night-operator"] .btn-danger { --bs-btn-bg: #b4502a; --bs-btn-border-color: #c65a30; --bs-btn-hover-bg: #c65a30; }
+/* Filter / view toggles read as Linear's pill tabs ("All issues · Active · Backlog") */
+html[data-nm-theme="night-operator"] :is([data-region="filter"], [data-region="timeline"] > .d-flex, [data-region="day-filter"], [data-region="view-selector"]) .btn {
+  border-radius: 999px;
+  --bs-btn-padding-x: 12px;
+  --bs-btn-bg: transparent;
+}
+html[data-nm-theme="night-operator"] :is([data-region="filter"], [data-region="timeline"] > .d-flex) .btn:first-child { --bs-btn-bg: var(--no-hover); --bs-btn-color: var(--no-text); }
+html[data-nm-theme="night-operator"] .dropdown-toggle::after { border-top-width: .28em; border-inline-width: .28em; opacity: .7; }
+
+/* ---------- Forms ---------- */
+html[data-nm-theme="night-operator"] :is(.form-control, .form-select, .custom-select, input[type="text"], input[type="search"], input[type="email"], input[type="url"], input[type="number"], input[type="password"], input[type="date"], textarea, select) {
+  background-color: var(--no-raised);
+  color: var(--no-text);
+  border: 1px solid var(--no-line-strong);
+  border-radius: 6px;
+  font-family: var(--nm-font);
+  font-size: 13px;
+  min-height: 28px;
+  padding: 4px 10px;
+  box-shadow: none;
+  transition: border-color var(--no-ease), box-shadow var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .form-select { padding-inline-end: 28px; }
+html[data-nm-theme="night-operator"] :is(.form-control, input, textarea)::placeholder { color: #80858d; opacity: 1; }
+html[data-nm-theme="night-operator"] :is(.form-control, .form-select, input, textarea, select):focus {
+  background-color: var(--no-raised);
+  color: var(--no-text);
+  border-color: var(--no-violet);
+  box-shadow: 0 0 0 3px rgba(119, 114, 216, .22);
+  outline: 0;
+}
+html[data-nm-theme="night-operator"] :is(.form-control:disabled, .form-control[readonly]) { background: var(--no-panel); color: var(--no-text-3); }
+html[data-nm-theme="night-operator"] .form-check-input {
+  background-color: transparent;
+  border: 1.5px solid #5b5f66;
+  border-radius: 50%;
+}
+html[data-nm-theme="night-operator"] .form-check-input:checked { background-color: var(--no-violet); border-color: var(--no-violet); }
+html[data-nm-theme="night-operator"] .input-group-text { background: var(--no-strip); color: var(--no-text-3); border-color: var(--no-line-strong); }
+
+/* Focus ring everywhere: thin violet with a soft glow */
+html[data-nm-theme="night-operator"] :is(a, button, .btn, [role="button"], [tabindex], summary):focus-visible {
+  outline: 2px solid var(--no-violet) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 12px rgba(119, 114, 216, .35);
+  border-radius: 4px;
+}
+
+/* ---------- Dropdowns, popovers, modals ---------- */
+html[data-nm-theme="night-operator"] .dropdown-menu {
+  --bs-dropdown-bg: var(--no-elevated);
+  --bs-dropdown-color: var(--no-text-2);
+  --bs-dropdown-border-color: rgba(255, 255, 255, .08);
+  --bs-dropdown-link-color: var(--no-text-2);
+  --bs-dropdown-link-hover-color: var(--no-text);
+  --bs-dropdown-link-hover-bg: rgba(255, 255, 255, .06);
+  --bs-dropdown-link-active-color: var(--no-text);
+  --bs-dropdown-link-active-bg: var(--no-violet-soft);
+  --bs-dropdown-divider-bg: var(--no-line);
+  --bs-dropdown-header-color: var(--no-text-3);
+  --bs-dropdown-font-size: 13px;
+  --bs-dropdown-item-padding-y: 5px;
+  --bs-dropdown-item-padding-x: 10px;
+  background: var(--no-elevated);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .55);
+}
+html[data-nm-theme="night-operator"] .dropdown-item { border-radius: 5px; }
+html[data-nm-theme="night-operator"] :is(.popover, .modal-content, .toast, .offcanvas, .tooltip-inner) {
+  background: var(--no-elevated) !important;
+  color: var(--no-text);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 10px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .6);
+}
+html[data-nm-theme="night-operator"] :is(.modal-header, .modal-footer, .popover-header) { background: transparent; border-color: var(--no-line); color: var(--no-text); }
+html[data-nm-theme="night-operator"] .btn-close { filter: invert(1) grayscale(1) brightness(1.4); }
+html[data-nm-theme="night-operator"] .modal-backdrop.show { opacity: .7; }
+
+/* ---------- Generic cards, list groups, tables, alerts, badges ---------- */
+html[data-nm-theme="night-operator"] .card {
+  --bs-card-bg: var(--no-raised);
+  --bs-card-color: var(--no-text);
+  --bs-card-border-color: var(--no-line);
+  --bs-card-cap-bg: var(--no-strip);
+  --bs-card-title-color: var(--no-text);
+  background-color: var(--bs-card-bg);
+  color: var(--no-text);
+}
+html[data-nm-theme="night-operator"] :is(.card-header, .card-footer) { background-color: transparent; border-color: var(--no-line); }
+html[data-nm-theme="night-operator"] .list-group {
+  --bs-list-group-bg: transparent;
+  --bs-list-group-color: var(--no-text);
+  --bs-list-group-border-color: var(--no-line);
+  --bs-list-group-action-hover-bg: var(--no-strip);
+  --bs-list-group-action-hover-color: var(--no-text);
+  --bs-list-group-active-bg: var(--no-violet-soft);
+  --bs-list-group-active-color: var(--no-text);
+  --bs-list-group-active-border-color: var(--no-line);
+}
+html[data-nm-theme="night-operator"] .list-group-item { background-color: transparent; color: var(--no-text); border-color: var(--no-line); }
+html[data-nm-theme="night-operator"] .table,
+html[data-nm-theme="night-operator"] table.generaltable,
+html[data-nm-theme="night-operator"] table.flexible {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--no-text);
+  --bs-table-border-color: var(--no-line);
+  --bs-table-striped-bg: rgba(255, 255, 255, .02);
+  --bs-table-striped-color: var(--no-text);
+  --bs-table-hover-bg: var(--no-strip);
+  --bs-table-hover-color: var(--no-text);
+  --bs-table-active-bg: var(--no-hover);
+  color: var(--no-text);
+  border-color: var(--no-line);
+}
+html[data-nm-theme="night-operator"] :is(.table, table.generaltable) th { color: var(--no-text-3); font-weight: 500; font-size: 12px; }
+html[data-nm-theme="night-operator"] .alert {
+  --bs-alert-bg: var(--no-strip);
+  --bs-alert-color: var(--no-text-2);
+  --bs-alert-border-color: var(--no-line);
+  border-radius: 8px;
+}
+html[data-nm-theme="night-operator"] .alert-info { --bs-alert-border-color: rgba(119, 114, 216, .35); }
+html[data-nm-theme="night-operator"] .badge { font-weight: 500; border-radius: 999px; }
+html[data-nm-theme="night-operator"] :is(.badge.bg-secondary, .badge.bg-light, .badge.text-bg-light, .badge.text-bg-secondary) {
+  background: transparent !important; color: var(--no-text-2) !important; border: 1px solid var(--no-line-strong);
+}
+html[data-nm-theme="night-operator"] .progress {
+  --bs-progress-bg: #232428;
+  --bs-progress-bar-bg: var(--no-violet);
+  --bs-progress-height: 4px;
+  --bs-progress-border-radius: 999px;
+}
+html[data-nm-theme="night-operator"] .pagination {
+  --bs-pagination-bg: var(--no-raised);
+  --bs-pagination-color: var(--no-text-2);
+  --bs-pagination-border-color: var(--no-line-strong);
+  --bs-pagination-hover-bg: var(--no-hover);
+  --bs-pagination-hover-color: var(--no-text);
+  --bs-pagination-hover-border-color: var(--no-line-strong);
+  --bs-pagination-active-bg: var(--nm-accent);
+  --bs-pagination-active-border-color: var(--nm-accent);
+  --bs-pagination-disabled-bg: var(--no-panel);
+  --bs-pagination-disabled-color: #62666d;
+  --bs-pagination-disabled-border-color: var(--no-line);
+}
+html[data-nm-theme="night-operator"] .nav-tabs { --bs-nav-tabs-border-color: var(--no-line); --bs-nav-tabs-link-active-bg: var(--no-panel); --bs-nav-tabs-link-active-color: var(--no-text); --bs-nav-tabs-link-active-border-color: var(--no-line) var(--no-line) var(--no-panel); }
+
+/* Activity icons: small rounded tiles with a light monochrome glyph */
+html[data-nm-theme="night-operator"] .activityiconcontainer {
+  inline-size: 26px !important;
+  block-size: 26px !important;
+  min-inline-size: 26px;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--no-strip) !important;
+  border: 1px solid var(--no-line);
+}
+html[data-nm-theme="night-operator"] .activityiconcontainer.assessment { background: rgba(119, 114, 216, .14) !important; border-color: rgba(119, 114, 216, .28); }
+html[data-nm-theme="night-operator"] .activityiconcontainer.content { background: rgba(78, 167, 252, .12) !important; border-color: rgba(78, 167, 252, .25); }
+html[data-nm-theme="night-operator"] .activityiconcontainer.collaboration { background: rgba(77, 170, 131, .12) !important; border-color: rgba(77, 170, 131, .25); }
+html[data-nm-theme="night-operator"] .activityiconcontainer .activityicon { inline-size: 14px; block-size: 14px; filter: brightness(0) invert(.88); }
+html[data-nm-theme="night-operator"] .activityiconcontainer:empty::after,
+html[data-nm-theme="night-operator"] .activityiconcontainer:has(> img[src="data:,"])::after {
+  content: ""; inline-size: 10px; block-size: 10px; border-radius: 50%; box-sizing: border-box;
+  border: 1.5px solid #c9ccd1;
+}
+html[data-nm-theme="night-operator"] .activityiconcontainer:has(> img[src="data:,"]) > img { display: none; }
+html[data-nm-theme="night-operator"] .activityiconcontainer.assessment:empty::after,
+html[data-nm-theme="night-operator"] .activityiconcontainer.assessment:has(> img[src="data:,"])::after { border-color: var(--no-violet-text); }
+html[data-nm-theme="night-operator"] .activityiconcontainer.content:empty::after { border-color: #7cbcfd; border-radius: 2px; }
+
+/* ---------- Course overview: Linear board cards ---------- */
+html[data-nm-theme="night-operator"] [data-region="filter"] { gap: 6px; margin-bottom: 12px !important; }
+html[data-nm-theme="night-operator"] [data-region="filter"] > * { margin: 0 !important; }
+html[data-nm-theme="night-operator"] [data-region="filter"] .form-control { min-width: 180px; border-radius: 999px; padding-inline: 12px; }
+html[data-nm-theme="night-operator"] .card-grid { --bs-gutter-x: 10px; --bs-gutter-y: 10px; margin-inline: 0 !important; }
+html[data-nm-theme="night-operator"] .dashboard-card {
+  --bs-card-bg: var(--no-raised);
+  background: var(--no-raised) !important;
+  border: 1px solid var(--no-line) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: none !important;
+  transition: border-color var(--no-ease), background-color var(--no-ease), box-shadow var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .dashboard-card:hover {
+  background: #17181b !important;
+  border-color: #2e2f34 !important;
+  box-shadow: 0 0 0 1px rgba(119, 114, 216, .18), 0 6px 24px -10px rgba(119, 114, 216, .35) !important;
+}
+html[data-nm-theme="night-operator"] .dashboard-card-img {
+  block-size: 76px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 !important;
+  filter: saturate(.7) brightness(.72) contrast(1.05);
+  border-bottom: 1px solid var(--no-line);
+}
+html[data-nm-theme="night-operator"] .dashboard-card:hover .dashboard-card-img { filter: saturate(.85) brightness(.8); }
+html[data-nm-theme="night-operator"] .dashboard-card .card-body { padding: 10px 12px 4px !important; background: transparent; }
+html[data-nm-theme="night-operator"] .dashboard-card .categoryname {
+  font-size: 12px;
+  color: var(--no-text-3);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .01em;
+}
+html[data-nm-theme="night-operator"] .dashboard-card .coursename,
+html[data-nm-theme="night-operator"] .dashboard-card .aalink.coursename {
+  color: var(--no-text) !important;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  display: block;
+  white-space: normal;
+}
+html[data-nm-theme="night-operator"] .dashboard-card .coursename:hover { color: #fff !important; }
+html[data-nm-theme="night-operator"] .dashboard-card .coursename .multiline { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+html[data-nm-theme="night-operator"] .dashboard-card-footer,
+html[data-nm-theme="night-operator"] .dashboard-card .card-footer.bg-white {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 6px 12px 12px !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+html[data-nm-theme="night-operator"] .dashboard-card .progress-text {
+  order: 2;
+  flex: none;
+  font-size: 12px;
+  color: var(--no-text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+html[data-nm-theme="night-operator"] .dashboard-card .progress-text strong { color: var(--no-text-2); font-weight: 500; }
+html[data-nm-theme="night-operator"] .dashboard-card .progress,
+html[data-nm-theme="night-operator"] .dashboard-card .progress.bg-white {
+  order: 1;
+  flex: 1 1 auto;
+  block-size: 4px;
+  background: #24252a !important;
+  border: 0 !important;
+  border-radius: 999px;
+  overflow: hidden;
+}
+html[data-nm-theme="night-operator"] .dashboard-card .progress-bar {
+  background: linear-gradient(90deg, #5e6ad2, #8f8be6) !important;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(119, 114, 216, .6);
+}
+html[data-nm-theme="night-operator"] .dashboard-card :is(.dropdown .btn, .coursemenubtn) { --bs-btn-bg: transparent; --bs-btn-border-color: transparent; color: var(--no-text-3); }
+/* List and summary views of the same block */
+html[data-nm-theme="night-operator"] :is(.course-listitem, .course-summaryitem) {
+  background: transparent !important;
+  border-color: var(--no-line) !important;
+  color: var(--no-text);
+}
+html[data-nm-theme="night-operator"] :is(.course-listitem, .course-summaryitem):hover { background: var(--no-strip) !important; }
+
+/* ---------- Upcoming events: dense issue rows with label capsules ---------- */
+html[data-nm-theme="night-operator"] .block_calendar_upcoming .card-text.content { padding: 4px 0; }
+html[data-nm-theme="night-operator"] .event,
+html[data-nm-theme="night-operator"] .event.border-bottom {
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px !important;
+  margin: 0;
+  border-bottom: 1px solid var(--no-line) !important;
+  border-radius: 0;
+  transition: background-color var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .event:last-of-type { border-bottom-color: transparent !important; }
+html[data-nm-theme="night-operator"] .event:hover { background: var(--no-strip); border-radius: 6px; border-bottom-color: transparent !important; }
+html[data-nm-theme="night-operator"] .event > .activityiconcontainer { margin: 0 !important; }
+html[data-nm-theme="night-operator"] .event > .overflow-auto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  min-inline-size: 0;
+  flex: 1 1 auto;
+  overflow: hidden !important;
+}
+html[data-nm-theme="night-operator"] .event h4,
+html[data-nm-theme="night-operator"] .event .h6:first-child {
+  flex: 1 0 100%;
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  line-height: 18px;
+  min-inline-size: 0;
+}
+html[data-nm-theme="night-operator"] .event h4 a,
+html[data-nm-theme="night-operator"] .event [data-action="view-event"] { color: var(--no-text) !important; }
+html[data-nm-theme="night-operator"] .event [data-action="view-event"]:hover { color: #fff !important; }
+/* Course name = Linear label capsule with a colored dot */
+html[data-nm-theme="night-operator"] .event h6.text-primary,
+html[data-nm-theme="night-operator"] .event > .overflow-auto > h6 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-inline-size: 100%;
+  margin: 0 !important;
+  padding: 1px 8px;
+  border: 1px solid var(--no-line-strong);
+  border-radius: 999px;
+  font-size: 12px !important;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--no-text-2) !important;
+}
+html[data-nm-theme="night-operator"] .event h6.text-primary::before,
+html[data-nm-theme="night-operator"] .event > .overflow-auto > h6::before {
+  content: ""; flex: none; inline-size: 7px; block-size: 7px; border-radius: 50%; background: var(--no-violet);
+}
+html[data-nm-theme="night-operator"] .event .date {
+  margin-inline-start: auto;
+  font-size: 12px;
+  color: var(--no-text-3) !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+html[data-nm-theme="night-operator"] .event .date a { color: var(--no-text-2) !important; }
+html[data-nm-theme="night-operator"] :is(.block .footer, .gotocal) { font-size: 12px; padding: 8px 10px 2px; }
+html[data-nm-theme="night-operator"] :is(.block .footer, .gotocal) a { color: var(--no-text-3); }
+html[data-nm-theme="night-operator"] :is(.block .footer, .gotocal) a:hover { color: var(--no-text); }
+
+/* ---------- Announcements: issue-style rows ---------- */
+html[data-nm-theme="night-operator"] .block_news_items .post {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "info date" "name date";
+  column-gap: 12px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--no-line);
+  transition: background-color var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .block_news_items .post:hover { background: var(--no-strip); border-radius: 6px; }
+html[data-nm-theme="night-operator"] .block_news_items .post .info { grid-area: info; font-weight: 500; }
+html[data-nm-theme="night-operator"] .block_news_items .post .info a { color: var(--no-text); }
+html[data-nm-theme="night-operator"] .block_news_items .post .info a:hover { color: #fff; }
+html[data-nm-theme="night-operator"] .block_news_items .post .name { grid-area: name; font-size: 12px; color: var(--no-text-3); }
+html[data-nm-theme="night-operator"] .block_news_items .post .date { grid-area: date; align-self: center; font-size: 12px; color: var(--no-text-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- Mini calendar ---------- */
+html[data-nm-theme="night-operator"] .calendarwrapper .header { align-items: center; padding: 2px 0 8px !important; }
+html[data-nm-theme="night-operator"] .calendarwrapper .current { font-size: 13px; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+html[data-nm-theme="night-operator"] .calendarwrapper .arrow_link {
+  display: inline-grid; place-items: center; inline-size: 26px; block-size: 26px; border-radius: 6px;
+  color: var(--no-text-3); font-size: 10px; border: 1px solid var(--no-line-strong); background: var(--no-raised);
+}
+html[data-nm-theme="night-operator"] .calendarwrapper .arrow_link:hover { color: var(--no-text); background: var(--no-hover); }
+html[data-nm-theme="night-operator"] table.minicalendar {
+  inline-size: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: fixed;
+  background: transparent;
+  font-variant-numeric: tabular-nums;
+}
+html[data-nm-theme="night-operator"] table.minicalendar th {
+  font-size: 11px; font-weight: 500; color: var(--no-text-3); text-align: center; padding: 4px 0; border: 0; background: transparent;
+}
+html[data-nm-theme="night-operator"] table.minicalendar td {
+  position: relative; block-size: 30px; padding: 0; text-align: center; vertical-align: middle;
+  font-size: 12px; color: var(--no-text-2); border: 0; background: transparent; border-radius: 6px;
+}
+html[data-nm-theme="night-operator"] table.minicalendar td.day:hover { background: var(--no-strip); color: var(--no-text); }
+html[data-nm-theme="night-operator"] table.minicalendar td.dayblank { background: transparent; }
+html[data-nm-theme="night-operator"] table.minicalendar td.weekend { color: var(--no-text-3); }
+html[data-nm-theme="night-operator"] table.minicalendar td .day-number,
+html[data-nm-theme="night-operator"] table.minicalendar td > a {
+  display: inline-grid; place-items: center; min-inline-size: 26px; block-size: 26px; border-radius: 6px;
+}
+html[data-nm-theme="night-operator"] table.minicalendar td.today { color: #fff; font-weight: 600; }
+html[data-nm-theme="night-operator"] table.minicalendar td.today:hover { background: transparent; }
+html[data-nm-theme="night-operator"] table.minicalendar td.today :is(.day-number, a) {
+  background: var(--nm-accent); color: #fff !important; box-shadow: var(--no-glow);
+}
+html[data-nm-theme="night-operator"] table.minicalendar td.hasevent { color: var(--no-text); font-weight: 600; }
+html[data-nm-theme="night-operator"] table.minicalendar td.hasevent::after {
+  content: ""; position: absolute; inset-block-end: 3px; inset-inline-start: calc(50% - 2px);
+  inline-size: 4px; block-size: 4px; border-radius: 50%; background: var(--no-violet-text);
+}
+html[data-nm-theme="night-operator"] table.minicalendar td a { color: inherit; }
+
+/* ---------- Recently accessed: small board cards ---------- */
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] { gap: 8px; }
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] .card {
+  margin: 0 !important;
+  background: var(--no-raised);
+  border: 1px solid var(--no-line);
+  border-radius: 8px;
+  transition: border-color var(--no-ease), background-color var(--no-ease);
+}
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] .card:hover { background: #17181b; border-color: #2e2f34; }
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] .card-body { padding: 8px 10px !important; align-items: center; gap: 10px; }
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer { margin: 0 !important; }
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] h6 { font-size: 13px; font-weight: 500; color: var(--no-text); line-height: 18px; }
+html[data-nm-theme="night-operator"] [data-region="recentlyaccesseditems-view"] small { font-size: 12px; }
+
+/* ---------- Timeline ---------- */
+html[data-nm-theme="night-operator"] [data-region="timeline"] > .d-flex { gap: 6px; }
+html[data-nm-theme="night-operator"] [data-region="timeline"] > .d-flex .btn { margin: 0 !important; }
+html[data-nm-theme="night-operator"] [data-region="timeline"] h5,
+html[data-nm-theme="night-operator"] [data-region="timeline"] .h6.fw-bold {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--no-text-3);
+  margin: 14px 0 2px !important;
+  padding-inline: 2px;
+  font-variant-numeric: tabular-nums;
+}
+html[data-nm-theme="night-operator"] .timeline-event-list-item {
+  align-items: center;
+  gap: 10px;
+  padding: 8px !important;
+  border-color: var(--no-line) !important;
+  border-inline: 0;
+  transition: background-color var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .timeline-event-list-item:hover { background: var(--no-strip); border-radius: 6px; }
+html[data-nm-theme="night-operator"] .timeline-event-list-item .activityiconcontainer { margin: 0 !important; }
+html[data-nm-theme="night-operator"] .timeline-event-list-item .event-name { color: var(--no-text); font-weight: 500; display: block; }
+html[data-nm-theme="night-operator"] .timeline-event-list-item small { font-size: 12px; }
+
+/* ---------- Injected primitives ---------- */
+html[data-nm-theme="night-operator"] :is(.nm-btn, .nm-icon-btn) {
+  font-family: var(--nm-font);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--no-text-2);
+  background: var(--no-raised);
+  border: 1px solid var(--no-line-strong);
+  border-radius: 6px;
+  transition: background-color var(--no-ease), border-color var(--no-ease), color var(--no-ease), box-shadow var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .nm-btn { padding: 4px 10px; min-block-size: 28px; }
+html[data-nm-theme="night-operator"] :is(.nm-btn, .nm-icon-btn):hover { background: var(--no-hover); border-color: #36373c; color: var(--no-text); }
+html[data-nm-theme="night-operator"] :is(.nm-btn, .nm-icon-btn):active { background: #232428; }
+html[data-nm-theme="night-operator"] .nm-btn-primary { background: var(--nm-accent); border-color: #7c77e0; color: #fff; }
+html[data-nm-theme="night-operator"] .nm-btn-primary:hover { background: #7772d8; border-color: #8f8be6; color: #fff; box-shadow: var(--no-glow); }
+html[data-nm-theme="night-operator"] .nm-icon-btn { inline-size: 28px; block-size: 28px; font-size: 14px; border-radius: 999px; }
+html[data-nm-theme="night-operator"] :is(.nm-btn, .nm-icon-btn):focus-visible { outline: 2px solid var(--no-violet); outline-offset: 2px; box-shadow: 0 0 12px rgba(119, 114, 216, .4); }
+
+/* Theme menu = Linear's command / context menu */
+html[data-nm-theme="night-operator"] .nm-theme-menu {
+  background: var(--no-elevated);
+  color: var(--no-text-2);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 220px;
+  font-size: 13px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .45), 0 16px 40px rgba(0, 0, 0, .6), 0 0 40px -12px rgba(119, 114, 216, .25);
+}
+html[data-nm-theme="night-operator"] .nm-theme-option {
+  padding: 6px 10px;
+  min-block-size: 32px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: var(--no-text-2);
+  transition: background-color var(--no-ease), color var(--no-ease);
+}
+html[data-nm-theme="night-operator"] .nm-theme-option:hover { background: rgba(255, 255, 255, .06); color: var(--no-text); }
+html[data-nm-theme="night-operator"] .nm-theme-option[aria-checked="true"] { background: var(--no-violet-soft); color: var(--no-text); }
+html[data-nm-theme="night-operator"] .nm-theme-option[aria-checked="true"]::after { color: var(--no-violet-text); font-size: 12px; }
+html[data-nm-theme="night-operator"] .nm-swatch { inline-size: 14px; block-size: 14px; border-color: rgba(255, 255, 255, .18); }
+
+/* Bootstrap 5 dropped .sr-only; Moodle markup still uses it */
+html[data-nm-theme="night-operator"] .sr-only:not(:focus):not(:active) {
+  position: absolute !important; inline-size: 1px !important; block-size: 1px !important; padding: 0 !important; margin: -1px !important;
+  overflow: hidden !important; clip-path: inset(50%) !important; white-space: nowrap !important; border: 0 !important;
+}
+
+/* Light signature touches for the other agents' widgets (token-based, structure-agnostic) */
+html[data-nm-theme="night-operator"] .nm-block-content { font-size: 13px; color: var(--no-text); }
+html[data-nm-theme="night-operator"] :is([class^="nm-up-"], [class*=" nm-up-"], [class^="nm-todo-"], [class*=" nm-todo-"], [class^="nm-sc-"], [class*=" nm-sc-"]) input[type="checkbox"] {
+  accent-color: var(--no-violet);
+}
+/* Shortcut chips read as Linear label capsules */
+html[data-nm-theme="night-operator"] :is(.nm-sc-chip, .nm-sc-add) { border-radius: 999px; font-size: 12px; font-family: var(--nm-font); }
+
+/* Linear status circles: round hairline checkbox, violet filled when done (documented .nm-up-box hook) */
+html[data-nm-theme="night-operator"] .nm-up-check .nm-up-box {
+  border: 1.5px solid #8a8f98; border-radius: 50%; background: transparent;
+}
+html[data-nm-theme="night-operator"] .nm-up-check:hover .nm-up-box { border-color: var(--no-violet-text); }
+html[data-nm-theme="night-operator"] .nm-up-check .nm-up-cb:checked + .nm-up-box {
+  background: var(--no-violet); border-color: var(--no-violet); box-shadow: 0 0 10px rgba(119, 114, 216, .45);
+}
+html[data-nm-theme="night-operator"] .nm-up-check .nm-up-box::after { border-color: #08090a; }
+html[data-nm-theme="night-operator"] :is([class^="nm-game-"], [class*=" nm-game-"]) { font-variant-numeric: tabular-nums; }
+
+/* Scrollbars */
+html[data-nm-theme="night-operator"] ::-webkit-scrollbar { inline-size: 10px; block-size: 10px; }
+html[data-nm-theme="night-operator"] ::-webkit-scrollbar-thumb { background: #26272b; border-radius: 999px; border: 2px solid var(--no-rail); }
+html[data-nm-theme="night-operator"] ::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 767.98px) {
+  html[data-nm-theme="night-operator"] #page { padding: 4px; }
+  html[data-nm-theme="night-operator"] #topofscroll,
+  html[data-nm-theme="night-operator"] .main-inner { padding: 14px 10px 20px; border-radius: 10px; }
+  html[data-nm-theme="night-operator"] #page-header h1 { font-size: 20px; }
+  html[data-nm-theme="night-operator"] nav.navbar .nav-link { padding: 5px 7px !important; white-space: nowrap; }
+  html[data-nm-theme="night-operator"] nav.navbar.fixed-top .container-fluid { flex-wrap: nowrap; }
+  html[data-nm-theme="night-operator"] nav.navbar .primary-navigation { min-inline-size: 0; overflow-x: auto; scrollbar-width: none; }
+  html[data-nm-theme="night-operator"] nav.navbar .more-nav { flex-wrap: nowrap; }
+  html[data-nm-theme="night-operator"] .usermenu .usertext { font-size: 0; white-space: nowrap; }
+  html[data-nm-theme="night-operator"] .usermenu .usertext::before { margin-inline-end: 0; }
+  html[data-nm-theme="night-operator"] .event .date { margin-inline-start: 0; }
+  html[data-nm-theme="night-operator"] [data-region="filter"] .form-control { min-width: 0; }
+}
+
+/* ---------- Motion off (this theme only animates via transitions) ---------- */
+html[data-nm-theme="night-operator"][data-nm-motion="off"] *,
+html[data-nm-theme="night-operator"][data-nm-motion="off"] *::before,
+html[data-nm-theme="night-operator"][data-nm-motion="off"] *::after { transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-nm-theme="night-operator"] *,
+  html[data-nm-theme="night-operator"] *::before,
+  html[data-nm-theme="night-operator"] *::after { transition: none !important; }
+}

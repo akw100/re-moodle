@@ -8,8 +8,10 @@
   --nm-text-muted: #6a737b;
   --nm-border: var(--bs-border-color, #dee2e6);
   --nm-accent: var(--bs-primary, #0f6cbf);
+  --nm-accent-text: var(--nm-accent);   /* accent used as text; themes darken it when the accent is too pale */
   --nm-accent-contrast: #fff;
   --nm-success: #357a32;
+  --nm-success-text: var(--nm-success);
   --nm-warning: #f0ad4e;
   --nm-danger: #ca3120;
   --nm-radius: .5rem;
@@ -21,9 +23,12 @@
 }
 
 /* Header row next to "Dashboard" */
-#page-header .page-context-header:has(.nm-header-slot) { flex-wrap: wrap; gap: .5rem 1rem; }
-#page-header .page-context-header:has(.nm-header-slot) .page-header-headings { flex: 0 0 auto; width: auto; }
-.nm-header-slot { display: flex; align-items: center; gap: .5rem; flex: 1 1 320px; min-width: 0; }
+#page-header .d-flex:has(> .nm-header-slot) > .me-auto { margin-inline-end: 0 !important; flex: 0 0 auto; }
+.nm-header-slot { display: flex; align-items: center; gap: .5rem; flex: 1 1 0; min-width: 0; margin-inline-start: 1.25rem; }
+@media (max-width: 575.98px) {
+  #page-header .d-flex:has(> .nm-header-slot) { flex-wrap: wrap; }
+  .nm-header-slot { flex-basis: 100%; margin-inline-start: 0; margin-block-start: .5rem; }
+}
 
 .nm-btn, .nm-icon-btn {
   font: inherit; font-family: var(--nm-font); cursor: pointer;

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- Assignment "Add submission" form (mod/assign/view.php?id=…&action=editsubmission). Real Moodle POSTs to view.php (hidden action=savesubmission) then redirects to view.php?id=….
+     Boost/osiris skeleton modeled on fixtures/dashboard.html (same <html>/<body> structure and window.M script). IDs are test-only. -->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Lab 3 report: Add submission | HUJI Learning Web sites 2026-2027</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<script>
+  // Moodle exposes this global on every page. Real wwwroot: https://moodle.huji.ac.il/2026-27
+  window.M = {cfg: {wwwroot: location.href.replace(/\/mod\/.*$/, ''), sesskey: 'FAKE', theme: 'osiris'}};
+</script>
+</head>
+<body id="page-mod-assign-editsubmission" class="format-topics path-mod path-mod-assign chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam pagelayout-incourse course-1001 context-412345 cmid-86371 cm-type-assign theme uses-drawers jsenabled">
+<div id="page-wrapper" class="d-print-block">
+  <nav class="navbar fixed-top bg-white navbar-expand" aria-label="Site navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand d-none d-md-flex align-items-center" href="#"><img class="logo me-1" alt="HUJI" src="data:,"></a>
+      <div class="primary-navigation">
+        <nav class="moremenu navigation observed">
+          <ul class="nav more-nav navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/my/">Dashboard</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">2026-27</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Moodle Exam</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Links</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div id="usernavigation" class="navbar-nav ms-auto">
+        <div class="usermenu"><span class="userbutton"><span class="usertext me-1">Student Name</span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="page" data-region="mainpage" class="drawers drag-container" style="margin-top:60px">
+    <div id="topofscroll" class="main-inner">
+      <div class="drawer-toggles d-flex"></div>
+
+      <header id="page-header" class="header-maxwidth d-print-none" data-for="page-heading">
+        <div class="w-100">
+          <div class="d-flex flex-wrap">
+            <div id="page-navbar"><nav aria-label="Navigation bar"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">67723</a></li><li class="breadcrumb-item"><a href="#">Week 3</a></li><li class="breadcrumb-item"><a href="#">Lab 3 report</a></li><li class="breadcrumb-item"><span aria-current="page">Add submission</span></li></ol></nav></div>
+            <div class="ms-auto d-flex"></div><div id="course-header"></div>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="me-auto d-flex flex-column">
+              <div>
+                <div class="page-context-header d-flex flex-wrap align-items-center">
+                  <div class="page-header-headings col"><h1 class="h2">67723-Agentic Programming</h1></div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div class="header-actions-container ms-auto" data-region="header-actions-container"></div>
+          </div>
+          <div class="header-extras-container ms-auto" data-region="header-extras-container"></div>
+        </div>
+      </header>
+
+      <div id="page-content" class="pb-3 d-print-block">
+        <div id="region-main-box">
+          <section id="region-main" aria-label="Content">
+            <span class="notifications" id="user-notifications"></span>
+            <div role="main"><span id="maincontent"></span>
+              <h2>Lab 3 report</h2>
+              <div class="activity-header" data-for="page-activity-header">
+                <div data-region="activity-dates" class="activity-dates">
+                  <div><strong>Opened:</strong> Thursday, 16 October 2026, 12:00 AM</div>
+                  <div><strong>Due:</strong> Thursday, 30 October 2026, 11:55 PM</div>
+                </div>
+                <div class="activity-description" id="intro"><div class="no-overflow"><p>Upload your lab 3 report (PDF or online text).</p></div></div>
+              </div>
+              <h3 class="h4">Add submission</h3>
+              <form autocomplete="off" action="view.php" method="post" accept-charset="utf-8" id="mform1_k3Jd9sLq" class="mform" data-boost-form-errors-enhanced="1">
+                <div style="display: none;"><input name="lastmodified" type="hidden" value="1761222840"><input name="id" type="hidden" value="86371"><input name="userid" type="hidden" value="4242"><input name="action" type="hidden" value="savesubmission"><input name="sesskey" type="hidden" value="FAKE"><input name="_qf__mod_assign_submission_form" type="hidden" value="1"></div>
+                <div id="fitem_id_onlinetext_editor" class="mb-3 row fitem">
+                  <div class="col-md-3 col-form-label d-flex pb-0 pe-md-0"><label id="id_onlinetext_editor_label" class="d-inline word-break" for="id_onlinetext_editor">Online text</label></div>
+                  <div class="col-md-9 d-flex flex-wrap align-items-start felement" data-fieldtype="editor"><textarea id="id_onlinetext_editor" name="onlinetext_editor[text]" class="form-control" rows="8" spellcheck="true"></textarea></div>
+                </div>
+                <div id="fgroup_id_buttonar" class="mb-3 row fitem femptylabel" data-groupname="buttonar">
+                  <div class="col-md-3 col-form-label d-flex pb-0 pe-md-0"></div>
+                  <div class="col-md-9 d-flex flex-wrap align-items-start felement" data-fieldtype="group">
+                    <div class="d-flex flex-wrap align-items-center">
+                      <div class="mb-3 fitem"><span data-fieldtype="submit"><input type="submit" class="btn btn-primary" name="submitbutton" id="id_submitbutton" value="Save changes"></span></div>
+                      <div class="mb-3 fitem btn-cancel"><span data-fieldtype="submit"><input type="submit" class="btn btn-secondary" name="cancel" id="id_cancel" value="Cancel" data-skip-validation="1" data-cancel="1" formnovalidate></span></div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

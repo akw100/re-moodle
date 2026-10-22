@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- Quiz review page right after finishing (mod/quiz/review.php?attempt=…). table.quizreviewsummary with State "Finished" is the real Moodle marker.
+     Boost/osiris skeleton modeled on fixtures/dashboard.html (same <html>/<body> structure and window.M script). IDs are test-only. -->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Quiz 4: Attempt review | HUJI Learning Web sites 2026-2027</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<script>
+  // Moodle exposes this global on every page. Real wwwroot: https://moodle.huji.ac.il/2026-27
+  window.M = {cfg: {wwwroot: location.href.replace(/\/mod\/.*$/, ''), sesskey: 'FAKE', theme: 'osiris'}};
+</script>
+</head>
+<body id="page-mod-quiz-review" class="format-topics path-mod path-mod-quiz chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam pagelayout-incourse course-1001 context-412399 cmid-99730 cm-type-quiz theme uses-drawers jsenabled">
+<div id="page-wrapper" class="d-print-block">
+  <nav class="navbar fixed-top bg-white navbar-expand" aria-label="Site navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand d-none d-md-flex align-items-center" href="#"><img class="logo me-1" alt="HUJI" src="data:,"></a>
+      <div class="primary-navigation">
+        <nav class="moremenu navigation observed">
+          <ul class="nav more-nav navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/my/">Dashboard</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">2026-27</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Moodle Exam</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Links</a></li>
+            <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" href="#">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div id="usernavigation" class="navbar-nav ms-auto">
+        <div class="usermenu"><span class="userbutton"><span class="usertext me-1">Student Name</span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="page" data-region="mainpage" class="drawers drag-container" style="margin-top:60px">
+    <div id="topofscroll" class="main-inner">
+      <div class="drawer-toggles d-flex"></div>
+
+      <header id="page-header" class="header-maxwidth d-print-none" data-for="page-heading">
+        <div class="w-100">
+          <div class="d-flex flex-wrap">
+            <div id="page-navbar"><nav aria-label="Navigation bar"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">67723</a></li><li class="breadcrumb-item"><a href="#">Week 4</a></li><li class="breadcrumb-item"><a href="#">Quiz 4 + Lab Prep</a></li><li class="breadcrumb-item"><span aria-current="page">Review</span></li></ol></nav></div>
+            <div class="ms-auto d-flex"></div><div id="course-header"></div>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="me-auto d-flex flex-column">
+              <div>
+                <div class="page-context-header d-flex flex-wrap align-items-center">
+                  <div class="page-header-headings col"><h1 class="h2">67723-Agentic Programming</h1></div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div class="header-actions-container ms-auto" data-region="header-actions-container"></div>
+          </div>
+          <div class="header-extras-container ms-auto" data-region="header-extras-container"></div>
+        </div>
+      </header>
+
+      <div id="page-content" class="pb-3 d-print-block">
+        <div id="region-main-box">
+          <section id="region-main" aria-label="Content">
+            <span class="notifications" id="user-notifications"></span>
+            <div role="main"><span id="maincontent"></span>
+              <h2>Quiz 4 + Lab Prep: Specs, Markdown, skills and the wire</h2>
+              <table class="generaltable generalbox quizreviewsummary mb-0">
+                <tbody>
+                  <tr><th class="cell" scope="row">Started on</th><td class="cell">Thursday, 23 October 2026, 1:02 PM</td></tr>
+                  <tr><th class="cell" scope="row">State</th><td class="cell">Finished</td></tr>
+                  <tr><th class="cell" scope="row">Completed on</th><td class="cell">Thursday, 23 October 2026, 1:19 PM</td></tr>
+                  <tr><th class="cell" scope="row">Time taken</th><td class="cell">17 mins 4 secs</td></tr>
+                  <tr><th class="cell" scope="row">Marks</th><td class="cell">8.00/8.00</td></tr>
+                  <tr><th class="cell" scope="row">Grade</th><td class="cell"><b>10.00</b> out of 10.00 (<b>100</b>%)</td></tr>
+                </tbody>
+              </table>
+              <div id="question-5512-1" class="que multichoice deferredfeedback correct">
+                <div class="info"><h3 class="no">Question <span class="qno">1</span></h3><div class="state">Correct</div><div class="grade">Mark 1.00 out of 1.00</div></div>
+                <div class="content"><div class="formulation clearfix"><div class="qtext"><p>Which file tells an agent how to work in a repo?</p></div></div></div>
+              </div>
+              <div class="submitbtns"><a class="mod_quiz-next-nav" href="view.php?id=99730">Finish review</a></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

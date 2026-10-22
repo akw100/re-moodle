@@ -1,1 +1,189 @@
-/* placeholder: game */
+/* Arcade break / Deadline Dash. Everything uses the --nm-* tokens, so themes restyle it for free.
+   Theme hooks: .nm-block-game (dashboard card), .nm-game-btn (header), .nm-game-overlay (full-screen game),
+   .nm-game-hud, .nm-game-scorebox, .nm-game-combo, .nm-game-lives, .nm-game-card (pause / game over), .nm-game-badge. */
+
+/* ---------- Dashboard card ---------- */
+.nm-game-teaser {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem 1rem; align-items: center;
+  font-family: var(--nm-font); color: var(--nm-text);
+}
+.nm-game-teaser-art {
+  position: relative; block-size: 7rem; overflow: hidden; cursor: pointer; padding: 0; font: inherit;
+  border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nm-radius);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 21px, color-mix(in srgb, var(--nm-border) 70%, transparent) 21px 22px),
+    var(--nm-surface-2);
+}
+.nm-game-drop {
+  position: absolute; inset-block-start: 0; inset-inline-start: calc(8% + var(--i) * 29%);
+  padding: .15rem .45rem; font-size: .72rem; font-weight: 700; white-space: nowrap; color: var(--nm-text);
+  background: var(--nm-surface); border: var(--nm-border-width) solid var(--nm-border); border-radius: calc(var(--nm-radius) * .6);
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  animation: nm-game-fall 2.6s cubic-bezier(.5,0,.9,.6) calc(var(--i) * -.87s) infinite;
+}
+@keyframes nm-game-fall {
+  0% { transform: translateY(-120%) rotate(-6deg); opacity: 0; }
+  10% { opacity: 1; }
+  70% { transform: translateY(4.1rem) rotate(5deg); opacity: 1; }
+  78% { transform: translateY(3.8rem) scale(1.25) rotate(0); opacity: 1; }
+  100% { transform: translateY(3.8rem) scale(1.6); opacity: 0; }
+}
+.nm-game-teaser-line {
+  position: absolute; inset-inline: 0; inset-block-end: 1.15rem; border-block-start: 2px dashed var(--nm-danger);
+}
+.nm-game-teaser-line span {
+  position: absolute; inset-inline-start: .4rem; inset-block-start: -.65rem; padding: 0 .4rem; border-radius: 999px;
+  background: var(--nm-danger); color: #fff; font-size: .6rem; font-weight: 900; letter-spacing: .08em; line-height: 1.2rem;
+}
+.nm-game-stats { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
+.nm-game-stat-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--nm-text-muted); }
+.nm-game-stat-value {
+  font-family: var(--nm-heading-font); font-size: 2.4rem; font-weight: 900; line-height: 1.05; color: var(--nm-accent-text);
+  font-variant-numeric: tabular-nums;
+}
+.nm-game-stat-sub { font-size: .85rem; color: var(--nm-text-muted); }
+.nm-game-stat-sub b { color: var(--nm-text); }
+.nm-game-play {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .75rem 1rem; font-size: 1.1rem; font-weight: 800; letter-spacing: .01em;
+  transition: transform .15s cubic-bezier(.3,1.8,.5,1), filter .15s;
+}
+.nm-game-play:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.06); }
+.nm-game-play:active { transform: translateY(1px) scale(.97); }
+.nm-game-play-icon { display: inline-grid; place-items: center; font-size: .85em; animation: nm-game-nudge 1.4s ease-in-out infinite; }
+@keyframes nm-game-nudge { 50% { transform: translateX(3px) scale(1.15); } }
+.nm-game-btn { transition: transform .2s cubic-bezier(.3,1.8,.5,1); }
+.nm-game-btn:hover { transform: rotate(-12deg) scale(1.12); }
+
+/* ---------- Overlay ---------- */
+.nm-game-overlay {
+  position: fixed; inset: 0; z-index: 99990; overflow: hidden; isolation: isolate;
+  background: var(--nm-bg); color: var(--nm-text); font-family: var(--nm-font);
+  touch-action: none; user-select: none; -webkit-user-select: none; overscroll-behavior: contain;
+  animation: nm-game-in .28s cubic-bezier(.2,1.4,.4,1);
+}
+.nm-game-overlay[hidden] { display: none; }
+.nm-game-overlay:focus { outline: none; }
+@keyframes nm-game-in { from { opacity: 0; transform: scale(1.06); } }
+.nm-game-canvas { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; display: block; cursor: crosshair; }
+.nm-game-canvas:focus { outline: none; }
+.nm-game-canvas:focus-visible { outline: 3px solid var(--nm-accent); outline-offset: -3px; }
+
+.nm-game-hud {
+  position: absolute; inset-inline: 0; inset-block-start: 0; z-index: 2;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 14px 18px;
+  pointer-events: none;
+}
+.nm-game-hud button { pointer-events: auto; }
+.nm-game-hud-start, .nm-game-hud-end { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.nm-game-hud-end { justify-content: flex-end; }
+.nm-game-hud-mid { padding-block-start: .6rem; }
+.nm-game-logo {
+  font-family: var(--nm-heading-font); font-weight: 900; font-size: 1.1rem; letter-spacing: .02em; color: var(--nm-text-muted);
+  white-space: nowrap;
+}
+.nm-game-scorebox, .nm-game-best, .nm-game-combo, .nm-game-buff, .nm-game-lives {
+  background: var(--nm-surface); border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nm-radius);
+  box-shadow: var(--nm-shadow, none);
+}
+.nm-game-scorebox { display: flex; flex-direction: column; padding: .35rem .9rem .45rem; min-inline-size: 8.5rem; }
+.nm-game-best { display: flex; flex-direction: column; padding: .3rem .7rem; text-align: end; }
+.nm-game-label { font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--nm-text-muted); }
+.nm-game-score {
+  display: inline-block; transform-origin: left center;
+  font-family: var(--nm-heading-font); font-size: 2.1rem; font-weight: 900; line-height: 1; color: var(--nm-text);
+  font-variant-numeric: tabular-nums;
+}
+.nm-game-best-value { font-family: var(--nm-heading-font); font-weight: 900; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.nm-game-best-new { border-color: var(--nm-warning); background: var(--nm-warning); color: #1d2125; animation: nm-game-wiggle .5s ease-in-out 3; }
+.nm-game-best-new .nm-game-label { color: inherit; }
+.nm-game-lives { display: flex; gap: .15rem; padding: .35rem .55rem; font-size: 1.35rem; line-height: 1; }
+.nm-game-heart { display: inline-block; transition: filter .3s, opacity .3s; }
+.nm-game-heart-lost { animation: nm-game-heartbreak .6s cubic-bezier(.3,1.6,.5,1) forwards; }
+@keyframes nm-game-heartbreak {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.8) rotate(-15deg); }
+  100% { transform: scale(.8) rotate(10deg); filter: grayscale(1); opacity: .3; }
+}
+.nm-game-combo {
+  display: flex; flex-direction: column; gap: .2rem; padding: .3rem .7rem .4rem; min-inline-size: 7.5rem;
+  border-color: var(--nm-accent); animation: nm-game-pop .3s cubic-bezier(.2,1.8,.4,1);
+}
+.nm-game-combo[hidden], .nm-game-buff[hidden] { display: none; }
+.nm-game-combo-top { display: flex; align-items: baseline; gap: .45rem; }
+.nm-game-combo-value { font-family: var(--nm-heading-font); font-weight: 900; font-size: 1.5rem; line-height: 1; color: var(--nm-accent-text); }
+.nm-game-combo-streak { font-size: .75rem; font-weight: 700; color: var(--nm-text-muted); }
+.nm-game-combo-bar { display: block; block-size: .3rem; border-radius: 999px; background: var(--nm-surface-2); overflow: hidden; }
+.nm-game-combo-fill { display: block; block-size: 100%; background: var(--nm-accent); transform-origin: left; }
+[dir="rtl"] .nm-game-combo-fill { transform-origin: right; }
+.nm-game-combo[data-hot="true"] { background: var(--nm-accent); animation: nm-game-throb .35s ease-in-out infinite alternate; }
+.nm-game-combo[data-hot="true"] .nm-game-combo-value,
+.nm-game-combo[data-hot="true"] .nm-game-combo-streak { color: var(--nm-accent-contrast); }
+.nm-game-combo[data-hot="true"] .nm-game-combo-fill { background: var(--nm-accent-contrast); }
+.nm-game-buff { padding: .45rem .7rem; font-weight: 800; font-size: .9rem; color: #6f4e37; background: #f6eadb; border-color: #c69c6d; font-variant-numeric: tabular-nums; }
+@keyframes nm-game-pop { from { transform: scale(.3); } }
+@keyframes nm-game-throb { to { transform: scale(1.08) rotate(-2deg); } }
+@keyframes nm-game-wiggle { 25% { transform: rotate(-6deg) scale(1.1); } 75% { transform: rotate(6deg) scale(1.1); } }
+
+/* ---------- Pause / game-over card ---------- */
+.nm-game-card-wrap {
+  position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; padding: 1rem;
+  background: color-mix(in srgb, var(--nm-bg) 55%, transparent); backdrop-filter: blur(3px);
+}
+.nm-game-card-wrap[hidden] { display: none; }
+.nm-game-card {
+  position: relative; inline-size: min(26rem, 100%); padding: 1.6rem 1.6rem 1.2rem; text-align: center;
+  background: var(--nm-surface); color: var(--nm-text);
+  border: calc(var(--nm-border-width) + 1px) solid var(--nm-border); border-radius: calc(var(--nm-radius) * 2);
+  box-shadow: var(--nm-shadow, none), 0 24px 60px rgba(0,0,0,.25);
+  animation: nm-game-bounce .75s cubic-bezier(.2,1.5,.35,1) both;
+}
+.nm-game-paused { animation-duration: .4s; }
+@keyframes nm-game-bounce {
+  0% { transform: translateY(-60vh) rotate(-8deg) scale(.6); opacity: 0; }
+  45% { transform: translateY(18px) rotate(3deg) scale(1.05, .92); opacity: 1; }
+  65% { transform: translateY(-8px) rotate(-1.5deg) scale(.97, 1.04); }
+  82% { transform: translateY(3px) rotate(.5deg); }
+  100% { transform: none; }
+}
+.nm-game-card-emoji { font-size: 3rem; line-height: 1; animation: nm-game-wiggle 1.2s ease-in-out .7s infinite; }
+.nm-game-card-title { margin: .4rem 0 .1rem; font-family: var(--nm-heading-font); font-size: 1.6rem; font-weight: 900; color: var(--nm-text); }
+.nm-game-card-text { margin: .3rem 0 1rem; color: var(--nm-text-muted); }
+.nm-game-final {
+  font-family: var(--nm-heading-font); font-size: 4rem; font-weight: 900; line-height: 1; color: var(--nm-accent-text);
+  font-variant-numeric: tabular-nums; animation: nm-game-pop .5s cubic-bezier(.2,2,.4,1) .35s both;
+}
+.nm-game-final-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1rem; margin: .7rem 0 1.2rem; font-size: .85rem; color: var(--nm-text-muted); }
+.nm-game-final-stats b { color: var(--nm-text); font-size: 1rem; }
+.nm-game-card-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.nm-game-card-actions .nm-btn { padding: .6rem 1.2rem; font-weight: 800; font-size: 1rem; transition: transform .15s cubic-bezier(.3,1.8,.5,1); }
+.nm-game-card-actions .nm-btn:hover { transform: translateY(-2px) scale(1.04); }
+.nm-game-again { animation: nm-game-throb .6s ease-in-out 1s infinite alternate; }
+.nm-game-hint { margin: .9rem 0 0; font-size: .75rem; color: var(--nm-text-muted); }
+.nm-game-badge {
+  position: absolute; inset-block-start: -1.1rem; inset-inline-end: -1rem; padding: .45rem .8rem;
+  background: var(--nm-warning); color: #1d2125; font-family: var(--nm-heading-font); font-weight: 900; font-size: .95rem;
+  border: 2px solid #1d2125; border-radius: .5rem; box-shadow: 3px 3px 0 #1d2125; white-space: nowrap;
+  transform: rotate(8deg); animation: nm-game-sticker .6s cubic-bezier(.2,2,.4,1) .5s both, nm-game-wiggle 1s ease-in-out 1.2s infinite;
+}
+@keyframes nm-game-sticker { from { transform: rotate(40deg) scale(3); opacity: 0; } to { transform: rotate(8deg) scale(1); opacity: 1; } }
+.nm-game-record { border-color: var(--nm-warning); }
+
+.nm-game-sr { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  .nm-game-hud { padding: 10px; gap: .4rem; }
+  .nm-game-hud-mid, .nm-game-best { display: none; }
+  .nm-game-scorebox { min-inline-size: 6.5rem; }
+  .nm-game-score { font-size: 1.6rem; }
+  .nm-game-teaser { grid-template-columns: 1fr; }
+}
+
+/* ---------- Calm mode (motion off in settings, or prefers-reduced-motion) ---------- */
+.nm-game-calm, .nm-game-calm *,
+html[data-nm-motion="off"] .nm-game-teaser *, html[data-nm-motion="off"] .nm-game-btn { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .nm-game-teaser *, .nm-game-btn, .nm-game-overlay, .nm-game-overlay * { animation: none !important; transition: none !important; }
+}
+.nm-game-calm .nm-game-heart-lost { filter: grayscale(1); opacity: .3; }

@@ -74,10 +74,11 @@ const NM = globalThis.NM = {features: []};
   NM.headerSlot = () => {
     let slot = document.querySelector('.nm-header-slot');
     if (slot) return slot;
-    const headings = document.querySelector('#page-header .page-header-headings');
-    if (!headings) return null;
+    // The heading sits in a narrow flex column; put the slot next to that column so it shares the heading's line.
+    const col = document.querySelector('#page-header .page-header-headings')?.closest('.me-auto, .flex-column');
+    if (!col) return null;
     slot = NM.el('div', {class: 'nm-header-slot'});
-    headings.after(slot);
+    col.after(slot);
     return slot;
   };
 

@@ -1,1 +1,804 @@
-/* placeholder: daily-quest theme */
+
+/* ==========================================================================
+   Daily Quest: follows ONE reference, Duolingo (web dashboard).
+   Chunky 2px outlines, 16px radii, solid "ledge" shadows (0 4px 0, never blur),
+   3D buttons that press down, UPPERCASE 800 labels, Nunito, green/blue palette,
+   pale-blue selection, round colourful icon badges, yellow quest progress bars.
+   Every rule is scoped under html[data-nm-theme="daily-quest"].
+   Contrast: white text never sits on #58CC02/#1CB0F6 (both < 3:1); green fills
+   carry dark-green #173500 text (6.5:1), blue text uses #0B6CAB (5.6:1).
+   ========================================================================== */
+
+html[data-nm-theme="daily-quest"] {
+  /* Duolingo palette (names from their design system) */
+  --dq-feather: #58CC02;      /* green */
+  --dq-feather-ledge: #58A700;
+  --dq-feather-ink: #173500;  /* text on green */
+  --dq-feather-text: #2F7A00; /* green as text on white (5.4:1) */
+  --dq-macaw: #1CB0F6;        /* blue */
+  --dq-macaw-ledge: #1899D6;
+  --dq-macaw-ink: #0B6CAB;    /* blue as text */
+  --dq-iguana: #DDF4FF;       /* pale-blue selection */
+  --dq-iguana-edge: #84D8FF;
+  --dq-bee: #FFC800;          /* yellow */
+  --dq-bee-ledge: #E0A800;
+  --dq-fox: #FF9600;          /* orange */
+  --dq-fox-ledge: #D97F00;
+  --dq-cardinal: #FF4B4B;     /* red */
+  --dq-cardinal-ledge: #EA2B2B;
+  --dq-cardinal-ink: #D62F2F;
+  --dq-beetle: #CE82FF;       /* purple */
+  --dq-beetle-ledge: #A568CC;
+  --dq-eel: #4B4B4B;          /* body text */
+  --dq-ink: #3C3C3C;          /* headings */
+  --dq-wolf: #6F6F6F;         /* muted text (AA-safe Wolf) */
+  --dq-hare: #AFAFAF;
+  --dq-swan: #E5E5E5;         /* borders and ledges */
+  --dq-polar: #F7F7F7;
+  --dq-snow: #FFFFFF;
+  --dq-font: "Nunito", "Varela Round", "Noto Sans Hebrew", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --dq-press: 4px;
+  --dq-ease: cubic-bezier(.34, 1.56, .64, 1); /* springy */
+
+  /* Shared nm tokens */
+  --nm-bg: var(--dq-snow);
+  --nm-surface: var(--dq-snow);
+  --nm-surface-2: var(--dq-iguana);
+  --nm-text: var(--dq-eel);
+  --nm-text-muted: var(--dq-wolf);
+  --nm-border: var(--dq-swan);
+  --nm-accent: var(--dq-feather);
+  --nm-accent-text: #2b7a00;        /* #58CC02 text is 2.1:1 on white */
+  --nm-success-text: #2b7a00;
+  --nm-accent-contrast: var(--dq-feather-ink);
+  --nm-success: var(--dq-feather);
+  --nm-warning: var(--dq-bee);
+  --nm-danger: var(--dq-cardinal);
+  --nm-radius: 16px;
+  --nm-shadow: 0 4px 0 var(--dq-swan);
+  --nm-font: var(--dq-font);
+  --nm-heading-font: var(--dq-font);
+  --nm-border-width: 2px;
+  --nm-confetti: #58CC02, #1CB0F6, #FFC800, #FF9600, #FF4B4B, #CE82FF;
+
+  /* Bootstrap 5 / Boost variables */
+  --bs-body-bg: var(--dq-snow);
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-color: var(--dq-eel);
+  --bs-body-color-rgb: 75, 75, 75;
+  --bs-body-font-family: var(--dq-font);
+  --bs-font-sans-serif: var(--dq-font);
+  --bs-body-font-weight: 600;
+  --bs-emphasis-color: var(--dq-ink);
+  --bs-secondary-color: var(--dq-wolf);
+  --bs-secondary-bg: var(--dq-polar);
+  --bs-tertiary-bg: var(--dq-polar);
+  --bs-primary: var(--dq-feather);
+  --bs-primary-rgb: 88, 204, 2;
+  --bs-secondary: var(--dq-wolf);
+  --bs-success: var(--dq-feather);
+  --bs-success-rgb: 88, 204, 2;
+  --bs-info: var(--dq-macaw);
+  --bs-info-rgb: 28, 176, 246;
+  --bs-warning: var(--dq-bee);
+  --bs-warning-rgb: 255, 200, 0;
+  --bs-danger: var(--dq-cardinal);
+  --bs-danger-rgb: 255, 75, 75;
+  --bs-link-color: var(--dq-macaw-ink);
+  --bs-link-color-rgb: 11, 108, 171;
+  --bs-link-hover-color: var(--dq-macaw-ink);
+  --bs-link-hover-color-rgb: 11, 108, 171;
+  --bs-link-decoration: none;
+  --bs-border-color: var(--dq-swan);
+  --bs-border-width: 2px;
+  --bs-border-radius: 12px;
+  --bs-border-radius-sm: 10px;
+  --bs-border-radius-lg: 16px;
+  --bs-border-radius-xl: 20px;
+  --bs-border-radius-pill: 50rem;
+  --bs-box-shadow: 0 4px 0 var(--dq-swan);
+  --bs-box-shadow-sm: 0 2px 0 var(--dq-swan);
+  --bs-focus-ring-color: rgba(24, 153, 214, .45);
+  --bs-heading-color: var(--dq-ink);
+  --bs-card-border-color: var(--dq-swan);
+
+  color-scheme: light;
+  background: var(--dq-snow);
+}
+
+/* ---------- Page ---------- */
+html[data-nm-theme="daily-quest"] body {
+  background: var(--dq-snow);
+  color: var(--dq-eel);
+  font-family: var(--dq-font);
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+}
+html[data-nm-theme="daily-quest"] #page { padding-inline: clamp(.75rem, 3vw, 2.5rem); }
+html[data-nm-theme="daily-quest"] .sr-only:not(:focus):not(:active) {
+  position: absolute !important; inline-size: 1px !important; block-size: 1px !important; overflow: hidden !important;
+  clip: rect(0 0 0 0) !important; white-space: nowrap !important; border: 0 !important; padding: 0 !important; margin: -1px !important;
+}
+html[data-nm-theme="daily-quest"] :is(#page, #page-wrapper, #topofscroll, .main-inner, #page-content, #region-main) { background: transparent; }
+html[data-nm-theme="daily-quest"] :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+  font-family: var(--dq-font);
+  font-weight: 800;
+  color: var(--dq-ink);
+  letter-spacing: 0;
+}
+html[data-nm-theme="daily-quest"] ::selection { background: var(--dq-iguana); color: var(--dq-macaw-ink); }
+
+/* Links: bold blue, underline only on hover */
+html[data-nm-theme="daily-quest"] a { color: var(--dq-macaw-ink); font-weight: 700; text-decoration: none; }
+html[data-nm-theme="daily-quest"] a:hover { color: var(--dq-macaw-ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Focus ring: a chunky blue halo (3.2:1 against white) */
+html[data-nm-theme="daily-quest"] :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--dq-macaw-ledge);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+html[data-nm-theme="daily-quest"] :is(.text-muted, .muted) { color: var(--dq-wolf) !important; }
+html[data-nm-theme="daily-quest"] .text-primary { color: var(--dq-macaw-ink) !important; }
+
+/* ---------- Top navigation ---------- */
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top {
+  background: var(--dq-snow) !important;
+  border-block-end: 2px solid var(--dq-swan);
+  box-shadow: none;
+  min-height: 64px;
+  font-family: var(--dq-font);
+}
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .navbar-brand { font-weight: 900; color: var(--dq-feather-text); }
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .navbar-nav { gap: .35rem; align-items: center; }
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .nav-link {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  color: var(--dq-wolf);
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color .12s ease, border-color .12s ease;
+}
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .nav-link:hover { background: var(--dq-polar); color: var(--dq-eel); text-decoration: none; }
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top :is(.nav-link.active, .nav-link[aria-current="true"], .nav-link[aria-current="page"]) {
+  background: var(--dq-iguana);
+  border-color: var(--dq-iguana-edge);
+  color: var(--dq-macaw-ink);
+}
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .nav-link.active::before { content: "🏠"; font-size: 1.05rem; letter-spacing: 0; }
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top :is(.usermenu, .usertext) { color: var(--dq-eel); font-weight: 800; }
+html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .usermenu .userbutton::before { content: "🔥"; margin-inline-end: .35rem; }
+
+html[data-nm-theme="daily-quest"] .dropdown-menu {
+  border: 2px solid var(--dq-swan);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--dq-swan);
+  padding: .4rem;
+  font-family: var(--dq-font);
+}
+html[data-nm-theme="daily-quest"] .dropdown-item { border-radius: 10px; font-weight: 700; color: var(--dq-eel); padding: .5rem .75rem; }
+html[data-nm-theme="daily-quest"] :is(.dropdown-item:hover, .dropdown-item:focus) { background: var(--dq-polar); color: var(--dq-eel); }
+html[data-nm-theme="daily-quest"] :is(.dropdown-item.active, .dropdown-item:active) { background: var(--dq-iguana); color: var(--dq-macaw-ink); }
+
+/* ---------- Page header ---------- */
+html[data-nm-theme="daily-quest"] #page-header { padding-block: 1.25rem .5rem; }
+html[data-nm-theme="daily-quest"] #page-header h1 {
+  font-family: var(--dq-font);
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--dq-ink);
+  letter-spacing: -.01em;
+  margin: 0;
+}
+
+/* ---------- Blocks (Moodle + injected .nm-block) ---------- */
+html[data-nm-theme="daily-quest"] :is(.block.card, section.nm-block) {
+  background: var(--dq-snow);
+  border: 2px solid var(--dq-swan);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--dq-swan);
+  margin-block-end: 1.5rem !important;
+}
+html[data-nm-theme="daily-quest"] .block.card > .card-body { padding: 1.25rem 1.4rem 1.4rem !important; }
+html[data-nm-theme="daily-quest"] .block.card .card-title {
+  display: flex; align-items: center; gap: .75rem;
+  font-family: var(--dq-font);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--dq-ink);
+  margin: 0;
+}
+/* Round, colourful "quest" badge in front of every Moodle block title */
+html[data-nm-theme="daily-quest"] .block.card:not(.nm-block) .card-title::before {
+  content: var(--dq-title-glyph, "⭐");
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: 2.4rem; block-size: 2.4rem;
+  border-radius: 50%;
+  font-size: 1.2rem; line-height: 1;
+  background: var(--dq-badge-bg, #DDF4FF);
+  box-shadow: 0 3px 0 var(--dq-badge-edge, #84D8FF);
+  margin-block-end: 3px;
+}
+html[data-nm-theme="daily-quest"] .block_myoverview .card-title { --dq-title-glyph: "📚"; --dq-badge-bg: #DDF4FF; --dq-badge-edge: #84D8FF; }
+html[data-nm-theme="daily-quest"] .block_news_items .card-title { --dq-title-glyph: "📣"; --dq-badge-bg: #FFE3E3; --dq-badge-edge: #FFB2B2; }
+html[data-nm-theme="daily-quest"] .block_calendar_upcoming .card-title { --dq-title-glyph: "⚡"; --dq-badge-bg: #FFF4C2; --dq-badge-edge: #FFDE66; }
+html[data-nm-theme="daily-quest"] .block_calendar_month .card-title { --dq-title-glyph: "📅"; --dq-badge-bg: #D7FFB8; --dq-badge-edge: #A5ED6E; }
+html[data-nm-theme="daily-quest"] .block_recentlyaccesseditems .card-title { --dq-title-glyph: "🕹️"; --dq-badge-bg: #F3E3FF; --dq-badge-edge: #DDB5FF; }
+html[data-nm-theme="daily-quest"] .block_timeline .card-title { --dq-title-glyph: "⏱️"; --dq-badge-bg: #FFEBD1; --dq-badge-edge: #FFC98A; }
+
+html[data-nm-theme="daily-quest"] .block.card .footer { margin-block-start: 1rem; }
+html[data-nm-theme="daily-quest"] .block.card :is(.footer a, .gotocal a) {
+  font-size: .85rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+}
+
+/* ---------- Course overview cards ---------- */
+html[data-nm-theme="daily-quest"] .block_myoverview [data-region="filter"] { gap: .5rem; }
+html[data-nm-theme="daily-quest"] .block_myoverview .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 1.25rem 1rem;
+  margin: 0 !important;
+}
+html[data-nm-theme="daily-quest"] .block_myoverview .card-grid > * { width: auto; max-width: none; padding: 0; margin: 0; }
+html[data-nm-theme="daily-quest"] .dashboard-card {
+  background: var(--dq-snow);
+  border: 2px solid var(--dq-swan);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--dq-swan);
+  overflow: hidden;
+  transition: transform .1s ease, box-shadow .1s ease;
+  display: flex; flex-direction: column;
+  margin-block-end: 4px !important;
+}
+html[data-nm-theme="daily-quest"] .dashboard-card .card-footer { margin-block-start: auto; }
+html[data-nm-theme="daily-quest"] .dashboard-card:hover { background: var(--dq-polar); }
+html[data-nm-theme="daily-quest"] .dashboard-card:active { transform: translateY(var(--dq-press)); box-shadow: 0 0 0 var(--dq-swan); }
+html[data-nm-theme="daily-quest"] .dashboard-card .dashboard-card-img {
+  height: 7rem;
+  border-radius: 0;
+  border-block-end: 2px solid var(--dq-swan);
+  background-size: cover;
+}
+html[data-nm-theme="daily-quest"] .dashboard-card .card-body { padding: .9rem 1rem .4rem !important; background: transparent; }
+html[data-nm-theme="daily-quest"] .dashboard-card .categoryname {
+  font-size: .75rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--dq-wolf);
+}
+html[data-nm-theme="daily-quest"] .dashboard-card :is(.coursename, .coursename .multiline) {
+  color: var(--dq-ink); font-weight: 800; font-size: 1.05rem; line-height: 1.3; white-space: normal;
+}
+html[data-nm-theme="daily-quest"] .dashboard-card .coursename:hover { color: var(--dq-macaw-ink); }
+html[data-nm-theme="daily-quest"] .dashboard-card .card-footer {
+  background: transparent !important;
+  padding: .3rem 1rem 1rem !important;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "label label" "bar chest";
+  align-items: center;
+  column-gap: .5rem;
+}
+html[data-nm-theme="daily-quest"] .dashboard-card .progress-text { grid-area: label; font-size: .8rem; color: var(--dq-wolf); margin-block-end: .3rem; }
+html[data-nm-theme="daily-quest"] .dashboard-card .progress-text strong { color: #8A5A00; font-weight: 900; }
+html[data-nm-theme="daily-quest"] .dashboard-card .progress { grid-area: bar; }
+/* Treasure chest at the end of the bar, like Duolingo's quest rewards */
+html[data-nm-theme="daily-quest"] .dashboard-card .card-footer::after { content: "🎁"; grid-area: chest; font-size: 1.35rem; line-height: 1; }
+
+/* Progress bars: chunky yellow quest bars with the glossy highlight strip; green when complete */
+html[data-nm-theme="daily-quest"] .progress {
+  height: 16px;
+  background: var(--dq-swan) !important;
+  border: 0 !important;
+  border-radius: 99px;
+  overflow: hidden;
+  box-shadow: none;
+}
+html[data-nm-theme="daily-quest"] .progress-bar {
+  position: relative;
+  background-color: var(--dq-bee);
+  background-image: none;
+  border-radius: 99px;
+  min-width: 16px;
+  overflow: hidden;
+}
+html[data-nm-theme="daily-quest"] .progress-bar::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 4px; inset-inline: 7px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .5);
+}
+html[data-nm-theme="daily-quest"] :is(.progress-bar[style*="width: 100%"], .progress-bar[style*="width:100%"], .progress-bar.bg-success) { background-color: var(--dq-feather); }
+
+/* ---------- Upcoming events: chunky quest tiles ---------- */
+html[data-nm-theme="daily-quest"] .block_calendar_upcoming .calendarwrapper { display: flex; flex-direction: column; gap: .75rem; }
+html[data-nm-theme="daily-quest"] .event {
+  position: relative;
+  align-items: center;
+  gap: .9rem;
+  padding: .85rem 1rem !important;
+  background: var(--dq-snow);
+  border: 2px solid var(--dq-swan) !important;
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--dq-swan);
+  margin-block-end: 4px;
+  transition: transform .1s ease, box-shadow .1s ease, background-color .12s ease;
+}
+html[data-nm-theme="daily-quest"] .event:hover { background: var(--dq-polar); }
+html[data-nm-theme="daily-quest"] .event:active { transform: translateY(var(--dq-press)); box-shadow: 0 0 0 var(--dq-swan); }
+html[data-nm-theme="daily-quest"] .event > .overflow-auto { min-width: 0; flex: 1; }
+html[data-nm-theme="daily-quest"] .event :is(h4, h4 a) { font-size: 1rem; font-weight: 800; color: var(--dq-ink); margin: 0 !important; }
+html[data-nm-theme="daily-quest"] .event h4 a:hover { color: var(--dq-macaw-ink); }
+html[data-nm-theme="daily-quest"] .event h6 {
+  margin: .2rem 0 0 !important;
+  font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+}
+html[data-nm-theme="daily-quest"] .event .date {
+  display: inline-block;
+  margin-block-start: .45rem;
+  padding: .1rem .65rem;
+  border-radius: 12px;
+  background: var(--dq-polar);
+  border: 2px solid var(--dq-swan);
+  color: var(--dq-wolf);
+  font-weight: 700; font-size: .8rem;
+}
+html[data-nm-theme="daily-quest"] .event .date::before { content: "⏰"; font-size: .8rem; margin-inline-end: .3rem; }
+html[data-nm-theme="daily-quest"] .event .date a { color: var(--dq-eel); font-weight: 800; }
+
+/* Round colourful icon badges (activity icons) */
+html[data-nm-theme="daily-quest"] .activityiconcontainer {
+  --dq-badge: var(--dq-macaw);
+  --dq-badge-ledge: var(--dq-macaw-ledge);
+  display: inline-grid !important; place-items: center; flex: none;
+  inline-size: 3rem !important; block-size: 3rem !important;
+  min-width: 3rem;
+  margin: 0 0 4px !important;
+  border-radius: 50% !important;
+  background: var(--dq-badge) !important;
+  box-shadow: 0 4px 0 var(--dq-badge-ledge);
+  padding: 0;
+}
+html[data-nm-theme="daily-quest"] .activityiconcontainer > * { grid-area: 1 / 1; }
+html[data-nm-theme="daily-quest"] .activityiconcontainer :is(.activityicon, img.icon) {
+  inline-size: 1.6rem; block-size: 1.6rem; margin: 0;
+  filter: brightness(0) invert(1);
+}
+/* Fallback pictogram when Moodle gives no usable icon (keeps the badge from looking empty) */
+html[data-nm-theme="daily-quest"] .activityiconcontainer:not(:has(img:not([src="data:,"])))::before {
+  grid-area: 1 / 1;
+  content: var(--dq-glyph, "📘"); font-size: 1.45rem; line-height: 1;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .15));
+}
+html[data-nm-theme="daily-quest"] .activityiconcontainer:not(:has(img:not([src="data:,"]))) img { display: none; }
+html[data-nm-theme="daily-quest"] .activityiconcontainer.assessment { --dq-badge: var(--dq-fox); --dq-badge-ledge: var(--dq-fox-ledge); --dq-glyph: "⚡"; }
+html[data-nm-theme="daily-quest"] .activityiconcontainer.content { --dq-badge: var(--dq-macaw); --dq-badge-ledge: var(--dq-macaw-ledge); --dq-glyph: "📖"; }
+html[data-nm-theme="daily-quest"] .activityiconcontainer.collaboration { --dq-badge: var(--dq-beetle); --dq-badge-ledge: var(--dq-beetle-ledge); --dq-glyph: "🤝"; }
+html[data-nm-theme="daily-quest"] .activityiconcontainer.communication { --dq-badge: var(--dq-feather); --dq-badge-ledge: var(--dq-feather-ledge); --dq-glyph: "💬"; }
+html[data-nm-theme="daily-quest"] .activityiconcontainer:is(.interface, .administration) { --dq-badge: var(--dq-bee); --dq-badge-ledge: var(--dq-bee-ledge); --dq-glyph: "🧩"; }
+/* Upcoming list: cycle badge colours so it reads like Duolingo's multicolour quest list */
+html[data-nm-theme="daily-quest"] .block_calendar_upcoming .event:nth-of-type(4n+1) .activityiconcontainer { --dq-badge: var(--dq-fox); --dq-badge-ledge: var(--dq-fox-ledge); --dq-glyph: "⚡"; }
+html[data-nm-theme="daily-quest"] .block_calendar_upcoming .event:nth-of-type(4n+2) .activityiconcontainer { --dq-badge: var(--dq-macaw); --dq-badge-ledge: var(--dq-macaw-ledge); --dq-glyph: "🎯"; }
+html[data-nm-theme="daily-quest"] .block_calendar_upcoming .event:nth-of-type(4n+3) .activityiconcontainer { --dq-badge: var(--dq-beetle); --dq-badge-ledge: var(--dq-beetle-ledge); --dq-glyph: "📝"; }
+html[data-nm-theme="daily-quest"] .block_calendar_upcoming .event:nth-of-type(4n+4) .activityiconcontainer { --dq-badge: var(--dq-feather); --dq-badge-ledge: var(--dq-feather-ledge); --dq-glyph: "🦉"; }
+html[data-nm-theme="daily-quest"] :is(.event, .timeline-event-list-item):hover .activityiconcontainer { animation: dq-wiggle .45s var(--dq-ease); }
+
+/* ---------- Timeline ---------- */
+html[data-nm-theme="daily-quest"] .block_timeline [data-region="timeline"] > .d-flex { gap: .5rem; flex-wrap: wrap; }
+html[data-nm-theme="daily-quest"] .block_timeline [data-region="timeline"] > .d-flex .btn { margin-inline-end: 0 !important; }
+html[data-nm-theme="daily-quest"] .block_timeline h5 {
+  font-size: .78rem !important; font-weight: 800 !important; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--dq-wolf); margin-block: 1.1rem .6rem !important;
+}
+html[data-nm-theme="daily-quest"] .list-group { --bs-list-group-bg: transparent; --bs-list-group-border-color: var(--dq-swan); }
+html[data-nm-theme="daily-quest"] .timeline-event-list-item {
+  align-items: center; gap: .9rem;
+  padding: .85rem 1rem !important;
+  background: var(--dq-snow);
+  border: 2px solid var(--dq-swan) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 0 var(--dq-swan);
+  margin-block-end: .75rem;
+}
+html[data-nm-theme="daily-quest"] .timeline-event-list-item .activityiconcontainer { margin-inline-end: 0 !important; }
+html[data-nm-theme="daily-quest"] .timeline-event-list-item .event-name { color: var(--dq-ink); font-weight: 800; }
+html[data-nm-theme="daily-quest"] .timeline-event-list-item .event-name-container { min-width: 0; }
+html[data-nm-theme="daily-quest"] .timeline-event-list-item .btn { flex: none; }
+
+/* ---------- Recently accessed ---------- */
+html[data-nm-theme="daily-quest"] [data-region="recentlyaccesseditems-view"] { gap: .75rem; }
+html[data-nm-theme="daily-quest"] [data-region="recentlyaccesseditems-view"] > .card {
+  margin: 0 0 4px !important;
+  border: 2px solid var(--dq-swan);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--dq-swan);
+  max-width: 100%;
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+html[data-nm-theme="daily-quest"] [data-region="recentlyaccesseditems-view"] > .card:hover { background: var(--dq-polar); text-decoration: none; }
+html[data-nm-theme="daily-quest"] [data-region="recentlyaccesseditems-view"] > .card:active { transform: translateY(var(--dq-press)); box-shadow: none; }
+html[data-nm-theme="daily-quest"] [data-region="recentlyaccesseditems-view"] .card-body { align-items: center; gap: .75rem; padding: .75rem !important; }
+html[data-nm-theme="daily-quest"] [data-region="recentlyaccesseditems-view"] h6 { color: var(--dq-ink); font-weight: 800; }
+
+/* ---------- Announcements ---------- */
+html[data-nm-theme="daily-quest"] .block_news_items .post {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-areas: "icon info info" "icon date name";
+  column-gap: .5rem; row-gap: .1rem;
+  align-items: center;
+  padding: .8rem 0;
+  border-block-end: 2px solid var(--dq-swan);
+}
+html[data-nm-theme="daily-quest"] .block_news_items .post::before {
+  content: "📣"; grid-area: icon;
+  display: grid; place-items: center;
+  inline-size: 2.6rem; block-size: 2.6rem; border-radius: 50%;
+  background: var(--dq-cardinal); box-shadow: 0 4px 0 var(--dq-cardinal-ledge);
+  font-size: 1.15rem; margin-block-end: 4px; margin-inline-end: .4rem;
+}
+html[data-nm-theme="daily-quest"] .block_news_items .post:nth-of-type(2n)::before { content: "🏆"; background: var(--dq-bee); box-shadow: 0 4px 0 var(--dq-bee-ledge); }
+html[data-nm-theme="daily-quest"] .block_news_items .post .info { grid-area: info; }
+html[data-nm-theme="daily-quest"] .block_news_items .post .info a { color: var(--dq-ink); font-weight: 800; font-size: 1rem; }
+html[data-nm-theme="daily-quest"] .block_news_items .post .info a:hover { color: var(--dq-macaw-ink); }
+html[data-nm-theme="daily-quest"] .block_news_items .post :is(.date, .name) { font-size: .8rem; color: var(--dq-wolf); font-weight: 700; }
+html[data-nm-theme="daily-quest"] .block_news_items .post .date { grid-area: date; }
+html[data-nm-theme="daily-quest"] .block_news_items .post .name { grid-area: name; }
+html[data-nm-theme="daily-quest"] .block_news_items .post .name::before { content: "·"; margin-inline-end: .5rem; }
+
+/* ---------- Mini calendar ---------- */
+html[data-nm-theme="daily-quest"] .block_calendar_month .header { align-items: center; margin-block-end: .5rem; }
+html[data-nm-theme="daily-quest"] .block_calendar_month .header .current { font-size: 1.05rem; font-weight: 800; margin: 0; }
+html[data-nm-theme="daily-quest"] .block_calendar_month .arrow_link {
+  display: inline-grid; place-items: center;
+  inline-size: 2.25rem; block-size: 2.25rem;
+  border: 2px solid var(--dq-swan); border-radius: 12px; box-shadow: 0 3px 0 var(--dq-swan);
+  color: var(--dq-wolf); font-size: .75rem; text-decoration: none;
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+html[data-nm-theme="daily-quest"] .block_calendar_month .arrow_link:hover { background: var(--dq-polar); }
+html[data-nm-theme="daily-quest"] .block_calendar_month .arrow_link:active { transform: translateY(3px); box-shadow: none; }
+html[data-nm-theme="daily-quest"] .minicalendar { width: 100%; border-collapse: separate; border-spacing: 2px 4px; }
+html[data-nm-theme="daily-quest"] .minicalendar th {
+  font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--dq-wolf);
+  text-align: center; padding-block-end: .25rem; border: 0;
+}
+html[data-nm-theme="daily-quest"] .minicalendar td { border: 0; padding: 0; text-align: center; background: none; }
+html[data-nm-theme="daily-quest"] .minicalendar td :is(.day-number, a) {
+  position: relative;
+  display: inline-grid; place-items: center;
+  inline-size: 2.1rem; block-size: 2.1rem;
+  border-radius: 50%;
+  font-weight: 800; font-size: .9rem; color: var(--dq-eel);
+}
+html[data-nm-theme="daily-quest"] .minicalendar td.hasevent .day-number {
+  background: var(--dq-iguana); color: var(--dq-macaw-ink);
+  box-shadow: inset 0 0 0 2px var(--dq-iguana-edge);
+}
+/* Today: a filled circle with a ledge and a little streak flame */
+html[data-nm-theme="daily-quest"] .minicalendar td.today .day-number {
+  background: var(--dq-macaw-ink);
+  color: #fff;
+  box-shadow: 0 3px 0 #08507F;
+  font-weight: 900;
+}
+html[data-nm-theme="daily-quest"] .minicalendar td.today .day-number::after {
+  content: "🔥"; position: absolute; inset-block-start: -.6rem; inset-inline-end: -.5rem; font-size: .85rem;
+}
+
+/* ---------- Buttons: 3D, uppercase, press down on :active ---------- */
+html[data-nm-theme="daily-quest"] .btn {
+  --bs-btn-font-family: var(--dq-font);
+  --bs-btn-font-weight: 800;
+  --bs-btn-border-width: 2px;
+  --bs-btn-border-radius: 16px;
+  --bs-btn-padding-x: 1.1rem;
+  --bs-btn-padding-y: .55rem;
+  --bs-btn-focus-box-shadow: none;
+  --dq-ledge: var(--dq-swan);
+  font-size: .85rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  box-shadow: 0 var(--dq-press) 0 var(--dq-ledge);
+  margin-block-end: var(--dq-press);
+  transition: transform .08s ease, box-shadow .08s ease, filter .12s ease, background-color .12s ease;
+}
+html[data-nm-theme="daily-quest"] :is(.btn:active, .btn.active:active) { transform: translateY(var(--dq-press)); box-shadow: 0 0 0 var(--dq-ledge) !important; }
+html[data-nm-theme="daily-quest"] .btn-sm { --bs-btn-padding-x: .8rem; --bs-btn-padding-y: .35rem; --bs-btn-border-radius: 12px; font-size: .75rem; }
+html[data-nm-theme="daily-quest"] :is(.btn-primary, .btn-success) {
+  --bs-btn-color: var(--dq-feather-ink); --bs-btn-bg: var(--dq-feather); --bs-btn-border-color: var(--dq-feather);
+  --bs-btn-hover-color: var(--dq-feather-ink); --bs-btn-hover-bg: #61D80A; --bs-btn-hover-border-color: #61D80A;
+  --bs-btn-active-color: var(--dq-feather-ink); --bs-btn-active-bg: var(--dq-feather); --bs-btn-active-border-color: var(--dq-feather);
+  --bs-btn-disabled-color: var(--dq-wolf); --bs-btn-disabled-bg: var(--dq-swan); --bs-btn-disabled-border-color: var(--dq-swan);
+  --dq-ledge: var(--dq-feather-ledge);
+}
+html[data-nm-theme="daily-quest"] .btn-info {
+  --bs-btn-color: #062F4A; --bs-btn-bg: var(--dq-macaw); --bs-btn-border-color: var(--dq-macaw);
+  --bs-btn-hover-color: #062F4A; --bs-btn-hover-bg: #3BBDF8; --bs-btn-hover-border-color: #3BBDF8;
+  --bs-btn-active-color: #062F4A; --bs-btn-active-bg: var(--dq-macaw); --bs-btn-active-border-color: var(--dq-macaw);
+  --dq-ledge: var(--dq-macaw-ledge);
+}
+html[data-nm-theme="daily-quest"] .btn-danger {
+  --bs-btn-color: #fff; --bs-btn-bg: var(--dq-cardinal-ink); --bs-btn-border-color: var(--dq-cardinal-ink);
+  --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #C92828; --bs-btn-hover-border-color: #C92828;
+  --bs-btn-active-color: #fff; --bs-btn-active-bg: var(--dq-cardinal-ink); --bs-btn-active-border-color: var(--dq-cardinal-ink);
+  --dq-ledge: #A81E1E;
+}
+html[data-nm-theme="daily-quest"] .btn-warning {
+  --bs-btn-color: #4B3200; --bs-btn-bg: var(--dq-bee); --bs-btn-border-color: var(--dq-bee);
+  --bs-btn-hover-color: #4B3200; --bs-btn-hover-bg: #FFD12E; --bs-btn-hover-border-color: #FFD12E;
+  --bs-btn-active-color: #4B3200; --bs-btn-active-bg: var(--dq-bee); --bs-btn-active-border-color: var(--dq-bee);
+  --dq-ledge: var(--dq-bee-ledge);
+}
+html[data-nm-theme="daily-quest"] :is(.btn-secondary, .btn-light, .btn-outline-secondary, .btn-outline-primary, .btn-outline-info, .btn-outline-light) {
+  --bs-btn-color: var(--dq-macaw-ink); --bs-btn-bg: var(--dq-snow); --bs-btn-border-color: var(--dq-swan);
+  --bs-btn-hover-color: var(--dq-macaw-ink); --bs-btn-hover-bg: var(--dq-polar); --bs-btn-hover-border-color: var(--dq-swan);
+  --bs-btn-active-color: var(--dq-macaw-ink); --bs-btn-active-bg: var(--dq-iguana); --bs-btn-active-border-color: var(--dq-iguana-edge);
+  --bs-btn-disabled-color: var(--dq-wolf); --bs-btn-disabled-bg: var(--dq-snow); --bs-btn-disabled-border-color: var(--dq-swan);
+  --dq-ledge: var(--dq-swan);
+}
+html[data-nm-theme="daily-quest"] .btn-outline-secondary.dropdown-toggle { --bs-btn-color: var(--dq-eel); --bs-btn-hover-color: var(--dq-eel); }
+html[data-nm-theme="daily-quest"] :is(.btn.show, .btn[aria-expanded="true"]) {
+  --dq-ledge: var(--dq-iguana-edge);
+  background: var(--dq-iguana); border-color: var(--dq-iguana-edge); color: var(--dq-macaw-ink);
+}
+html[data-nm-theme="daily-quest"] .btn-link {
+  --bs-btn-color: var(--dq-macaw-ink); --bs-btn-hover-color: var(--dq-macaw-ink);
+  box-shadow: none !important; margin-block-end: 0;
+}
+html[data-nm-theme="daily-quest"] .btn-link:active { transform: none; }
+html[data-nm-theme="daily-quest"] :is(.btn:disabled, .btn.disabled) { --dq-ledge: var(--dq-swan); }
+
+/* ---------- Forms ---------- */
+html[data-nm-theme="daily-quest"] :is(.form-control, .form-select, .custom-select) {
+  font-family: var(--dq-font);
+  font-weight: 600;
+  color: var(--dq-eel);
+  background-color: var(--dq-polar);
+  border: 2px solid var(--dq-swan);
+  border-radius: 12px;
+  padding: .55rem .9rem;
+  min-height: 2.75rem;
+  box-shadow: none;
+  transition: border-color .12s ease, background-color .12s ease, box-shadow .12s ease;
+}
+html[data-nm-theme="daily-quest"] :is(.form-control, .form-select)::placeholder { color: var(--dq-wolf); opacity: 1; }
+html[data-nm-theme="daily-quest"] :is(.form-control, .form-select, .custom-select):focus {
+  background-color: var(--dq-snow);
+  border-color: var(--dq-macaw-ledge);
+  box-shadow: 0 0 0 3px var(--dq-iguana);
+  outline: none;
+}
+html[data-nm-theme="daily-quest"] .form-check-input:checked { background-color: var(--dq-feather); border-color: var(--dq-feather); }
+
+/* Big rounded checkboxes with an emphatic green tick and a springy pop */
+html[data-nm-theme="daily-quest"] #page input[type="checkbox"]:not([role="switch"], .form-switch *, [class*="nm-"]) {
+  appearance: none; -webkit-appearance: none;
+  flex: none;
+  inline-size: 1.6rem; block-size: 1.6rem;
+  margin-block: 0 3px;
+  vertical-align: middle;
+  border: 2px solid var(--dq-swan);
+  border-radius: 8px;
+  background: var(--dq-snow) center / 72% no-repeat;
+  box-shadow: 0 3px 0 var(--dq-swan);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease, background-color .12s ease, border-color .12s ease;
+}
+html[data-nm-theme="daily-quest"] #page input[type="checkbox"]:not([role="switch"], .form-switch *, [class*="nm-"]):hover { background-color: var(--dq-polar); }
+html[data-nm-theme="daily-quest"] #page input[type="checkbox"]:not([role="switch"], .form-switch *, [class*="nm-"]):active { transform: translateY(3px); box-shadow: none; }
+html[data-nm-theme="daily-quest"] #page input[type="checkbox"]:not([role="switch"], .form-switch *, [class*="nm-"]):checked {
+  background-color: var(--dq-feather);
+  border-color: var(--dq-feather);
+  box-shadow: 0 3px 0 var(--dq-feather-ledge);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  animation: dq-pop .4s var(--dq-ease);
+}
+
+/* ---------- Badges / alerts / modals ---------- */
+html[data-nm-theme="daily-quest"] .badge { border-radius: 99px; font-weight: 800; padding: .3em .65em; }
+html[data-nm-theme="daily-quest"] :is(.badge.bg-danger, .badge.text-bg-danger) { background: var(--dq-cardinal-ink) !important; color: #fff !important; }
+html[data-nm-theme="daily-quest"] .alert { border-width: 2px; border-radius: 16px; font-weight: 700; }
+html[data-nm-theme="daily-quest"] .modal-content {
+  border: 2px solid var(--dq-swan); border-radius: 20px; box-shadow: 0 4px 0 var(--dq-swan); font-family: var(--dq-font);
+}
+
+/* ---------- Injected primitives ---------- */
+html[data-nm-theme="daily-quest"] :is(.nm-btn, .nm-icon-btn) {
+  --dq-ledge: var(--dq-swan);
+  font-family: var(--dq-font);
+  font-weight: 800;
+  border: 2px solid var(--dq-swan);
+  border-radius: 16px;
+  background: var(--dq-snow);
+  color: var(--dq-macaw-ink);
+  box-shadow: 0 var(--dq-press) 0 var(--dq-ledge);
+  margin-block-end: var(--dq-press);
+  transition: transform .08s ease, box-shadow .08s ease, background-color .12s ease;
+}
+html[data-nm-theme="daily-quest"] .nm-btn {
+  padding: .55rem 1.1rem;
+  font-size: .85rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+html[data-nm-theme="daily-quest"] :is(.nm-btn, .nm-icon-btn):hover { background: var(--dq-polar); }
+html[data-nm-theme="daily-quest"] :is(.nm-btn, .nm-icon-btn):active { transform: translateY(var(--dq-press)); box-shadow: 0 0 0 var(--dq-ledge); }
+html[data-nm-theme="daily-quest"] .nm-btn-primary {
+  --dq-ledge: var(--dq-feather-ledge);
+  background: var(--dq-feather);
+  border-color: var(--dq-feather);
+  color: var(--dq-feather-ink);
+}
+html[data-nm-theme="daily-quest"] .nm-btn-primary:hover { background: #61D80A; border-color: #61D80A; }
+html[data-nm-theme="daily-quest"] .nm-icon-btn {
+  inline-size: 2.75rem; block-size: 2.75rem; border-radius: 14px; font-size: 1.2rem; color: var(--dq-eel);
+}
+html[data-nm-theme="daily-quest"] :is(.nm-icon-btn[aria-expanded="true"], .nm-theme-wrap:has(.nm-theme-menu:not([hidden])) .nm-theme-btn) {
+  --dq-ledge: var(--dq-iguana-edge);
+  background: var(--dq-iguana); border-color: var(--dq-iguana-edge);
+}
+
+html[data-nm-theme="daily-quest"] .nm-theme-menu {
+  min-width: 15rem;
+  padding: .5rem;
+  border: 2px solid var(--dq-swan);
+  border-radius: 16px;
+  background: var(--dq-snow);
+  box-shadow: 0 4px 0 var(--dq-swan);
+  font-family: var(--dq-font);
+  top: calc(100% + .35rem);
+  transform-origin: top right;
+  animation: dq-menu-in .22s var(--dq-ease);
+}
+html[data-nm-theme="daily-quest"]:is([dir="rtl"], :has(body.dir-rtl)) .nm-theme-menu { transform-origin: top left; }
+html[data-nm-theme="daily-quest"] .nm-theme-option {
+  gap: .75rem;
+  padding: .6rem .75rem;
+  margin-block: 2px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  color: var(--dq-wolf);
+  font-size: .85rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+html[data-nm-theme="daily-quest"] .nm-theme-option:hover { background: var(--dq-polar); color: var(--dq-eel); }
+html[data-nm-theme="daily-quest"] .nm-theme-option[aria-checked="true"] {
+  background: var(--dq-iguana);
+  border-color: var(--dq-iguana-edge);
+  color: var(--dq-macaw-ink);
+}
+html[data-nm-theme="daily-quest"] .nm-theme-option[aria-checked="true"]::after {
+  content: "✓";
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: 1.4rem; block-size: 1.4rem; border-radius: 50%;
+  background: var(--dq-feather); color: var(--dq-feather-ink);
+  font-size: .8rem; font-weight: 900; letter-spacing: 0;
+  box-shadow: 0 2px 0 var(--dq-feather-ledge);
+}
+html[data-nm-theme="daily-quest"] .nm-swatch {
+  inline-size: 1.75rem; block-size: 1.75rem; border: 2px solid var(--dq-swan); box-shadow: 0 2px 0 var(--dq-swan);
+}
+
+/* Header row next to "Dashboard" */
+html[data-nm-theme="daily-quest"] .nm-header-slot { gap: .6rem; }
+
+/* Feature checkboxes (upcoming split + todos): big rounded squares, green tick, springy pop */
+html[data-nm-theme="daily-quest"] .nm-up-check { inline-size: 1.75rem !important; block-size: 1.75rem !important; margin-block-end: 3px; }
+html[data-nm-theme="daily-quest"] :is(.nm-up-check .nm-up-box, .nm-todo-check) {
+  border: 2px solid var(--dq-swan) !important;
+  border-radius: 8px !important;
+  background: var(--dq-snow);
+  box-shadow: 0 3px 0 var(--dq-swan);
+}
+html[data-nm-theme="daily-quest"] .nm-todo-check { inline-size: 1.75rem; block-size: 1.75rem; margin-block-end: 3px; }
+html[data-nm-theme="daily-quest"] :is(.nm-up-check:hover .nm-up-box, .nm-todo-check:hover) { background: var(--dq-polar); border-color: var(--dq-hare) !important; }
+html[data-nm-theme="daily-quest"] :is(.nm-up-check .nm-up-box::after, .nm-todo-check::after) {
+  inline-size: .42rem; block-size: .78rem; border-width: 0 3.5px 3.5px 0; border-color: #fff; color: #fff; border-radius: 1px;
+}
+html[data-nm-theme="daily-quest"] :is(.nm-up-check .nm-up-cb:checked + .nm-up-box, .nm-todo-check:checked) {
+  background: var(--dq-feather);
+  border-color: var(--dq-feather) !important;
+  box-shadow: 0 3px 0 var(--dq-feather-ledge);
+  animation: dq-pop .4s var(--dq-ease);
+}
+html[data-nm-theme="daily-quest"] :is(.nm-up-check .nm-up-cb:active + .nm-up-box, .nm-todo-check:active) { transform: translateY(3px); box-shadow: none; }
+html[data-nm-theme="daily-quest"] .nm-up-done-summary {
+  border: 2px solid var(--dq-iguana-edge);
+  border-radius: 14px !important;
+  background: var(--dq-iguana) !important;
+  color: var(--dq-macaw-ink);
+  font-weight: 800;
+}
+html[data-nm-theme="daily-quest"] .nm-up-done-label { text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
+html[data-nm-theme="daily-quest"] .nm-up-count,
+html[data-nm-theme="daily-quest"] .nm-todo-head-count {
+  font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .75rem;
+}
+
+/* Where features use the accent/success green as TEXT, swap in AA-safe inks (bright green stays for fills) */
+html[data-nm-theme="daily-quest"] .nm-up .nm-up-edit { color: var(--dq-macaw-ink); font-weight: 800; }
+html[data-nm-theme="daily-quest"] .nm-up-tag-auto { color: var(--dq-feather-text); background: #D7FFB8; font-weight: 800; }
+html[data-nm-theme="daily-quest"] .nm-todo-msg-action { color: var(--dq-macaw-ink) !important; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+html[data-nm-theme="daily-quest"] .nm-todo-due.is-today { color: var(--dq-feather-text); font-weight: 800; }
+html[data-nm-theme="daily-quest"] :is(.nm-todo-add:hover, .nm-todo-add:focus-within) .nm-todo-add-input::placeholder { color: var(--dq-wolf); }
+
+html[data-nm-theme="daily-quest"] :is(.nm-game-stat-value, .nm-game-combo-value, .nm-game-final) { color: var(--dq-feather-text); }
+
+/* Shortcut bar buttons: outlined pills, like Duolingo's chips */
+html[data-nm-theme="daily-quest"] :is(.nm-sc-add, .nm-sc-edit-toggle) {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .45rem .9rem;
+  border: 2px dashed var(--dq-swan);
+  border-radius: 99px;
+  background: var(--dq-snow);
+  color: var(--dq-macaw-ink);
+  font-family: var(--dq-font); font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  cursor: pointer;
+}
+html[data-nm-theme="daily-quest"] :is(.nm-sc-add, .nm-sc-edit-toggle):hover,
+html[data-nm-theme="daily-quest"] .nm-sc-add[aria-expanded="true"] { border-color: var(--dq-iguana-edge); background: var(--dq-iguana); color: var(--dq-macaw-ink); }
+html[data-nm-theme="daily-quest"] .nm-sc-edit-toggle[aria-pressed="true"] { border-style: solid; border-color: var(--dq-feather); background: var(--dq-feather); color: var(--dq-feather-ink); }
+
+/* ---------- Light signature touches for feature widgets (token-driven, structure-agnostic) ---------- */
+html[data-nm-theme="daily-quest"] :is([class*="nm-up-"], [class*="nm-todo-"], [class*="nm-sc-"], [class*="nm-game-"]) { font-family: var(--dq-font); }
+html[data-nm-theme="daily-quest"] .nm-block summary {
+  font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .85rem; color: var(--dq-wolf); cursor: pointer;
+}
+
+/* ---------- Motion ---------- */
+@keyframes dq-pop {
+  0% { transform: scale(.6); }
+  60% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+@keyframes dq-wiggle {
+  0%, 100% { transform: rotate(0) scale(1); }
+  30% { transform: rotate(-10deg) scale(1.08); }
+  60% { transform: rotate(8deg) scale(1.08); }
+}
+@keyframes dq-menu-in {
+  from { opacity: 0; transform: scale(.92) translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+html[data-nm-theme="daily-quest"][data-nm-motion="off"] *,
+html[data-nm-theme="daily-quest"][data-nm-motion="off"] *::before,
+html[data-nm-theme="daily-quest"][data-nm-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-nm-theme="daily-quest"] *,
+  html[data-nm-theme="daily-quest"] *::before,
+  html[data-nm-theme="daily-quest"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 575.98px) {
+  html[data-nm-theme="daily-quest"] nav.navbar.fixed-top > .container-fluid { flex-wrap: nowrap; gap: .5rem; }
+  html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .primary-navigation { overflow-x: auto; scrollbar-width: none; min-width: 0; flex: 1; }
+  html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .primary-navigation .navbar-nav { flex-wrap: nowrap; flex-direction: row; }
+  html[data-nm-theme="daily-quest"] nav.navbar.fixed-top #usernavigation { flex: none; }
+  html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .usertext { display: none; }
+  html[data-nm-theme="daily-quest"] .timeline-event-list-item { flex-wrap: wrap; }
+  html[data-nm-theme="daily-quest"] .timeline-event-list-item .event-name-container { flex: 1 1 calc(100% - 4.5rem); }
+  html[data-nm-theme="daily-quest"] .timeline-event-list-item .btn { margin-inline-start: 3.9rem; }
+  html[data-nm-theme="daily-quest"] .activityiconcontainer { inline-size: 2.6rem !important; block-size: 2.6rem !important; min-width: 2.6rem; }
+  html[data-nm-theme="daily-quest"] .activityiconcontainer::before { font-size: 1.2rem !important; }
+  html[data-nm-theme="daily-quest"] .event { gap: .7rem; padding: .75rem .8rem !important; }
+  html[data-nm-theme="daily-quest"] .nm-header-slot { flex-wrap: wrap; }
+  html[data-nm-theme="daily-quest"] nav.navbar.fixed-top .nav-link { padding: .4rem .65rem; font-size: .78rem; }
+  html[data-nm-theme="daily-quest"] #page-header h1 { font-size: 1.65rem; }
+  html[data-nm-theme="daily-quest"] .block.card > .card-body { padding: 1rem !important; }
+  html[data-nm-theme="daily-quest"] .block.card .card-title { font-size: 1.2rem; }
+}

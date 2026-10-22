@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/classify.test.cjs"
+    "test": "node tests/classify.test.cjs",
+    "shots": "node tests/screenshots.mjs",
+    "e2e": "for t in upcoming todo shortcuts confetti game; do node tests/$t.e2e.mjs || exit 1; done"
   },
   "repository": {
     "type": "git",

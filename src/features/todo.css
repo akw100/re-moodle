@@ -1,1 +1,238 @@
-/* placeholder: todo */
+/* Personal to-do block (features/todo.js). Only --nm-* tokens; themes restyle via the nm-todo-* classes. */
+.nm-todo {
+  --nm-todo-check: 1.15rem;
+  --nm-todo-hair: color-mix(in srgb, var(--nm-border) 70%, transparent);
+  position: relative;
+  color: var(--nm-text);
+  font-family: var(--nm-font);
+}
+.nm-todo-sr {
+  position: absolute !important; inline-size: 1px; block-size: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.nm-todo-icon { display: inline-grid; place-items: center; line-height: 0; flex: none; }
+.nm-todo button { font: inherit; color: inherit; }
+
+/* Header count, next to the block title ("✓ 3 to-dos") */
+.nm-todo-head-count {
+  display: inline-flex; align-items: center; gap: .3rem; margin-inline-start: .75rem;
+  font-size: .8rem; font-weight: 400; color: var(--nm-text-muted);
+}
+.nm-todo-head-count[hidden] { display: none; }
+
+/* ---- Add row ---- */
+.nm-todo-add {
+  display: flex; align-items: center; gap: .55rem;
+  margin: 0 0 .25rem; padding: .3rem .5rem;
+  border: var(--nm-border-width) solid transparent; border-radius: var(--nm-radius);
+  transition: border-color .15s, box-shadow .15s, background-color .15s;
+}
+.nm-todo-add:hover { background: var(--nm-surface-2); }
+.nm-todo-add:focus-within {
+  background: var(--nm-surface);
+  border-color: color-mix(in srgb, var(--nm-accent) 55%, var(--nm-border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--nm-accent) 14%, transparent);
+}
+.nm-todo-add-plus {
+  inline-size: var(--nm-todo-check); block-size: var(--nm-todo-check); margin: 0;
+  display: grid; place-items: center; flex: none; border-radius: 50%;
+  color: var(--nm-accent-text); font-size: 1.05rem; cursor: text;
+  transition: background-color .15s, color .15s;
+}
+.nm-todo-add:hover .nm-todo-add-plus, .nm-todo-add:focus-within .nm-todo-add-plus {
+  background: var(--nm-accent); color: var(--nm-accent-contrast); font-size: .8rem;
+}
+/* :root + input raise specificity over themes' global input styles: these two fields are bare text in a row. */
+:root .nm-todo .nm-todo-add input.nm-todo-add-input, :root .nm-todo input.nm-todo-edit {
+  min-block-size: 0; border: 0; border-radius: 0; outline: none; box-shadow: none; background: transparent;
+  color: var(--nm-text); font: inherit; letter-spacing: inherit;
+}
+:root .nm-todo .nm-todo-add input.nm-todo-add-input { flex: 1; min-inline-size: 0; padding: .35rem 0; }
+.nm-todo-add-input::placeholder { color: var(--nm-text-muted); opacity: 1; }
+.nm-todo-add:hover .nm-todo-add-input::placeholder, .nm-todo-add:focus-within .nm-todo-add-input::placeholder { color: var(--nm-accent-text); }
+.nm-todo-add:focus-within .nm-todo-add-input::placeholder { color: var(--nm-text-muted); }
+
+.nm-todo-add-date {
+  flex: none; padding: .15rem .4rem; font: inherit; font-size: .8rem;
+  color: var(--nm-text); background: var(--nm-surface-2);
+  border: var(--nm-border-width) solid var(--nm-border); border-radius: calc(var(--nm-radius) * .75);
+}
+.nm-todo-add-date[hidden] { display: none; }
+.nm-todo-add-date:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 1px; }
+
+.nm-todo-date-btn, .nm-todo-del, .nm-todo-msg-close {
+  display: inline-grid; place-items: center; flex: none; padding: 0; cursor: pointer;
+  inline-size: 1.85rem; block-size: 1.85rem; border: 0; border-radius: calc(var(--nm-radius) * .75);
+  background: transparent; color: var(--nm-text-muted); font-size: 1rem;
+  transition: background-color .15s, color .15s, opacity .15s;
+}
+.nm-todo-date-btn:hover, .nm-todo-msg-close:hover { background: var(--nm-surface-2); color: var(--nm-text); }
+.nm-todo-date-btn[aria-expanded="true"], .nm-todo-add.has-date .nm-todo-date-btn { color: var(--nm-accent-text); }
+.nm-todo-add-submit {
+  flex: none; padding: .25rem .75rem; cursor: pointer; font-size: .85rem !important; font-weight: 600;
+  border: var(--nm-border-width) solid var(--nm-accent); border-radius: calc(var(--nm-radius) * .75);
+  background: var(--nm-accent); color: var(--nm-accent-contrast) !important;
+  display: none;
+}
+.nm-todo-add.has-text .nm-todo-add-submit { display: inline-block; }
+.nm-todo :is(button, input):focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+/* The add row itself shows focus (:focus-within), so the bare field inside must not draw a second ring. */
+:root .nm-todo .nm-todo-add input.nm-todo-add-input:focus-visible { outline: none !important; box-shadow: none !important; }
+
+/* ---- Inline message (undo / quota error) ---- */
+.nm-todo-msg {
+  display: flex; align-items: center; gap: .5rem; margin: .25rem 0 .5rem; padding: .3rem .3rem .3rem .75rem;
+  font-size: .85rem; border-radius: var(--nm-radius);
+  background: var(--nm-surface-2); color: var(--nm-text);
+}
+.nm-todo-msg[hidden] { display: none; }
+.nm-todo-msg.is-error {
+  background: color-mix(in srgb, var(--nm-danger) 12%, var(--nm-surface));
+  color: var(--nm-danger);
+}
+.nm-todo-msg-text { flex: 1; min-inline-size: 0; }
+.nm-todo-msg-action {
+  border: 0; background: none; padding: .2rem .4rem; cursor: pointer; border-radius: calc(var(--nm-radius) * .6);
+  color: var(--nm-accent-text) !important; font-weight: 700;
+}
+.nm-todo-msg-action:hover { background: color-mix(in srgb, var(--nm-accent) 12%, transparent); }
+.nm-todo-msg-close { inline-size: 1.6rem; block-size: 1.6rem; font-size: 1.15rem; }
+
+/* ---- Rows ---- */
+.nm-todo-list { list-style: none; margin: 0; padding: 0; }
+.nm-todo-list[hidden] { display: none; }
+.nm-todo-item {
+  position: relative; display: flex; align-items: flex-start; gap: .65rem;
+  padding: .6rem .5rem; border-block-end: 1px solid var(--nm-todo-hair);
+  border-radius: 0; outline: none;
+  transition: background-color .15s;
+}
+.nm-todo-item:hover { background: color-mix(in srgb, var(--nm-surface-2) 60%, transparent); }
+.nm-todo-item:focus-visible { box-shadow: inset 0 0 0 2px var(--nm-accent); border-radius: calc(var(--nm-radius) * .75); }
+.nm-todo-item[draggable="true"] { cursor: grab; }
+.nm-todo-item[draggable="true"]:active { cursor: grabbing; }
+
+.nm-todo-grip {
+  position: absolute; inset-inline-start: -.85rem; inset-block-start: .8rem;
+  inline-size: .5rem; block-size: .85rem; opacity: 0; transition: opacity .15s;
+  background-image: radial-gradient(circle, var(--nm-text-muted) 1.2px, transparent 1.4px);
+  background-size: .25rem .28rem;
+}
+.nm-todo-item:hover .nm-todo-grip, .nm-todo-item:focus-visible .nm-todo-grip { opacity: .7; }
+
+/* Round checkbox */
+.nm-todo-check {
+  appearance: none; -webkit-appearance: none; position: relative; flex: none; margin: .12rem 0 0; padding: 0;
+  inline-size: var(--nm-todo-check); block-size: var(--nm-todo-check);
+  display: grid; place-items: center; cursor: pointer;
+  border: 1.5px solid color-mix(in srgb, var(--nm-text-muted) 75%, transparent); border-radius: 50%;
+  background: transparent;
+  transition: background-color .15s, border-color .15s, transform .15s;
+}
+.nm-todo-check::after {
+  content: ""; inline-size: .28rem; block-size: .52rem; margin-block-start: -.12rem;
+  border: solid currentColor; border-width: 0 2px 2px 0;
+  color: var(--nm-accent-text); opacity: 0; transform: rotate(45deg) scale(.6);
+  transition: opacity .15s, transform .2s cubic-bezier(.3, 1.6, .5, 1);
+}
+.nm-todo-check:hover { border-color: var(--nm-accent); background: color-mix(in srgb, var(--nm-accent) 10%, transparent); }
+.nm-todo-check:hover::after { opacity: .75; transform: rotate(45deg) scale(1); }
+.nm-todo-check:checked { background: var(--nm-accent); border-color: var(--nm-accent); }
+.nm-todo-check:checked::after { opacity: 1; color: var(--nm-accent-contrast); transform: rotate(45deg) scale(1); }
+
+.nm-todo-body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: .15rem; }
+.nm-todo-text {
+  overflow-wrap: anywhere; line-height: 1.4; align-self: flex-start;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 1.5px;
+  transition: color .25s, background-size .3s ease;
+}
+.nm-todo:dir(rtl) .nm-todo-text { background-position: 100% 58%; }
+:root .nm-todo input.nm-todo-edit { inline-size: 100%; padding: 0 0 .1rem; border-block-end: 2px solid var(--nm-accent); line-height: 1.4; }
+.nm-todo-meta { display: flex; gap: .6rem; }
+.nm-todo-due { display: inline-flex; align-items: center; gap: .25rem; font-size: .78rem; color: var(--nm-text-muted); }
+.nm-todo-due .nm-todo-icon { font-size: .85em; }
+.nm-todo-due.is-today { color: var(--nm-success-text); }
+.nm-todo-due.is-tomorrow { color: var(--nm-warning); }
+.nm-todo-due.is-overdue { color: var(--nm-danger); font-weight: 600; }
+
+.nm-todo-del { opacity: 0; margin-block: -.2rem; }
+.nm-todo-item:hover .nm-todo-del, .nm-todo-item:focus-within .nm-todo-del { opacity: 1; }
+.nm-todo-del:hover { color: var(--nm-danger); background: color-mix(in srgb, var(--nm-danger) 10%, transparent); }
+@media (hover: none) { .nm-todo-del { opacity: .6; } }
+
+/* Completed rows */
+.nm-todo-item.is-done .nm-todo-text { color: var(--nm-text-muted); background-size: 100% 1.5px; }
+.nm-todo-item.is-done .nm-todo-check:checked {
+  background: color-mix(in srgb, var(--nm-text-muted) 65%, transparent);
+  border-color: transparent;
+}
+.nm-todo-item.is-done .nm-todo-check:hover { background: color-mix(in srgb, var(--nm-text-muted) 40%, transparent); }
+
+/* Checking off: pop + ring on the box, strike across the text, then fade the row */
+.nm-todo-item.is-completing .nm-todo-check { animation: nm-todo-pop .42s cubic-bezier(.3, 1.6, .5, 1), nm-todo-ring .55s ease-out; }
+.nm-todo-item.is-completing .nm-todo-text { color: var(--nm-text-muted); background-size: 100% 1.5px; }
+.nm-todo-item.is-completing { animation: nm-todo-leave .2s ease-in .3s forwards; pointer-events: none; }
+@keyframes nm-todo-pop { 0% { transform: scale(1); } 30% { transform: scale(.72); } 65% { transform: scale(1.28); } 100% { transform: scale(1); } }
+@keyframes nm-todo-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--nm-accent) 55%, transparent); }
+  100% { box-shadow: 0 0 0 .7rem color-mix(in srgb, var(--nm-accent) 0%, transparent); }
+}
+@keyframes nm-todo-leave { to { opacity: .35; } }
+
+.nm-todo-item.is-new { animation: nm-todo-in .28s cubic-bezier(.2, .9, .3, 1.2); }
+@keyframes nm-todo-in { from { opacity: 0; transform: translateY(-.4rem); } }
+
+/* Drag and drop */
+.nm-todo-item.is-dragging { opacity: .4; }
+.nm-todo-item.is-drop-before::before, .nm-todo-item.is-drop-after::after {
+  content: ""; position: absolute; inset-inline: 0; block-size: 2px; background: var(--nm-accent); border-radius: 2px; z-index: 1;
+}
+.nm-todo-item.is-drop-before::before { inset-block-start: -1px; }
+.nm-todo-item.is-drop-after::after { inset-block-end: -1px; }
+
+/* ---- Empty state ---- */
+.nm-todo-empty { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.1rem .5rem .9rem; }
+.nm-todo-empty[hidden] { display: none; }
+.nm-todo-empty p { margin: 0; }
+.nm-todo-empty-art {
+  display: grid; place-items: center; inline-size: 3.25rem; block-size: 3.25rem; margin-block-end: .6rem;
+  border-radius: 50%; font-size: 1.6rem; background: var(--nm-surface-2);
+  box-shadow: 0 0 0 .4rem color-mix(in srgb, var(--nm-surface-2) 45%, transparent);
+}
+.nm-todo-empty-title { font-weight: 600; font-family: var(--nm-heading-font); }
+.nm-todo-empty-sub { margin-block-start: .15rem !important; font-size: .85rem; color: var(--nm-text-muted); max-inline-size: 24rem; }
+
+/* ---- Completed section ---- */
+.nm-todo-done { margin-block-start: .6rem; }
+.nm-todo-done-head { display: flex; align-items: center; gap: .5rem; }
+.nm-todo-done-toggle {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .45rem .3rem .2rem; margin-inline-start: -.2rem;
+  border: 0; background: none; cursor: pointer; border-radius: calc(var(--nm-radius) * .75);
+  font-weight: 600; font-size: .9rem; color: var(--nm-text);
+}
+.nm-todo-done-toggle:hover { background: var(--nm-surface-2); }
+.nm-todo-done.is-empty .nm-todo-done-toggle { color: var(--nm-text-muted); font-weight: 500; }
+.nm-todo-chevron { color: var(--nm-text-muted); transform: rotate(-90deg); transition: transform .2s ease; }
+.nm-todo:dir(rtl) .nm-todo-chevron { transform: rotate(90deg); }
+.nm-todo .nm-todo-done-toggle[aria-expanded="true"] .nm-todo-chevron { transform: none; }
+.nm-todo-done-count {
+  min-inline-size: 1.4rem; padding: 0 .4rem; border-radius: 999px; text-align: center;
+  font-size: .75rem; font-weight: 600; line-height: 1.35rem;
+  background: var(--nm-surface-2); color: var(--nm-text-muted);
+}
+.nm-todo-done-count.is-bump { animation: nm-todo-bump .45s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes nm-todo-bump { 40% { transform: scale(1.35); background: var(--nm-accent); color: var(--nm-accent-contrast); } }
+.nm-todo-clear {
+  margin-inline-start: auto; padding: .25rem .5rem; border: 0; background: none; cursor: pointer;
+  border-radius: calc(var(--nm-radius) * .75); font-size: .8rem !important; color: var(--nm-text-muted) !important;
+}
+.nm-todo-clear[hidden] { display: none; }
+.nm-todo-clear:hover { color: var(--nm-danger) !important; background: color-mix(in srgb, var(--nm-danger) 10%, transparent); }
+.nm-todo-done-list:not([hidden]) { animation: nm-todo-in .2s ease-out; }
+.nm-todo-done-list .nm-todo-item:last-child { border-block-end: 0; }
+
+/* Motion off (setting or OS) */
+html[data-nm-motion="off"] .nm-todo *, html[data-nm-motion="off"] .nm-todo { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .nm-todo, .nm-todo * { animation: none !important; transition: none !important; }
+}

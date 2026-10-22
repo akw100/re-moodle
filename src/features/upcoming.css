@@ -1,1 +1,130 @@
-/* placeholder: upcoming */
+/* Upcoming events done-split (src/features/upcoming.js). Tokens only, logical properties only (RTL-safe).
+   Theme hooks: .nm-up (block), .nm-up-count, .nm-up-row[-todo|-done|-info|-manual], .nm-up-check/.nm-up-box,
+   .nm-up-meta, .nm-up-tag[-auto|-manual], .nm-up-edit, .nm-up-opens, details.nm-up-done > summary.nm-up-done-summary,
+   .nm-up-empty, .nm-up-note. */
+
+/* English labels inside a Hebrew (RTL) page: isolate their bidi direction without flipping layout. */
+.nm-up-count, .nm-up-tag, .nm-up-opens, .nm-up-edit, .nm-up-done-label, .nm-up-empty, .nm-up-note { unicode-bidi: plaintext; }
+
+/* ---- header count ---- */
+.nm-up .nm-up-count {
+  margin-inline-start: auto; padding-inline-start: .75rem; align-self: center; white-space: nowrap;
+  font-family: var(--nm-font); font-size: .78rem; font-weight: 600; letter-spacing: .01em;
+  color: var(--nm-text-muted);
+}
+
+/* ---- rows ---- */
+.nm-up .nm-up-row { align-items: flex-start; }
+.nm-up .nm-up-lead {
+  flex: none; inline-size: 1.15rem; block-size: 1.15rem;
+  margin-inline-end: .7rem; margin-block-start: .3rem;
+}
+
+/* Checkbox: the real <input> sits on top of the drawn box, invisible, so clicks/keys/AT all hit it. */
+.nm-up-check { position: relative; display: inline-grid; place-items: center; cursor: pointer; }
+.nm-up-check .nm-up-cb {
+  position: absolute; inset: 0; inline-size: 100%; block-size: 100%; margin: 0;
+  opacity: 0; cursor: pointer; z-index: 1;
+}
+.nm-up-check .nm-up-box {
+  inline-size: 100%; block-size: 100%; box-sizing: border-box;
+  border: 2px solid color-mix(in srgb, var(--nm-text-muted) 70%, transparent);
+  border-radius: calc(var(--nm-radius) * .55);
+  background: var(--nm-surface);
+  display: grid; place-items: center;
+  transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.nm-up-check .nm-up-box::after {
+  content: ""; inline-size: .32rem; block-size: .6rem; margin-block-start: -.12rem;
+  border: solid var(--nm-accent-contrast); border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0); transition: transform .15s ease;
+}
+.nm-up-check:hover .nm-up-box { border-color: var(--nm-accent); }
+.nm-up-check .nm-up-cb:checked + .nm-up-box { background: var(--nm-success); border-color: var(--nm-success); }
+.nm-up-check .nm-up-cb:checked + .nm-up-box::after { transform: rotate(45deg) scale(1); }
+.nm-up-check .nm-up-cb:active + .nm-up-box { transform: scale(.9); }
+.nm-up-check .nm-up-cb:focus-visible + .nm-up-box { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+
+.nm-up-sr {
+  position: absolute !important; inline-size: 1px; block-size: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* meta line under a row (tag + edit link, or "Opens") */
+.nm-up .nm-up-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .6rem;
+  margin-block-start: .4rem; font-family: var(--nm-font); font-size: .76rem; line-height: 1.4;
+}
+.nm-up-tag {
+  display: inline-flex; align-items: center; padding-block: .08rem; padding-inline: .5rem;
+  border-radius: 999px; font-weight: 600; white-space: nowrap;
+}
+.nm-up-tag-auto { color: var(--nm-success-text); background: color-mix(in srgb, var(--nm-success) 13%, transparent); }
+.nm-up-tag-manual { color: var(--nm-text-muted); background: var(--nm-surface-2); border: 1px solid var(--nm-border); }
+.nm-up .nm-up-edit { display: inline-flex; align-items: center; gap: .25rem; color: var(--nm-accent-text); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.nm-up .nm-up-edit:hover { text-decoration: underline; }
+.nm-up .nm-up-edit:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; border-radius: 2px; }
+.nm-up-arrow { display: inline-block; transition: transform .15s ease; }
+.nm-up-edit:hover .nm-up-arrow { transform: translateX(2px); }
+[dir="rtl"] .nm-up-arrow { transform: scaleX(-1); }
+[dir="rtl"] .nm-up-edit:hover .nm-up-arrow { transform: scaleX(-1) translateX(2px); } /* mirrored: the nudge points left, i.e. forward in RTL */
+
+/* done rows: muted + struck through, link to edit stays loud */
+.nm-up .nm-up-row-done a[data-event-id] {
+  color: var(--nm-text-muted); text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--nm-text-muted) 60%, transparent);
+}
+.nm-up .nm-up-row-done h6, .nm-up .nm-up-row-done .date { color: var(--nm-text-muted) !important; opacity: .85; }
+.nm-up .nm-up-row-done .date a { color: inherit !important; }
+.nm-up .nm-up-row-done .activityiconcontainer { opacity: .5; filter: grayscale(1); }
+
+/* info rows ("... opens"): quiet, no checkbox */
+.nm-up .nm-up-row-info a[data-event-id] { color: var(--nm-text-muted); font-weight: 400; }
+.nm-up .nm-up-row-info h6 { opacity: .75; }
+.nm-up .nm-up-row-info .activityiconcontainer { opacity: .6; }
+.nm-up-opens {
+  display: inline-flex; align-items: center; gap: .3rem; color: var(--nm-text-muted);
+  font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: .68rem;
+}
+.nm-up-opens::before {
+  content: ""; inline-size: .4rem; block-size: .4rem; border-radius: 50%;
+  border: 1.5px solid currentColor; box-sizing: border-box;
+}
+
+/* ---- done section ---- */
+.nm-up details.nm-up-done { margin-block: .75rem .6rem; }
+.nm-up details.nm-up-done[hidden] { display: none; }
+.nm-up .nm-up-done-summary {
+  display: flex; align-items: center; gap: .45rem; list-style: none; cursor: pointer; user-select: none;
+  padding-block: .5rem; padding-inline: .65rem; border-radius: var(--nm-radius);
+  background: var(--nm-surface-2); color: var(--nm-text);
+  font-family: var(--nm-font); font-size: .86rem; font-weight: 600;
+  transition: background-color .15s ease;
+}
+.nm-up .nm-up-done-summary::-webkit-details-marker { display: none; }
+.nm-up .nm-up-done-summary::before {
+  content: ""; flex: none; inline-size: .45rem; block-size: .45rem; margin-inline-end: .15rem;
+  border: solid var(--nm-text-muted); border-width: 0 2px 2px 0;
+  transform: rotate(-45deg); transition: transform .2s ease;
+}
+[dir="rtl"] .nm-up .nm-up-done-summary::before { transform: rotate(135deg); }
+.nm-up details.nm-up-done[open] > .nm-up-done-summary::before { transform: rotate(45deg); }
+.nm-up .nm-up-done-summary:hover { background: color-mix(in srgb, var(--nm-text) 7%, var(--nm-surface-2)); }
+.nm-up .nm-up-done-summary:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-up .nm-up-done-hint { color: var(--nm-text-muted); font-weight: 400; unicode-bidi: isolate; }
+.nm-up details.nm-up-done > .event:last-child { border-block-end: 0 !important; }
+
+.nm-up .nm-up-empty {
+  margin: 0; padding-block: .75rem .25rem; color: var(--nm-text-muted);
+  font-family: var(--nm-font); font-size: .85rem;
+}
+
+/* ---- failure note ---- */
+.nm-up-note {
+  margin-block: .6rem 0; font-family: var(--nm-font); font-size: .76rem; color: var(--nm-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nm-up-check .nm-up-box, .nm-up-check .nm-up-box::after, .nm-up-done-summary, .nm-up-done-summary::before, .nm-up-arrow { transition: none; }
+}
+html[data-nm-motion="off"] :is(.nm-up-box, .nm-up-box::after, .nm-up-done-summary, .nm-up-done-summary::before, .nm-up-arrow) { transition: none; }
