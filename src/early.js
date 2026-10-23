@@ -1,6 +1,7 @@
 // document_start: set the theme attribute before first paint. localStorage is a sync cache of chrome.storage.
 (() => {
   const html = document.documentElement;
+  if (location.host.startsWith('idp.')) html.dataset.nmSite = 'login'; // HUJI's login page: CSS-only reskin, no scripts touch the form
   // Chrome ignores @import inside content-script CSS, so theme fonts load through a <link>.
   const G = 'https://fonts.googleapis.com/css2?display=swap&family=';
   const FONTS = {

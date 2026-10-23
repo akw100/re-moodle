@@ -7,6 +7,7 @@
 // /mod/<mod>/<file>.php[?action=<a>] -> fixtures/<mod>-<file>[-<a>].html; other Moodle URLs -> 404. Non-Moodle URLs go to the network.
 import {chromium} from 'playwright';
 import {readFileSync, existsSync, mkdtempSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -14,8 +15,15 @@ import {fileURLToPath} from 'node:url';
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const WWWROOT = 'https://moodle.huji.ac.il/2026-27';
 const fx = f => join(ROOT, 'fixtures', f);
+// fixtures/vendor/ mirrors HUJI's real assets (npm run vendor); keyed like this.
+export const vendorKey = url => { const u = new URL(url); return u.host + u.pathname + (u.search ? '__' + createHash('sha1').update(u.search).digest('hex').slice(0, 10) : ''); };
+const vendorIndex = existsSync(fx('vendor/index.json')) ? JSON.parse(readFileSync(fx('vendor/index.json'), 'utf8')) : {};
+// live: true serves the sanitized captures of real pages in fixtures/live/ (styled by the mirrored HUJI CSS).
+const LIVE = {'/my/': 'dashboard.html', '/my/index.php': 'dashboard.html', '/course/view.php': 'course-view.html',
+  '/calendar/view.php': 'calendar-month.html', '/mod/assign/view.php': 'assign-view.html', '/mod/quiz/view.php': 'quiz-view.html'};
+export const LOGIN_URL = 'https://idp.cc.huji.ac.il/simplesaml/module.php/core/loginuserpass.php';
 
-export async function launch({storage = {}, local = {}, mock = {}, headless = true, viewport = {width: 1280, height: 900}} = {}) {
+export async function launch({storage = {}, local = {}, mock = {}, live = false, headless = true, viewport = {width: 1280, height: 900}} = {}) {
   const context = await chromium.launchPersistentContext(mkdtempSync(join(tmpdir(), 'nm-')), {
     channel: 'chromium', headless, viewport,
     args: [`--disable-extensions-except=${ROOT}`, `--load-extension=${ROOT}`],
@@ -23,9 +31,15 @@ export async function launch({storage = {}, local = {}, mock = {}, headless = tr
   const responses = {...JSON.parse(readFileSync(fx('service-mock.json'), 'utf8')), ...mock};
   const calls = [];
 
-  await context.route(`${new URL(WWWROOT).origin}/**`, async route => {
+  await context.route(/^https:\/\/(moodle\.huji\.ac\.il|idp\.cc\.huji\.ac\.il)\//, async route => {
     const url = new URL(route.request().url());
+    const vk = vendorKey(url.href);
+    if (vendorIndex[vk]) return route.fulfill({contentType: vendorIndex[vk], body: readFileSync(fx('vendor/' + vk))});
+    if (url.host.startsWith('idp.')) return url.href.startsWith(LOGIN_URL)
+      ? route.fulfill({contentType: 'text/html', body: readFileSync(fx('live/login-idp.html'))})
+      : route.fulfill({status: 404, body: ''});
     const path = url.pathname.replace(/^\/2026-27/, '');
+    if (live && LIVE[path] && existsSync(fx('live/' + LIVE[path]))) return route.fulfill({contentType: 'text/html', body: readFileSync(fx('live/' + LIVE[path]))});
     if (path === '/my/' || path === '/my/index.php') return route.fulfill({contentType: 'text/html', body: readFileSync(fx('dashboard.html'))});
     if (path === '/lib/ajax/service.php') {
       const [req] = JSON.parse(route.request().postData() || '[]');
@@ -48,11 +62,11 @@ export async function launch({storage = {}, local = {}, mock = {}, headless = tr
 
   return {
     context, sw, calls,
-    async open(path) {
+    async open(path) { // a Moodle path ('/my/') or a full URL (LOGIN_URL)
       const page = await context.newPage();
       page.on('pageerror', e => console.error('[pageerror]', e.message));
       page.on('console', m => { if (m.type() === 'error' || m.text().includes('[Nicer Moodle]')) console.log('[console]', m.text()); });
-      await page.goto(WWWROOT + path);
+      await page.goto(path.startsWith('http') ? path : WWWROOT + path);
       await page.waitForTimeout(600); // let document_idle scripts and the first AJAX round-trip finish
       return page;
     },

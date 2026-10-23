@@ -16,7 +16,7 @@ try {
   const open = '.nm-todo-open .nm-todo-item', done = '#nm-todo-done-list .nm-todo-item';
 
   await ok('block is first on the dashboard and shows the empty state', async () => {
-    assert.equal(await page.$eval('#block-region-content', r => r.firstElementChild.id), 'nm-block-todo');
+    assert.equal(await page.$eval('#nm-top-row', r => r.firstElementChild.id + '|' + (r.nextElementSibling?.id)), 'nm-block-todo|block-region-content');
     assert.ok(await page.isVisible('.nm-todo-empty'));
     assert.ok(await page.isVisible('.nm-todo-done-toggle'), 'Completed header always visible');
   });

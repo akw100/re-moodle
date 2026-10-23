@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node tests/classify.test.cjs",
     "shots": "node tests/screenshots.mjs",
-    "e2e": "for t in upcoming todo shortcuts confetti game; do node tests/$t.e2e.mjs || exit 1; done"
+    "e2e": "for t in upcoming todo shortcuts confetti game; do node tests/$t.e2e.mjs || exit 1; done",
+    "vendor": "node tests/vendor.mjs"
   },
   "repository": {
     "type": "git",

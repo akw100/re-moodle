@@ -5,6 +5,12 @@ const THEMES = [
   ['night-operator', 'Night Operator', '#080808', '#7772d8'],
   ['daily-quest', 'Daily Quest', '#ffffff', '#58cc02'],
   ['campus-pop', 'Campus Pop', '#ed9de3', '#f8d047'],
+  ['ahead', 'Ahead', '#f6f1e9', '#e2704a'],
+  ['fal', 'Fal', '#0b0b0f', '#a78bfa'],
+  ['giga', 'Giga', '#0e1a12', '#c6f432'],
+  ['cloudstudio', 'Cloudstudio', '#eef3f8', '#2f6bff'],
+  ['butter', 'Butter', '#fff7e0', '#ffcf33'],
+  ['clay', 'Clay', '#ffffff', '#5b4bff'],
 ];
 const box = document.getElementById('themes');
 const motion = document.getElementById('motion');

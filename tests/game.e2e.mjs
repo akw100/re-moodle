@@ -46,11 +46,11 @@ try {
     // Entry points
     assert.equal(await page.locator('#nm-block-game .nm-game-play').count(), 1, 'block with Play button');
     const order = await page.evaluate(() => {
-      const b = document.querySelector('#nm-block-game'), cal = document.querySelector('[data-block="calendar_month"]');
+      const b = document.querySelector('#nm-block-game');
       const btn = document.querySelector('.nm-header-slot .nm-game-btn');
-      return {beforeCal: !!(b && cal && b.nextElementSibling === cal), btnBeforeTheme: btn?.nextElementSibling?.classList.contains('nm-theme-wrap')};
+      return {topRow: b?.parentElement?.id === 'nm-top-row' && b.previousElementSibling?.id === 'nm-block-todo', btnBeforeTheme: btn?.nextElementSibling?.classList.contains('nm-theme-wrap')};
     });
-    assert.ok(order.beforeCal, 'block sits right before calendar_month');
+    assert.ok(order.topRow, 'block sits in the top row, after the to-dos');
     assert.ok(order.btnBeforeTheme, 'header 🎮 button sits right before .nm-theme-wrap');
     const bestShown = await page.locator('#nm-block-game [data-nm-game-best]').textContent();
     ok(`block + header button exist (card shows high score ${bestShown})`);

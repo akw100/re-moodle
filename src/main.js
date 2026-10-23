@@ -8,7 +8,7 @@
         onclick: () => { NM.set('theme', t.id); menu.hidden = true; }},
         NM.el('span', {class: 'nm-swatch', style: `background:linear-gradient(135deg,${t.swatch[0]} 50%,${t.swatch[1]} 50%)`}), t.name)));
     const btn = NM.el('button', {class: 'nm-icon-btn nm-theme-btn', title: 'Theme', 'aria-label': 'Choose theme', 'aria-haspopup': 'menu',
-      onclick: e => { e.stopPropagation(); menu.hidden = !menu.hidden; }}, '🎨');
+      onclick: e => { e.stopPropagation(); menu.hidden = !menu.hidden; }}, NM.icon('palette'));
     document.addEventListener('click', e => { if (!menu.contains(e.target)) menu.hidden = true; });
     const mark = () => menu.querySelectorAll('.nm-theme-option').forEach(o => o.setAttribute('aria-checked', o.dataset.theme === NM.theme()));
     NM.watch('theme', () => setTimeout(mark));

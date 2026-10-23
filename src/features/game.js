@@ -50,7 +50,7 @@
 
   // ---------- Entry points ----------
   function buildBlock() {
-    const content = NM.block({id: 'game', title: 'Arcade break', icon: '🕹️', before: 'calendar_month'});
+    const content = NM.block({id: 'game', title: 'Arcade break'});
     if (!content) return;
     const play = e => open(e.currentTarget);
     const art = NM.el('button', {class: 'nm-game-teaser-art', type: 'button', tabindex: '-1', 'aria-hidden': 'true', onclick: play},
@@ -62,7 +62,7 @@
     content.append(NM.el('div', {class: 'nm-game-teaser'},
       art,
       NM.el('div', {class: 'nm-game-stats'},
-        NM.el('span', {class: 'nm-game-stat-label'}, '🏆 High score'),
+        NM.el('span', {class: 'nm-game-stat-label'}, NM.icon('trophy'), ' High score'),
         teaser.best,
         NM.el('span', {class: 'nm-game-stat-sub'}, teaser.played, teaser.playedLabel)),
       NM.el('button', {class: 'nm-btn nm-btn-primary nm-game-play', type: 'button', onclick: play},
@@ -73,7 +73,7 @@
     const slot = NM.headerSlot();
     if (!slot || slot.querySelector('.nm-game-btn')) return;
     const btn = NM.el('button', {class: 'nm-icon-btn nm-game-btn', type: 'button', title: 'Arcade break: Deadline Dash', 'aria-label': 'Play Deadline Dash',
-      onclick: e => open(e.currentTarget)}, '🎮');
+      onclick: e => open(e.currentTarget)}, NM.icon('gamepad'));
     const wrap = slot.querySelector('.nm-theme-wrap');
     wrap ? slot.insertBefore(btn, wrap) : slot.append(btn);
   }

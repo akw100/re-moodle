@@ -3,7 +3,7 @@
 // source of truth: every action writes storage, and only the NM.watch callback re-renders.
 NM.feature('todo', async () => {
   if (!NM.isDashboard) return;
-  const content = NM.block({id: 'todo', title: 'My to-dos', icon: '📝'});
+  const content = NM.block({id: 'todo', title: 'My to-dos'});
   if (!content) return;
 
   // ponytail: chrome.storage.sync caps one item at 8 KB (QUOTA_BYTES_PER_ITEM) and ~120 writes/min. Each to-do is

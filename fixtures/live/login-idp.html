@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="HUJI SSO Login">
+  <meta name="author" content="HUJI Computer Center">
+  <meta name="robots" content="noindex, nofollow">
+
+    <title>
+    HUJI Login    </title>
+    
+    <!-- fav icon -->
+    <link href="/simplesaml/module.php/HUJICC/resources/icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="/simplesaml/module.php/HUJICC/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/simplesaml/module.php/HUJICC/resources/css/main.css">
+
+    <!--  jquery -->
+    <!-- -->
+    
+    <!--  -->
+    
+    <!--  -->
+    
+    <!-- polite people say five -->
+  </head>
+
+  <body>
+
+    <!-- Header -->
+	<header>
+        	<nav class="navbar navbar-default">
+          		<div class="container">
+                		<select class="selectpicker Text-Style" name="lang" id="lang" onclick="if (this.value) window.location.href=this.value">
+                			<option value="" selected="">&nbsp;עִבְרִית</option>
+                			<option value="">&nbsp;English</option>
+            			</select>
+				                    		<a href="https://www.huji.ac.il"><img src="/simplesaml/module.php/HUJICC/resources/icons/logo-opt-1.svg" alt="HUJI Logo" class="brand-logo"></a>
+				        		</div>
+        	</nav>
+	</header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <img class="img-fluid" src="/simplesaml/module.php/HUJICC/resources/icons/bg-img.JPG" alt="Login Image">
+      </div>
+
+	
+
+
+
+ 
+
+
+<!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+      <h1 class="font-weight-light ltr">Connect to HUJI Array</h1>
+				<p class="font-weight-light ltr">&nbsp;</p>
+	
+			<ul class="nav nav-pills mb-3 ltr" id="pills-tab" role="tablist">
+				  <li class="nav-item">
+		    <a class="nav-link active" id="pills-sms-tab" data-toggle="pill" href="#pills-sms" role="tab" aria-controls="pills-sms" aria-selected="true">With temporary code</a>
+		  </li>
+				  <li class="nav-item">
+		    <a class="nav-link" id="pills-email-tab" data-toggle="pill" href="#pills-email" role="tab" aria-controls="pills-email" aria-selected="false">With E-mail password</a>
+		  </li>
+				  <li class="nav-item">
+		    <a class="nav-link " id="pills-code-tab" data-toggle="pill" href="#pills-otp" role="tab" aria-controls="pills-otp" aria-selected="false">With OTP</a>
+		  </li>
+				</ul>
+
+
+		 		<div class="tab-content" id="pills-tabContent">
+					  <div class="tab-pane fade show active" id="pills-sms" role="tabpanel" aria-labelledby="pills-sms-tab">
+		<form name="f1" id="f1" method="post">
+		     	<div class="form-group ltr">
+		            <label for="tz9">ID number (9 digits)</label>
+			    <input type="input" class="form-control frm-in" id="tz9" name="tz9" autocomplete="off" minlength="9" maxlength="9" value="" autofocus="">
+		        </div>
+		        <div class="form-group ltr">
+			    <label for="email">E-mail address</label>
+			    <input type="email" class="form-control frm-in" id="email" name="email" autocomplete="off" value="">
+		        </div>
+		      <div class="form-group">
+			     <input type="hidden" name="type" value="">
+			     <input type="hidden" id="lang" name="lang" value="">
+		             </div><button class="btn btn-primary g-recaptcha" data-sitekey="6LfPX-EUAAAAAPqbzzZjQd0gjuVVtdOWxqovqtDZ" data-callback="onSubmit1">Send code</button>
+		             <p class="ltr">* The code will be sent to the phone/E-mail registered in our records</p><p>
+		             </p><p style="margin:-23px -17px;"><a class="nav-link ltr" href="https://so.cc.huji.ac.il/edit" target="_blank">* Update your mobile number</a></p>
+		        </div>
+		</form>
+		   </div>
+					 		   <div class="tab-pane fade" id="pills-email" role="tabpanel" aria-labelledby="pills-email-tab">
+		 <form name="f3" id="f3" method="post">
+		     	<div class="form-group ltr">
+		            <label for="username">E-mail address</label>
+		            <input type="email" class="form-control frm-in" id="username" name="username" autocomplete="off" value="" minlength="6" maxlength="">
+		        </div>
+		        <div class="form-group ltr">
+		            <label for="password">Password</label>
+		            <input type="password" class="form-control frm-in" id="password" name="password" autocomplete="off" value="" minlength="6" maxlength="">
+		        </div>
+		      <div class="form-group">
+			     <input type="hidden" name="type" value="">
+			     <input type="hidden" id="lang" name="lang" value="">
+		             <div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div><button class="btn btn-primary g-recaptcha" data-sitekey="6LfPX-EUAAAAAPqbzzZjQd0gjuVVtdOWxqovqtDZ" data-callback="onSubmit3">Enter</button>
+		             <a class="nav-link ltr" href="https://ca.huji.ac.il/pw" target="_blank">Forgot password</a>
+		        </div>
+		</form>
+		   </div>
+				   <div class="tab-pane fade " id="pills-otp" role="tabpanel" aria-labelledby="pills-code-tab">
+		<form name="f5" id="f5" method="post">
+		     	<div class="form-group ltr">
+		            <label for="username">ID number (9 digits)</label>
+		            <input type="input" class="form-control frm-in" id="username" name="username" autocomplete="off" value="" pattern="[0-9]{9}" title="9 Digits">
+		        </div>
+		        <div class="form-group ltr">
+		            <label for="o_password">OTP password</label>
+		            <input type="password" class="form-control frm-in" id="o_password" name="o_password" autocomplete="off" pattern=".{10}" title="OTP code" value="">
+		        </div>
+		      <div class="form-group">
+			     <input type="hidden" name="type" value="">
+			     <input type="hidden" id="lang" name="lang" value="">
+		             <div><textarea id="g-recaptcha-response-2" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div><button class="btn btn-primary g-recaptcha" data-sitekey="6LfPX-EUAAAAAPqbzzZjQd0gjuVVtdOWxqovqtDZ" data-callback="onSubmit5">Enter</button>
+		             <p class="ltr">&nbsp;</p>
+		        </div>
+		</form>
+		   </div>
+				</div>
+
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+<!-- Footer -->
+  <footer class="py-5 bg-gray">
+    <div class="container footer text-left">
+      <span class="footer-h1">Need Help?</span>
+      <span class="footer-email" dir="ltr">ithuji@savion.huji.ac.il&nbsp;✉</span>
+      <span class="footer-phone" dir="ltr">02-5883450&nbsp;✆</span>
+      <hr>
+      <div class="text-center footer-copy ltr">©  All rights reserved to The Hebrew University</div>
+
+    </div>
+    <!-- /.container -->
+  </footer>
+
+
+
+
+
+</body></html>

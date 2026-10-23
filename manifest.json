@@ -3,31 +3,79 @@
   "name": "Nicer Moodle",
   "version": "0.1.0",
   "description": "Themes, a done list, todos, shortcuts, confetti and a tiny game for Moodle.",
-  "permissions": ["storage"],
-  "host_permissions": ["<all_urls>"],
-  "background": {"service_worker": "src/background.js"},
-  "action": {"default_popup": "popup/popup.html", "default_title": "Nicer Moodle"},
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Nicer Moodle"
+  },
   "content_scripts": [
     {
-      "matches": ["https://moodle.huji.ac.il/*"],
+      "matches": [
+        "https://moodle.huji.ac.il/*"
+      ],
       "run_at": "document_start",
-      "js": ["src/early.js"],
+      "js": [
+        "src/early.js"
+      ],
       "css": [
         "src/base.css",
         "themes/quiet-focus.css",
         "themes/night-operator.css",
         "themes/daily-quest.css",
-        "themes/campus-pop.css"
+        "themes/campus-pop.css",
+        "themes/ahead.css",
+        "themes/fal.css",
+        "themes/giga.css",
+        "themes/cloudstudio.css",
+        "themes/butter.css",
+        "themes/clay.css"
       ]
     },
     {
-      "matches": ["https://moodle.huji.ac.il/*"],
-      "run_at": "document_end",
-      "world": "MAIN",
-      "js": ["src/bridge.js"]
+      "matches": [
+        "https://idp.cc.huji.ac.il/simplesaml/*"
+      ],
+      "run_at": "document_start",
+      "js": [
+        "src/early.js"
+      ],
+      "css": [
+        "src/base.css",
+        "themes/quiet-focus.css",
+        "themes/night-operator.css",
+        "themes/daily-quest.css",
+        "themes/campus-pop.css",
+        "themes/ahead.css",
+        "themes/fal.css",
+        "themes/giga.css",
+        "themes/cloudstudio.css",
+        "themes/butter.css",
+        "themes/clay.css",
+        "src/login.css"
+      ]
     },
     {
-      "matches": ["https://moodle.huji.ac.il/*"],
+      "matches": [
+        "https://moodle.huji.ac.il/*"
+      ],
+      "run_at": "document_end",
+      "world": "MAIN",
+      "js": [
+        "src/bridge.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://moodle.huji.ac.il/*"
+      ],
       "run_at": "document_idle",
       "js": [
         "src/core.js",

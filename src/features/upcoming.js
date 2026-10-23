@@ -48,7 +48,7 @@ NM.feature('upcoming', () => {
     } catch (e) {
       if (my !== gen) return;
       console.warn('[Nicer Moodle] upcoming:', e.message);
-      failed = true; data = null;
+      failed = e.session ? 'session' : true; data = null;
       render();
       return;
     }
@@ -200,7 +200,9 @@ NM.feature('upcoming', () => {
     const note = sec.querySelector('.nm-up-note');
     if (!withNote) note?.remove();
     else if (!note) {
-      const n = NM.el('p', {class: 'nm-up-note', role: 'status'}, "Couldn't load submission status");
+      const n = NM.el('p', {class: 'nm-up-note', role: 'status'}, failed === 'session'
+        ? 'Your Moodle session expired. Refresh the page to see what you’ve already submitted.'
+        : 'Couldn’t check what you’ve submitted, so nothing is marked done. Refresh to try again.');
       if (list) list.after(n); else (sec.querySelector('.card-body') || sec).append(n);
     }
   }

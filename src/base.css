@@ -56,3 +56,20 @@
 .nm-swatch { inline-size: 1.1rem; block-size: 1.1rem; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); flex: none; }
 
 .nm-block-content { font-family: var(--nm-font); }
+
+.nm-svg { display: inline-flex; inline-size: 1.15em; block-size: 1.15em; vertical-align: -0.2em; }
+.nm-svg svg { inline-size: 100%; block-size: 100%; }
+
+/* Our blocks: one row above Moodle's block grid (to-dos wide, arcade narrow). */
+.nm-top-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 1rem; margin-block-end: 1rem; align-items: stretch; }
+.nm-top-row > .nm-block { margin: 0 !important; min-inline-size: 0; }
+@media (max-width: 767.98px) { .nm-top-row { grid-template-columns: minmax(0, 1fr); } }
+
+/* Every theme drops HUJI osiris's decorative image strips (block tops, course cards, activities, page background). */
+html[data-nm-theme] body { background-image: none !important; }
+html[data-nm-theme] :is(.block, .block.block-info, .card.dashboard-card, .searchcoursebox, .section .activity)::before {
+  content: none !important; display: none !important; background-image: none !important;
+}
+
+/* HUJI renders an empty activity badge pill next to many activity names; it carries no information. */
+html[data-nm-theme] .activitybadge:empty { display: none !important; }
