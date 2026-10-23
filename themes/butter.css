@@ -47,6 +47,11 @@ html[data-nm-theme="butter"] {
   --nm-heading-font: "Butter Sans", "Butter Hebrew", system-ui, -apple-system, "Segoe UI", sans-serif;
   --nm-border-width: 1px;
   --nm-confetti: #fffd63, #94a4ff, #40eec0, #ffc074, #fe8080, #0a0b1e;
+  --nm-game-screen-bg: #eef0ff;
+  --nm-focus-ring: #0a0b1e;
+  --nm-bg-btn-bg: #ffffff;
+  --nm-bg-btn-fg: #0a0b1e;
+  --nm-bg-elev: var(--bt-float);
   --nm-sc-chip-radius: 12px;
   --nm-sc-chip-height: 36px;
   --nm-sc-elev: 0 4px 8px rgba(10, 11, 30, .06), 0 8px 48px rgba(10, 11, 30, .08), 0 0 1px rgba(66, 71, 76, .25);
@@ -163,14 +168,9 @@ html[data-nm-theme="butter"] {
   & .text-danger { color: #c2334f !important; }
   & .text-warning { color: #8a4b00 !important; }
 
-  /* Links: ink, with Butter's yellow highlighter under the words on hover. */
+  /* Ink links; reserve the yellow highlighter for prose. */
   & a { color: #0a0b1e; text-decoration: none; }
-  & a:hover {
-    color: #0a0b1e;
-    text-decoration: underline .38em #fffd63;
-    text-underline-offset: -.18em;
-    text-decoration-skip-ink: none;
-  }
+  & a:hover { color: #0a0b1e; }
   & :is(.no-overflow, .activity-description) a:not(.btn) {
     text-decoration: underline 1.5px #0a0b1e;
     text-underline-offset: 3px;
@@ -296,7 +296,7 @@ html[data-nm-theme="butter"] {
     box-shadow: none;
     border: 0;
   }
-  & #page-header h1 {
+  & #page-header h1:not(.nm-motd-h1) {
     font-family: var(--nm-heading-font);
     font-size: clamp(1.75rem, 1.3rem + 1.2vw, 2.25rem);
     font-weight: 800;
@@ -306,6 +306,21 @@ html[data-nm-theme="butter"] {
     margin: 0;
     text-wrap: balance;
   }
+  & .nm-motd {
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -.025em;
+    color: #0a0b1e;
+    text-wrap: balance;
+  }
+  & .nm-bg-btn { border: 0; border-radius: 10px; box-shadow: var(--bt-float); }
+  & .nm-bg-btn:hover { background: #fffd63; }
+  & .nm-bg-pop { border: 1px solid #e6e7e8; border-radius: 20px; }
+  & .nm-bg-title { font-weight: 800; }
+  & .nm-bg-label { font-size: .75rem; }
+  & .nm-bg-opt[aria-pressed="true"] { --nm-accent: #0a0b1e; }
+  & .nm-bg-pop :is(button, input):focus-visible { outline: 2px solid #0a0b1e; outline-offset: 2px; }
   & #page-header .page-context-header { align-items: center; gap: .75rem; }
   & #page-header .page-header-image .activityiconcontainer {
     inline-size: 52px; block-size: 52px;
@@ -321,7 +336,6 @@ html[data-nm-theme="butter"] {
     font-weight: 500;
   }
   & #page-header :is(.breadcrumb-item, .breadcrumb-item a, .breadcrumb-item + .breadcrumb-item::before) { color: #3b3c4b; }
-  & #page-header .breadcrumb-item a:hover { text-decoration: underline 1.5px #0a0b1e; text-underline-offset: 3px; }
   & #page-header ul.teachers {
     display: flex; flex-wrap: wrap; align-items: center; gap: .35rem;
     margin: .8rem 0 0; padding: 0;
@@ -342,10 +356,10 @@ html[data-nm-theme="butter"] {
   & #page-header .activity-dates .date-item-label { color: #0a0b1e; font-weight: 700; }
   /* chips and the theme button sit on the yellow like Butter's white "Sign up for free" */
   & #page-header .nm-sc-chip { background: #ffffff; border-color: transparent; }
-  & #page-header .nm-sc-chip:hover { background: #ffffff; border-color: #0a0b1e; }
+  & #page-header .nm-sc-chip:hover { background: #f2f2f0; }
   & #page-header .nm-sc-add { color: #0a0b1e; border: 1px solid #0a0b1e; background: transparent; }
   & #page-header .nm-sc-edit-toggle { color: #0a0b1e; background: transparent; }
-  & #page-header :is(.nm-sc-add, .nm-sc-edit-toggle):hover { background: rgba(255, 255, 255, .75); border-color: #0a0b1e; color: #0a0b1e; }
+  & #page-header :is(.nm-sc-add, .nm-sc-edit-toggle):hover { background: rgba(255, 255, 255, .75); color: #0a0b1e; }
   & #page-header .nm-sc-edit-toggle[aria-pressed="true"] { background: #0a0b1e; color: #fffd63; border-color: #0a0b1e; }
   & #page-header .nm-icon-btn { background: #ffffff; border-color: transparent; color: #0a0b1e; flex: none; }
   & #page-header .nm-icon-btn:hover, & #page-header .nm-icon-btn[aria-expanded="true"] { background: #0a0b1e; color: #fffd63; }
@@ -567,7 +581,7 @@ html[data-nm-theme="butter"] {
     block-size: 6rem;
     border-radius: 16px !important;
     background-image: none !important;
-    background-color: var(--bt-tile, #fffd63) !important;
+    background-color: var(--nm-course-color, var(--bt-tile, #fffd63)) !important;
   }
   & .card-grid > :nth-child(5n+2) { --bt-tile: #94a4ff; }
   & .card-grid > :nth-child(5n+3) { --bt-tile: #40eec0; }
@@ -1182,18 +1196,7 @@ html[data-nm-theme="butter"] {
 
   /* arcade: a periwinkle bento tile, like Butter's coloured feature sections */
   & section.nm-block.nm-block-game { background: #ffffff; }
-  & .nm-block-game .nm-game-stat-value { font-size: 1.75rem; line-height: 1.1; }
   & .nm-block-game .nm-block-title { color: #0a0b1e; }
-  & .nm-game-teaser-art {
-    background:
-      repeating-linear-gradient(to bottom, transparent 0 21px, rgba(148, 164, 255, .3) 21px 22px),
-      #eef0ff;
-    border: 0;
-    border-radius: 16px;
-  }
-  & .nm-game-drop { border-radius: 8px; border-color: #e6e7e8; font-family: var(--nm-font); }
-  & .nm-game-teaser-line { border-block-start-color: #0a0b1e; }
-  & .nm-game-teaser-line span { background: #0a0b1e; color: #fffd63; }
   & .nm-block-game :is(.nm-game-stat-label, .nm-game-stat-sub) { color: #535461; }
   & .nm-block-game .nm-game-stat-sub b { color: #0a0b1e; }
   & .nm-game-stat-value { color: #0a0b1e; font-weight: 800; letter-spacing: -.03em; }
@@ -1241,7 +1244,7 @@ html[data-nm-theme="butter"] {
     & body#page-my-index #region-main > div:has(#block-region-content) { border-radius: 28px; padding: .75rem; }
     & body#page-my-index .nm-top-row { margin-block-end: .75rem; gap: .75rem; }
     & body#page-my-index #block-region-content > .block { margin-block-end: .75rem !important; }
-    & #page-header h1 { font-size: 1.75rem; }
+    & #page-header h1:not(.nm-motd-h1) { font-size: 1.75rem; }
     & :is(.block.card, section.nm-block) > .card-body { padding: 1.1rem !important; }
     & body:is(.pagelayout-incourse, .pagelayout-standard, .pagelayout-admin, .pagelayout-report) #region-main { padding: 1.1rem; border-radius: 24px; }
     & .course-content li.section.course-section { padding: .9rem .85rem .4rem !important; border-radius: 24px !important; }
@@ -1336,4 +1339,9 @@ html[data-nm-theme="butter"] {
   & ::selection { background: #0a0b1e; color: #fffd63; }
   &[data-nm-motion="off"] .tab-pane .btn-primary:hover { transform: none; }
   @media (prefers-reduced-motion: reduce) { & .tab-pane .btn-primary:hover { transform: none; } }
+}
+
+/* The resource viewer uses the full content width, including on phones. */
+html[data-nm-theme="butter"] body.path-mod-resource #region-main {
+  padding-inline: 0 !important;
 }

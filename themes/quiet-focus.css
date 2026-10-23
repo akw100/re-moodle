@@ -37,6 +37,11 @@ html[data-nm-theme="quiet-focus"] {
   --qf-today: #058527;          /* "Today" */
   --qf-tomorrow: #ad6200;       /* "Tomorrow" */
   --qf-project: #a970ff;        /* project hash */
+  --nm-bg-elev: var(--qf-pop-shadow);
+  --nm-bg-btn-bg: var(--qf-chrome);
+  --nm-bg-btn-fg: var(--qf-ink-2);
+  --nm-focus-ring: var(--qf-red);
+  --nm-game-screen-bg: var(--qf-chrome);
   --qf-pop-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 8px 24px rgba(0, 0, 0, .10);
   --qf-ease: 120ms ease;
 
@@ -182,7 +187,8 @@ html[data-nm-theme="quiet-focus"] {
 
   /* Links: Todoist keeps links in ink and lets red mean action. Inside content, a calm red. */
   & a { color: var(--qf-red-text); text-decoration: none; text-underline-offset: 2px; transition: color var(--qf-ease), background-color var(--qf-ease); }
-  & a:hover { color: var(--qf-red-hover); text-decoration: underline; text-decoration-thickness: 1px; }
+  & a:hover { color: var(--qf-red-hover); }
+  & :is(.summarytext, .no-overflow, .description) p a { text-decoration: underline; }
 
   /* The agenda column: a lot of white around a centred list */
   & #topofscroll, & #page .main-inner {
@@ -322,6 +328,12 @@ html[data-nm-theme="quiet-focus"] {
   & #page-header ul.teachers a:hover { color: var(--qf-ink); }
   & #page-header ul.teachers .separator { display: none; }
 
+  & .nm-motd { font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); line-height: 1.3; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; }
+  & .nm-bg-pop { border-radius: 10px; }
+  & .nm-bg-btn { border: 0; box-shadow: none; border-radius: 5px; }
+  & .nm-bg-label { font-size: .75rem; letter-spacing: 0; text-transform: none; }
+  & .nm-bg-btn-course { inset-block-start: auto; inset-block-end: .5rem; inset-inline-end: 0; }
+
   /* Header slot (shortcuts + theme): runs to the end edge like Todoist's "Display" */
   & .nm-header-slot { gap: .25rem; }
 
@@ -329,10 +341,10 @@ html[data-nm-theme="quiet-focus"] {
      Blocks: borderless sections with a Todoist section header
      ====================================================================== */
   & :is(.block.card, section.nm-block) {
-    background: transparent; border: 0; border-radius: 0; box-shadow: none; color: var(--qf-ink);
+    background: var(--nm-block-bg, #fff); border: 1px solid #e6e1dc; border-radius: 8px; box-shadow: none; color: var(--qf-ink);
     margin-block-end: 2.5rem !important;
   }
-  & #page :is(.block.card, section.nm-block) > .card-body { padding: 0 !important; overflow: visible !important; max-block-size: none !important; }
+  & #page :is(.block.card, section.nm-block) > .card-body { padding: 1rem !important; overflow: visible !important; max-block-size: none !important; }
   & :is(.block.card, section.nm-block) :is(h3, h5).card-title,
   & .nm-block-title {
     font-size: .9375rem !important;     /* 15px, never osiris's 28px */
@@ -466,7 +478,7 @@ html[data-nm-theme="quiet-focus"] {
   & :is(.dashboard-card, .course-card) .coursename {
     display: block; margin: 0 0 .25rem !important; color: var(--qf-ink); font-size: .875rem; font-weight: 500; line-height: 1.4; white-space: normal;
   }
-  & :is(.dashboard-card, .course-card) .coursename:hover { color: var(--qf-ink); text-decoration: underline; text-decoration-color: #c4c4c4; }
+  & :is(.dashboard-card, .course-card) .coursename:hover { color: var(--qf-ink);  }
   & :is(.dashboard-card, .course-card) .categoryname {
     display: inline-flex; align-items: center; gap: .25rem; font-size: .75rem; color: var(--qf-ink-2);
   }
@@ -517,7 +529,7 @@ html[data-nm-theme="quiet-focus"] {
   }
   & .event[data-region="event-item"] h4 { grid-area: title; margin: 0 !important; font-size: .875rem; font-weight: 400; line-height: 1.45; }
   & .event[data-region="event-item"] h4 a { color: var(--qf-ink); white-space: normal; font-size: inherit; font-weight: 400 !important; }
-  & .event[data-region="event-item"] h4 a:hover { color: var(--qf-ink); text-decoration: underline; text-decoration-color: #c4c4c4; }
+  & .event[data-region="event-item"] h4 a:hover { color: var(--qf-ink);  }
   & .event[data-region="event-item"] h6 {
     grid-area: course; justify-self: end; max-inline-size: 15rem; margin: 0 !important;
     display: inline-flex; align-items: center; gap: .25rem;
@@ -795,8 +807,8 @@ html[data-nm-theme="quiet-focus"] {
   & .nav-tabs:not(.secondary-navigation .nav-tabs) .nav-link { color: var(--qf-ink-2); border: 0; border-block-end: 2px solid transparent; }
   & .nav-tabs:not(.secondary-navigation .nav-tabs) .nav-link.active { color: var(--qf-ink); border-block-end-color: var(--qf-red); background: transparent; }
 
-  & .course-content .section, & li.course-section {
-    background: transparent !important; border: 0 !important; box-shadow: none !important; padding-inline: 0 !important;
+  & li.course-section {
+    background: #fff !important; border: 1px solid #e6e1dc !important; border-radius: 8px; box-shadow: none !important; padding: 1rem !important;
     margin-block-end: 1.75rem;
   }
   & .course-section .section-item { border: 0 !important; border-radius: 0 !important; padding: 0 !important; background: transparent !important; box-shadow: none !important; }
@@ -828,7 +840,7 @@ html[data-nm-theme="quiet-focus"] {
   & li.activity .activityname, & li.activity .activityname a, & li.activity .instancename {
     color: var(--qf-ink) !important; font-size: .875rem; font-weight: 400;
   }
-  & li.activity .activityname a:hover .instancename { text-decoration: underline; text-decoration-color: #c4c4c4; }
+  & li.activity .activityname a:hover .instancename {  }
   & li.activity .activity-altcontent, & li.activity .description { color: var(--qf-ink-2); font-size: .8125rem; }
   & li.activity :is(.activity-dates, .activity-information) { font-size: .75rem; color: var(--qf-ink-2); }
   & .completion-info .btn, & [data-region="completion-info"] .btn, & .activity-completion .btn {
@@ -942,7 +954,6 @@ html[data-nm-theme="quiet-focus"] {
     font-size: 1.05rem; transition: background-color var(--qf-ease), color var(--qf-ease);
   }
   & .nm-icon-btn:hover, & .nm-icon-btn[aria-expanded="true"] { background: var(--qf-hover); color: var(--qf-ink); }
-  & .nm-game-btn:hover { transform: none; }
 
   /* Theme menu = Todoist popover; the checked row gets a drawn tick, not a glyph */
   & .nm-theme-menu {
@@ -1014,16 +1025,8 @@ html[data-nm-theme="quiet-focus"] {
 
   /* Arcade: a quiet block. The falling chips only move while you hover the art. */
   & .nm-game-teaser { gap: .75rem 1.25rem; }
-  & .nm-game-teaser-art {
-    block-size: 6.5rem; border: 1px solid #ebebeb; border-radius: 10px;
-    background: repeating-linear-gradient(to bottom, transparent 0 21px, #f3f1ef 21px 22px), var(--qf-chrome);
-  }
-  & .nm-game-drop { box-shadow: 0 1px 2px rgba(0, 0, 0, .08); border-color: #ebebeb; font-weight: 500; border-radius: 4px; animation-play-state: paused; }
-  & .nm-game-teaser-art:hover .nm-game-drop { animation-play-state: running; }
-  & .nm-game-teaser-line { border-block-start: 1px dashed var(--qf-red); }
-  & .nm-game-teaser-line span { background: var(--qf-red); font-weight: 600; letter-spacing: .04em; border-radius: 4px; }
   & .nm-game-stat-label { font-size: .75rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--qf-ink-2); display: inline-flex; align-items: center; gap: .25rem; }
-  & .nm-game-stat-value { font-size: 1.75rem; font-weight: 700; color: var(--qf-ink); letter-spacing: -.01em; }
+  & .nm-game-stat-value { font-weight: 700; color: var(--qf-ink); letter-spacing: -.01em; }
   & .nm-game-stat-sub { font-size: .75rem; }
   & .nm-game-play { padding: .5rem .75rem; font-size: .8125rem; font-weight: 600; letter-spacing: 0; }
   & .nm-game-play:hover { transform: none; filter: none; }
@@ -1089,7 +1092,7 @@ html[data-nm-theme="quiet-focus"] {
   & .card-grid[data-region="card-deck"] .course-card > a:first-child { display: block; inline-size: 18px; block-size: 18px; align-self: start; margin-block-start: 1px; }
   & .card-grid[data-region="card-deck"] .course-card .card-img-top {
     inline-size: 18px; block-size: 18px !important; border-radius: 0;
-    background: var(--qf-proj) !important; filter: none;
+    background: var(--nm-course-color, var(--qf-proj)) !important; filter: none;
     -webkit-mask: var(--qf-i-hash) center / 16px no-repeat; mask: var(--qf-i-hash) center / 16px no-repeat;
   }
   & .card-grid[data-region="card-deck"] .course-card .course-info-container { padding: 0 !important; min-inline-size: 0; }
@@ -1104,12 +1107,11 @@ html[data-nm-theme="quiet-focus"] {
   & .card-grid[data-region="card-deck"] .course-card .coursemenubtn { opacity: .85; }
 
   /* No visible text under 12px anywhere */
-  & :is(.nm-up-opens, .nm-up-tag, .nm-game-label, .nm-sc-suggest-label, .nm-sc-card-hint, .nm-game-teaser-line span, .nm-game-drop) { font-size: .75rem !important; }
   & .nm-sc-letter { inline-size: 18px; block-size: 18px; font-size: 12px; }
   & .nm-sc-icon { inline-size: 18px; block-size: 18px; }
 
   /* Section-header rhythm: more air above a header than between it and its rows */
-  & :is(.block.card, section.nm-block) { padding-block-start: .75rem; }
+  & :is(.block.card, section.nm-block) { padding: 0; }
   & .block.card .card-text.content { margin-block-start: .25rem !important; }
 
   /* Footer: on the same left edge as the content column, one quiet line */
@@ -1125,31 +1127,13 @@ html[data-nm-theme="quiet-focus"] {
   & #page-footer .footer-support-link a { display: inline-flex; align-items: center; gap: .375rem; }
   & #page-footer .footer-content-debugging:empty, & #page-footer .footer-dark-inner:empty { display: none; }
 
-  /* Dashboard: one dominant task column (to-dos, then what's due, then courses) and a quiet aside */
-  @media (min-width: 992px) {
-    & body.pagelayout-mydashboard #nm-top-row { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 3rem; align-items: start; }
-    & body.pagelayout-mydashboard .nm-block-game .nm-game-teaser { flex: none; }
-    & body.pagelayout-mydashboard #nm-top-row > .nm-block-todo { grid-column: 1 / 5; }
-    & body.pagelayout-mydashboard #nm-top-row > .nm-block-game { grid-column: 5 / 7; }
-    & body.pagelayout-mydashboard #block-region-content {
-      display: grid !important; grid-template-columns: repeat(6, minmax(0, 1fr)) !important; column-gap: 3rem !important; align-items: start;
-    }
-    & body.pagelayout-mydashboard #block-region-content > .block { grid-column: 1 / 5; grid-row: auto; align-self: start; }
-    & body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { grid-column: 1 / 5 !important; grid-row: 1 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { grid-column: 1 / 5 !important; grid-row: 2 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-column: 5 / 7 !important; grid-row: 1 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_timeline { grid-column: 5 / 7 !important; grid-row: 2 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_recentlyaccesseditems { grid-column: 1 / 5 !important; grid-row: 3 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_calendar_month { grid-column: 5 / 7 !important; grid-row: 3 !important; }
-  }
-
   /* The arcade is a quiet side card: a neutral button, a smaller score */
   & .nm-game-play {
     background: #f5f5f5 !important; color: #444 !important; border: 1px solid transparent !important; box-shadow: none !important;
     min-block-size: 32px; padding: .375rem .75rem; font-weight: 600;
   }
   & .nm-game-play:hover { background: #ebebeb !important; color: var(--qf-ink) !important; }
-  & .nm-game-stat-value { font-size: 1.25rem; font-weight: 600; }
+  & .nm-game-stat-value { font-weight: 600; }
 
   /* ---- The Todoist sidebar: Moodle's top bar becomes a warm left rail ---- */
   @media (min-width: 1200px) {
@@ -1261,33 +1245,6 @@ html[data-nm-theme="quiet-focus"] {
   /* course page: title, tabs, sections and rows share one left edge */
   & .secondary-navigation :is(.navigation, nav.moremenu), & #region-main > [role="main"], & .course-content { padding-inline: 0 !important; margin-inline: 0 !important; }
 
-  /* Dashboard reflow, take two: courses sit in the aside like Todoist's project list, right beside what's due */
-  @media (min-width: 992px) {
-    & body.pagelayout-mydashboard #nm-top-row { margin-block-end: 0; }
-    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { grid-column: 5 / 7 !important; grid-row: 1 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-column: 5 / 7 !important; grid-row: 3 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_timeline { grid-column: 1 / 5 !important; grid-row: 3 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_recentlyaccesseditems { grid-column: 1 / 5 !important; grid-row: 2 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_calendar_month { grid-column: 5 / 7 !important; grid-row: 2 !important; }
-    & body.pagelayout-mydashboard .block_myoverview [data-region="filter"] > .d-flex { flex-wrap: wrap; }
-    & body.pagelayout-mydashboard .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted:has(.categoryname) { display: none !important; }
-    & body.pagelayout-mydashboard .block_myoverview [data-region="filter"] .btn.dropdown-toggle { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; }
-  }
-  /* Phones and tablets: to-dos, what's due, courses first; the arcade goes last */
-  @media (max-width: 991.98px) {
-    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) { display: flex; flex-direction: column; }
-    & body.pagelayout-mydashboard :is(#nm-top-row, #block-region-content) { display: contents !important; }
-    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) > *,
-    & body.pagelayout-mydashboard #block-region-content > * { order: 5; }
-    & body.pagelayout-mydashboard #nm-top-row > .nm-block-todo { order: 1; }
-    & body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { order: 2; }
-    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { order: 3; }
-    & body.pagelayout-mydashboard #block-region-content > .block_timeline { order: 4; }
-    & body.pagelayout-mydashboard #nm-top-row > .nm-block-game { order: 9; }
-    & body.pagelayout-mydashboard :is(.block.card, section.nm-block) { margin-block-end: 1.5rem !important; }
-  }
-
-
   /* ---- Round 3: one dominant task column ---- */
   /* the full course name (Moodle's visible copy is cut server-side with "...") */
   & .course-card .coursename .multiline > .visually-hidden { position: static !important; inline-size: auto !important; block-size: auto !important; margin: 0 !important; overflow: visible !important; clip: auto !important; clip-path: none !important; white-space: normal !important; }
@@ -1303,25 +1260,18 @@ html[data-nm-theme="quiet-focus"] {
   & .course-section .course-section-header { margin-block-start: 0; }
   & li.activity .activity-item { padding-block: .75rem !important; }
 
-  /* Dashboard: to-dos and what's due run straight down the main column; courses sit beside them;
-     the arcade waits in the aside below the course list. */
-  @media (min-width: 992px) {
-    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) {
-      display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 3rem; align-items: start; position: relative;
-    }
-    & body.pagelayout-mydashboard :is(#nm-top-row, #block-region-content) { display: contents !important; }
-    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) > #maincontent { position: absolute; }
-    & body.pagelayout-mydashboard #block-region-content > span:empty { display: none; }
-    & body.pagelayout-mydashboard :is(.block.card, section.nm-block) { margin-block-end: 2rem !important; }
-    & body.pagelayout-mydashboard #nm-top-row > .nm-block-todo { grid-column: 1 / 5 !important; grid-row: 1 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { grid-column: 1 / 5 !important; grid-row: 2 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { grid-column: 5 / 7 !important; grid-row: 1 / 3 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_recentlyaccesseditems { grid-column: 1 / 5 !important; grid-row: 3 / 5 !important; }
-    & body.pagelayout-mydashboard #nm-top-row > .nm-block-game { grid-column: 5 / 7 !important; grid-row: 3 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_calendar_month { grid-column: 5 / 7 !important; grid-row: 4 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_timeline { grid-column: 1 / 5 !important; grid-row: 5 !important; }
-    & body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-column: 5 / 7 !important; grid-row: 5 !important; }
+  /* Keep the task list and arcade together, before the Moodle blocks. */
+  & #block-region-content > span:empty { display: none; }
+  & body.pagelayout-mydashboard #nm-top-row { gap: 1.25rem; margin-block: 0 1.25rem; align-items: stretch; }
+  @media (min-width: 768px) {
+    & body.pagelayout-mydashboard #nm-top-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block { grid-column: auto; }
   }
+  @media (min-width: 992px) {
+    & body.pagelayout-mydashboard #block-region-content { display: grid !important; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) !important; gap: 1.25rem !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block { grid-column: auto !important; grid-row: auto !important; align-self: start; margin-block-end: 0 !important; }
+  }
+
   /* phone: a calmer toolbar (44px targets, no separators) and tighter header */
   @media (max-width: 767.98px) {
     & nav.navbar.fixed-top .divider { display: none !important; }

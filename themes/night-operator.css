@@ -178,7 +178,7 @@ html[data-nm-theme="night-operator"] {
   & ::-webkit-scrollbar { inline-size: 10px; block-size: 10px; background: transparent; }
   & ::-webkit-scrollbar-track { background: transparent; }
   & ::-webkit-scrollbar-thumb { background: #2a2b30; border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
-  & ::-webkit-scrollbar-thumb:hover { background: #3a3b41; border: 3px solid transparent; background-clip: padding-box; }
+  & ::-webkit-scrollbar-thumb:hover { background: #3a3b41;  background-clip: padding-box; }
   & ::-webkit-scrollbar-corner { background: transparent; }
   & :is(.block_myoverview .card-body, .drawer, .dropdown-menu, .modal-body, .table-responsive) { scrollbar-color: #2e2f34 transparent; scrollbar-width: thin; }
 
@@ -219,7 +219,7 @@ html[data-nm-theme="night-operator"] {
     max-inline-size: none !important;
     inline-size: 100% !important;
   }
-  & body:not(.pagelayout-mydashboard) #topofscroll.main-inner > :not(.drawer-toggler) { max-inline-size: 960px; margin-inline: auto !important; }
+  & body:not(.pagelayout-mydashboard):not(.path-mod-resource) #topofscroll.main-inner > :not(.drawer-toggler) { max-inline-size: 960px; margin-inline: auto !important; }
   & body:not(.pagelayout-mydashboard) #region-main > div { padding-inline: 0 !important; }
   & .secondary-navigation { padding: 0 !important; }
   & .secondary-navigation .moremenu.navigation { padding: 0 !important; margin: 0 !important; block-size: auto !important; }
@@ -409,7 +409,7 @@ html[data-nm-theme="night-operator"] {
   & :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-outline-light, .btn-default, .btn-outline-dark, .btn-dark, .btn-outline-info, .btn-outline-warning, .btn-info):is(:hover, :focus-visible) {
     color: var(--no-text) !important;
     background-color: var(--no-hover) !important;
-    border-color: #3a3b41 !important;
+
   }
   & :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default, .btn-outline-dark, .btn-dark):is(:active, .active),
   & .show > :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default).dropdown-toggle {
@@ -422,7 +422,7 @@ html[data-nm-theme="night-operator"] {
     background-color: var(--no-violet-btn) !important;
     border: 1px solid #706bdc !important;
   }
-  & :is(.btn-primary, .btn-success):is(:hover, :focus-visible) { background-color: #6f6ade !important; border-color: #8480e4 !important; color: #fff !important; }
+  & :is(.btn-primary, .btn-success):is(:hover, :focus-visible) { background-color: #6f6ade !important;  color: #fff !important; }
   & :is(.btn-primary, .btn-success):is(:active, .active) { background-color: #5752c4 !important; }
   & .btn-outline-primary { color: var(--no-violet-text) !important; background: transparent !important; border: 1px solid rgba(119, 114, 216, .5) !important; }
   & .btn-outline-primary:hover { color: #fff !important; background: var(--no-violet-btn) !important; }
@@ -633,15 +633,15 @@ html[data-nm-theme="night-operator"] {
      Blocks: hairline panels whose title is a Linear group-header strip with a status glyph
      ===================================================================================== */
   & :is(.block.card, section.block, .nm-block) {
-    background: transparent !important;
+    background: var(--no-raised) !important;
     color: var(--no-text);
     border: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 8px !important;
     box-shadow: none !important;
     overflow: visible;
   }
-  & :is(.block.card > .card-body, .block.card > div > .card-body, .block.card > .card-body.p-3) { padding: 0 !important; }
-  & #page-my-index.pagelayout-mydashboard .block_myoverview > .card-body { padding: 0 !important; overflow: visible !important; max-block-size: none !important; }
+  & :is(.block.card > .card-body, .block.card > div > .card-body, .block.card > .card-body.p-3) { padding: 24px !important; }
+  & #page-my-index.pagelayout-mydashboard .block_myoverview > .card-body { padding: 24px !important; overflow: visible !important; max-block-size: none !important; }
   & .block.card .card-text.content { margin-block-start: 0 !important; padding: 4px 0 0; font-size: 14px; }
   & #block-region-content { column-gap: 24px !important; row-gap: 0 !important; }
   & #block-region-content > .block { margin-block-end: 24px !important; }
@@ -651,53 +651,18 @@ html[data-nm-theme="night-operator"] {
     align-items: center;
     gap: 10px;
     margin: 0 !important;
-    padding: 7px 12px;
+    padding: 0 0 16px;
     min-block-size: 36px;
-    background: var(--no-strip);
+    background: transparent;
     border-radius: 6px;
     font-family: var(--nm-heading-font);
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
-    line-height: 20px;
+    line-height: 24px;
     letter-spacing: -.005em;
     color: var(--no-text) !important;
   }
-  & :is(.block.card .card-title, .nm-block .nm-block-title)::before {
-    content: "";
-    flex: none;
-    inline-size: 14px;
-    block-size: 14px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    border: 1.5px solid var(--no-text-3);
-  }
-  /* The strip spans the whole head row when the title shares it with counts or controls */
-  & :is(.block.card .card-body > .d-flex:first-child:has(> .card-title), .nm-block .nm-block-head) {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--no-strip);
-    border-radius: 6px;
-    padding-inline-end: 10px;
-  }
-  & :is(.block.card .card-body > .d-flex:first-child > .card-title, .nm-block .nm-block-head > .nm-block-title) { flex: 1 1 auto; background: transparent !important; }
-  /* Status glyphs, as in Linear's grouped issues */
-  & .block.card[data-block="myoverview"] .card-title::before {           /* In progress: half-filled yellow ring */
-    border-color: var(--no-yellow);
-    background: conic-gradient(var(--no-yellow) 0 50%, transparent 50% 100%) content-box;
-    padding: 2px;
-  }
-  & .block.card:is([data-block="calendar_upcoming"], [data-block="timeline"]) .card-title::before { border-color: #c9ccd3; }   /* Todo: ring */
-  & .block.card:is([data-block="news_items"], [data-block="calendar_month"], [data-block="recentlyaccesseditems"], [data-block="myoverview"]) .card-title::before,
-  & .nm-block.nm-block-game .nm-block-title::before { display: none !important; }   /* not workflow states: no status glyph */
-  & .block.card[data-block="calendar_month"] .card-title::before { border-radius: 4px; border-color: #8a8f98; }
-  & .block.card[data-block="recentlyaccesseditems"] .card-title::before {
-    border-color: var(--no-blue);
-    background: conic-gradient(var(--no-blue) 0 25%, transparent 25% 100%) content-box;
-    padding: 2px;
-  }
-  & .nm-block.nm-block-todo .nm-block-title::before { border-color: #c9ccd3; }   /* Todo: ring; violet is kept for done */
-  & .nm-block.nm-block-game .nm-block-title::before { border-color: #8a8f98; border-style: dashed; }
+  & .nm-block-head { gap: 12px; }
   & :is(.block .footer, .gotocal) { font-size: 12px; padding: 8px 10px 2px; }
   & :is(.block .footer, .gotocal) a { color: var(--no-text-3) !important; }
   & :is(.block .footer, .gotocal) a:hover { color: var(--no-text) !important; }
@@ -739,7 +704,7 @@ html[data-nm-theme="night-operator"] {
     margin-block-end: 10px;
     transition: border-color var(--no-t), background-color var(--no-t);
   }
-  & .card:is(.dashboard-card, .course-card):hover { background: #18191c !important; border-color: #33343a !important; }
+  & .card:is(.dashboard-card, .course-card):hover { background: #18191c !important;  }
   & :is(.dashboard-card, .course-card) :is(.dashboard-card-img, .card-img-top) {
     block-size: 44px !important;
     border-radius: 0 !important;
@@ -840,15 +805,14 @@ html[data-nm-theme="night-operator"] {
     gap: 6px;
     max-inline-size: 100%;
     margin: 0 !important;
-    padding: 1px 9px 1px 8px;
-    border: 1px solid var(--no-line-2);
-    border-radius: 999px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
     font-size: 13px !important;
     font-weight: 500 !important;
     line-height: 18px;
     color: var(--no-text-2) !important;
   }
-  & .event > .overflow-auto > h6::before { content: ""; flex: none; inline-size: 7px; block-size: 7px; border-radius: 50%; background: var(--no-violet); }
   & .event > .overflow-auto > div.date {
     grid-area: date;
     margin: 0 !important;
@@ -1106,21 +1070,22 @@ html[data-nm-theme="night-operator"] {
   /* Sections: the header is a group strip; activities are rows beneath it */
   & .course-content .section.course-section {
     margin: 0 0 14px !important;
-    padding: 0 !important;
+    padding: 20px !important;
     border: 0 !important;
-    background: transparent !important;
+    background: var(--no-raised) !important;
+    border-radius: 8px;
   }
   & .course-section-header {
     align-items: center;
     padding: 4px 10px 4px 4px;
     min-block-size: 36px;
     border-radius: 6px;
-    background: var(--no-strip) !important;
-    margin-block-end: 4px;
+    background: transparent !important;
+    margin-block-end: 12px;
   }
   & .course-content .collapse-sections, & .course-section-header + .collapse-sections, & #collapsesections { align-self: center; margin: 0 !important; line-height: 20px; }
   & .course-section-header .icons-collapse-expand { margin-inline-end: 4px !important; inline-size: 28px; block-size: 28px; padding: 0 !important; display: inline-grid; place-items: center; }
-  & .course-section-header .icons-collapse-expand .icon { color: var(--no-text-3); font-size: 11px; }
+  & .course-section-header .icons-collapse-expand .icon { color: var(--no-text-3); font-size: 12px; }
   & .course-section-header .sectionname,
   & .course-section-header .sectionname a { font-size: 14px !important; font-weight: 500 !important; color: var(--no-text) !important; letter-spacing: -.005em; }
   & .course-content .section-summary, & .course-content .summarytext { color: var(--no-text-2); padding-inline: 10px; }
@@ -1278,10 +1243,10 @@ html[data-nm-theme="night-operator"] {
     transition: background-color var(--no-t), border-color var(--no-t), color var(--no-t);
   }
   & .nm-btn { padding: 4px 10px; min-block-size: 28px; }
-  & :is(.nm-btn, .nm-icon-btn):hover { background: var(--no-hover); border-color: #3a3b41; color: var(--no-text); }
+  & :is(.nm-btn, .nm-icon-btn):hover { background: var(--no-hover);  color: var(--no-text); }
   & :is(.nm-btn, .nm-icon-btn):active { background: #25262b; }
   & .nm-btn-primary { background: var(--no-violet-btn); border-color: #706bdc; color: #fff; }
-  & .nm-btn-primary:hover { background: #6f6ade; border-color: #8480e4; color: #fff; }
+  & .nm-btn-primary:hover { background: #6f6ade;  color: #fff; }
   & .nm-icon-btn { inline-size: 28px; block-size: 28px; font-size: 14px; color: var(--no-text-3); }
   & :is(.nm-btn, .nm-icon-btn):focus-visible { outline: 2px solid var(--no-violet); outline-offset: 2px; }
 
@@ -1325,7 +1290,7 @@ html[data-nm-theme="night-operator"] {
   & .nm-todo-item { padding: 9px 12px; gap: 10px; align-items: center; }
   & .nm-todo-item:hover { background: var(--no-strip); border-radius: 6px; }
   & .nm-todo-check { border: 1.5px solid #8a8f98; margin: 0; }
-  & .nm-todo-check:hover { border-color: var(--no-violet-text); background: transparent; }
+  & .nm-todo-check:hover {  background: transparent; }
   & .nm-todo-check:checked { background: var(--no-violet); border-color: var(--no-violet); }
   & .nm-todo-check::after { inline-size: 4px; block-size: 7px; border-width: 0 1.6px 1.6px 0; margin-block-start: -2px; }
   & .nm-todo-check:checked::after { color: #0f1011; }
@@ -1356,7 +1321,7 @@ html[data-nm-theme="night-operator"] {
   & .nm-up .nm-up-count { font-size: 12px; font-weight: 500; color: var(--no-text-3); font-variant-numeric: tabular-nums; }
   & .nm-up .nm-up-lead { inline-size: 15px; block-size: 15px; margin-inline-end: 0; margin-block-start: 6px; }
   & .nm-up-check .nm-up-box { border: 1.5px solid #8a8f98; border-radius: 50%; background: transparent; transition: background-color var(--no-t), border-color var(--no-t); }
-  & .nm-up-check:hover .nm-up-box { border-color: var(--no-violet-text); }
+  & .nm-up-check:hover .nm-up-box {  }
   & .nm-up-check .nm-up-cb:checked + .nm-up-box { background: var(--no-violet); border-color: var(--no-violet); animation: no-done .22s cubic-bezier(.2, .8, .2, 1); }
   & .nm-up-check .nm-up-box::after { border-color: #0f1011; inline-size: 4px; block-size: 7px; border-width: 0 1.6px 1.6px 0; margin-block-start: -2px; }
   & .nm-up-check .nm-up-cb:active + .nm-up-box { transform: none; }
@@ -1393,17 +1358,14 @@ html[data-nm-theme="night-operator"] {
 
   /* Shortcut chips = Linear label capsules */
   & .nm-sc-chip { background: transparent; border-color: transparent; }
-  & .nm-sc-chip:hover { background: var(--no-strip); border-color: #3a3b41; }
+  & .nm-sc-chip:hover { background: var(--no-strip);  }
   & .nm-sc-link { font-size: 12px; font-weight: 500; color: var(--no-text-2) !important; padding-inline: 8px 10px; gap: 6px; }
   & .nm-sc-chip:hover .nm-sc-link { color: var(--no-text) !important; }
   & .nm-sc-favicon { inline-size: 14px; block-size: 14px; }
   & .nm-sc-letter { background: var(--no-hover); color: var(--no-text-2); border-radius: 4px; inline-size: 16px; block-size: 16px; font-size: 12px; }
   & :is(.nm-sc-add, .nm-sc-edit-toggle) { font-size: 12px; color: var(--no-text-3); border: 1px solid transparent; border-radius: 6px; }
   & .nm-sc-add { border-color: transparent; border-radius: 6px; }
-  & .nm-header-slot :is(.nm-icon-btn, .nm-game-btn) { inline-size: 28px; block-size: 28px; background: transparent; border-color: transparent; color: var(--no-text-3); }
-  & .nm-header-slot :is(.nm-icon-btn, .nm-game-btn):hover { background: var(--no-hover); color: var(--no-text); }
-  & .nm-game-btn:hover { transform: none; }
-  & .nm-sc-add:hover, & .nm-sc-add[aria-expanded="true"] { color: var(--no-text); border-color: #4a4d54; background: var(--no-strip); }
+  & .nm-sc-add:hover, & .nm-sc-add[aria-expanded="true"] { color: var(--no-text);  background: var(--no-strip); }
   & .nm-sc-edit-toggle[aria-pressed="true"] { background: var(--no-violet-btn); border-color: #706bdc; }
   & :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) { background: var(--no-menu); border-color: rgba(255, 255, 255, .08); border-radius: 10px; }
   & .nm-sc-input { background: var(--no-raised) !important; border-color: var(--no-line-2) !important; min-block-size: 32px; block-size: 32px; }
@@ -1411,32 +1373,21 @@ html[data-nm-theme="night-operator"] {
   & .nm-sc-preview-icon, & .nm-sc-card-head .nm-sc-icon { background: var(--no-strip); border-color: var(--no-line-2); }
   & .nm-sc-suggest-label { text-transform: none; letter-spacing: 0; font-size: 12px; font-weight: 500; }
   & .nm-sc-suggestion { background: transparent; border-color: var(--no-line-2); border-radius: 999px; }
-  & .nm-sc-suggestion:hover { background: var(--no-strip); border-color: #3a3b41; }
+  & .nm-sc-suggestion:hover { background: var(--no-strip);  }
   & .nm-sc-menu-item:hover:not(:disabled) { background: rgba(255, 255, 255, .06); }
   & .nm-sc-toast { background: var(--no-menu); color: var(--no-text); border: 1px solid rgba(255, 255, 255, .08); border-radius: 8px; }
   & .nm-sc-toast-undo { background: var(--no-hover); color: var(--no-violet-text); }
   & .nm-sc-toast-undo:hover { background: #2a2b30; }
 
   /* Arcade: a quiet board card; tabular numbers; no stickers */
-  & .nm-game-teaser-art {
-    border-color: var(--no-line);
-    border-radius: 8px;
-    background:
-      repeating-linear-gradient(to bottom, transparent 0 21px, #1c1d21 21px 22px),
-      var(--no-raised);
-  }
-  & .nm-game-drop { font-size: 12px; background: var(--no-strip); border-color: var(--no-line-2); color: var(--no-text-2); font-weight: 500; box-shadow: none; border-radius: 4px; }
-  & .nm-game-teaser-line { border-block-start: 1px dashed #4a4d54; }
-  & .nm-game-teaser-line span { background: var(--no-strip); color: var(--no-text-2); border: 1px solid var(--no-line-2); font-weight: 600; letter-spacing: .02em; font-size: 12px; line-height: 18px; inset-block-start: -10px; }
   & .nm-game-stat-label { font-size: 12px; font-weight: 500; text-transform: none; letter-spacing: 0; }
-  & .nm-game-stat-value { font-size: 22px; font-weight: 600; letter-spacing: -.02em; color: var(--no-text); font-variant-numeric: tabular-nums; }
+  & .nm-game-stat-value { font-weight: 600; letter-spacing: -.02em; color: var(--no-text); font-variant-numeric: tabular-nums; }
   & .nm-game-stat-sub { font-size: 12px; }
   & .nm-game-play, & .nm-game-play.nm-btn-primary { font-size: 13px; font-weight: 500; padding: 6px 12px; min-block-size: 32px; background: var(--no-raised); border: 1px solid var(--no-line-2); color: var(--no-text); }
-  & .nm-game-play:is(:hover, .nm-btn-primary:hover) { background: var(--no-hover); border-color: #3a3b41; color: #fff; }
+  & .nm-game-play:is(:hover, .nm-btn-primary:hover) { background: var(--no-hover);  color: #fff; }
   & .nm-game-play-icon { color: var(--no-violet-text); }
   & .nm-game-play:hover { transform: none; filter: none; }
   & .nm-game-play-icon { animation: none; }
-  & .nm-game-btn:hover { transform: none; }
   & :is(.nm-game-scorebox, .nm-game-best, .nm-game-combo, .nm-game-buff, .nm-game-lives) { background: var(--no-menu); border-color: rgba(255, 255, 255, .08); border-radius: 8px; }
   & .nm-game-label { font-weight: 500; letter-spacing: .02em; text-transform: none; font-size: 12px; }
   & :is(.nm-game-score, .nm-game-best-value, .nm-game-final, .nm-game-combo-value) { font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
@@ -1513,7 +1464,7 @@ html[data-nm-theme="night-operator"] {
     & .form-control:focus { border-color: var(--no-violet) !important; box-shadow: 0 0 0 3px rgba(119, 114, 216, .2) !important; }
     & .btn-primary, & .btn-primary:hover {
       background: var(--no-violet-btn) !important;
-      border: 1px solid #706bdc !important;
+
       color: #fff !important;
       border-radius: 6px !important;
       font-size: 13px;
@@ -1529,37 +1480,6 @@ html[data-nm-theme="night-operator"] {
   }
 
   /* =====================================================================================
-     Wide screens: one grid for our row and Moodle's blocks, so deadlines sit at the top
-     ===================================================================================== */
-  @media (min-width: 1200px) {
-    & #region-main > div:has(> #nm-top-row):has(> #block-region-content [data-block="calendar_upcoming"]) {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-areas:
-        "todo todo todo todo todo todo todo upc upc upc upc upc"
-        "course course course course course course course upc upc upc upc upc"
-        "course course course course course course course news news news news news"
-        "course course course course course course course game game game game game"
-        "cal cal cal cal recent recent recent recent time time time time";
-      grid-template-rows: auto auto auto 1fr auto;
-      column-gap: 24px;
-      align-items: start;
-      & > :is(#nm-top-row, #block-region-content) { display: contents !important; }
-      & > #block-region-content > :not(.block) { position: absolute; }
-      & .block { grid-area: auto / 1 / auto / -1 !important; margin: 0 0 24px !important; min-inline-size: 0; }
-      & .nm-block-todo { grid-area: todo !important; }
-      & .nm-block-game { grid-area: game !important; }
-      & [data-block="calendar_upcoming"] { grid-area: upc !important; }
-      & [data-block="myoverview"] { grid-area: course !important; }
-      & [data-block="news_items"] { grid-area: news !important; }
-      & [data-block="calendar_month"] { grid-area: cal !important; }
-      & [data-block="recentlyaccesseditems"] { grid-area: recent !important; }
-      & [data-block="timeline"] { grid-area: time !important; }
-      & .nm-block-game .nm-game-teaser { grid-template-rows: 5.25rem auto auto; }
-    }
-  }
-
-  /* =====================================================================================
      Small screens
      ===================================================================================== */
   @media (max-width: 767.98px) {
@@ -1572,18 +1492,9 @@ html[data-nm-theme="night-operator"] {
     & .calendar-controls .current { font-size: 13px !important; }
     & .nm-todo-body { flex-direction: column; align-items: flex-start; gap: 4px; }
     & .nm-todo-meta { margin-inline-start: 0; }
-    & #region-main > div:has(> #nm-top-row) { display: flex; flex-direction: column; }
-    & :is(#nm-top-row, #region-main #block-region-content) { display: contents !important; }
-    & #region-main #block-region-content > * { order: 20; }
-    & #nm-top-row > .nm-block-todo { order: 2; margin-block-end: 16px !important; }
     & .event { padding: 12px 8px !important; }
     & .event > .overflow-auto { row-gap: 4px; }
-    & #region-main #block-region-content > [data-block="calendar_upcoming"] { order: 1; margin-block-end: 16px !important; }
-    & #region-main #block-region-content > [data-block="myoverview"] { order: 3; }
-    & #region-main #block-region-content > [data-block="timeline"] { order: 4; }
-    & #nm-top-row > .nm-block-game { order: 30; }
-    & .nm-game-teaser-art { display: none; }
-    & .event > .overflow-auto { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "date" "label" "meta"; }
+      & .event > .overflow-auto { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "date" "label" "meta"; }
     & .event > .overflow-auto > .nm-up-meta { justify-self: start; }
     &[data-nm-site="login"] .col-lg-5 { padding: 20px 16px; margin-block-start: 16px; }
   }
@@ -1591,10 +1502,10 @@ html[data-nm-theme="night-operator"] {
   /* =====================================================================================
      Motion off: drop every transition and the one animation this theme adds
      ===================================================================================== */
-  &[data-nm-motion="off"] :is(*, *::before, *::after) { transition: none !important; }
+  &[data-nm-motion="off"] :is(*, *::before, *::after) { transition: none !important; animation: none !important; }
   &[data-nm-motion="off"] :is(.nm-todo-check, .nm-up-box) { animation: none !important; }
   @media (prefers-reduced-motion: reduce) {
-    & :is(*, *::before, *::after) { transition: none !important; }
+    & :is(*, *::before, *::after) { transition: none !important; animation: none !important; }
     & :is(.nm-todo-check, .nm-up-box) { animation: none !important; }
   }
 }
@@ -1603,4 +1514,27 @@ html[data-nm-theme="night-operator"] {
 @keyframes no-done {
   from { transform: scale(.82); box-shadow: 0 0 0 0 rgba(119, 114, 216, .5); }
   to { transform: scale(1); box-shadow: 0 0 0 5px rgba(119, 114, 216, 0); }
+}
+
+/* Wave 2: calm message, generous separation and native background customization. */
+html[data-nm-theme="night-operator"] {
+  --nm-bg-elev: var(--no-pop);
+  --nm-bg-btn-bg: var(--no-menu);
+  --nm-bg-btn-fg: var(--no-text-2);
+  --nm-game-screen-bg: var(--no-panel);
+  & .nm-motd { margin: 0; }
+  & .nm-motd-btn { font-size: clamp(1.25rem, 1rem + .8vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -.02em; text-wrap: pretty; }
+  & #page-header { margin-block-end: 28px !important; }
+  & #nm-top-row { gap: 24px; margin-block-end: 24px; align-items: stretch; }
+  & .nm-bg-pop { background: var(--no-menu); border-radius: 10px; }
+  & .nm-bg-btn { border-color: transparent; box-shadow: none; }
+  & .nm-bg-img { filter: none !important; }
+  & .event > .activityiconcontainer { display: none !important; }
+  & .nm-todo-due { border: 0; padding-inline: 0; }
+  & .nm-up .nm-up-done-summary { background: transparent; padding-inline: 0; }
+  & .nm-up .nm-up-done-label::before { content: none; }
+  @media (max-width: 767.98px) {
+    & :is(.block.card > .card-body, .block.card > .card-body.p-3),
+    & #page-my-index.pagelayout-mydashboard .block_myoverview > .card-body { padding: 18px !important; }
+  }
 }

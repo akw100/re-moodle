@@ -83,7 +83,7 @@ html[data-nm-theme="ahead"] {
   --ah-lift: 0 2px 4px rgba(70, 45, 140, .06), 0 14px 34px rgba(97, 70, 234, .14);
   --ah-ease: cubic-bezier(.22, 1, .36, 1);
   --ah-t: 160ms;
-  --ah-magenta: linear-gradient(155deg, #c51fa6 0%, #d84cbd 55%, #e57fcb 100%);
+  --ah-magenta: linear-gradient(155deg, #991480 0%, #a92091 55%, #a52b91 100%);
   --ah-violet: linear-gradient(118deg, #4f33d8 0%, #6146ea 50%, #8064f2 100%);
   --ah-arcs: radial-gradient(circle at 100% 50%,
       rgba(255, 255, 255, .5) 0 54px, rgba(255, 255, 255, .26) 54px 92px,
@@ -92,11 +92,11 @@ html[data-nm-theme="ahead"] {
       rgba(255, 255, 255, .5) 0 54px, rgba(255, 255, 255, .26) 54px 92px,
       rgba(255, 255, 255, .15) 92px 132px, rgba(255, 255, 255, .08) 132px 172px, transparent 172px);
   --ah-arcs-game: radial-gradient(circle at 100% 30%,
-      rgba(255, 255, 255, .5) 0 48px, rgba(255, 255, 255, .26) 48px 84px,
-      rgba(255, 255, 255, .15) 84px 122px, rgba(255, 255, 255, .08) 122px 160px, transparent 160px);
+      rgba(255, 255, 255, .12) 0 48px, rgba(255, 255, 255, .08) 48px 84px,
+      rgba(255, 255, 255, .04) 84px 122px, rgba(255, 255, 255, .02) 122px 160px, transparent 160px);
   --ah-arcs-game-rtl: radial-gradient(circle at 0% 30%,
-      rgba(255, 255, 255, .5) 0 48px, rgba(255, 255, 255, .26) 48px 84px,
-      rgba(255, 255, 255, .15) 84px 122px, rgba(255, 255, 255, .08) 122px 160px, transparent 160px);
+      rgba(255, 255, 255, .12) 0 48px, rgba(255, 255, 255, .08) 48px 84px,
+      rgba(255, 255, 255, .04) 84px 122px, rgba(255, 255, 255, .02) 122px 160px, transparent 160px);
   --ah-chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   --ah-chev-l: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M7.3 2.8L4.1 6l3.2 3.2' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   --ah-chev-r: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4.7 2.8L7.9 6 4.7 9.2' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -152,6 +152,26 @@ html[data-nm-theme="ahead"] {
   background: #fffcfe;
 }
 
+/* Wave 2: message heading and background controls share Ahead's soft surfaces. */
+html[data-nm-theme="ahead"] {
+  --nm-bg-btn-bg: #fff;
+  --nm-bg-btn-fg: #5236d4;
+  --nm-bg-elev: 0 4px 10px rgba(70, 45, 140, .08), 0 18px 44px rgba(70, 45, 140, .18);
+  --nm-game-screen-bg: rgba(65, 0, 55, .18);
+  --nm-focus-ring: #5236d4;
+}
+html[data-nm-theme="ahead"] .nm-motd {
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  max-inline-size: 36ch;
+  color: var(--nm-text);
+}
+html[data-nm-theme="ahead"] .nm-bg-btn { border-radius: 50%; }
+html[data-nm-theme="ahead"] .nm-bg-pop { border-radius: 24px; }
+html[data-nm-theme="ahead"] :is(.nm-bg-label, .nm-bg-tick) { font-size: .75rem; }
+
 /* ---------- Browser surfaces ---------- */
 html[data-nm-theme="ahead"] ::selection { background: #ddd1fd; color: #27232d; }
 html[data-nm-theme="ahead"] ::-webkit-scrollbar { inline-size: 10px; block-size: 10px; }
@@ -199,7 +219,7 @@ html[data-nm-theme="ahead"] :is(button, input, select, textarea, .btn, .form-con
   font-family: var(--nm-font);
 }
 html[data-nm-theme="ahead"] :is(table, .nm-game-stat-value, .day-number, time, .date) { font-variant-numeric: tabular-nums; }
-html[data-nm-theme="ahead"] a { color: var(--nm-accent-text); text-decoration: none; text-underline-offset: 3px; }
+html[data-nm-theme="ahead"] a { color: var(--nm-accent-text); text-underline-offset: 3px; }
 html[data-nm-theme="ahead"] a:hover { color: #3f25b8; }
 html[data-nm-theme="ahead"] .text-primary { color: var(--nm-accent-text) !important; }
 html[data-nm-theme="ahead"] :is(.text-muted, .muted, .text-secondary, .dimmed_text) { color: var(--nm-text-muted) !important; }
@@ -308,7 +328,7 @@ html[data-nm-theme="ahead"] #page-header {
   background: transparent !important;
   margin-block-end: 1.25rem;
 }
-html[data-nm-theme="ahead"] #page-header h1 {
+html[data-nm-theme="ahead"] #page-header h1:not(.nm-motd-h1) {
   display: block;
   font-size: 2rem;
   font-weight: 700;
@@ -403,7 +423,7 @@ html[data-nm-theme="ahead"] :is(.block.card, section.nm-block) > .card-body {
 html[data-nm-theme="ahead"] :is(.block.card, section.nm-block) .card-title,
 html[data-nm-theme="ahead"] body#page-my-index.pagelayout-mydashboard #page.drawers .main-inner .block-region .block .card-title,
 html[data-nm-theme="ahead"] .nm-block-title {
-  font-size: 1.5rem !important;   /* 24px, Ahead section title ("Technique of the day") */
+  font-size: 1.25rem !important;
   font-weight: 700 !important;
   line-height: 1.3;
   letter-spacing: -.01em;
@@ -415,11 +435,12 @@ html[data-nm-theme="ahead"] :is(.block.card, section.nm-block) > .card-body > .d
 }
 html[data-nm-theme="ahead"] :is(.block.card, section.nm-block) > .card-body > .card-text { margin-block-start: 0 !important; flex: 0 1 auto; }
 html[data-nm-theme="ahead"] section.nm-block > .card-body > .card-text { flex: 1 1 auto; }
-/* white surfaces for blocks whose content needs a page */
-html[data-nm-theme="ahead"] :is(.block_calendar_month, .block_timeline, .nm-block-todo, .block:not(.block_myoverview):not(.block_calendar_upcoming):not(.block_recentlyaccesseditems):not(.block_news_items):not(.nm-block-game)) > .card-body > .card-text {
-  background: #fff;
+/* Each block has a padded surface; headings keep Ahead's open section rhythm. */
+html[data-nm-theme="ahead"] .block.card:not(.nm-block-game) > .card-body > .card-text {
+  background: var(--nm-block-bg, #fff);
+  border: 1px solid var(--nm-border);
   border-radius: 24px;
-  padding: 1.25rem 1.35rem;
+  padding: 1.25rem;
   box-shadow: var(--nm-shadow);
 }
 /* what's due first: Upcoming takes the top of the right column, Announcements drops under it */
@@ -534,7 +555,7 @@ html[data-nm-theme="ahead"] :is(.course-card, .dashboard-card) :is(.card-img-top
    concentric arcs anchored at the bottom. Moodle's generated polygon pattern becomes those arcs (uploaded course
    photos are kept). The upper 55% of each gradient keeps white text above 4.5:1. */
 html[data-nm-theme="ahead"] .card-grid .card.course-card {
-  --ah-tile: linear-gradient(180deg, #c8385a 0%, #d0405f 55%, #f39a8f 100%);
+  --ah-tile: linear-gradient(180deg, #ad294b 0%, #b32d4d 75%, #f39a8f 100%);
   position: relative;
   display: flex; flex-direction: column;
   min-block-size: 15rem;
@@ -542,13 +563,13 @@ html[data-nm-theme="ahead"] .card-grid .card.course-card {
   border-radius: 24px;
   overflow: hidden;
 }
-html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+2) .card.course-card { --ah-tile: linear-gradient(180deg, #b02a96 0%, #bf2fa3 55%, #eb9bd9 100%); }
-html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+3) .card.course-card { --ah-tile: linear-gradient(180deg, #0b6f78 0%, #0d7b82 55%, #3fb5a2 100%); }
-html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+4) .card.course-card { --ah-tile: linear-gradient(180deg, #1b6fb5 0%, #1f78c0 55%, #7fcff8 100%); }
-html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+5) .card.course-card { --ah-tile: linear-gradient(180deg, #5a3fd8 0%, #6146ea 55%, #b3a3fb 100%); }
+html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+2) .card.course-card { --ah-tile: linear-gradient(180deg, #962480 0%, #a12789 75%, #eb9bd9 100%); }
+html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+3) .card.course-card { --ah-tile: linear-gradient(180deg, #095e66 0%, #09636a 75%, #3fb5a2 100%); }
+html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+4) .card.course-card { --ah-tile: linear-gradient(180deg, #185f9a 0%, #1b639d 75%, #7fcff8 100%); }
+html[data-nm-theme="ahead"] .card-grid > .col:nth-child(5n+5) .card.course-card { --ah-tile: linear-gradient(180deg, #5a3fd8 0%, #6146ea 75%, #b3a3fb 100%); }
 html[data-nm-theme="ahead"] .card-grid .card.course-card > a:has(.card-img-top) { order: 3; margin-block-start: auto; }
 html[data-nm-theme="ahead"] .card-grid .card.course-card .card-img-top { block-size: 5.5rem; border-radius: 18px; margin: 0 .6rem .6rem; }
-html[data-nm-theme="ahead"] .card-grid .card.course-card .card-img-top[style*="data:image/svg"] {
+html[data-nm-theme="ahead"] .card-grid .card.course-card .card-img-top[style*="data:image/svg"]:not(.nm-bg-img) {
   margin: 0; border-radius: 0;
   background: radial-gradient(circle at 50% 135%,
       rgba(255, 255, 255, .6) 0 26%, rgba(255, 255, 255, .34) 26% 42%, rgba(255, 255, 255, .18) 42% 58%, transparent 58%) !important;
@@ -608,16 +629,16 @@ html[data-nm-theme="ahead"] .event[data-region="event-item"] {
   display: flex;
   align-items: center;
   gap: .9rem;
-  padding: .85rem 1.25rem .85rem .85rem !important;
+  padding-block: .85rem !important; padding-inline: .25rem !important;
   margin-block-end: .65rem;
-  background: #f6f1fd;
+  background: transparent;
   border: 0 !important;
-  border-radius: 24px;
+  border-radius: 16px;
   box-shadow: none;
   transition: transform var(--ah-t) var(--ah-ease), box-shadow var(--ah-t) var(--ah-ease);
 }
 html[data-nm-theme="ahead"] .event[data-region="event-item"]:hover { transform: translateY(-2px); background: #f1eafc; }
-html[data-nm-theme="ahead"][dir="rtl"] .event[data-region="event-item"] { padding: .85rem .85rem .85rem 1.25rem !important; }
+
 /* round avatar with a white ring, like Kai's */
 html[data-nm-theme="ahead"] .event[data-region="event-item"] .activityiconcontainer {
   inline-size: 46px !important; block-size: 46px !important; min-inline-size: 46px; flex: none;
@@ -636,7 +657,7 @@ html[data-nm-theme="ahead"] .event[data-region="event-item"] > .overflow-auto {
 html[data-nm-theme="ahead"] .event[data-region="event-item"] h6 {
   margin: .1rem 0 0 !important;
   font-size: .875rem; font-weight: 500;
-  color: var(--nm-text-muted) !important;
+  opacity: 1; color: var(--nm-text-muted) !important;
 }
 html[data-nm-theme="ahead"] .event[data-region="event-item"] h4 { margin: 0 !important; font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
 html[data-nm-theme="ahead"] .event[data-region="event-item"] h4 a { font-weight: 600; }
@@ -657,7 +678,7 @@ html[data-nm-theme="ahead"] .nm-up .nm-up-lead { margin: 0 !important; inline-si
 html[data-nm-theme="ahead"] .nm-up-check .nm-up-box { border-radius: 50%; border: 2px solid #c9bfd8; background: #fff; }
 html[data-nm-theme="ahead"] .nm-up-check:hover .nm-up-box { border-color: var(--nm-accent); }
 html[data-nm-theme="ahead"] .nm-up-check .nm-up-cb:checked + .nm-up-box { background: var(--nm-accent); border-color: var(--nm-accent); }
-html[data-nm-theme="ahead"] .nm-up .nm-up-row-done { background: #faf8fd; box-shadow: none; }
+html[data-nm-theme="ahead"] .nm-up .nm-up-row-done { background: transparent; box-shadow: none; }
 html[data-nm-theme="ahead"] .nm-up .nm-up-row-done div.date { color: var(--nm-text-muted); }
 html[data-nm-theme="ahead"] .nm-up .nm-up-meta { margin-block-start: .45rem; }
 html[data-nm-theme="ahead"] .nm-up-tag-auto { background: #def3ec; color: var(--nm-success-text); }
@@ -676,6 +697,9 @@ html[data-nm-theme="ahead"] .nm-up .nm-up-done-summary:hover { background: #f1ea
 html[data-nm-theme="ahead"] .nm-up .nm-up-done-summary::before { border-color: var(--nm-accent); }
 html[data-nm-theme="ahead"] .nm-up details.nm-up-done > .event:last-child { margin-block-end: 0; }
 html[data-nm-theme="ahead"] .nm-up details.nm-up-done[open] > .nm-up-done-summary { margin-block-end: .65rem; }
+
+/* Keep informative and completed metadata readable after the shared muted state. */
+html[data-nm-theme="ahead"] .nm-up :is(.nm-up-row-info, .nm-up-row-done) :is(h6, .date) { opacity: 1; }
 
 /* ---------- Calendar: Ahead's weekday strip, as a month ---------- */
 html[data-nm-theme="ahead"] .calendar-controls {
@@ -814,7 +838,7 @@ html[data-nm-theme="ahead"] [data-region="empty-message"] img { opacity: .5; fil
 
 /* ---------- Recently accessed = one white sheet, rows divided by hairlines (one container level) ---------- */
 html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] [data-region="items-list"] {
-  background: #fff; border-radius: 24px; padding: .35rem .5rem; box-shadow: var(--nm-shadow);
+  background: transparent; border-radius: 0; padding: 0; box-shadow: none;
 }
 html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .card {
   background: transparent; border: 0; border-radius: 16px; margin: 0 !important; box-shadow: none;
@@ -822,7 +846,7 @@ html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .card {
 }
 html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .card + .card { box-shadow: 0 -1px 0 #f0eaf7; }
 html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .card:hover { background: var(--nm-surface-2); box-shadow: none; }
-html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .card a:hover { text-decoration: none; }
+
 html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .card-body { padding: .7rem .85rem !important; margin: 0 !important; }
 html[data-nm-theme="ahead"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer.activity-icon {
   inline-size: 40px; block-size: 40px; border-radius: 50%; display: grid; place-items: center;
@@ -972,7 +996,7 @@ html[data-nm-theme="ahead"] .nm-icon-btn {
   box-shadow: 0 0 0 1px #efe7f7, 0 4px 12px rgba(51, 32, 92, .08);
   transition: transform var(--ah-t) var(--ah-ease), box-shadow var(--ah-t) var(--ah-ease), background-color var(--ah-t) var(--ah-ease);
 }
-html[data-nm-theme="ahead"] .nm-icon-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px #e6dcfc, 0 10px 22px rgba(97, 70, 234, .2); }
+html[data-nm-theme="ahead"] .nm-icon-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(97, 70, 234, .2); }
 html[data-nm-theme="ahead"] .nm-icon-btn[aria-expanded="true"] { background: var(--nm-accent); color: #fff; }
 html[data-nm-theme="ahead"] .nm-btn {
   font-family: var(--nm-font); font-weight: 600; font-size: .875rem;
@@ -1060,15 +1084,8 @@ html[data-nm-theme="ahead"] .nm-block-game > .card-body > .card-text {
   overflow: hidden;
 }
 html[data-nm-theme="ahead"][dir="rtl"] .nm-block-game > .card-body > .card-text { background: var(--ah-arcs-game-rtl), var(--ah-magenta); }
-html[data-nm-theme="ahead"] .nm-game-teaser-art { background: transparent; border: 0; border-radius: 18px; }
-html[data-nm-theme="ahead"] .nm-game-drop {
-  color: #27232d; background: #fff; border: 0; border-radius: 999px; padding: .2rem .6rem;
-  box-shadow: 0 4px 12px rgba(90, 20, 80, .22); font-weight: 700;
-}
-html[data-nm-theme="ahead"] .nm-game-teaser-line { border-block-start: 2px dashed rgba(255, 255, 255, .85); }
-html[data-nm-theme="ahead"] .nm-game-teaser-line span { background: #27232d; color: #fff; border-radius: 8px; letter-spacing: .1em; }
 html[data-nm-theme="ahead"] .nm-game-stat-label { color: rgba(255, 255, 255, .92); letter-spacing: .06em; font-size: .75rem; }
-html[data-nm-theme="ahead"] .nm-game-stat-value { color: #fff; font-weight: 700; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.01em; }
+html[data-nm-theme="ahead"] .nm-game-stat-value { color: #fff; font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
 html[data-nm-theme="ahead"] .nm-game-stat-sub {
   padding: .2rem .65rem; border-radius: 10px; background: rgba(70, 0, 60, .24);
   color: #fff; font-weight: 600; font-size: .8rem;
@@ -1125,7 +1142,7 @@ html[data-nm-theme="ahead"] { --nm-login-photo-radius: 32px; --nm-login-shadow: 
    Narrow screens
    ========================================================================== */
 @media (max-width: 575.98px) {
-  html[data-nm-theme="ahead"] #page-header h1 { font-size: 1.75rem; }
+  html[data-nm-theme="ahead"] #page-header h1:not(.nm-motd-h1) { font-size: 1.75rem; }
   html[data-nm-theme="ahead"] #page-header { margin-block-end: .25rem; }
   html[data-nm-theme="ahead"] body#page-my-index.pagelayout-mydashboard :is(#nm-top-row, #block-region-content) { display: contents !important; }
   html[data-nm-theme="ahead"] body.pagelayout-mydashboard div:has(> #nm-top-row) { display: flex; flex-direction: column; }

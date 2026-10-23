@@ -47,6 +47,11 @@
    ========================================================================== */
 html[data-nm-theme="cloudstudio"] {
   --nm-bg: #c7e9f2;
+  --nm-bg-elev: var(--cs-lift);
+  --nm-bg-btn-bg: var(--cs-ink);
+  --nm-bg-btn-fg: var(--cs-blue);
+  --nm-focus-ring: var(--cs-ink);
+  --nm-game-screen-bg: var(--cs-sky);
   --nm-surface: #eff9fc;
   --nm-surface-2: #dcf0f6;
   --nm-text: #080d0d;
@@ -203,13 +208,13 @@ html[data-nm-theme="cloudstudio"] :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4
 html[data-nm-theme="cloudstudio"] :is(h1, h2, h3, .h1, .h2, .h3) { font-weight: 800; letter-spacing: -.03em; }
 html[data-nm-theme="cloudstudio"] :is(td, th, .date, time, .timeremaining, .nm-game-stat-value, .day-number) { font-variant-numeric: tabular-nums; }
 
-/* Links: black text, underline on hover (the "FAQ" link) */
+/* Black links; the shared rules distinguish prose from navigation. */
 html[data-nm-theme="cloudstudio"] a {
   color: var(--cs-ink);
   text-decoration-thickness: 1.5px;
   text-underline-offset: .22em;
 }
-html[data-nm-theme="cloudstudio"] a:hover { color: var(--cs-ink); text-decoration: underline; }
+html[data-nm-theme="cloudstudio"] a:hover { color: var(--cs-ink); }
 html[data-nm-theme="cloudstudio"] .text-primary { color: var(--nm-accent-text) !important; }
 html[data-nm-theme="cloudstudio"] :is(.text-muted, .muted, .text-secondary, .dimmed_text) { color: var(--nm-text-muted) !important; }
 html[data-nm-theme="cloudstudio"] :is(.bg-white, .bg-light) { background-color: transparent !important; }
@@ -252,9 +257,7 @@ html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navi
 html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navigation .nav-link:hover { background: rgba(8, 13, 13, .06) !important; }
 html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navigation .nav-link:is(.active, [aria-current="true"]) {
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: .32em;
+  background: var(--cs-ice) !important;
   border-block-end: 0 !important;
 }
 html[data-nm-theme="cloudstudio"] .primary-navigation .navigation .nav-link.active::before { display: none !important; }
@@ -329,7 +332,7 @@ html[data-nm-theme="cloudstudio"] .drawer { background: var(--cs-ice) !important
    Page header: the big tight headline with a hand-drawn underline
    ========================================================================== */
 html[data-nm-theme="cloudstudio"] #page-header { padding-block: 1.25rem .5rem; margin-block-end: 1rem; }
-html[data-nm-theme="cloudstudio"] #page-header :is(h1, .h1, .h2) {
+html[data-nm-theme="cloudstudio"] #page-header :is(h1:not(.nm-motd-h1), .h1, .h2) {
   display: inline-block;
   margin: 0;
   padding-block-end: .2em;
@@ -337,7 +340,7 @@ html[data-nm-theme="cloudstudio"] #page-header :is(h1, .h1, .h2) {
   font-size: clamp(2.1rem, 1rem + 2.6vw, 3.4rem);
   font-weight: 900;
   line-height: .98;
-  letter-spacing: -.055em;
+  letter-spacing: -.04em;
   color: var(--cs-ink) !important;
   text-wrap: balance;
   background: var(--cs-underline) left bottom / min(100%, 300px) .3em no-repeat;
@@ -345,8 +348,14 @@ html[data-nm-theme="cloudstudio"] #page-header :is(h1, .h1, .h2) {
 }
 html[data-nm-theme="cloudstudio"][dir="rtl"] #page-header :is(h1, .h1, .h2) { background-position: right bottom; }
 @keyframes cs-draw { from { background-size: 0% .3em; } to { background-size: min(100%, 300px) .3em; } }
-/* the dashboard headline is the hero: the reference's display size */
-html[data-nm-theme="cloudstudio"] #page-my-index #page-header :is(h1, .h1, .h2) { font-size: clamp(2.5rem, .4rem + 5.2vw, 5rem); line-height: .95; }
+/* The message carries the hand-drawn signature at readable, wrapping sizes. */
+html[data-nm-theme="cloudstudio"] .nm-motd {
+  font-size: clamp(1.4rem, 1rem + 1.2vw, 2rem); font-weight: 800;
+  letter-spacing: -.035em; line-height: 1.2; padding-block-end: .35em;
+  background: var(--cs-underline) left bottom / min(100%, 300px) .3em no-repeat;
+  animation: cs-draw 900ms cubic-bezier(.16, 1, .3, 1) 150ms both;
+}
+html[data-nm-theme="cloudstudio"][dir="rtl"] .nm-motd { background-position: right bottom; }
 html[data-nm-theme="cloudstudio"] #page-my-index #page-header { padding-block: 2rem 1rem; }
 html[data-nm-theme="cloudstudio"] #page-header .page-context-header { align-items: center; }
 html[data-nm-theme="cloudstudio"] #page-header .page-header-headings { flex: 0 1 auto; }
@@ -369,16 +378,18 @@ html[data-nm-theme="cloudstudio"] #page-navbar .breadcrumb a { color: var(--nm-t
 /* ==========================================================================
    Blocks: ice panels, a black rule under each heavy title
    ========================================================================== */
-/* open sections, like the reference's page bands: no panel, no radius; the heavy title and its black rule carry each block */
+/* Ice-blue surfaces and quiet hairlines define each working section. */
 html[data-nm-theme="cloudstudio"] :is(.block.card, section.nm-block) {
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+  background: var(--nm-block-bg, var(--cs-ice)) !important;
+  border: 1px solid var(--nm-border) !important;
+  border-radius: var(--nm-radius) !important;
   box-shadow: none !important;
   color: var(--nm-text);
 }
 html[data-nm-theme="cloudstudio"] :is(.block.card, section.nm-block) > .card-body,
-html[data-nm-theme="cloudstudio"] body :is(#block-region-content, #nm-top-row, .block-region) > .block.card > .card-body.p-3 { padding: 0 0 .5rem !important; }
+html[data-nm-theme="cloudstudio"] body :is(#block-region-content, #nm-top-row, .block-region) > .block.card > .card-body.p-3 {
+  padding: clamp(1rem, 1.5vw, 1.5rem) !important;
+}
 html[data-nm-theme="cloudstudio"] #block-region-content.block-region { gap: 2.75rem 2.5rem !important; }
 html[data-nm-theme="cloudstudio"] #block-region-content > .block { margin-block-end: 0 !important; }
 html[data-nm-theme="cloudstudio"] .nm-top-row { gap: 2.5rem !important; margin-block: 1rem 2.75rem !important; }
@@ -409,7 +420,6 @@ html[data-nm-theme="cloudstudio"] .block.card :is(.footer, .bottom) a {
   display: inline-flex; align-items: center; gap: .35rem;
   font-size: .875rem; font-weight: 600;
   color: var(--cs-ink);
-  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .25em;
 }
 html[data-nm-theme="cloudstudio"] .block.card .gotocal a::after {
   content: ""; inline-size: 14px; block-size: 14px; flex: none;
@@ -631,7 +641,7 @@ html[data-nm-theme="cloudstudio"] .block_myoverview :is(.card-img-top, .dashboar
   background-size: cover !important;
   background-position: center !important;
   /* one palette: the course pattern survives as a sky-blue duotone */
-  background-color: var(--cs-blue) !important;
+  background-color: var(--nm-course-color, var(--cs-blue)) !important;
   background-blend-mode: luminosity;
 }
 html[data-nm-theme="cloudstudio"] .block_myoverview .course-info-container { padding: .75rem .85rem .35rem !important; background: transparent !important; }
@@ -649,7 +659,6 @@ html[data-nm-theme="cloudstudio"] .block_myoverview .coursename {
   white-space: normal;
   text-decoration: none;
 }
-html[data-nm-theme="cloudstudio"] .block_myoverview .coursename:hover { text-decoration: underline; }
 /* category: a small monospace label with a diamond bullet ("◆ AGENTS & APPLIED AI") */
 html[data-nm-theme="cloudstudio"] .block_myoverview .categoryname {
   display: inline-flex; align-items: center; gap: .45em;
@@ -724,7 +733,6 @@ html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date::bef
   content: ""; inline-size: 5px; block-size: 5px; flex: none; background: currentColor; transform: rotate(45deg);
 }
 html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date :is(a, span) { color: inherit; text-decoration: none; }
-html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date a:hover { text-decoration: underline; }
 
 /* ==========================================================================
    Timeline
@@ -1004,11 +1012,11 @@ html[data-nm-theme="cloudstudio"] .tertiary-navigation { margin-block-end: 1rem;
 /* sections: ice panels with a heavy section title */
 html[data-nm-theme="cloudstudio"] .course-content :is(ul.topics, ul.weeks, ul.sections) { padding: 0; margin: 0; }
 html[data-nm-theme="cloudstudio"] .course-content li.section {
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+  background: var(--cs-ice) !important;
+  border: 1px solid var(--nm-border) !important;
+  border-radius: var(--nm-radius) !important;
   box-shadow: none !important;
-  padding: 0 0 .5rem !important;
+  padding: clamp(1rem, 1.5vw, 1.5rem) !important;
   margin-block-end: 2.5rem !important;
 }
 html[data-nm-theme="cloudstudio"] .course-content .section-item { padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; }
@@ -1071,7 +1079,6 @@ html[data-nm-theme="cloudstudio"] .course-content .activity-item .activityiconco
 }
 html[data-nm-theme="cloudstudio"] .course-content .activityname { font-size: .9688rem; font-weight: 700; letter-spacing: -.015em; }
 html[data-nm-theme="cloudstudio"] .course-content .activityname a { color: var(--cs-ink) !important; text-decoration: none; }
-html[data-nm-theme="cloudstudio"] .course-content .activity-item:hover .activityname a { text-decoration: underline; text-underline-offset: .22em; }
 html[data-nm-theme="cloudstudio"] .course-content :is(.activity-dates, .activity-information, .activity-altcontent) { font-size: .8125rem; color: var(--nm-text-muted); }
 html[data-nm-theme="cloudstudio"] .course-content .activity-dates { font-family: var(--cs-mono); font-size: .75rem; letter-spacing: .03em; }
 html[data-nm-theme="cloudstudio"] :is([data-region="completionrequirements"], .completion-info) .badge { background: var(--cs-sky) !important; color: var(--cs-ink) !important; border: 1px solid var(--nm-border); }
@@ -1348,7 +1355,7 @@ html[data-nm-theme="cloudstudio"] .nm-up-check .nm-up-cb:checked + .nm-up-box::a
 html[data-nm-theme="cloudstudio"] .nm-up-tag { font-family: var(--cs-mono); font-size: .75rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding-inline: .6rem; }
 html[data-nm-theme="cloudstudio"] .nm-up-tag-auto { background: var(--cs-ink); color: #fff; }
 html[data-nm-theme="cloudstudio"] .nm-up-tag-manual { background: transparent; border-color: var(--cs-ink); color: var(--cs-ink); }
-html[data-nm-theme="cloudstudio"] .nm-up .nm-up-edit { color: var(--cs-ink); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .22em; }
+html[data-nm-theme="cloudstudio"] .nm-up .nm-up-edit { color: var(--cs-ink); }
 html[data-nm-theme="cloudstudio"] :is(.nm-up-opens, .nm-sc-card-hint, .nm-sc-suggest-label, .nm-game-label) { font-size: .75rem !important; }
 html[data-nm-theme="cloudstudio"] .nm-up-opens { font-family: var(--cs-mono); font-weight: 500; letter-spacing: .1em; color: var(--nm-text-muted); }
 html[data-nm-theme="cloudstudio"] .nm-up .nm-up-done-summary {
@@ -1369,7 +1376,7 @@ html[data-nm-theme="cloudstudio"] .nm-up .nm-up-row-done .activityiconcontainer 
 /* ---------- Arcade: an ice panel like the rest; black is kept for its one CTA ---------- */
 html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-teaser { color: var(--cs-ink); }
 html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-label { font-family: var(--cs-mono); font-weight: 500; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--nm-text-muted); }
-html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-value { color: var(--cs-ink); font-weight: 800; letter-spacing: -.045em; font-size: 1.75rem; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-value { color: var(--cs-ink); font-weight: 800; letter-spacing: -.04em; }
 html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-sub { color: var(--nm-text-muted); }
 html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-sub b { color: var(--cs-ink); }
 html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play {
@@ -1394,7 +1401,6 @@ html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play::after {
           mask: var(--cs-arrow) center / contain no-repeat;
 }
 html[data-nm-theme="cloudstudio"][dir="rtl"] .nm-block-game .nm-game-play::after { transform: scaleX(-1); }
-html[data-nm-theme="cloudstudio"] .nm-game-btn:hover { transform: none; }
 
 /* the full-screen game */
 html[data-nm-theme="cloudstudio"] .nm-game-overlay { background: var(--cs-sky); }
@@ -1551,4 +1557,18 @@ html[data-nm-theme="cloudstudio"][data-nm-motion="off"] :is(.btn, .nm-btn, .nm-i
     transition: none !important;
   }
   html[data-nm-theme="cloudstudio"] :is(.btn, .nm-btn, .nm-icon-btn, .nm-sc-chip, #user-menu-toggle, .arrow_link):active { transform: none !important; }
+}
+
+/* Custom imagery keeps its chosen palette; background tools use the ink pill language. */
+html[data-nm-theme="cloudstudio"] .block_myoverview .nm-bg-img { background-blend-mode: normal; }
+html[data-nm-theme="cloudstudio"] .nm-bg-btn { border-radius: 999px; }
+html[data-nm-theme="cloudstudio"] .nm-bg-btn:hover { background: var(--cs-ink-2); }
+html[data-nm-theme="cloudstudio"] .nm-bg-pop { background: var(--cs-ice); border: 1px solid var(--nm-border); border-radius: 14px; }
+
+@media (max-width: 575.98px) {
+  html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills .nav-item { flex: 1 1 0; min-inline-size: 0; }
+  html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills .nav-item a.nav-link {
+    display: flex; align-items: center; justify-content: center;
+    min-block-size: 52px; padding: .5rem .35rem; white-space: normal; line-height: 1.25;
+  }
 }

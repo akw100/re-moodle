@@ -29,6 +29,11 @@ html[data-nm-theme="campus-pop"] {
 
   /* Shared widget tokens */
   --nm-bg: var(--pop-canvas);
+  --nm-bg-elev: 6px 6px 0 #000;
+  --nm-bg-btn-bg: var(--pop-yellow);
+  --nm-bg-btn-fg: #000;
+  --nm-focus-ring: #000;
+  --nm-game-screen-bg: var(--pop-yellow-2);
   --nm-surface: #FFF;
   --nm-surface-2: var(--pop-yellow-2);
   --nm-text: #000;
@@ -130,19 +135,9 @@ html[data-nm-theme="campus-pop"] {
   & .text-primary { color: #000 !important; }
   & .bg-white { background-color: #FFF !important; }
 
-  /* Links: always underlined, black, pink marker on hover */
-  & #region-main a:not(.btn):not(.card):not(.nav-link):not(.dropdown-item):not([class*="nm-"]):not(.list-group-item-action),
-  & #page-header a:not(.btn):not([class*="nm-"]) {
-    color: #000;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: .2em;
-    transition: background-color .12s, text-decoration-thickness .12s;
-  }
-  & #region-main a:not(.btn):not(.card):not(.nav-link):not(.dropdown-item):not([class*="nm-"]):not(.list-group-item-action):not(.stretched-link):hover {
-    background-color: var(--pop-pink);
-    text-decoration-thickness: 2px;
-    box-shadow: 0 0 0 2px var(--pop-pink);
+  /* Prose keeps its underline; navigation uses the shared anchor glyph. */
+  & #region-main :is(.activity-description, .summary, .no-overflow) p a:not(.btn) {
+    color: #000; text-decoration: underline; text-underline-offset: .2em;
   }
 
   /* Focus: black ring + pink halo (pink alone fails 3:1 on white) */
@@ -258,33 +253,27 @@ html[data-nm-theme="campus-pop"] {
 
   /* Dashboard: pink poster with a marquee and a giant highlighted "Dashboard" */
   & body.pagelayout-mydashboard #page-header {
-    overflow-x: clip;                        /* clips the marquee sideways only; menus still drop down */
+    overflow: visible;
     margin-block: 1rem 1.75rem;
-    padding: 3rem 1.5rem 1rem !important;
+    padding-block: 4rem 1rem !important;
+    padding-inline: 1.5rem !important;
     background: var(--pop-pink) !important;
     border: 1px solid #000;
     border-radius: 4px;
     box-shadow: none;
     max-width: none;
   }
-  & body.pagelayout-mydashboard #page-header h1 {
-    display: inline;
-    font-size: clamp(2.6rem, 1.6rem + 2.2vw, 3.5rem);
-    font-weight: 500;
-    line-height: .95;
-    letter-spacing: -.035em;
-  }
-  /* The sticker rides in the title's own line box, so no header edge can clip it */
-  & body.pagelayout-mydashboard #page-header .page-header-headings { white-space: nowrap; }
+  & .nm-motd { font-size: clamp(1.4rem, 1rem + 1.2vw, 2rem); font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+  /* The sticker is anchored to the hero, above its content row. */
+  & body.pagelayout-mydashboard #page-header .page-header-headings { position: static; }
   & body.pagelayout-mydashboard #page-header :is(.page-context-header, .page-header-headings) { overflow: visible !important; padding-inline-end: .6rem; padding-block: .35rem .25rem; }
-  & body.pagelayout-mydashboard #page-header .page-header-headings::after {
-    content: "you got\Athis \2726" / "";
+  & body.pagelayout-mydashboard #page-header::after {
+    content: "you got\Athis" / "";
     white-space: pre;
     display: inline-grid; place-items: center;
     vertical-align: top;
-    position: relative; top: -.4rem;
-    margin-inline-start: .5rem;
-    inline-size: 4.1rem; block-size: 4.1rem;
+    position: absolute; inset-block-start: -12px; inset-inline-end: 20px; z-index: 2;
+    inline-size: 72px; block-size: 72px;
     border-radius: 50%;
     background: var(--pop-yellow);
     color: #000;
@@ -301,8 +290,8 @@ html[data-nm-theme="campus-pop"] {
   & body.pagelayout-mydashboard #page-header::before {
     content: "★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER ★ YOU GOT THIS ★ SUBMIT IT ★ COFFEE FIRST ★ READ THE SPEC ★ OFFICE HOURS EXIST ★ DRINK WATER " / "";
     position: absolute;
-    top: 0; left: 0;
-    width: max-content;
+    inset-block-start: 0; inset-inline: 0;
+    inline-size: 100%; overflow: hidden;
     padding: .4rem 0 .35rem;
     background: #000;
     color: var(--pop-yellow);
@@ -500,7 +489,6 @@ html[data-nm-theme="campus-pop"] {
   }
   & .course-section-header > .d-flex.align-items-center { align-items: center !important; }
   & .course-section .sectionname a { color: #000 !important; text-decoration: none !important; background: none !important; box-shadow: none !important; }
-  & .course-section .sectionname a:hover { text-decoration: underline !important; text-decoration-thickness: 2px !important; }
   & .course-section .icons-collapse-expand {
     display: inline-grid; place-items: center;
     inline-size: 2rem; block-size: 2rem;
@@ -608,7 +596,7 @@ html[data-nm-theme="campus-pop"] {
   & .block.card .card-title {
     font-family: var(--nm-heading-font);
     font-weight: 400;
-    font-size: 1.6rem !important;
+    font-size: 1.25rem !important;
     line-height: 1.2;
     letter-spacing: -.01em;
     color: #000;
@@ -626,8 +614,8 @@ html[data-nm-theme="campus-pop"] {
     border-radius: 4px;
   }
   & .block.card .card-text .card-text.content { margin-top: 0 !important; }
-  /* the course grid sits straight on the canvas, like Gumroad Discover's product cards */
-  & .block_myoverview.card > .card-body > .card-text.content { padding: 0; background: transparent; border: 0; }
+  /* Filters and cards share the same ruled white panel as the other blocks. */
+  & .block_myoverview.card > .card-body > .card-text.content { padding: 1.25rem; background: var(--nm-block-bg, #FFF); border: 1px solid #000; }
   & .nm-top-row { gap: 1.5rem; }
   /* Course overview spans rows 1-2; an auto row 1 would soak up half its height and strand Announcements in blank space */
   @media (min-width: 768px) {
@@ -722,13 +710,9 @@ html[data-nm-theme="campus-pop"] {
     font-size: 1.1rem;
     line-height: 1.2;
     letter-spacing: -.01em;
-    text-decoration: underline !important;
-    text-decoration-thickness: 1px !important;
-    text-underline-offset: .15em;
     background: none !important;
     box-shadow: none !important;
   }
-  & :is(.course-card, .dashboard-card) .coursename:hover { text-decoration-thickness: 2px !important; }
   & :is(.course-card, .dashboard-card) .coursename .multiline { white-space: normal; display: inline; }
   & :is(.course-card, .dashboard-card) .categoryname {
     display: inline-block;
@@ -1193,7 +1177,7 @@ html[data-nm-theme="campus-pop"] {
   & .btn:hover { translate: -3px -3px; box-shadow: 3px 3px 0 #000; }
   & .btn:active, & .btn.active { translate: 0 0 !important; box-shadow: none !important; }
   & .btn.btn-icon { border-color: transparent; }
-  & .btn.btn-icon:hover { translate: none; box-shadow: none; background: var(--pop-pink); border-color: #000; }
+  & .btn.btn-icon:hover { translate: none; box-shadow: none; background: var(--pop-pink); }
   & .btn-primary, & .btn-dark {
     background: #000 !important; color: #FFF !important; border-color: #000 !important;
   }
@@ -1435,9 +1419,8 @@ html[data-nm-theme="campus-pop"] {
     text-shadow: none;
     letter-spacing: -.01em;
   }
-  & .nm-game-stat-value { font-size: 2.6rem; line-height: 1; font-weight: 500; }
+  & .nm-game-stat-value { line-height: 1; font-weight: 500; }
   & .nm-game-final { font-size: 6rem; text-shadow: none; }
-  & .nm-game-teaser-art { box-shadow: none; }
   & .nm-game-card { border: 1px solid #000 !important; border-radius: 4px !important; box-shadow: none !important; }
 
   /* ---------- Footer popover ---------- */
@@ -1478,10 +1461,7 @@ html[data-nm-theme="campus-pop"] {
   }
   @media (max-width: 575.98px) {
     & body.pagelayout-mydashboard #page-header { padding: 2.5rem 1rem 1rem !important; margin-inline: 0; margin-block-end: 1.25rem; }
-    & body.pagelayout-mydashboard #page-header h1 { font-size: 2.5rem; }
-    & body.pagelayout-mydashboard #page-header .page-header-headings::after {
-      inline-size: 3.8rem; block-size: 3.8rem; font-size: .75rem; text-transform: uppercase; margin-inline-start: .3rem; top: -.3rem; box-shadow: 2px 2px 0 #000;
-    }
+    & body.pagelayout-mydashboard #page-header::after { display: none; }
     & #page-header .nm-header-slot { padding-top: .5rem !important; gap: .5rem; }
     & body.pagelayout-mydashboard #page-header .nm-sc-bar { --nm-sc-chip-height: 34px; row-gap: 8px; gap: 6px; }
     & body.pagelayout-mydashboard #page-header .nm-sc-chip .nm-sc-link { font-size: .8125rem; padding-inline: 4px 9px; gap: 4px; }
@@ -1514,7 +1494,7 @@ html[data-nm-theme="campus-pop"] {
 }
 
 /* RTL: mirror the title sticker tilt */
-html[data-nm-theme="campus-pop"][dir="rtl"] body.pagelayout-mydashboard #page-header .page-header-headings::after { rotate: -12deg; }
+html[data-nm-theme="campus-pop"][dir="rtl"] body.pagelayout-mydashboard #page-header::after { rotate: -12deg; }
 
 /* ---------- Login page (HUJI IdP): touches on top of src/login.css, which loads after the themes,
    so these start with :root to outrank its html[data-nm-site][data-nm-theme] rules ---------- */
@@ -1587,4 +1567,7 @@ html[data-nm-theme="campus-pop"] {
   }
 }
 
-@keyframes nm-pop-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes nm-pop-marquee { from { text-indent: 0; } to { text-indent: -1600px; } }
+
+html[data-nm-theme="campus-pop"] .nm-bg-pop { border: 1px solid #000; border-radius: 4px; }
+html[data-nm-theme="campus-pop"] .nm-bg-btn { border-radius: 4px; }

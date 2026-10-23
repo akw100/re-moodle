@@ -401,3 +401,11 @@ html[data-nm-theme]:not(#nm-boost) body.path-mod-resource .resourcecontent :is(o
 /* the <embed> fallback nested inside the <object> fills its parent, not the viewport again */
 html[data-nm-theme]:not(#nm-boost) body.path-mod-resource .resourcecontent object embed { height: 100% !important; border: 0; }
 /* ==== END RESOURCE PAGE ==== */
+
+/* File-type activity icons (e.g. Moodle's colored PDF icon, /core/…/f/pdf) aren't monologo glyphs: they carry their own
+   padding and aspect, so in themes' round or square icon badges they overflowed and sat off-center. Center and size them. */
+html[data-nm-theme] .activityiconcontainer:has(> img.activityicon[src*="/f/"]) { display: grid !important; place-items: center !important; padding: 0 !important; }
+html[data-nm-theme] .activityiconcontainer > img.activityicon[src*="/f/"] {
+  inline-size: 60% !important; block-size: 60% !important; max-inline-size: none !important; max-block-size: none !important;
+  margin: 0 !important; padding: 0 !important; object-fit: contain !important; transform: none !important; position: static !important;
+}
