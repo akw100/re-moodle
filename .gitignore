@@ -4,3 +4,4 @@ research/codex.log
 research/codex-refs.log
 tests/tmp/
 fixtures/vendor/
+dist/

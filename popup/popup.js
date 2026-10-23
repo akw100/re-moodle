@@ -4,7 +4,7 @@ const box = document.getElementById('themes');
 const motion = document.getElementById('motion');
 const voice = document.getElementById('voice');
 voice.append(...NM.VOICES.map(v => NM.el('option', {value: v.id}, v.name)));
-document.getElementById('mark').append(NM.icon('palette'));
+document.getElementById('mark').append(Object.assign(document.createElement('img'), {src: '../icons/icon48.png', alt: '', width: 30, height: 30}));
 
 const {nodes, tiles} = NM.themeTiles('nm-pg');
 box.append(...nodes);
