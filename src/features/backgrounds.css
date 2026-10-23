@@ -1,0 +1,206 @@
+/* Custom backgrounds for course cards and dashboard blocks (src/features/backgrounds.js).
+   Everything is drawn from the --nm-* tokens, so it fits every theme.
+   Theme hooks:
+     --nm-course-bg / --nm-course-color   set inline on a customized course card (.nm-bg-host-course.nm-bg-set)
+     --nm-block-bg                        set inline on a customized block (.nm-bg-host-block.nm-bg-set)
+     [data-nm-bg-kind]                    color | gradient | pattern | image | original (cards); tint | gradient | pattern (blocks)
+     .nm-bg-surface / .nm-bg-frameless    which block element got painted (inner surface / padded section)
+     .nm-bg-img                           the card's image element while it shows an override (inline background !important)
+     --nm-bg-elev                         the popover's shadow (default: the theme's --nm-sc-elev, else a soft drop shadow)
+     --nm-bg-btn-bg / --nm-bg-btn-fg      the brush button's fill and icon color
+   Classes: .nm-bg-btn(.nm-bg-btn-course|.nm-bg-btn-block)  .nm-bg-pop(.nm-bg-pop-course|.nm-bg-pop-block)
+            .nm-bg-head .nm-bg-title .nm-bg-sub .nm-bg-close .nm-bg-body .nm-bg-group .nm-bg-label .nm-bg-grid
+            .nm-bg-opt[aria-pressed] > .nm-bg-chip + .nm-bg-opt-label + .nm-bg-tick   .nm-bg-url-form .nm-bg-input .nm-bg-apply
+            .nm-bg-url-prev .nm-bg-msg(.is-error) */
+
+/* ---------- hosts ---------- */
+:where(.nm-bg-host-course) { position: relative; }
+
+/* The overridden image: the theme's own overlays on it (halftones, tiles drawn with pseudo-elements) step aside. */
+html :is(.course-card, .dashboard-card) .nm-bg-img.nm-bg-img::before,
+html :is(.course-card, .dashboard-card) .nm-bg-img.nm-bg-img::after { content: none !important; display: none !important; }
+
+/* A customized block. JS paints the element that draws the block's surface in the current theme (the section, or
+   .nm-bg-surface inside it). In frameless themes nothing draws one, so the section gets a little room and stops
+   stretching to the grid row, so the tint hugs the content. */
+html .nm-bg-host-block.nm-bg-frameless {
+  padding: 10px 12px !important;
+  border-radius: min(var(--nm-radius, 6px), 12px) !important;
+  align-self: start !important;
+}
+
+/* ---------- the brush button ---------- */
+.nm-bg-btn {
+  --nm-bg-btn-size: 28px;
+  box-sizing: border-box;
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: var(--nm-bg-btn-size); block-size: var(--nm-bg-btn-size);
+  margin: 0; padding: 0;
+  font: inherit; font-size: 15px; line-height: 1; cursor: pointer;
+  color: var(--nm-bg-btn-fg, var(--nm-text));
+  background: var(--nm-bg-btn-bg, var(--nm-surface));
+  border: var(--nm-border-width, 1px) solid var(--nm-border);
+  border-radius: min(var(--nm-radius, 6px), 9px);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--nm-text) 14%, transparent);
+  opacity: 0;
+}
+.nm-bg-btn .nm-svg { display: inline-grid; place-items: center; }
+.nm-bg-btn svg { display: block; inline-size: 15px; block-size: 15px; }
+.nm-bg-btn:hover { background: var(--nm-surface-2); }
+.nm-bg-btn:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-bg-btn[aria-expanded="true"] { background: var(--nm-surface-2); border-color: var(--nm-accent); }
+
+.nm-bg-btn-course { position: absolute; z-index: 3; inset-block-start: 8px; inset-inline-end: 8px; }
+.nm-bg-btn-block { margin-block: -6px; margin-inline-start: auto; align-self: center; }
+
+.nm-bg-host-course:is(:hover, :focus-within, .nm-bg-open) > .nm-bg-btn-course,
+.nm-bg-host-block:is(:hover, :focus-within, .nm-bg-open) .nm-bg-btn-block { opacity: 1; }
+/* Touch screens have no hover: keep the buttons reachable. */
+@media (hover: none) {
+  .nm-bg-btn { opacity: .92; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-nm-motion="off"]) .nm-bg-btn { transition: opacity .14s ease-out, background-color .14s ease-out; }
+}
+
+/* ---------- popover (top layer, placed by JS) ---------- */
+.nm-bg-pop {
+  position: fixed; inset: auto; margin: 0; z-index: 1060;
+  box-sizing: border-box;
+  inline-size: min(340px, calc(100vw - 16px));
+  max-block-size: min(660px, calc(100vh - 16px));
+  padding: 0; overflow: hidden;
+  flex-direction: column;
+  background: var(--nm-surface); color: var(--nm-text);
+  border: var(--nm-border-width, 1px) solid var(--nm-border);
+  border-radius: min(calc(var(--nm-radius, 6px) * 1.5), 16px);
+  box-shadow: var(--nm-bg-elev, var(--nm-sc-elev, 0 1px 2px color-mix(in srgb, var(--nm-text) 10%, transparent), 0 10px 28px -6px color-mix(in srgb, var(--nm-text) 26%, transparent)));
+  font-family: var(--nm-font); font-size: .875rem; line-height: 1.4; text-align: start;
+}
+.nm-bg-pop:not([hidden]) { display: flex; }
+.nm-bg-pop[hidden] { display: none !important; }
+.nm-bg-pop-block { inline-size: min(272px, calc(100vw - 16px)); }
+html[data-nm-theme="campus-pop"] .nm-bg-pop { --nm-bg-elev: 6px 6px 0 #000; }
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-nm-motion="off"]) .nm-bg-pop:not([hidden]) { animation: nm-bg-in .14s ease-out; }
+}
+@keyframes nm-bg-in { from { opacity: 0; translate: 0 -4px; } }
+
+.nm-bg-head {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 12px 12px 10px 14px; padding-inline: 14px 10px;
+  border-block-end: 1px solid var(--nm-border);
+}
+.nm-bg-head-text { flex: 1 1 auto; min-inline-size: 0; }
+.nm-bg-title { margin: 0; font-family: var(--nm-heading-font, var(--nm-font)); font-size: .9375rem; font-weight: 600; line-height: 1.3; color: var(--nm-text); letter-spacing: normal; text-transform: none; }
+.nm-bg-sub { margin: 2px 0 0; font-size: .75rem; color: var(--nm-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nm-bg-close {
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: 28px; block-size: 28px; margin: -2px 0 0; padding: 0;
+  border: 0; border-radius: min(var(--nm-radius, 6px), 8px);
+  background: transparent; color: var(--nm-text-muted); cursor: pointer; font-size: 16px;
+}
+.nm-bg-close:hover { background: var(--nm-surface-2); color: var(--nm-text); }
+.nm-bg-close:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 1px; }
+
+.nm-bg-body {
+  flex: 1 1 auto; min-block-size: 0; overflow: auto; overscroll-behavior: contain;
+  padding: 4px 14px 14px;
+  scrollbar-width: thin;
+}
+.nm-bg-group { margin: 0; padding: 0; border: 0; }
+.nm-bg-label {
+  display: flex; align-items: baseline; gap: 4px;
+  margin: 12px 0 6px; padding: 0;
+  font-size: .6875rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--nm-text-muted);
+}
+.nm-bg-note { font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+.nm-bg-grid { display: grid; gap: 6px; }
+.nm-bg-grid-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.nm-bg-grid-one { grid-template-columns: minmax(0, 1fr); }
+.nm-bg-grid-sw { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.nm-bg-grid-pat { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.nm-bg-grid-blk { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+/* ---------- option tiles ---------- */
+.nm-bg-opt {
+  position: relative; box-sizing: border-box;
+  display: flex; align-items: center; gap: 8px;
+  min-inline-size: 0; margin: 0; padding: 0;
+  border: 0; border-radius: min(var(--nm-radius, 6px), 8px);
+  background: transparent; color: var(--nm-text);
+  font: inherit; font-size: .8125rem; text-align: start; cursor: pointer;
+}
+.nm-bg-chip {
+  box-sizing: border-box; display: grid; place-items: center; flex: none;
+  inline-size: 100%; aspect-ratio: 1;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 14%, transparent);
+  color: var(--nm-text-muted); font-size: 15px;
+  background-color: var(--nm-surface-2);
+}
+.nm-bg-grid-pat .nm-bg-chip { aspect-ratio: 4 / 3; }
+.nm-bg-grid-blk .nm-bg-chip { aspect-ratio: 1; background-color: var(--nm-surface); }
+.nm-bg-opt:hover .nm-bg-chip { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 34%, transparent); }
+.nm-bg-opt:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-bg-opt[aria-pressed="true"] .nm-bg-chip { box-shadow: 0 0 0 2px var(--nm-surface), 0 0 0 4px var(--nm-accent); }
+
+/* wide tiles: Theme default, Original image */
+.nm-bg-opt-wide {
+  padding: 5px; padding-inline-end: 8px;
+  border: 1px solid var(--nm-border);
+  background: var(--nm-surface);
+}
+.nm-bg-opt-wide:hover { background: var(--nm-surface-2); }
+.nm-bg-opt-wide .nm-bg-chip { inline-size: 30px; block-size: 30px; aspect-ratio: auto; border-radius: min(var(--nm-radius, 6px), 6px); }
+.nm-bg-opt-wide[aria-pressed="true"] { border-color: var(--nm-accent); box-shadow: inset 0 0 0 1px var(--nm-accent); }
+.nm-bg-opt-wide[aria-pressed="true"] .nm-bg-chip { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 14%, transparent); }
+.nm-bg-opt-label { flex: 1 1 auto; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+
+/* the check badge on the chosen tile */
+.nm-bg-tick {
+  position: absolute; inset-block-start: -5px; inset-inline-end: -5px;
+  display: none; place-items: center;
+  inline-size: 16px; block-size: 16px; border-radius: 50%;
+  background: var(--nm-accent); color: var(--nm-accent-contrast, #fff);
+  box-shadow: 0 0 0 2px var(--nm-surface);
+  font-size: 10px;
+}
+.nm-bg-tick svg { stroke-width: 3.2; }
+.nm-bg-opt[aria-pressed="true"] .nm-bg-tick { display: grid; }
+.nm-bg-opt-wide .nm-bg-tick { display: none !important; } /* the accent border marks these */
+
+/* ---------- image URL ---------- */
+.nm-bg-url-form { margin: 0; }
+.nm-bg-url-form .nm-bg-label { cursor: default; }
+.nm-bg-url-row { display: flex; gap: 6px; }
+.nm-bg-input {
+  flex: 1 1 auto; min-inline-size: 0; box-sizing: border-box;
+  block-size: 34px; margin: 0; padding-block: 0; padding-inline: 10px;
+  font: inherit; font-size: .8125rem; color: var(--nm-text);
+  background: var(--nm-bg, var(--nm-surface));
+  border: var(--nm-border-width, 1px) solid var(--nm-border);
+  border-radius: min(var(--nm-radius, 6px), 8px);
+  direction: ltr; text-align: left;
+}
+.nm-bg-input::placeholder { color: var(--nm-text-muted); opacity: 1; }
+.nm-bg-input:focus { outline: 2px solid var(--nm-accent); outline-offset: -1px; border-color: var(--nm-accent); }
+.nm-bg-input[aria-invalid="true"] { border-color: var(--nm-danger); }
+.nm-bg-apply {
+  flex: none; block-size: 34px; margin: 0; padding: 0 12px;
+  font: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer;
+  color: var(--nm-accent-contrast, #fff); background: var(--nm-accent);
+  border: var(--nm-border-width, 1px) solid var(--nm-accent);
+  border-radius: min(var(--nm-radius, 6px), 8px);
+}
+.nm-bg-apply:disabled { cursor: default; color: var(--nm-text-muted); background: var(--nm-surface-2); border-color: var(--nm-border); }
+.nm-bg-apply:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-bg-url-prev {
+  block-size: 0; margin-block-start: 0;
+  border-radius: min(var(--nm-radius, 6px), 8px);
+  background: var(--nm-surface-2) center / cover no-repeat;
+}
+.nm-bg-url-prev.is-ok { block-size: 64px; margin-block-start: 8px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 14%, transparent); }
+.nm-bg-msg { margin: 6px 0 0; font-size: .75rem; color: var(--nm-text-muted); }
+.nm-bg-msg.is-error { color: var(--nm-danger); }

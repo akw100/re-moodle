@@ -1,5 +1,5 @@
 // Arcade break: "Deadline Dash". Assignment cards fall; click them before they cross the DEADLINE line.
-// Dashboard only. Opens from a block card and a gamepad header button into a full-screen canvas overlay.
+// Dashboard only. Opens from the Arcade break card's Play button into a full-screen canvas overlay.
 // Storage (chrome.storage.local): highscore (written the moment it's beaten), gamesPlayed, gameMuted.
 // Test hooks on .nm-game-overlay: data-nm-game-score/-state/-lives/-combo and data-nm-game-targets
 // (JSON [{x, y, kind}] in client px). html[data-nm-game-speed] multiplies fall speed and spawn rate.
@@ -32,7 +32,6 @@
   NM.feature('game', () => {
     if (!NM.isDashboard) return;
     buildBlock();
-    buildHeaderButton();
     Promise.all([NM.getLocal(KEY_BEST, 0), NM.getLocal(KEY_PLAYED, 0), NM.getLocal(KEY_MUTED, false)]).then(([b, p, m]) => {
       best = Math.max(best, +b || 0); played = Math.max(played, +p || 0); muted = !!m;
       refreshTeaser(); G?.syncHud();
@@ -65,15 +64,6 @@
       NM.el('button', {class: 'nm-btn nm-btn-primary nm-game-play', type: 'button', onclick: play},
         NM.el('span', {class: 'nm-game-play-icon', 'aria-hidden': 'true'}, NM.icon('play')), ' Play',
         NM.el('span', {class: 'nm-game-sr'}, ' Deadline Dash'))));
-  }
-
-  function buildHeaderButton() {
-    const slot = NM.headerSlot();
-    if (!slot || slot.querySelector('.nm-game-btn')) return;
-    const btn = NM.el('button', {class: 'nm-icon-btn nm-game-btn', type: 'button', title: 'Play Deadline Dash', 'aria-label': 'Play Deadline Dash',
-      onclick: e => open(e.currentTarget)}, NM.icon('gamepad'));
-    const wrap = slot.querySelector('.nm-theme-wrap');
-    wrap ? slot.insertBefore(btn, wrap) : slot.append(btn);
   }
 
   function refreshTeaser() {

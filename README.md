@@ -5,9 +5,11 @@ Remodel the Moodle. A Chrome extension that makes HUJI's Moodle (`moodle.huji.ac
 - **10 themes + Moodle default.** Each theme follows one design reference: **Quiet Focus** (Todoist), **Night Operator** (Linear dark), **Daily Quest** (Duolingo), **Campus Pop** (Gumroad neo-brutalist, the crazy one), **Ahead**, **Fal** (fal.ai), **Giga Dusk** (giga.ai), **Cloudstudio**, **Butter** (butter.us) and **Clay** (clay.com). Switch from the palette button next to "Dashboard" or from the toolbar popup. Every theme also restyles HUJI's login page (CSS only) and the scrollbars.
 - **Upcoming events, split.** Things you already submitted or finished move into a collapsible **Done / submitted, still editable** section, auto-ticked, with an "Edit submission" / "Review" link. You can also tick or untick by hand.
 - **My to-dos.** A personal to-do block with due dates, a Completed section, drag to reorder, and sync across your Chrome profiles.
-- **Shortcuts.** Link chips on the same line as "Dashboard". Paste a URL and the name fills itself in; hover a chip for a preview card.
+- **Header messages.** The "Dashboard" heading is replaced by a random funny line in one of 9 voices (tough love, hype, wholesome, sarcastic, stoic, chaotic, dramatic, dad jokes, mom). Some lines use your live deadlines. Click it to shuffle; pick a voice in the theme picker.
+- **Backgrounds.** Give any course card its own color, gradient, pattern or image, and tint any dashboard block.
+- **Shortcuts.** Link chips on the same line as the header message. Paste a URL and the name fills itself in; hover a chip for a preview card.
 - **Confetti.** Fires every time you submit an assignment, finish a quiz or post in a forum, in each theme's own style.
-- **Deadline Dash.** A tiny arcade game (gamepad button). Click the falling assignments before the deadline line. Your high score is always saved.
+- **Deadline Dash.** A tiny arcade game in the Arcade break card. Click the falling assignments before the deadline line. Your high score is always saved.
 
 | Quiet Focus | Night Operator |
 |---|---|

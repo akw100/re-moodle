@@ -5,6 +5,8 @@
 <title>Re-Moodle</title>
 <!-- The theme tiles are the same component as the in-page picker (base.css THEME PICKER section, NM.themeTiles in core.js). -->
 <link rel="stylesheet" href="../src/base.css">
+<!-- The voice select is shared with the in-page picker too (motd.css ".nm-voice" section). -->
+<link rel="stylesheet" href="../src/features/motd.css">
 <style>
   :root {
     color-scheme: light dark;
@@ -43,6 +45,7 @@
     margin: 10px 10px 12px; padding: 10px 12px;
     background: var(--nm-surface); border: 1px solid var(--nm-border); border-radius: 12px; cursor: pointer;
   }
+  .row.voice { cursor: default; }
   .row b { display: block; font-size: 13px; font-weight: 600; }
   .row small { display: block; margin-top: 1px; font-size: 11.5px; color: var(--nm-text-muted); }
   .switch {
@@ -71,11 +74,16 @@
     <h2 id="themes-label">Theme</h2>
     <div class="nm-theme-grid" id="themes" role="radiogroup" aria-labelledby="themes-label"></div>
   </section>
+  <div class="row voice">
+    <label for="voice"><b>Header voice</b><small>Who talks to you on the dashboard</small></label>
+    <span class="nm-voice-field"><select id="voice" class="nm-voice-select"></select></span>
+  </div>
   <label class="row" for="motion">
     <span><b>Animations &amp; confetti</b><small>Turn off for a still, quiet Moodle</small></span>
     <input type="checkbox" class="switch" id="motion" role="switch">
   </label>
   <script src="../src/core.js"></script>
+  <script src="../src/features/motd.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -47,13 +47,12 @@ try {
     assert.equal(await page.locator('#nm-block-game .nm-game-play').count(), 1, 'block with Play button');
     const order = await page.evaluate(() => {
       const b = document.querySelector('#nm-block-game');
-      const btn = document.querySelector('.nm-header-slot .nm-game-btn');
-      return {topRow: b?.parentElement?.id === 'nm-top-row' && b.previousElementSibling?.id === 'nm-block-todo', btnBeforeTheme: btn?.nextElementSibling?.classList.contains('nm-theme-wrap')};
+      return {topRow: b?.parentElement?.id === 'nm-top-row' && b.previousElementSibling?.id === 'nm-block-todo', headerBtn: !!document.querySelector('.nm-game-btn')};
     });
     assert.ok(order.topRow, 'block sits in the top row, after the to-dos');
-    assert.ok(order.btnBeforeTheme, 'header 🎮 button sits right before .nm-theme-wrap');
+    assert.ok(!order.headerBtn, 'no gamepad button in the header');
     const bestShown = await page.locator('#nm-block-game [data-nm-game-best]').textContent();
-    ok(`block + header button exist (card shows high score ${bestShown})`);
+    ok(`block exists, no header button (card shows high score ${bestShown})`);
     await page.locator('#nm-block-game').screenshot({path: join(OUT, `game-${theme}-block.png`)});
 
     // Open
@@ -124,13 +123,6 @@ try {
     await ov(page).waitFor({state: 'hidden'});
     assert.ok(await page.evaluate(() => document.activeElement?.classList.contains('nm-game-play')), 'focus restored to Play');
     ok('Play again restarts at 0; Esc closes the overlay and restores focus');
-
-    // Header button also opens it
-    await page.locator('.nm-game-btn').click();
-    await ov(page).waitFor({state: 'visible'});
-    await page.keyboard.press('Escape');
-    await ov(page).waitFor({state: 'hidden'});
-    ok('🎮 header button opens it too');
     await page.close();
   }
   console.log('\nPASS game.e2e');

@@ -223,7 +223,7 @@ for (const theme of ['off', 'quiet-focus', 'campus-pop']) {
   await page.waitForTimeout(300);
   const rtlMenu = await page.evaluate(() => {
     const m = document.querySelector('.nm-sc-menu').getBoundingClientRect(), c = document.querySelector('[data-id=s2]').getBoundingClientRect();
-    return {menuRight: Math.round(m.right), chipCenter: Math.round(c.left + c.width / 2), first: document.querySelector('.nm-sc-chip').getBoundingClientRect().left > innerWidth / 2};
+    return {menuRight: Math.round(m.right), chipCenter: Math.round(c.left + c.width / 2), first: (([a, b]) => a.getBoundingClientRect().left > b.getBoundingClientRect().left)(document.querySelectorAll('.nm-sc-chip'))}; // RTL order: the first chip is right of the second
   });
   ok(rtlMenu.first && Math.abs(rtlMenu.menuRight - rtlMenu.chipCenter) <= 2, `RTL: first chip on the right, menu opens leftward from the cursor (${JSON.stringify(rtlMenu)})`);
   await page.screenshot({path: shot('rtl'), clip: {x: 0, y: 40, width: 900, height: 360}});

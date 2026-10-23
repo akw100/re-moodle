@@ -1,7 +1,9 @@
 // Toolbar popup: the same grouped theme tiles as the in-page picker (NM.themeTiles / NM.tileStep from src/core.js),
-// plus the motion switch.
+// plus the header-voice select (NM.VOICES from src/features/motd.js) and the motion switch.
 const box = document.getElementById('themes');
 const motion = document.getElementById('motion');
+const voice = document.getElementById('voice');
+voice.append(...NM.VOICES.map(v => NM.el('option', {value: v.id}, v.name)));
 document.getElementById('mark').append(NM.icon('palette'));
 
 const {nodes, tiles} = NM.themeTiles('nm-pg');
@@ -40,9 +42,14 @@ box.addEventListener('keydown', e => {
   tiles[j].focus();
 });
 
-chrome.storage.sync.get({theme: 'off', motion: 'on'}).then(s => {
+chrome.storage.sync.get({theme: 'off', motion: 'on', voice: 'mixed'}).then(s => {
   mark(s.theme);
   motion.checked = s.motion !== 'off';
+  voice.value = s.voice || 'mixed';
 });
+voice.addEventListener('change', () => chrome.storage.sync.set({voice: voice.value}));
 motion.addEventListener('change', () => chrome.storage.sync.set({motion: motion.checked ? 'on' : 'off'}));
-chrome.storage.onChanged.addListener(ch => { if (ch.theme) mark(ch.theme.newValue); });
+chrome.storage.onChanged.addListener(ch => {
+  if (ch.theme) mark(ch.theme.newValue);
+  if (ch.voice) voice.value = ch.voice.newValue || 'mixed';
+});

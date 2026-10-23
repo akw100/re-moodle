@@ -161,11 +161,16 @@ html[data-nm-motion="off"] :is(.nm-theme-tile, .nm-theme-prev) { transition: non
 
 /* Our blocks: one row above Moodle's block grid (to-dos wide, the arcade a compact tile).
    It copies HUJI's dashboard region (osiris, >=768px): 6 equal columns, a .5rem gap, 1rem of space above the first
-   block, blocks stretched to the row height. The to-dos take 4 columns and the arcade 2 (5 + 1 from 1400px), so both
+   block, blocks stretched to the row height (so the arcade is always exactly as tall as the to-dos; game.css lays it out to grow). The to-dos take 4 columns and the arcade 2 (5 + 1 from 1400px), so both
    cards' edges sit on the same grid lines as HUJI's blocks, and the gap down to HUJI's first block is the same .5rem
    (the region's own 1rem top padding minus .5rem). Below 768px HUJI stacks blocks 1rem apart, and so do we. */
 .nm-top-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-block: .75rem 1rem; align-items: stretch; }
 .nm-top-row > .nm-block { margin: 0 !important; min-inline-size: 0; }
+/* The arcade fills its grid area whatever osiris or a theme does to block heights: align-self: stretch plus an explicit
+   height. `stretch` (and the -webkit-fill-available fallback before it) is 100% of the area minus the block's own
+   margins, so a theme that moves the card into its own grid with a margin below it doesn't overflow into the next block;
+   browsers without either keyword keep height: 100%. */
+#nm-top-row > .nm-block-game { align-self: stretch; box-sizing: border-box; height: 100%; height: -webkit-fill-available; height: stretch; }
 @media (min-width: 768px) {
   .nm-top-row { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-block: 1rem -.5rem; }
   .nm-top-row > .nm-block { grid-column: span 2; }
@@ -176,8 +181,6 @@ html[data-nm-motion="off"] :is(.nm-theme-tile, .nm-theme-prev) { transition: non
 @media (min-width: 1400px) {
   .nm-top-row > .nm-block { grid-column: span 1; }
   .nm-top-row > .nm-block-todo { grid-column: span 5; }
-  /* The narrow arcade tile sizes to its content instead of stretching to the to-do list's height (no empty middle). */
-  .nm-top-row > .nm-block-game { align-self: start; }
 }
 
 /* Phones: HUJI stacks its dashboard blocks in DOM order (#block-region-content is plain block flow below 768px), which
@@ -224,3 +227,177 @@ html[data-nm-theme] :is(.nm-sc-list, .drawer, .drawer .drawercontent, .dropdown-
 }
 html[data-nm-theme] ::selection { background: color-mix(in srgb, var(--nm-accent) 30%, transparent); color: var(--nm-text); }
 /* ==== END SCROLLBARS + SELECTION ==== */
+
+/* ==== LINKS: a drawn anchor glyph instead of underlines (every theme) ====
+   Navigational and list links (course, activity, section and event names, Recently accessed, Timeline, block footer
+   links such as "Go to calendar…", breadcrumbs, card titles) carry no underline. On :hover and :focus-visible a small
+   arrow-up-right glyph (an SVG mask painted in currentColor) fades and slides in after the text. Links inside running
+   prose keep an underline, because a link in body text needs a cue other than color.
+   Both rules carry an ID-weight :not(#nm-boost) plus !important, so they beat osiris and every theme file; themes
+   tune the glyph through the hooks below and should drop their own underline rules for these links.
+     --nm-link-anchor-icon   mask image (default: arrow-up-right; --nm-link-anchor-chain is a chain-link alternative)
+     --nm-link-anchor-size   glyph size (.8em)       --nm-link-anchor-gap  space before it (.25em)
+     --nm-link-anchor-color  glyph paint (currentColor)
+   Space for the glyph is always reserved (it is only invisible at rest), so showing it never reflows the line.
+   Links that truncate with an ellipsis (.text-truncate, Recently accessed titles) get it in reserved end padding
+   instead, so it stays visible after the ellipsis. */
+html[data-nm-theme] {
+  --nm-link-anchor-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8.5 7H17v8.5'/%3E%3C/svg%3E");
+  --nm-link-anchor-chain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13.5a4.5 4.5 0 0 0 6.4.4l2.6-2.6a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2'/%3E%3Cpath d='M14 10.5a4.5 4.5 0 0 0-6.4-.4L5 12.7a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2'/%3E%3C/svg%3E");
+  --nm-link-anchor-size: .8em;
+  --nm-link-anchor-gap: .25em;
+  --nm-link-anchor-color: currentColor;
+}
+/* Prose links: underlined, a quiet hairline that firms up on hover. */
+html[data-nm-theme]:not(#nm-boost) :is(.activity-description, .no-overflow, .box.generalbox, .post-content-container, .forumpost .content, .summary, .summarytext, .course-description)
+  a[href]:not(.btn, [role="button"], .nm-btn) {
+  text-decoration-line: underline !important;
+  text-decoration-thickness: max(1px, .06em) !important;
+  text-underline-offset: .18em !important;
+  text-decoration-color: color-mix(in srgb, currentColor 50%, transparent) !important;
+}
+html[data-nm-theme]:not(#nm-boost) :is(.activity-description, .no-overflow, .box.generalbox, .post-content-container, .forumpost .content, .summary, .summarytext, .course-description)
+  a[href]:not(.btn, [role="button"], .nm-btn):is(:hover, :focus-visible) { text-decoration-color: currentColor !important; }
+
+/* Navigational and list links: no underline on the link or anything inside it. */
+html[data-nm-theme]:not(#nm-boost) :is(
+  a.coursename, .coursename a, .activityname a, .sectionname a,
+  [data-region="event-item"] a[data-action="view-event"], .block_timeline .event-name a, [data-region="event-list-item"] .event-name a,
+  .block_recentlyaccesseditems [role="listitem"] > a,
+  .block .footer a, a[data-region="footer-link"], .breadcrumb-item a, .card-title a, a.card-title
+),
+html[data-nm-theme]:not(#nm-boost) :is(
+  a.coursename, .coursename a, .activityname a, .sectionname a,
+  [data-region="event-item"] a[data-action="view-event"], .block_timeline .event-name a, [data-region="event-list-item"] .event-name a,
+  .block_recentlyaccesseditems [role="listitem"] > a,
+  .block .footer a, a[data-region="footer-link"], .breadcrumb-item a, .card-title a, a.card-title
+) * { text-decoration: none !important; }
+
+html[data-nm-theme] {
+  --nm-link-anchor-flip: 1;
+  --nm-link-anchor-motion: opacity .16s ease-out, translate .2s cubic-bezier(.2, .8, .2, 1);
+}
+html[data-nm-theme][dir="rtl"] { --nm-link-anchor-flip: -1; }
+html[data-nm-theme][data-nm-motion="off"] { --nm-link-anchor-motion: none; }
+@media (prefers-reduced-motion: reduce) { html[data-nm-theme] { --nm-link-anchor-motion: none; } }
+
+/* Truncating links reserve end padding and hug their text, so the glyph sits right after it (or after the ellipsis). */
+html[data-nm-theme]:not(#nm-boost) :is(
+  [data-region="event-item"] a[data-action="view-event"].text-truncate,
+  .block_recentlyaccesseditems [role="listitem"] > a :is(h4, h5, h6, .h6),
+  :is(.block_timeline, [data-region="event-list-item"]) .event-name:has(> a)
+) {
+  position: relative; inline-size: fit-content; max-inline-size: 100%; min-inline-size: 0;
+  padding-inline-end: calc(var(--nm-link-anchor-size) + var(--nm-link-anchor-gap)) !important;
+}
+
+/* The glyph: inline after the text... */
+html[data-nm-theme]:not(#nm-boost) :is(
+  a.coursename, .coursename a, .activityname a, .sectionname a, [data-region="event-item"] a[data-action="view-event"],
+  .block .footer a, a[data-region="footer-link"], .breadcrumb-item a, .card-title a, a.card-title
+):not(.stretched-link, .text-truncate, :has(.multiline))::after,
+/* (a course name whose text sits in a block .multiline span gets it after that text; an activity link that is a
+   .stretched-link keeps its ::after as the row's click overlay, so the glyph goes after .instancename) */
+html[data-nm-theme]:not(#nm-boost) :is(a.coursename, .coursename a) .multiline > :not(.visually-hidden, .sr-only):last-child::after,
+html[data-nm-theme]:not(#nm-boost) .activityname a.stretched-link .instancename::after,
+/* ...or pinned in that reserved padding. */
+html[data-nm-theme]:not(#nm-boost) :is(
+  [data-region="event-item"] a[data-action="view-event"].text-truncate,
+  .block_recentlyaccesseditems [role="listitem"] > a :is(h4, h5, h6, .h6),
+  :is(.block_timeline, [data-region="event-list-item"]) .event-name:has(> a)
+)::after {
+  content: "" !important; display: inline-block !important; flex: none; position: static !important;
+  inline-size: var(--nm-link-anchor-size) !important; block-size: var(--nm-link-anchor-size) !important;
+  margin: 0 0 0 0 !important; margin-inline-start: var(--nm-link-anchor-gap) !important; padding: 0 !important; border: 0 !important;
+  vertical-align: -.02em;
+  background: var(--nm-link-anchor-color) !important; box-shadow: none !important;
+  -webkit-mask: var(--nm-link-anchor-icon) center / contain no-repeat; mask: var(--nm-link-anchor-icon) center / contain no-repeat;
+  opacity: 0; transform: none !important; scale: var(--nm-link-anchor-flip) 1;
+  translate: calc(-.18em * var(--nm-link-anchor-flip)) .18em;
+  transition: var(--nm-link-anchor-motion) !important;
+  pointer-events: none;
+}
+html[data-nm-theme]:not(#nm-boost) :is(
+  [data-region="event-item"] a[data-action="view-event"].text-truncate,
+  .block_recentlyaccesseditems [role="listitem"] > a :is(h4, h5, h6, .h6),
+  :is(.block_timeline, [data-region="event-list-item"]) .event-name:has(> a)
+)::after {
+  position: absolute !important; inset-inline-end: 0; inset-block-start: auto; inset-block-end: calc((1lh - var(--nm-link-anchor-size)) / 2);
+  margin: 0 !important;
+}
+/* Shown on hover and keyboard focus. */
+html[data-nm-theme]:not(#nm-boost) :is(
+  a.coursename, .coursename a, .activityname a, .sectionname a, [data-region="event-item"] a[data-action="view-event"],
+  .block .footer a, a[data-region="footer-link"], .breadcrumb-item a, .card-title a, a.card-title
+):is(:hover, :focus-visible)::after,
+html[data-nm-theme]:not(#nm-boost) :is(a.coursename, .coursename a):is(:hover, :focus-visible) .multiline > :not(.visually-hidden, .sr-only):last-child::after,
+html[data-nm-theme]:not(#nm-boost) .activityname a.stretched-link:is(:hover, :focus-visible) .instancename::after,
+html[data-nm-theme]:not(#nm-boost) .block_recentlyaccesseditems [role="listitem"] > a:is(:hover, :focus-visible) :is(h4, h5, h6, .h6)::after,
+html[data-nm-theme]:not(#nm-boost) .event-name:has(> a:is(:hover, :focus-visible))::after { opacity: 1; translate: 0 0; }
+/* osiris paints a clicked .aalink a bright teal box (background + box-shadow on plain :focus). Keyboard focus gets a ring
+   in the accent instead; a mouse click leaves nothing behind. */
+html[data-nm-theme] :is(a.coursename, .coursename a, .activityname a, .sectionname a, [data-region="event-item"] a[data-action="view-event"],
+  .event-name a, .block .footer a, a[data-region="footer-link"], .breadcrumb-item a, .card-title a, a.card-title, .block_recentlyaccesseditems [role="listitem"] > a):focus {
+  background-color: transparent; box-shadow: none; outline: none;
+}
+html[data-nm-theme] :is(a.coursename, .coursename a, .activityname a, .sectionname a, [data-region="event-item"] a[data-action="view-event"],
+  .event-name a, .block .footer a, a[data-region="footer-link"], .breadcrumb-item a, .card-title a, a.card-title, .block_recentlyaccesseditems [role="listitem"] > a):focus-visible {
+  outline: 2px solid var(--nm-focus-ring); outline-offset: 2px; border-radius: 2px;
+}
+/* ==== END LINKS ==== */
+
+/* Keyboard focus ring for the links above and the icon buttons below: the accent, pulled 30% toward the text color
+   so it still shows on accent-colored surfaces (e.g. campus-pop's pink section headers). Hook: --nm-focus-ring. */
+html[data-nm-theme] { --nm-focus-ring: color-mix(in oklab, var(--nm-accent) 70%, var(--nm-text)); }
+
+/* ==== ICON BUTTONS: no hover/click box (every theme) ====
+   osiris draws a teal outline on the course-section chevron on hover (.btn-icon.icons-collapse-expand:hover), a teal
+   ring on a clicked [role=button] / .aabtn / .list-group-item-action / drawer toggle (plain :focus), and Bootstrap's
+   .btn:active falls back to a currentColor (teal) border because osiris never sets --bs-btn-active-border-color.
+   Under a theme, hover and click change nothing but what the theme paints (background, color); the resting border is
+   kept on hover/active. Keyboard focus gets a clear ring built from --nm-accent. */
+html[data-nm-theme] :is(.icons-collapse-expand, .btn-icon, a.btn-icon, [data-toggle="collapse"], [data-bs-toggle="collapse"], [data-for="sectiontoggler"],
+  .drawertoggle, .drawer-toggler .btn, [data-toggler="drawers"], .courseindex .courseindex-item, .courseindex-chevron, .courseindex-link, #courseindexdrawercontrols .btn) {
+  --bs-btn-hover-border-color: var(--bs-btn-border-color, transparent);
+  --bs-btn-active-border-color: var(--bs-btn-border-color, transparent);
+  --bs-btn-focus-box-shadow: none;
+}
+html[data-nm-theme]:not(#nm-boost) :is(.icons-collapse-expand, .btn-icon, a.btn-icon, [data-toggle="collapse"], [data-bs-toggle="collapse"], [data-for="sectiontoggler"],
+  .drawertoggle, .drawer-toggler .btn, [data-toggler="drawers"], .courseindex .courseindex-item, .courseindex-chevron, .courseindex-link, #courseindexdrawercontrols .btn
+):is(:hover, :active, :focus:not(:focus-visible), .focus:not(:focus-visible)) {
+  outline: none !important; box-shadow: none !important;
+}
+html[data-nm-theme]:not(#nm-boost) :is(.icons-collapse-expand, .btn-icon, a.btn-icon, [data-toggle="collapse"], [data-bs-toggle="collapse"], [data-for="sectiontoggler"],
+  .drawertoggle, .drawer-toggler .btn, [data-toggler="drawers"], .courseindex .courseindex-item, .courseindex-chevron, .courseindex-link, #courseindexdrawercontrols .btn
+):focus-visible {
+  outline: 2px solid var(--nm-focus-ring) !important; outline-offset: 2px !important; box-shadow: none !important;
+}
+/* ==== END ICON BUTTONS ==== */
+
+/* ==== RESOURCE PAGE: full-width PDF (every theme) ====
+   mod/resource "embed" pages show the file in object#resourceobject (or an iframe/embed) inside .resourcecontent.resourcepdf.
+   osiris centers the page in a 60%-wide column (body.limitedwidth .main-inner, .header-maxwidth) and Moodle's
+   init_maximised_embed writes pixel width/height inline. Under a theme, the page spans the whole content width and the
+   PDF fills it, as tall as the viewport below the navbar (never under 600px).
+   Hook: --nm-pdf-offset (what to subtract from 100vh; default the navbar height plus 2rem). */
+html[data-nm-theme] { --nm-pdf-offset: calc(var(--navbar-height, 60px) + 2rem); }
+html[data-nm-theme]:not(#nm-boost) body.path-mod-resource:has(.resourcecontent) :is(#topofscroll, #topofscroll > :not(.drawer-toggles), #page-header,
+  .header-maxwidth, #page-content, #region-main-box, #region-main, #region-main > [role="main"]) {
+  max-inline-size: none !important;
+}
+/* #page is a flex column and .main-inner a shrink-to-fit item centered with auto margins: stretch it across instead. */
+html[data-nm-theme]:not(#nm-boost) body.path-mod-resource:has(.resourcecontent) #page.drawers #topofscroll.main-inner {
+  align-self: stretch !important; inline-size: auto !important; min-inline-size: 0 !important; margin-inline: 0 !important;
+}
+html[data-nm-theme] body.path-mod-resource .resourcecontent { display: block; inline-size: 100%; max-inline-size: none; margin: 0; padding: 0; text-align: start; }
+html[data-nm-theme]:not(#nm-boost) body.path-mod-resource .resourcecontent :is(object#resourceobject, object[type="application/pdf"], iframe, embed[type="application/pdf"]) {
+  display: block !important;
+  width: 100% !important; max-width: none !important;
+  height: max(600px, calc(100vh - var(--nm-pdf-offset))) !important;
+  margin: 0 !important;
+  border: var(--nm-border-width) solid var(--nm-border); border-radius: min(var(--nm-radius), 12px);
+  background: var(--nm-surface);
+}
+/* the <embed> fallback nested inside the <object> fills its parent, not the viewport again */
+html[data-nm-theme]:not(#nm-boost) body.path-mod-resource .resourcecontent object embed { height: 100% !important; border: 0; }
+/* ==== END RESOURCE PAGE ==== */

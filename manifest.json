@@ -85,13 +85,17 @@
         "src/features/todo.js",
         "src/features/shortcuts.js",
         "src/features/game.js",
+        "src/features/backgrounds.js",
+        "src/features/motd.js",
         "src/main.js"
       ],
       "css": [
         "src/features/upcoming.css",
         "src/features/todo.css",
         "src/features/shortcuts.css",
-        "src/features/game.css"
+        "src/features/game.css",
+        "src/features/backgrounds.css",
+        "src/features/motd.css"
       ]
     }
   ]

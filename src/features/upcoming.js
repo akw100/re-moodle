@@ -57,7 +57,27 @@ NM.feature('upcoming', () => {
     overrides = O;
     data = {U, A, byId: new Map(U.map(e => [String(e.id), e])), auto: NM.classify(U, A)};
     render();
+    publish();
     await confettiDiff(data.auto);
+  }
+
+  // Tells other features (the header message) how things stand: counts with overrides applied, and the soonest
+  // to-do still ahead. Also kept on NM.upcomingSummary for features that start after the event.
+  function publish() {
+    if (!data) return;
+    const st = NM.classify(data.U, data.A, overrides);
+    const now = Date.now() / 1000;
+    let todo = 0, done = 0, next = null;
+    for (const e of data.U) {
+      const s = st[e.id], t = e.timesort ?? e.timestart;
+      if (s === 'done') done++;
+      if (s !== 'todo') continue;
+      todo++;
+      if (t >= now && (!next || t < next.timesort)) next = {name: e.name, timesort: t};
+    }
+    const detail = {todo, done, next};
+    NM.upcomingSummary = detail;
+    document.dispatchEvent(new CustomEvent('nm:upcoming', {detail}));
   }
 
   // Deterministic diff: ids auto-done now but not at the previous load, minus overrides. First run only stores.
@@ -240,6 +260,7 @@ NM.feature('upcoming', () => {
       await a.finished.catch(() => {});
       overrides = next; render(); a.cancel();
     } else { overrides = next; render(); }
+    publish();
     // The row was rebuilt: keep keyboard focus on its new checkbox, or on the summary if it went into a closed <details>.
     const cb = document.getElementById('nm-up-cb-' + id);
     (cb?.offsetParent ? cb : block()?.querySelector('details.nm-up-done > summary'))?.focus({preventScroll: true});
@@ -247,7 +268,7 @@ NM.feature('upcoming', () => {
   }
 
   // Other tabs / the popup change overrides -> re-render here too.
-  NM.watch('overrides', v => { overrides = v || {}; render(); });
+  NM.watch('overrides', v => { overrides = v || {}; render(); publish(); });
 
   // ---------- dynamic ----------
   let queued = false;

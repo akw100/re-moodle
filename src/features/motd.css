@@ -1,0 +1,74 @@
+/* Header message (src/features/motd.js). Base look only, on tokens; each theme restyles .nm-motd from its own file.
+   Markup, dashboard only, inside #page-header .page-header-headings:
+     h1.nm-motd-h1                      "Dashboard", visually hidden but still the page heading for screen readers
+     p.nm-motd[data-voice][data-kind]
+       button.nm-motd-btn[aria-label="Shuffle message"] > span.nm-motd-text[dir=auto] + span.nm-motd-ico (shuffle glyph)
+       span.nm-motd-live[role=status]   visually hidden; filled only when the user shuffles
+   Voice control (theme picker popover and the toolbar popup):
+     .nm-voice > label.nm-voice-label + span.nm-voice-field > select.nm-voice-select */
+
+#page-header h1.nm-motd-h1, .nm-motd-live {
+  position: absolute !important; inline-size: 1px !important; block-size: 1px !important;
+  margin: -1px !important; padding: 0 !important; border: 0 !important;
+  overflow: hidden !important; clip-path: inset(50%) !important; white-space: nowrap !important;
+}
+
+/* The heading column may shrink now (stock layout keeps it at its content width), so a long line wraps instead of
+   pushing the header slot off the row. */
+#page-header .d-flex:has(> .nm-header-slot) > .me-auto:has(.nm-motd) { flex: 0 1 auto !important; min-inline-size: 0; }
+#page-header .page-header-headings:has(.nm-motd) { min-inline-size: 0; white-space: normal; }
+
+.nm-motd {
+  margin: 0; padding: 0;
+  max-inline-size: 38ch; min-block-size: 1.2em;
+  font-family: var(--nm-heading-font, inherit);
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  font-weight: 650; line-height: 1.2; letter-spacing: -0.01em;
+  color: var(--nm-text);
+  text-align: start; white-space: normal; text-wrap: balance; overflow-wrap: anywhere;
+}
+.nm-motd .nm-motd-btn {
+  appearance: none; display: inline-block; max-inline-size: 100%; margin: 0; padding: 0;
+  background: none; border: 0; border-radius: calc(var(--nm-radius) * .6); box-shadow: none;
+  font: inherit; color: inherit; letter-spacing: inherit; text-align: inherit; text-transform: none;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.nm-motd .nm-motd-btn:focus { outline: none; }
+.nm-motd .nm-motd-btn:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 4px; }
+.nm-motd-ico {
+  display: inline-block; vertical-align: -0.08em; margin-inline-start: .35em;
+  font-size: .62em; color: var(--nm-text-muted); opacity: 0;
+  transition: opacity .15s, rotate .25s cubic-bezier(.3, 1.6, .5, 1);
+}
+.nm-motd-ico svg { display: block; }
+.nm-motd .nm-motd-btn:is(:hover, :focus-visible) .nm-motd-ico { opacity: 1; }
+.nm-motd .nm-motd-btn:active .nm-motd-ico { rotate: 180deg; }
+@media (hover: none) { .nm-motd-ico { opacity: .7; } }
+html[data-nm-motion="off"] .nm-motd-ico { transition: none; }
+@media (prefers-reduced-motion: reduce) { .nm-motd-ico { transition: none; } }
+
+/* ---- voice control ---- */
+.nm-voice {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 0 10px 12px; padding: 10px 6px 0;
+  border-block-start: 1px solid var(--nm-border);
+}
+.nm-voice-label { font-size: 13px; font-weight: 600; line-height: 1.3; color: var(--nm-text); }
+.nm-voice-field { position: relative; display: inline-flex; flex: none; color: var(--nm-text); }
+.nm-voice-field::after {
+  content: ""; position: absolute; inset-block: 0; inset-inline-end: 10px; inline-size: 10px; margin-block: auto; block-size: 10px;
+  background: currentColor; pointer-events: none;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.nm-voice-field .nm-voice-select {
+  appearance: none; -webkit-appearance: none; margin: 0;
+  min-inline-size: 9.5rem; block-size: auto; padding-block: 6px; padding-inline: 10px 30px;
+  font: inherit; font-family: var(--nm-font, inherit); font-size: 13px; line-height: 1.3; color: var(--nm-text);
+  background: var(--nm-surface-2); background-image: none;
+  border: var(--nm-border-width, 1px) solid var(--nm-border); border-radius: var(--nm-radius); box-shadow: none;
+  cursor: pointer;
+}
+.nm-voice-field .nm-voice-select:hover { border-color: color-mix(in srgb, var(--nm-border), var(--nm-text-muted) 45%); }
+.nm-voice-field .nm-voice-select:focus { outline: none; }
+.nm-voice-field .nm-voice-select:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-voice-select option { color: initial; background: initial; }

@@ -4,7 +4,8 @@
 //   const page = await h.open('/my/');            // -> fixtures/dashboard.html
 //   await page.screenshot({path: 'x.png'}); await h.close();
 // Routing: /my/ -> dashboard.html; /lib/ajax/service.php -> fixtures/service-mock.json by methodname (override with `mock`);
-// /mod/<mod>/<file>.php[?action=<a>] -> fixtures/<mod>-<file>[-<a>].html; other Moodle URLs -> 404. Non-Moodle URLs go to the network.
+// /mod/<mod>/<file>.php[?action=<a>] -> fixtures/<mod>-<file>[-<a>].html (also in live mode, for pages with no live capture,
+// e.g. /mod/resource/view.php -> resource-view.html); /pluginfile.php/...pdf -> fixtures/sample.pdf; other Moodle URLs -> 404. Non-Moodle URLs go to the network.
 import {chromium} from 'playwright';
 import {readFileSync, existsSync, mkdtempSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -49,6 +50,8 @@ export async function launch({storage = {}, local = {}, mock = {}, live = false,
         : typeof data === 'function' ? [{error: false, data: data(req.args)}] : [{error: false, data}];
       return route.fulfill({contentType: 'application/json', body: JSON.stringify(body)});
     }
+    // Files embedded on resource pages (e.g. /pluginfile.php/1/mod_resource/content/1/x.pdf) -> one tiny real PDF.
+    if (/^\/pluginfile\.php\/.+\.pdf$/i.test(path)) return route.fulfill({contentType: 'application/pdf', body: readFileSync(fx('sample.pdf'))});
     const m = path.match(/^\/mod\/(\w+)\/(\w+)\.php$/);
     const action = url.searchParams.get('action');
     const file = m && [action && `${m[1]}-${m[2]}-${action}.html`, `${m[1]}-${m[2]}.html`].find(f => f && existsSync(fx(f)));

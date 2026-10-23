@@ -52,7 +52,7 @@
       popover: 'manual', hidden: true},
     el('div', {class: 'nm-theme-pop-head'},
       el('h2', {id: 'nm-theme-pop-title', class: 'nm-theme-pop-title'}, 'Theme')),
-    grid);
+    grid, voiceControl());
     const btn = el('button', {type: 'button', class: 'nm-icon-btn nm-theme-btn', title: 'Choose theme', 'aria-label': 'Choose theme',
       'aria-haspopup': 'dialog', 'aria-expanded': 'false', 'aria-controls': 'nm-theme-pop'}, NM.icon('palette'));
     slot.append(el('div', {class: 'nm-theme-wrap'}, btn));
@@ -137,5 +137,18 @@
 
     NM.watch('theme', id => { mark(id); if (isOpen()) requestAnimationFrame(place); });
     mark();
+  }
+
+  // "Header voice" under the tiles: which voice the dashboard's header message speaks in (features/motd.js).
+  function voiceControl() {
+    if (!NM.VOICES) return null;
+    const {el} = NM;
+    const sel = el('select', {id: 'nm-voice-select', class: 'nm-voice-select'}, NM.VOICES.map(v => el('option', {value: v.id}, v.name)));
+    NM.get('voice', 'mixed').then(v => { sel.value = v || 'mixed'; });
+    sel.addEventListener('change', () => NM.set('voice', sel.value));
+    NM.watch('voice', v => { sel.value = v || 'mixed'; });
+    return el('div', {class: 'nm-voice'},
+      el('label', {class: 'nm-voice-label', for: 'nm-voice-select'}, 'Header voice'),
+      el('span', {class: 'nm-voice-field'}, sel));
   }
 })();
