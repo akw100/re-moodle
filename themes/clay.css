@@ -1631,3 +1631,26 @@ html[data-nm-theme="clay"][data-nm-motion="off"] *::after {
     transition: none !important;
   }
 }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="clay"] {
+  --nm-cat-1: #e1edfb;
+  --nm-cat-2: #fce4df;
+  --nm-cat-3: #e8e0fa;
+  --nm-cat-4: #ddf0e4;
+  --nm-cat-5: #f9edce;
+  --nm-cat-6: #f7dfee;
+  --nm-cat-7: #dcf0f2;
+  --nm-cat-8: #e9e9ed;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="clay"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
+}

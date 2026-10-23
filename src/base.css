@@ -456,3 +456,22 @@ html[data-nm-theme] .block_myoverview [data-region="filter"] .btn.dropdown-toggl
 #nm-top-row:not(#nm-x) > .nm-block { display: flex !important; flex-direction: column !important; align-self: stretch !important; }
 #nm-top-row:not(#nm-x) > .nm-block > .card-body { flex: 1 1 auto !important; display: flex !important; flex-direction: column !important; min-block-size: 0; }
 #nm-top-row:not(#nm-x) > .nm-block > .card-body > .nm-block-content { flex: 1 1 auto !important; }
+
+/* ===== Persistent course category colors (theme-overridable) ===== */
+html[data-nm-theme] {
+  --nm-cat-1: #eee5ff;
+  --nm-cat-2: #dcecff;
+  --nm-cat-3: #fce1ee;
+  --nm-cat-4: #e1f2e8;
+  --nm-cat-5: #fff0cc;
+  --nm-cat-6: #ffe5d8;
+  --nm-cat-7: #def2f4;
+  --nm-cat-8: #e9e7ee;
+  --nm-cat-ink: #202124;
+}
+:where(html[data-nm-theme]:not([data-nm-theme="off"]) .categoryname[data-nm-cat-slot]) {
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink);
+  padding: .15rem .4rem;
+  border-radius: 3px;
+}

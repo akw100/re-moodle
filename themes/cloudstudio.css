@@ -1572,3 +1572,26 @@ html[data-nm-theme="cloudstudio"] .nm-bg-pop { background: var(--cs-ice); border
     min-block-size: 52px; padding: .5rem .35rem; white-space: normal; line-height: 1.25;
   }
 }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="cloudstudio"] {
+  --nm-cat-1: #c7e9f2;
+  --nm-cat-2: #f4e4bf;
+  --nm-cat-3: #d9e8d0;
+  --nm-cat-4: #e9dcee;
+  --nm-cat-5: #f4d7d0;
+  --nm-cat-6: #cde9e0;
+  --nm-cat-7: #d9e2fa;
+  --nm-cat-8: #e6e5df;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="cloudstudio"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
+}

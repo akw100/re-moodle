@@ -605,12 +605,12 @@ html[data-nm-theme="butter"] {
     white-space: normal;
     margin-block-end: .55rem !important;
   }
-  /* category = a soft periwinkle pill, always readable (round-1 bug #8) */
-  & :is(.course-card, .dashboard-card) .coursename + .text-muted {
+  /* Category pill follows the persistent department color. */
+  & :is(.course-card, .dashboard-card) .categoryname {
     display: inline-flex !important;
     padding: .2rem .65rem;
     border-radius: 999px;
-    background: #dfe4ff;
+    background: var(--nm-cat-color);
     color: #2b2f5c !important;
     font-size: .75rem;
     font-weight: 600;
@@ -1344,4 +1344,27 @@ html[data-nm-theme="butter"] {
 /* The resource viewer uses the full content width, including on phones. */
 html[data-nm-theme="butter"] body.path-mod-resource #region-main {
   padding-inline: 0 !important;
+}
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="butter"] {
+  --nm-cat-1: #fffd63;
+  --nm-cat-2: #cdd5ff;
+  --nm-cat-3: #b1f5df;
+  --nm-cat-4: #ffd5a2;
+  --nm-cat-5: #ffbcbc;
+  --nm-cat-6: #e9d6ff;
+  --nm-cat-7: #c5efff;
+  --nm-cat-8: #f4dfec;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="butter"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .2rem .65rem;
+  border-radius: 999px;
+  display: inline-flex;
+  max-inline-size: 100%;
 }

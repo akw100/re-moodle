@@ -674,10 +674,10 @@ html[data-nm-theme="campus-pop"] {
     padding: 0 8px 8px 0;
   }
   & .card-grid > * { width: auto !important; max-width: none !important; padding: 0 !important; margin: 0 !important; flex: none; display: flex; }
-  & .card-grid > :nth-child(4n+1) { --pop-card: var(--pop-pink); --pop-tilt: -2deg; }
-  & .card-grid > :nth-child(4n+2) { --pop-card: var(--pop-yellow); --pop-tilt: 2deg; --pop-hl: #FFF; }
-  & .card-grid > :nth-child(4n+3) { --pop-card: var(--pop-teal); --pop-tilt: -1.5deg; }
-  & .card-grid > :nth-child(4n+4) { --pop-card: var(--pop-lilac); --pop-tilt: 1.5deg; }
+  & .card-grid > :nth-child(4n+1) { --pop-tilt: -2deg; }
+  & .card-grid > :nth-child(4n+2) { --pop-tilt: 2deg; --pop-hl: #FFF; }
+  & .card-grid > :nth-child(4n+3) { --pop-tilt: -1.5deg; }
+  & .card-grid > :nth-child(4n+4) { --pop-tilt: 1.5deg; }
   & :is(.course-card, .dashboard-card) {
     position: relative;
     inline-size: 100%;
@@ -737,7 +737,7 @@ html[data-nm-theme="campus-pop"] {
     display: inline-block;
     margin-block: .55rem .1rem;
     padding: .15rem .5rem;
-    background: var(--pop-card, var(--pop-pink));
+    background: var(--nm-cat-color);
     color: #000 !important;
     border: 1px solid #000;
     border-radius: 3px;
@@ -1590,3 +1590,22 @@ html[data-nm-theme="campus-pop"] {
 
 html[data-nm-theme="campus-pop"] .nm-bg-pop { border: 1px solid #000; border-radius: 4px; }
 html[data-nm-theme="campus-pop"] .nm-bg-btn { border-radius: 4px; }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="campus-pop"] {
+  --nm-cat-1: #ff90e8;
+  --nm-cat-2: #ffc900;
+  --nm-cat-3: #90e8d0;
+  --nm-cat-4: #c4b5fd;
+  --nm-cat-5: #ffb38a;
+  --nm-cat-6: #a9d8ff;
+  --nm-cat-7: #bfe580;
+  --nm-cat-8: #f4b8ca;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="campus-pop"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+}

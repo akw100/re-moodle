@@ -1367,3 +1367,26 @@ html[data-nm-theme="quiet-focus"] {
 @keyframes qf-pop { from { opacity: 0; transform: translateY(-4px); } }
 @keyframes qf-fill { 0% { transform: scale(1); } 40% { transform: scale(.86); } 100% { transform: scale(1); } }
 @keyframes qf-tick { from { clip-path: inset(0 100% 0 0); opacity: 1; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="quiet-focus"] {
+  --nm-cat-1: #f2dae5;
+  --nm-cat-2: #dfe8ff;
+  --nm-cat-3: #e0efdf;
+  --nm-cat-4: #f8e8d2;
+  --nm-cat-5: #ebdfff;
+  --nm-cat-6: #d9edf2;
+  --nm-cat-7: #f6dfea;
+  --nm-cat-8: #e9e9e9;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="quiet-focus"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
+}

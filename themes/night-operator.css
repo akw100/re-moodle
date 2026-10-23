@@ -1538,3 +1538,26 @@ html[data-nm-theme="night-operator"] {
     & #page-my-index.pagelayout-mydashboard .block_myoverview > .card-body { padding: 18px !important; }
   }
 }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="night-operator"] {
+  --nm-cat-1: #46344d;
+  --nm-cat-2: #303f58;
+  --nm-cat-3: #294b43;
+  --nm-cat-4: #51452d;
+  --nm-cat-5: #44395d;
+  --nm-cat-6: #523738;
+  --nm-cat-7: #2c474f;
+  --nm-cat-8: #41434b;
+  --nm-cat-ink: #f5f3f7;
+}
+html[data-nm-theme="night-operator"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
+}

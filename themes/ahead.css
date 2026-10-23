@@ -583,7 +583,7 @@ html[data-nm-theme="ahead"] body#page-my-index .block_myoverview .card-grid .car
 html[data-nm-theme="ahead"] .card-grid .card.course-card :is(.coursename, .coursename a, .multiline) { color: #fff !important; }
 html[data-nm-theme="ahead"] .card-grid .card.course-card .coursename { font-size: 1.125rem; line-height: 1.3; margin-block: .15rem .35rem !important; }
 html[data-nm-theme="ahead"] .card-grid .card.course-card :is(.coursename, .multiline) { word-break: normal; overflow-wrap: normal; hyphens: manual; }
-html[data-nm-theme="ahead"] .card-grid .card.course-card :is(.text-muted, .categoryname, .sr-only + span) { color: rgba(255, 255, 255, .92) !important; }
+html[data-nm-theme="ahead"] .card-grid .card.course-card :is(.text-muted, .sr-only + span):not(.categoryname) { color: rgba(255, 255, 255, .92) !important; }
 html[data-nm-theme="ahead"] .card-grid .card.course-card :is(.card-footer, .dashboard-card-footer) {
   position: absolute; inset-block-start: .6rem; inset-inline-end: .5rem; padding: 0 !important;
 }
@@ -1183,4 +1183,27 @@ html[data-nm-theme="ahead"][data-nm-motion="off"] :is(.card.course-card, .card.d
     transition: none !important;
   }
   html[data-nm-theme="ahead"] :is(.card.course-card, .card.dashboard-card, .event[data-region="event-item"], [data-region="recentlyaccesseditems-view"] .card, .nm-icon-btn):hover { transform: none; }
+}
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="ahead"] {
+  --nm-cat-1: #e8dfff;
+  --nm-cat-2: #f7d9ef;
+  --nm-cat-3: #d5eee8;
+  --nm-cat-4: #d9edfc;
+  --nm-cat-5: #fbe9cc;
+  --nm-cat-6: #f9dfe0;
+  --nm-cat-7: #e8efcc;
+  --nm-cat-8: #e6e1f0;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="ahead"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
 }

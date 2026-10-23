@@ -1117,3 +1117,26 @@ html[data-nm-theme="daily-quest"] :is(.no-overflow, .description, .summary) p a 
 
 html[data-nm-theme="daily-quest"] #nm-top-row > .block { margin-block-end: 0 !important; }
 html[data-nm-theme="daily-quest"] .nm-game-stat-value { color: var(--dq-bee-ink); }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="daily-quest"] {
+  --nm-cat-1: #89e219;
+  --nm-cat-2: #84d8ff;
+  --nm-cat-3: #ffc800;
+  --nm-cat-4: #cbb0ef;
+  --nm-cat-5: #ffaf86;
+  --nm-cat-6: #ffaaa5;
+  --nm-cat-7: #a5eddb;
+  --nm-cat-8: #e5e5e5;
+  --nm-cat-ink: #202124;
+}
+html[data-nm-theme="daily-quest"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
+}

@@ -87,6 +87,7 @@
         "src/features/game.js",
         "src/features/backgrounds.js",
         "src/features/motd.js",
+        "src/features/categories.js",
         "src/main.js"
       ],
       "css": [

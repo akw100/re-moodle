@@ -1459,3 +1459,26 @@ html[data-nm-theme="giga"] {
   & .nm-bg-btn { border-color: transparent; border-radius: 50%; }
   & .nm-bg-img { filter: none !important; }
 }
+
+/* Persistent category palette: slot identity is shared across themes. */
+html[data-nm-theme="giga"] {
+  --nm-cat-1: #494039;
+  --nm-cat-2: #38454b;
+  --nm-cat-3: #444936;
+  --nm-cat-4: #4c3943;
+  --nm-cat-5: #3f3d52;
+  --nm-cat-6: #4f432e;
+  --nm-cat-7: #344945;
+  --nm-cat-8: #434343;
+  --nm-cat-ink: #f5f3f7;
+}
+html[data-nm-theme="giga"] [data-region="courses-view"] :is(.course-card, .dashboard-card, [data-region="course-content"]) .categoryname[data-nm-cat-slot] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--nm-cat-color);
+  color: var(--nm-cat-ink) !important;
+  padding: .15rem .4rem;
+  border-radius: 3px;
+  display: inline-flex;
+  max-inline-size: 100%;
+}
