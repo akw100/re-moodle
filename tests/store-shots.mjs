@@ -41,20 +41,7 @@ for (const [theme, message] of Object.entries(SHOTS)) {
   console.log('shot', theme);
 }
 
-// Flatten to 24-bit RGB (the store rejects alpha) and rebuild the marquee from the Campus Pop shot.
-execFileSync('python3', ['-c', `
-from PIL import Image, ImageDraw, ImageFont
-import glob
-for f in glob.glob('docs/store/screenshot-*.png'):
-    Image.open(f).convert('RGB').save(f)
-W,H=1400,560
-m=Image.new('RGB',(W,H),(255,207,51)); d=ImageDraw.Draw(m)
-shot=Image.open('docs/store/screenshot-campus-pop.png').convert('RGB').resize((760,475),Image.LANCZOS)
-m.paste(Image.new('RGB',(772,487),(20,20,28)),(610,62)); m.paste(shot,(604,56))
-logo=Image.open('icons/icon128.png').convert('RGBA').resize((112,112),Image.LANCZOS); m.paste(logo,(70,120),logo)
-f1=ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc',76); f2=ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc',30)
-d.text((70,262),'Re-Moodle',font=f1,fill=(20,20,28)); d.text((72,356),'Your Moodle, remodeled.',font=f2,fill=(20,20,28))
-d.text((72,400),'10 themes · done list · to-dos · confetti',font=f2,fill=(60,52,20))
-m.save('docs/store/promo-marquee-1400x560.png')
-`], {cwd: ROOT, stdio: 'inherit'});
+// Flatten to 24-bit RGB (the store rejects alpha), then rebuild the marquee tile from the shots.
+execFileSync('python3', ['-c', "from PIL import Image\nimport glob\nfor f in glob.glob('docs/store/screenshot-*.png'): Image.open(f).convert('RGB').save(f)"], {cwd: ROOT, stdio: 'inherit'});
+execFileSync('python3', ['tools/marquee.py'], {cwd: ROOT, stdio: 'inherit'});
 console.log('store images updated in docs/store/');
