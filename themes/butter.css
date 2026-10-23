@@ -42,12 +42,13 @@ html[data-nm-theme="butter"] {
   --nm-warning: #8a4b00;
   --nm-danger: #c2334f;
   --nm-radius: 16px;
-  --nm-shadow: 0 1px 3px rgba(10, 11, 30, .07);
+  --nm-shadow: none;
   --nm-font: "Butter Sans", "Butter Hebrew", system-ui, -apple-system, "Segoe UI", sans-serif;
   --nm-heading-font: "Butter Sans", "Butter Hebrew", system-ui, -apple-system, "Segoe UI", sans-serif;
   --nm-border-width: 1px;
   --nm-confetti: #fffd63, #94a4ff, #40eec0, #ffc074, #fe8080, #0a0b1e;
   --nm-sc-chip-radius: 12px;
+  --nm-sc-chip-height: 36px;
   --nm-sc-elev: 0 4px 8px rgba(10, 11, 30, .06), 0 8px 48px rgba(10, 11, 30, .08), 0 0 1px rgba(66, 71, 76, .25);
 
   /* --- Butter private helpers --- */
@@ -288,16 +289,16 @@ html[data-nm-theme="butter"] {
      ====================================================================== */
   & #page-header {
     background: #fffd63 !important;
-    border-radius: 24px;
-    padding: 1.6rem 2rem 1.7rem;
-    margin-block: 1.5rem;
+    border-radius: 32px;
+    padding: 1.5rem 2rem;
+    margin-block: 1.5rem 1.25rem;
     color: #0a0b1e;
     box-shadow: none;
     border: 0;
   }
   & #page-header h1 {
     font-family: var(--nm-heading-font);
-    font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.6rem);
+    font-size: clamp(1.75rem, 1.3rem + 1.2vw, 2.25rem);
     font-weight: 800;
     line-height: 1.08;
     letter-spacing: -.025em;
@@ -342,7 +343,7 @@ html[data-nm-theme="butter"] {
   /* chips and the theme button sit on the yellow like Butter's white "Sign up for free" */
   & #page-header .nm-sc-chip { background: #ffffff; border-color: transparent; }
   & #page-header .nm-sc-chip:hover { background: #ffffff; border-color: #0a0b1e; }
-  & #page-header .nm-sc-add { color: #0a0b1e; border-color: rgba(10, 11, 30, .4); background: transparent; }
+  & #page-header .nm-sc-add { color: #0a0b1e; border: 1px solid #0a0b1e; background: transparent; }
   & #page-header .nm-sc-edit-toggle { color: #0a0b1e; background: transparent; }
   & #page-header :is(.nm-sc-add, .nm-sc-edit-toggle):hover { background: rgba(255, 255, 255, .75); border-color: #0a0b1e; color: #0a0b1e; }
   & #page-header .nm-sc-edit-toggle[aria-pressed="true"] { background: #0a0b1e; color: #fffd63; border-color: #0a0b1e; }
@@ -391,16 +392,32 @@ html[data-nm-theme="butter"] {
   & .nav-pills .nav-link.active { background: #0a0b1e; color: #fff; }
 
   /* ======================================================================
-     Blocks = white 24px cards on Butter's grey
+     Butter's periwinkle section: the dashboard and course content sit on a
+     #94a4ff band, white panels inside it, exactly like butter.us's feature bento
+     ====================================================================== */
+  & body#page-my-index #region-main > div:has(#block-region-content) {
+    background: #94a4ff;
+    border-radius: 40px;
+    padding: 1.5rem;
+  }
+  & body#page-my-index #region-main > div:has(#block-region-content) :is(.visually-hidden-focusable:focus) { background: #fff; border-radius: 10px; padding: .25rem .5rem; }
+  & body#page-my-index .nm-top-row { margin-block-end: 1.5rem; }
+  & body#page-my-index #block-region-content { column-gap: 1.5rem; }
+  & body#page-my-index #block-region-content > .block { margin-block-end: 1.5rem !important; }
+  & body.pagelayout-course .course-content li.section.course-section:last-child { margin-block-end: 0; }
+  & body.pagelayout-course .course-content > :is(ul, .course-section-list):last-child { margin-block-end: 0; }
+
+  /* ======================================================================
+     Blocks = white 32px cards
      ====================================================================== */
   & :is(.block.card, section.nm-block) {
     background: #ffffff;
     border: 0 !important;
-    border-radius: 24px !important;
+    border-radius: 32px !important;
     box-shadow: var(--nm-shadow);
     color: #0a0b1e;
   }
-  & :is(.block.card, section.nm-block) > .card-body { padding: 1.5rem !important; }
+  & :is(.block.card, section.nm-block) > .card-body { padding: 1.75rem 2rem !important; }
   & :is(.block.card, section.nm-block) > .card-header { background: transparent; border: 0; }
   & body#page-my-index #page .block .card-title,
   & body #page .block .card-title,
@@ -536,24 +553,28 @@ html[data-nm-theme="butter"] {
   & [data-region="filter"] :is(.dropdown, .btn-group) { margin: 0 !important; }
   & .card-grid { row-gap: 1rem; }
   & :is(.course-card, .dashboard-card) {
-    background: #ffffff;
-    border: 1px solid #e6e7e8 !important;
+    background: transparent;
+    border: 0 !important;
     border-radius: 20px !important;
     box-shadow: none;
-    overflow: hidden;
-    block-size: calc(100% - 2px);
-    transition: border-color .2s var(--bt-ease), box-shadow .2s var(--bt-ease);
+    overflow: visible;
+    block-size: 100%;
+    transition: background-color .2s var(--bt-ease);
   }
-  & :is(.course-card, .dashboard-card):hover { border-color: #ceced2 !important; box-shadow: var(--bt-float); }
-  & :is(.course-card, .dashboard-card) > a { display: block; padding: 8px 8px 0; }
+  & :is(.course-card, .dashboard-card):hover { background: #f7f8fa; }
+  & :is(.course-card, .dashboard-card) > a { display: block; padding: 0; position: relative; border-radius: 16px; overflow: hidden; }
   & :is(.course-card, .dashboard-card) :is(.card-img-top, .dashboard-card-img) {
-    block-size: 7.5rem;
-    border-radius: 14px !important;
-    background-size: cover !important;
-    background-position: center !important;
+    block-size: 6rem;
+    border-radius: 16px !important;
+    background-image: none !important;
+    background-color: var(--bt-tile, #fffd63) !important;
   }
+  & .card-grid > :nth-child(5n+2) { --bt-tile: #94a4ff; }
+  & .card-grid > :nth-child(5n+3) { --bt-tile: #40eec0; }
+  & .card-grid > :nth-child(5n+4) { --bt-tile: #ffc074; }
+  & .card-grid > :nth-child(5n+5) { --bt-tile: #fe8080; }
   & :is(.course-card, .dashboard-card) .course-info-container {
-    padding: .8rem .9rem .35rem !important;
+    padding: .85rem .35rem .35rem !important;
     background: transparent;
   }
   & :is(.course-card, .dashboard-card) .course-info-container .text-muted {
@@ -583,7 +604,7 @@ html[data-nm-theme="butter"] {
   & :is(.course-card, .dashboard-card) .card-footer {
     background: transparent !important;
     border: 0 !important;
-    padding: 0 .5rem .5rem !important;
+    padding: 0 0 .35rem !important;
   }
   & :is(.course-card, .dashboard-card) .card-footer .btn,
   & .coursemenubtn {
@@ -692,7 +713,10 @@ html[data-nm-theme="butter"] {
   & .nm-up-tag-manual { background: #f2f2f0; color: #3b3c4b; border-color: #e6e7e8; }
   & .nm-up .nm-up-edit { color: #0a0b1e; font-weight: 700; }
   & .nm-up .nm-up-row-done h4 a { color: #535461; }
-  & .nm-up .nm-up-opens { color: #535461; }
+  & .nm-up .nm-up-opens { color: #535461; font-size: .75rem; letter-spacing: .04em; }
+  /* no visible text under 12px */
+  & :is(.nm-game-label, .nm-sc-suggest-label) { font-size: .75rem; }
+  & .nm-sc-letter { font-size: 12px; }
 
   /* ======================================================================
      Timeline / Recently accessed / Announcements
@@ -711,15 +735,17 @@ html[data-nm-theme="butter"] {
   & .block_timeline [data-region="empty-message"] img { opacity: .5; filter: grayscale(1); }
 
   & .block_recentlyaccesseditems [role="listitem"].card {
-    background: #ffffff;
-    border: 1px solid #e6e7e8 !important;
-    border-radius: 16px !important;
-    margin-block-end: .5rem !important;
+    background: transparent;
+    border: 0 !important;
+    border-block-end: 1px solid #f0f0f2 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
     box-shadow: none;
-    transition: background-color .2s var(--bt-ease), border-color .2s var(--bt-ease);
+    transition: background-color .2s var(--bt-ease);
   }
-  & .block_recentlyaccesseditems [role="listitem"].card:hover { background: #f7f8fa; border-color: #ceced2 !important; }
-  & .block_recentlyaccesseditems .card-body { padding: .6rem .7rem !important; margin: 0 !important; }
+  & .block_recentlyaccesseditems [role="listitem"].card:last-child { border-block-end: 0 !important; }
+  & .block_recentlyaccesseditems [role="listitem"].card:hover { background: #f7f8fa; border-radius: 12px !important; }
+  & .block_recentlyaccesseditems .card-body { padding: .7rem .25rem !important; margin: 0 !important; }
   & .block_recentlyaccesseditems .activity-icon.activityiconcontainer { inline-size: 38px; block-size: 38px; }
   & .block_recentlyaccesseditems .activity-icon img { inline-size: 18px; block-size: 18px; }
   & .block_recentlyaccesseditems h4 { font-size: .9375rem; font-weight: 600; color: #0a0b1e; }
@@ -808,9 +834,9 @@ html[data-nm-theme="butter"] {
   & .block_calendar_month table.calendarmonth td {
     border: 0 !important;
     padding: 2px 0 !important;
-    block-size: 40px;
+    block-size: 42px;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: top;
     position: relative;
     background: transparent !important;
   }
@@ -827,20 +853,28 @@ html[data-nm-theme="butter"] {
     color: #0a0b1e;
     font-size: .8125rem;
     font-weight: 500;
+    vertical-align: top;
+    line-height: 1;
   }
-  & .block_calendar_month table.calendarmonth td a.day { display: inline-block; color: #0a0b1e; }
+  & .block_calendar_month table.calendarmonth td :is(a.day, span[aria-hidden="true"]) {
+    display: inline-grid !important; place-items: center;
+    inline-size: 32px; block-size: 32px;
+    margin: 0; padding: 0;
+    line-height: 1;
+    vertical-align: top;
+    color: #0a0b1e;
+  }
+  & .block_calendar_month table.calendarmonth td > div { line-height: 0; }
+  & .block_calendar_month table.calendarmonth td .day-number {
+    display: block; padding: 0 !important; line-height: 1 !important; font-size: .8125rem;
+  }
   & .block_calendar_month table.calendarmonth td a.day:hover { text-decoration: none; }
   & .block_calendar_month table.calendarmonth td.hasevent .day-number-circle { font-weight: 800; }
-  & .block_calendar_month table.calendarmonth td.hasevent::after {
-    content: "";
-    position: absolute;
-    inset-block-end: 1px;
-    inset-inline-start: calc(50% - 3px);
-    inline-size: 6px; block-size: 6px;
-    border-radius: 50%;
-    background: #94a4ff;
+  /* event dot drawn inside the number's own 32px box, so every day number shares one baseline */
+  & .block_calendar_month table.calendarmonth td.hasevent .day-number-circle {
+    background-image: radial-gradient(circle at 50% 28px, #6f7fe0 2.25px, transparent 2.75px);
   }
-  & .block_calendar_month table.calendarmonth td:hover .day-number-circle { background: #f2f2f0; }
+  & .block_calendar_month table.calendarmonth td:hover .day-number-circle { background-color: #f2f2f0; }
   & table.calendarmonth td.today .day-number-circle {
     background: #fffd63 !important;
     color: #0a0b1e !important;
@@ -887,9 +921,9 @@ html[data-nm-theme="butter"] {
   & .course-content li.section.course-section {
     background: #ffffff;
     border: 0 !important;
-    border-radius: 24px !important;
+    border-radius: 32px !important;
     box-shadow: var(--nm-shadow);
-    padding: 1.1rem 1.25rem .6rem !important;
+    padding: 1.5rem 1.75rem 1rem !important;
     margin-block-end: 1rem;
   }
   & body.pagelayout-course #region-main { background: transparent !important; padding: 0 !important; box-shadow: none; border: 0; }
@@ -917,20 +951,21 @@ html[data-nm-theme="butter"] {
   & .section-collapsemenu { font-size: .875rem; font-weight: 600; color: #0a0b1e; }
   & li.activity {
     padding: 0 !important;
-    margin: 0 0 .45rem !important;
+    margin: 0 !important;
     border: 0 !important;
     background: transparent !important;
   }
   & li.activity::before, & li.activity::after,
   & li.activity .activity-item::before, & li.activity .activity-item::after { content: none !important; display: none !important; }
   & li.activity .activity-item {
-    padding: .7rem .85rem !important;
-    border: 1px solid transparent !important;
-    border-radius: 16px !important;
-    background: #f7f8fa;
-    transition: background-color .2s var(--bt-ease), border-color .2s var(--bt-ease);
+    padding: .8rem .5rem !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent;
+    transition: background-color .2s var(--bt-ease);
   }
-  & li.activity .activity-item:hover { background: #ffffff; border-color: #ceced2 !important; }
+  & li.activity:not(:last-child) .activity-item { border-block-end: 1px solid #f0f0f2 !important; }
+  & li.activity .activity-item:hover { background: #f7f8fa; border-radius: 12px !important; }
   & li.activity .activityiconcontainer {
     inline-size: 40px !important; block-size: 40px !important;
     margin-inline-end: .85rem !important;
@@ -954,9 +989,9 @@ html[data-nm-theme="butter"] {
   & body:is(.pagelayout-incourse, .pagelayout-standard, .pagelayout-admin, .pagelayout-report) #region-main {
     background: #ffffff;
     border: 0;
-    border-radius: 24px;
+    border-radius: 32px;
     box-shadow: var(--nm-shadow);
-    padding: 1.5rem 1.75rem;
+    padding: 1.75rem 2rem;
   }
   & #region-main :is(h2, h3) { font-weight: 800; letter-spacing: -.015em; }
   & #region-main h3 { font-size: 1.15rem; margin-block: 1.25rem .75rem; }
@@ -1093,9 +1128,9 @@ html[data-nm-theme="butter"] {
   & .nm-btn.nm-btn-primary { background: #0a0b1e; color: #ffffff; border: 0; }
   & :is(.nm-btn, .nm-btn-primary):disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
   & .nm-icon-btn {
-    inline-size: 2.4rem; block-size: 2.4rem;
+    inline-size: 2.5rem; block-size: 2.5rem;
     border: 0;
-    border-radius: 50%;
+    border-radius: 12px;
     background: #f2f2f0;
     color: #0a0b1e;
     transition: background-color .2s var(--bt-ease), color .2s var(--bt-ease);
@@ -1146,31 +1181,32 @@ html[data-nm-theme="butter"] {
   & .nm-todo-empty-title { font-weight: 800; }
 
   /* arcade: a periwinkle bento tile, like Butter's coloured feature sections */
-  & section.nm-block.nm-block-game { background: #94a4ff; box-shadow: none; }
+  & section.nm-block.nm-block-game { background: #ffffff; }
+  & .nm-block-game .nm-game-stat-value { font-size: 1.75rem; line-height: 1.1; }
   & .nm-block-game .nm-block-title { color: #0a0b1e; }
   & .nm-game-teaser-art {
     background:
-      repeating-linear-gradient(to bottom, transparent 0 21px, rgba(148, 164, 255, .35) 21px 22px),
-      #ffffff;
+      repeating-linear-gradient(to bottom, transparent 0 21px, rgba(148, 164, 255, .3) 21px 22px),
+      #eef0ff;
     border: 0;
     border-radius: 16px;
   }
   & .nm-game-drop { border-radius: 8px; border-color: #e6e7e8; font-family: var(--nm-font); }
   & .nm-game-teaser-line { border-block-start-color: #0a0b1e; }
   & .nm-game-teaser-line span { background: #0a0b1e; color: #fffd63; }
-  & .nm-block-game :is(.nm-game-stat-label, .nm-game-stat-sub) { color: #2b2f5c; }
+  & .nm-block-game :is(.nm-game-stat-label, .nm-game-stat-sub) { color: #535461; }
   & .nm-block-game .nm-game-stat-sub b { color: #0a0b1e; }
   & .nm-game-stat-value { color: #0a0b1e; font-weight: 800; letter-spacing: -.03em; }
   & .nm-block-game .nm-btn.nm-game-play {
-    background: #fffd63;
-    color: #0a0b1e;
-    border: 2px solid #0a0b1e;
+    background: #0a0b1e;
+    color: #ffffff;
+    border: 0;
     border-radius: 16px;
-    font-weight: 800;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 1rem;
     padding: .8rem 1rem;
   }
-  & .nm-block-game .nm-btn.nm-game-play:hover { background: #fffd63; color: #0a0b1e; filter: none; box-shadow: 0 6px 16px rgba(10, 11, 30, .22); }
+  & .nm-block-game .nm-btn.nm-game-play:hover { background: #0a0b1e; color: #ffffff; filter: none; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(10, 11, 30, .18); }
   & .nm-game-overlay { background: #f7f8fa; }
   & .nm-game-card { border-radius: 24px; box-shadow: var(--bt-float); border: 0; }
   & :is(.nm-game-scorebox, .nm-game-combo, .nm-game-lives) { border-radius: 14px; }
@@ -1200,11 +1236,15 @@ html[data-nm-theme="butter"] {
      Phone
      ====================================================================== */
   @media (max-width: 767.98px) {
-    & #page-header { padding: 1.15rem 1.15rem 1.25rem; border-radius: 20px; margin-block: 1rem; }
+    & #page-header { padding: 1.15rem 1.15rem 1.25rem; border-radius: 24px; margin-block: 1rem; }
+    & :is(.block.card, section.nm-block) { border-radius: 24px !important; }
+    & body#page-my-index #region-main > div:has(#block-region-content) { border-radius: 28px; padding: .75rem; }
+    & body#page-my-index .nm-top-row { margin-block-end: .75rem; gap: .75rem; }
+    & body#page-my-index #block-region-content > .block { margin-block-end: .75rem !important; }
     & #page-header h1 { font-size: 1.75rem; }
     & :is(.block.card, section.nm-block) > .card-body { padding: 1.1rem !important; }
-    & body:is(.pagelayout-incourse, .pagelayout-standard, .pagelayout-admin, .pagelayout-report) #region-main { padding: 1.1rem; border-radius: 20px; }
-    & .course-content li.section.course-section { padding: .9rem .85rem .4rem !important; border-radius: 20px !important; }
+    & body:is(.pagelayout-incourse, .pagelayout-standard, .pagelayout-admin, .pagelayout-report) #region-main { padding: 1.1rem; border-radius: 24px; }
+    & .course-content li.section.course-section { padding: .9rem .85rem .4rem !important; border-radius: 24px !important; }
     & nav.navbar.fixed-top .primary-navigation .nav-link { padding-inline: .6rem !important; }
     & .secondary-navigation .nav-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
     & .secondary-navigation .nav-tabs .nav-link { white-space: nowrap; }
@@ -1237,10 +1277,11 @@ html[data-nm-theme="butter"] {
    ========================================================================== */
 :root[data-nm-theme="butter"][data-nm-site="login"] {
   --nm-login-photo-radius: 24px;
-  --nm-login-shadow: 0 4px 8px rgba(10, 11, 30, .06), 0 8px 48px rgba(10, 11, 30, .1);
-  background: #fffd63;
+  --nm-login-shadow: 0 0 0 1px rgba(10, 11, 30, .06);
+  background: #f7f8fa;
 
-  & body { background: #fffd63 !important; color: #0a0b1e; font-family: var(--nm-font); }
+  /* the butter.us hero: a yellow band that the white card overlaps into the grey section below */
+  & body { background: linear-gradient(to bottom, #fffd63 0 440px, #f7f8fa 440px) #f7f8fa !important; color: #0a0b1e; font-family: var(--nm-font); }
   & :is(header, .navbar, .navbar-default) { background: transparent !important; border: 0; box-shadow: none; }
   & header select.selectpicker {
     background: #ffffff var(--bt-chev-ink) no-repeat right .7rem center / 12px;
@@ -1251,7 +1292,7 @@ html[data-nm-theme="butter"] {
     font-family: var(--nm-font);
     font-weight: 600;
   }
-  & body > .container > .row > .col-lg-5 { border: 0; border-radius: 24px; }
+  & body > .container > .row > .col-lg-5 { border: 0; border-radius: 32px; }
   & h1 {
     font-family: var(--nm-heading-font);
     font-weight: 800 !important;

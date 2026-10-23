@@ -120,17 +120,89 @@ const NM = globalThis.NM = {features: []};
   document.querySelectorAll('.activitybadge').forEach(b => { if (!b.textContent.trim()) b.classList.add('nm-empty'); });
 
   NM.confetti = () => {}; // replaced by features/confetti.js
+  // The theme list, for the picker tiles (main.js) and the toolbar popup. swatch = [page background, accent].
+  // font/weight/radius/border/shadow are tile-scale copies of each theme's own tokens (themes/<id>.css: --nm-heading-font,
+  // heading weight, --nm-radius, --nm-border-width + --nm-border, --nm-shadow), so every tile shows that theme's signature.
+  // The private font families resolve anywhere on the page because @font-face rules are global.
+  // group: 'calm' | 'dark' | 'bold' (NM.THEME_GROUPS).
+  const SYS = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif';
   NM.THEMES = [
-    {id: 'off', name: 'Moodle default', swatch: ['#ffffff', '#0f6cbf']},
-    {id: 'quiet-focus', name: 'Quiet Focus', swatch: ['#fcfaf8', '#d1453b']},
-    {id: 'night-operator', name: 'Night Operator', swatch: ['#08090a', '#7772d8']},
-    {id: 'daily-quest', name: 'Daily Quest', swatch: ['#ffffff', '#58cc02']},
-    {id: 'campus-pop', name: 'Campus Pop', swatch: ['#f4f4ef', '#ff90e8']},
-    {id: 'ahead', name: 'Ahead', swatch: ['#f6effb', '#6146ea']},
-    {id: 'fal', name: 'Fal', swatch: ['#ffffff', '#7630fb']},
-    {id: 'giga', name: 'Giga Dusk', swatch: ['#25364a', '#ffffff']},
-    {id: 'cloudstudio', name: 'Cloudstudio', swatch: ['#c7e9f2', '#080d0d']},
-    {id: 'butter', name: 'Butter', swatch: ['#fffd63', '#0a0b1e']},
-    {id: 'clay', name: 'Clay', swatch: ['#ffffff', '#0773df']},
+    {id: 'off', name: 'Moodle default', group: 'calm', swatch: ['#ffffff', '#0f6cbf'],
+      font: SYS, weight: 600, radius: '6px', border: '1px solid #dee2e6', shadow: 'none'},
+    {id: 'quiet-focus', name: 'Quiet Focus', group: 'calm', swatch: ['#fcfaf8', '#d1453b'],
+      font: `"QF Sans", ${SYS}`, weight: 700, radius: '5px', border: '1px solid #eeeeee', shadow: 'none'},
+    {id: 'ahead', name: 'Ahead', group: 'calm', swatch: ['#fffcfe', '#6146ea'],
+      font: `"Ahead Sans", "Quicksand", ${SYS}`, weight: 600, radius: '12px', border: '1px solid #e8e0f2', shadow: '0 4px 12px rgb(97 70 234 / .16)'},
+    {id: 'fal', name: 'Fal', group: 'calm', swatch: ['#ffffff', '#7630fb'],
+      font: `"Fal Sans", ${SYS}`, weight: 600, radius: '3px', border: '1px solid #e5e5e5', shadow: 'none'},
+    {id: 'cloudstudio', name: 'Cloudstudio', group: 'calm', swatch: ['#c7e9f2', '#080d0d'],
+      font: `"CS Grotesk", ${SYS}`, weight: 800, radius: '10px', border: '1px solid #a7cbd5', shadow: 'none'},
+    {id: 'butter', name: 'Butter', group: 'calm', swatch: ['#fffd63', '#0a0b1e'],
+      font: `"Butter Sans", ${SYS}`, weight: 800, radius: '12px', border: '1px solid #e6e7e8', shadow: '0 1px 3px rgb(10 11 30 / .12)'},
+    {id: 'clay', name: 'Clay', group: 'calm', swatch: ['#ffffff', '#0773df'],
+      font: `"Clay Display", "Clay Sans", ${SYS}`, weight: 700, radius: '5px', border: '1px solid #e6e8eb', shadow: 'none'},
+    {id: 'night-operator', name: 'Night Operator', group: 'dark', swatch: ['#08090a', '#635ed6'],
+      font: `"NO Inter", ${SYS}`, weight: 600, radius: '5px', border: '1px solid #2e2f34', shadow: 'none'},
+    {id: 'giga', name: 'Giga Dusk', group: 'dark', swatch: ['#3d5670', '#ffffff'],
+      font: '"Giga Serif", Georgia, serif', weight: 400, radius: '9px', border: '1px solid rgb(255 255 255 / .14)', shadow: 'none'},
+    {id: 'daily-quest', name: 'Daily Quest', group: 'bold', swatch: ['#ffffff', '#58cc02'],
+      font: `"DQ Round", "Arial Rounded MT Bold", ${SYS}`, weight: 800, radius: '12px', border: '2px solid #e5e5e5', shadow: '0 2px 0 #e5e5e5'},
+    {id: 'campus-pop', name: 'Campus Pop', group: 'bold', swatch: ['#f4f4ef', '#ff90e8'],
+      font: `"Pop Grotesk", "Space Grotesk", ${SYS}`, weight: 700, radius: '3px', border: '2px solid #000', shadow: '3px 3px 0 #000'},
   ];
+  NM.THEME_GROUPS = [{id: 'calm', name: 'Calm'}, {id: 'dark', name: 'Dark'}, {id: 'bold', name: 'Bold'}];
+
+  // The theme tiles, shared by the in-page picker and the popup so both stay identical.
+  // Returns {nodes, tiles}: nodes = group labels and tiles in display order (append them to a .nm-theme-grid[role=radiogroup]),
+  // tiles = just the radio buttons. Each tile is described by its group label ("Quiet Focus, radio, Calm").
+  NM.themeTiles = (idPrefix = 'nm-tg') => {
+    const {el} = NM;
+    const nodes = [], tiles = [];
+    for (const g of NM.THEME_GROUPS) {
+      const members = NM.THEMES.filter(t => (t.group || 'calm') === g.id);
+      if (!members.length) continue;
+      const labelId = `${idPrefix}-${g.id}`;
+      nodes.push(el('div', {id: labelId, class: 'nm-theme-group-label', dataset: {group: g.id}}, g.name));
+      for (const t of members) {
+        const style = [`--t-bg:${t.swatch[0]}`, `--t-accent:${t.swatch[1]}`, `--t-font:${t.font || 'inherit'}`, `--t-weight:${t.weight || 600}`,
+          `--t-radius:${t.radius || '6px'}`, `--t-border:${t.border || '0 solid transparent'}`, `--t-shadow:${t.shadow || 'none'}`].join(';');
+        const tile = el('button', {
+          type: 'button', class: 'nm-theme-tile', role: 'radio', 'aria-checked': 'false', tabindex: '-1', title: t.name,
+          'aria-describedby': labelId, dataset: {theme: t.id, group: g.id}, style,
+        },
+        el('span', {class: 'nm-theme-prev', 'aria-hidden': 'true'},
+          el('span', {class: 'nm-theme-prev-card'},
+            el('span', {class: 'nm-theme-prev-aa'}, 'Aa'),
+            el('span', {class: 'nm-theme-prev-line'}),
+            el('span', {class: 'nm-theme-prev-bar'}))),
+        el('span', {class: 'nm-theme-name'}, t.name));
+        nodes.push(tile); tiles.push(tile);
+      }
+    }
+    return {nodes, tiles};
+  };
+
+  // Arrow-key movement through the tile grid, by geometry (rows can be partial because of the group labels).
+  // Left/Right step through the list in visual direction (RTL aware), Up/Down go to the nearest tile in the next row,
+  // Home/End jump. Returns the new index, or null when the key isn't a navigation key.
+  NM.tileStep = (tiles, i, key, rtl = false) => {
+    const last = tiles.length - 1;
+    if (key === 'Home') return 0;
+    if (key === 'End') return last;
+    if (key === 'ArrowRight' || key === 'ArrowLeft') {
+      const d = (key === 'ArrowRight') === !rtl ? 1 : -1;
+      return Math.max(0, Math.min(last, i + d));
+    }
+    if (key !== 'ArrowDown' && key !== 'ArrowUp') return null;
+    const r = tiles[i].getBoundingClientRect(), cx = r.left + r.width / 2, down = key === 'ArrowDown';
+    let best = i, rowDy = Infinity, bestDx = Infinity;
+    tiles.forEach((t, j) => {
+      const q = t.getBoundingClientRect();
+      const dy = down ? q.top - r.top : r.top - q.top;
+      if (dy < 4) return; // same row or the wrong way
+      const dx = Math.abs(q.left + q.width / 2 - cx);
+      if (dy < rowDy - 4 || (Math.abs(dy - rowDy) <= 4 && dx < bestDx)) { rowDy = Math.min(dy, rowDy); bestDx = dx; best = j; }
+    });
+    return best; // stays put at the top/bottom edge
+  };
 })();

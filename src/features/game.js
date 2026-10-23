@@ -49,30 +49,28 @@
   });
 
   // ---------- Entry points ----------
+  // A compact high-score tile with a Play button: secondary to the to-dos next to it.
   function buildBlock() {
     const content = NM.block({id: 'game', title: 'Arcade break'});
     if (!content) return;
     const play = e => open(e.currentTarget);
-    const art = NM.el('button', {class: 'nm-game-teaser-art', type: 'button', tabindex: '-1', 'aria-hidden': 'true', onclick: play},
-      ['Lab 4', 'Essay', 'Read ch. 7'].map((n, i) => NM.el('span', {class: 'nm-game-drop', style: `--i:${i}`}, NM.icon('fileText'), NM.el('span', {class: 'nm-game-drop-text'}, n))),
-      NM.el('span', {class: 'nm-game-teaser-line'}, NM.el('span', {}, 'DEADLINE')));
     teaser.best = NM.el('span', {class: 'nm-game-stat-value', 'data-nm-game-best': ''}, '0');
     teaser.played = NM.el('b', {}, '0');
     teaser.playedLabel = NM.el('span', {}, ' games played');
     content.append(NM.el('div', {class: 'nm-game-teaser'},
-      art,
       NM.el('div', {class: 'nm-game-stats'},
         NM.el('span', {class: 'nm-game-stat-label'}, NM.icon('trophy'), ' High score'),
         teaser.best,
         NM.el('span', {class: 'nm-game-stat-sub'}, teaser.played, teaser.playedLabel)),
       NM.el('button', {class: 'nm-btn nm-btn-primary nm-game-play', type: 'button', onclick: play},
-        NM.el('span', {class: 'nm-game-play-icon', 'aria-hidden': 'true'}, NM.icon('play')), ' Play Deadline Dash')));
+        NM.el('span', {class: 'nm-game-play-icon', 'aria-hidden': 'true'}, NM.icon('play')), ' Play',
+        NM.el('span', {class: 'nm-game-sr'}, ' Deadline Dash'))));
   }
 
   function buildHeaderButton() {
     const slot = NM.headerSlot();
     if (!slot || slot.querySelector('.nm-game-btn')) return;
-    const btn = NM.el('button', {class: 'nm-icon-btn nm-game-btn', type: 'button', title: 'Arcade break: Deadline Dash', 'aria-label': 'Play Deadline Dash',
+    const btn = NM.el('button', {class: 'nm-icon-btn nm-game-btn', type: 'button', title: 'Play Deadline Dash', 'aria-label': 'Play Deadline Dash',
       onclick: e => open(e.currentTarget)}, NM.icon('gamepad'));
     const wrap = slot.querySelector('.nm-theme-wrap');
     wrap ? slot.insertBefore(btn, wrap) : slot.append(btn);

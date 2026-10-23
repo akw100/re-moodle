@@ -31,7 +31,7 @@ html[data-nm-theme="clay"] {
   --nm-surface: #ffffff;
   --nm-surface-2: #f6f8fa;
   --nm-text: #0e0f12;
-  --nm-text-muted: #6b6e75;
+  --nm-text-muted: #63666e;
   --nm-border: #e6e8eb;
   --nm-accent: #0773df;
   --nm-accent-contrast: #ffffff;
@@ -58,10 +58,11 @@ html[data-nm-theme="clay"] {
   --cl-blue-line: #1173d2;      /* active segment outline */
   --cl-blue-hover: #0662c2;
   --cl-blue-tint: rgba(7, 115, 223, .08);
-  --cl-ring: 0 0 0 3px rgba(7, 115, 223, .18);
+  --cl-ring: 0 0 0 2px rgba(7, 115, 223, .16);
   --cl-tile-shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .05);
-  --cl-tile-shadow-hover: 0 2px 4px rgba(16, 24, 40, .06), 0 8px 18px -6px rgba(16, 24, 40, .14);
-  --cl-pop-shadow: 0 2px 4px rgba(16, 24, 40, .04), 0 12px 28px -6px rgba(16, 24, 40, .16);
+  --cl-tile-shadow-hover: 0 2px 4px rgba(16, 24, 40, .06), 0 4px 8px -2px rgba(16, 24, 40, .10);
+  --cl-pop-shadow: 0 4px 6px -1px rgba(16, 24, 40, .08), 0 2px 4px -2px rgba(16, 24, 40, .06);  /* Clay menus: shadow-md */
+  --cl-modal-shadow: 0 20px 25px -5px rgba(16, 24, 40, .10), 0 8px 10px -6px rgba(16, 24, 40, .08);
   --cl-fast: 100ms ease-out;
   --cl-green: #19a35b; --cl-pink: #e45bbf; --cl-blue: #128fff; --cl-cyan: #33c1e8; --cl-orange: #ff8a1f; --cl-yellow: #f2c751;
 
@@ -72,6 +73,7 @@ html[data-nm-theme="clay"] {
   --cl-i-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='3.5' cy='8' r='1.25' fill='black'/%3E%3Ccircle cx='8' cy='8' r='1.25' fill='black'/%3E%3Ccircle cx='12.5' cy='8' r='1.25' fill='black'/%3E%3C/svg%3E");
   --cl-i-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 4.25C1.5 3.56 2.06 3 2.75 3h3.4l1.5 1.5h5.6c.69 0 1.25.56 1.25 1.25v6c0 .69-.56 1.25-1.25 1.25H2.75c-.69 0-1.25-.56-1.25-1.25z' fill='black'/%3E%3C/svg%3E");
   --cl-i-person: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='5.2' r='2.7' fill='black'/%3E%3Cpath d='M2.8 13.6c.5-2.7 2.6-4.3 5.2-4.3s4.7 1.6 5.2 4.3z' fill='black'/%3E%3C/svg%3E");
+  --cl-i-table: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.25' y='2.75' width='11.5' height='10.5' rx='1.25' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M2.5 6.25h11M6.25 6.5v6.5' stroke='black' stroke-width='1.3'/%3E%3C/svg%3E");
   --cl-i-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='7' cy='7' r='4.75' fill='none' stroke='%23717886' stroke-width='1.4'/%3E%3Cpath d='M10.6 10.6L14 14' stroke='%23717886' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
 
   /* Bootstrap 5 / Boost */
@@ -83,8 +85,8 @@ html[data-nm-theme="clay"] {
   --bs-body-font-size: .875rem;
   --bs-emphasis-color: #0e0f12;
   --bs-emphasis-color-rgb: 14, 15, 18;
-  --bs-secondary-color: #6b6e75;
-  --bs-secondary-color-rgb: 107, 110, 117;
+  --bs-secondary-color: #63666e;
+  --bs-secondary-color-rgb: 99, 102, 110;
   --bs-tertiary-color: #6b6e75;
   --bs-secondary-bg: #f6f8fa;
   --bs-tertiary-bg: #f6f8fa;
@@ -146,7 +148,6 @@ html[data-nm-theme="clay"] body {
   font-family: var(--nm-font);
   font-size: .875rem;
   line-height: 1.5;
-  font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -251,9 +252,9 @@ html[data-nm-theme="clay"] .avatar.current .userinitials {
   border: 1px solid #e2e4e8;
   color: #2b2d33 !important;
   font-family: var(--nm-font);
-  font-size: .6875rem !important;
+  font-size: .75rem !important;
   font-weight: 600;
-  letter-spacing: .02em;
+  letter-spacing: .01em;
 }
 html[data-nm-theme="clay"] .avatar.current img.userpicture { inline-size: 30px; block-size: 30px; border-radius: 50%; border: 1px solid #e2e4e8; }
 html[data-nm-theme="clay"] .editmode-switch-form :is(label, .form-check-label) { font-size: .8125rem; font-weight: 500; color: var(--nm-text); }
@@ -296,7 +297,7 @@ html[data-nm-theme="clay"] .dropdown-item:is(:hover, :focus) { background: #f3f4
 html[data-nm-theme="clay"] .dropdown-item:is(.active, :active, [aria-current="true"]) { background: var(--cl-blue-tint); color: var(--nm-accent-text); }
 html[data-nm-theme="clay"] .dropdown-divider { border-color: var(--cl-rule); margin: .25rem 0; }
 html[data-nm-theme="clay"] .modal-content {
-  border: 1px solid #e4e5e8; border-radius: 10px; box-shadow: 0 24px 60px -12px rgba(16, 24, 40, .28);
+  border: 1px solid #e4e5e8; border-radius: 10px; box-shadow: var(--cl-modal-shadow);
   font-family: var(--nm-font);
 }
 html[data-nm-theme="clay"] .modal-header { border-block-end: 1px solid var(--cl-rule); padding: 1rem 1.25rem; }
@@ -369,8 +370,8 @@ html[data-nm-theme="clay"] .secondary-navigation .nav-tabs .nav-item + .nav-item
 html[data-nm-theme="clay"] .secondary-navigation .nav-tabs .nav-link {
   position: relative;
   display: flex; align-items: center;
-  block-size: 38px;
-  padding: 0 1.125rem !important;
+  block-size: 34px;
+  padding: 0 1rem !important;
   border: 1px solid var(--cl-control) !important;
   border-radius: 0;
   background: #fff !important;
@@ -422,6 +423,17 @@ html[data-nm-theme="clay"] .nm-block-title {
   text-transform: none;
 }
 html[data-nm-theme="clay"] .block.card .card-text.content { margin-block-start: .875rem !important; }
+/* blocks hug their content (no stretched empty panels); the grid keeps its columns */
+@media (min-width: 768px) {
+  html[data-nm-theme="clay"] .block-region > .block.card { align-self: start; block-size: auto !important; }
+}
+/* Clay's workspace is an open canvas: no panel boxes around sections, the tables' hairlines do the work */
+html[data-nm-theme="clay"] body.pagelayout-mydashboard .block-region > .block.card {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent;
+  overflow: visible;
+}
 html[data-nm-theme="clay"] .block.card .card-text .card-text.content { margin-block-start: 0 !important; }
 html[data-nm-theme="clay"] .block.card .footer { margin-block-start: .75rem; padding: 0; border: 0; background: transparent; }
 html[data-nm-theme="clay"] .block.card .footer a { font-size: .8125rem; font-weight: 500; color: var(--nm-accent-text); }
@@ -467,7 +479,7 @@ html[data-nm-theme="clay"] .btn-icon:hover { background: var(--cl-hover); }
 /* Clay's split filter pill: "Owner | All ⌄" (labels are English, so English UI only) */
 html[data-nm-theme="clay"] :is([data-region="filter"], .block_timeline, .maincalendar [data-region="view-selector"]) .btn.dropdown-toggle {
   display: inline-flex; align-items: center;
-  block-size: 30px;
+  block-size: 32px;
   padding-block: 0;
   padding-inline: .5rem;
   border-radius: 4px;
@@ -546,7 +558,6 @@ html[data-nm-theme="clay"] .col-form-label { color: var(--nm-text); font-weight:
    a colourful icon before a bold title. The one authored motion lives here:
    on hover the tile lifts and its icon tips up.
    ========================================================================== */
-html[data-nm-theme="clay"] #nm-top-row { gap: 1.25rem; margin-block-end: 1.5rem; }
 html[data-nm-theme="clay"] #nm-top-row > section.nm-block {
   background: var(--cl-tile) !important;
   border: 0 !important;
@@ -555,12 +566,12 @@ html[data-nm-theme="clay"] #nm-top-row > section.nm-block {
   transition: box-shadow 220ms cubic-bezier(.16, 1, .3, 1);
 }
 html[data-nm-theme="clay"] #nm-top-row > section.nm-block:hover { box-shadow: var(--cl-tile-shadow-hover) !important; }
-html[data-nm-theme="clay"] #nm-top-row > section.nm-block > .card-body { padding: 1.25rem 1.375rem !important; }
+html[data-nm-theme="clay"] #nm-top-row > section.nm-block > .card-body { padding: 1rem 1.25rem !important; }
 html[data-nm-theme="clay"] #nm-top-row .nm-block-head { align-items: center; gap: .625rem; }
-html[data-nm-theme="clay"] #nm-top-row .nm-block-title { display: inline-flex; align-items: center; gap: .625rem; }
+html[data-nm-theme="clay"] #nm-top-row .nm-block-title { display: inline-flex; align-items: center; gap: .75rem; }
 html[data-nm-theme="clay"] #nm-top-row .nm-block-title::before {
   content: "";
-  inline-size: 22px; block-size: 22px; flex: none;
+  inline-size: 24px; block-size: 24px; flex: none;
   background: no-repeat center / contain;
   transition: transform 260ms cubic-bezier(.16, 1, .3, 1);
 }
@@ -573,7 +584,7 @@ html[data-nm-theme="clay"] #nm-top-row .nm-block-todo .nm-block-title::before {
 html[data-nm-theme="clay"] #nm-top-row .nm-block-game .nm-block-title::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 6.5h10a5 5 0 0 1 5 5v1.3c0 2.4-1.7 4.4-3.9 4.4-1.2 0-2.2-.6-2.9-1.5l-.6-.8H9.4l-.6.8c-.7.9-1.7 1.5-2.9 1.5C3.7 17.2 2 15.2 2 12.8v-1.3a5 5 0 0 1 5-5z' fill='%23128fff'/%3E%3Cpath d='M7.3 9.6v4M5.3 11.6h4' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Ccircle cx='16.4' cy='10.4' r='1.45' fill='%23ff8a1f'/%3E%3Ccircle cx='18.6' cy='12.9' r='1.45' fill='%23f2c751'/%3E%3C/svg%3E");
 }
-html[data-nm-theme="clay"] #nm-top-row .nm-block-content { margin-block-start: 1rem !important; }
+html[data-nm-theme="clay"] #nm-top-row .nm-block-content { margin-block-start: .75rem !important; }
 
 /* ---------- To-do list: spreadsheet rows, small square checkboxes ---------- */
 html[data-nm-theme="clay"] .nm-todo { --nm-todo-check: 16px; --nm-todo-hair: #e6e8eb; font-size: .875rem; }
@@ -594,7 +605,7 @@ html[data-nm-theme="clay"] .nm-todo-add:focus-within { border-color: var(--nm-ac
 html[data-nm-theme="clay"] .nm-todo-add-plus { color: var(--nm-accent-text); border-radius: 4px; }
 html[data-nm-theme="clay"] .nm-todo-add-submit { border-radius: 5px; font-weight: 500; }
 html[data-nm-theme="clay"] .nm-todo-add-date { border-radius: 4px; border-color: var(--cl-control); background: #fff; }
-html[data-nm-theme="clay"] .nm-todo-item { padding: .625rem .5rem; transition: background-color var(--cl-fast); }
+html[data-nm-theme="clay"] .nm-todo-item { padding: .4375rem .5rem; transition: background-color var(--cl-fast); }
 html[data-nm-theme="clay"] .nm-todo-item:hover { background: rgba(255, 255, 255, .75); }
 html[data-nm-theme="clay"] .nm-todo-check {
   border: 1.5px solid #b3b7bd;
@@ -608,7 +619,7 @@ html[data-nm-theme="clay"] .nm-todo-check:checked { background: var(--nm-accent)
 html[data-nm-theme="clay"] .nm-todo-item.is-done .nm-todo-check:checked { background: #8c9097; border-color: #8c9097; }
 html[data-nm-theme="clay"] .nm-todo-item.is-done .nm-todo-text { color: var(--cl-ink-2); background-size: 100% 1px; }
 html[data-nm-theme="clay"] .nm-todo-text { color: var(--nm-text); }
-html[data-nm-theme="clay"] .nm-todo-due { font-size: .75rem; color: var(--nm-text-muted); }
+html[data-nm-theme="clay"] .nm-todo-due { font-size: .8125rem; color: var(--nm-text-muted); }
 html[data-nm-theme="clay"] .nm-todo-due.is-tomorrow { color: var(--nm-warning); }
 html[data-nm-theme="clay"] .nm-todo-done-toggle { font-size: .8125rem; font-weight: 600; color: var(--cl-ink-2); }
 html[data-nm-theme="clay"] .nm-todo-done-toggle:hover { background: rgba(255, 255, 255, .8); }
@@ -621,7 +632,7 @@ html[data-nm-theme="clay"] .nm-game-teaser-art { background-color: #fff; border-
 html[data-nm-theme="clay"] .nm-game-drop { border-radius: 4px; box-shadow: 0 1px 2px rgba(16, 24, 40, .08); font-weight: 600; }
 html[data-nm-theme="clay"] .nm-game-teaser-line span { border-radius: 4px; font-weight: 700; letter-spacing: .04em; }
 html[data-nm-theme="clay"] .nm-game-stat-label { font-size: .75rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--nm-text-muted); }
-html[data-nm-theme="clay"] .nm-game-stat-value { font-weight: 700; font-size: 2.125rem; letter-spacing: -.02em; color: var(--nm-text); }
+html[data-nm-theme="clay"] .nm-game-stat-value { font-weight: 700; font-size: 1.75rem; letter-spacing: -.02em; color: var(--nm-text); }
 html[data-nm-theme="clay"] .nm-game-stat-sub { font-size: .8125rem; }
 html[data-nm-theme="clay"] .nm-game-play {
   padding: .5rem 1rem;
@@ -637,7 +648,7 @@ html[data-nm-theme="clay"] .nm-game-btn:hover { transform: none; }
 html[data-nm-theme="clay"] :is(.nm-game-scorebox, .nm-game-best, .nm-game-combo, .nm-game-lives) { border-radius: 8px; box-shadow: var(--cl-tile-shadow); }
 html[data-nm-theme="clay"] .nm-game-label { font-weight: 600; letter-spacing: .04em; }
 html[data-nm-theme="clay"] :is(.nm-game-score, .nm-game-best-value, .nm-game-final, .nm-game-combo-value, .nm-game-card-title) { font-weight: 700; letter-spacing: -.02em; }
-html[data-nm-theme="clay"] .nm-game-card { border-width: 1px; border-radius: 12px; box-shadow: 0 24px 60px -12px rgba(16, 24, 40, .3); }
+html[data-nm-theme="clay"] .nm-game-card { border-width: 1px; border-radius: 12px; box-shadow: var(--cl-modal-shadow); }
 html[data-nm-theme="clay"] .nm-game-card-actions .nm-btn { font-weight: 500; font-size: .9375rem; padding: .5rem 1.125rem; }
 html[data-nm-theme="clay"] .nm-game-card-actions .nm-btn:hover { transform: none; }
 
@@ -645,22 +656,28 @@ html[data-nm-theme="clay"] .nm-game-card-actions .nm-btn:hover { transform: none
    Header slot: shortcut chips = Clay's compact filter pills; "+ Add" = "+ New".
    ========================================================================== */
 html[data-nm-theme="clay"] .nm-header-slot { gap: .5rem; }
-html[data-nm-theme="clay"] .nm-sc-bar { --nm-sc-chip-height: 30px; --nm-sc-chip-radius: 4px; --nm-sc-elev: var(--cl-pop-shadow); }
+html[data-nm-theme="clay"] .nm-sc-bar { --nm-sc-chip-height: 32px; --nm-sc-chip-radius: 4px; --nm-sc-elev: var(--cl-pop-shadow); }
 html[data-nm-theme="clay"] .nm-sc-chip { border-color: var(--cl-control); background: #fff; }
 html[data-nm-theme="clay"] .nm-sc-chip:hover { background: var(--cl-tile); border-color: var(--cl-control-hover); }
 html[data-nm-theme="clay"] .nm-sc-link { font-weight: 500; color: var(--nm-text) !important; padding-inline: 8px 10px; }
 html[data-nm-theme="clay"] .nm-sc-letter { border-radius: 4px; background: var(--cl-blue); }
+/* "+ Add" is a rare action: a quiet ghost control (Clay's "Filters" weight), never the loudest thing on the page */
 html[data-nm-theme="clay"] .nm-sc-add {
-  border: 1px solid var(--nm-accent);
-  background: var(--nm-accent);
-  color: #fff;
+  border: 1px solid var(--cl-control);
+  background: transparent;
+  color: #4b4e56;
   border-radius: 4px;
-  padding-inline: 8px 11px;
+  padding-inline: 7px 10px;
   font-weight: 500;
 }
+html[data-nm-theme="clay"] .nm-sc-add .nm-sc-svg { color: #63666e; }
 html[data-nm-theme="clay"] .nm-sc-add:is(:hover, [aria-expanded="true"]),
-html[data-nm-theme="clay"] .nm-sc-bar.nm-sc-drop-target .nm-sc-add { background: var(--cl-blue-hover); border-color: var(--cl-blue-hover); color: #fff; }
-html[data-nm-theme="clay"] .nm-sc-edit-toggle { border-radius: 4px; color: var(--cl-icon); }
+html[data-nm-theme="clay"] .nm-sc-bar.nm-sc-drop-target .nm-sc-add { background: var(--cl-tile); border-color: var(--cl-control-hover); border-style: solid; color: var(--nm-text); }
+html[data-nm-theme="clay"] .nm-sc-edit-toggle { border-radius: 4px; color: #63666e; }   /* 5.74:1 on white */
+html[data-nm-theme="clay"] .nm-sc-edit-toggle[aria-pressed="true"] {
+  border: 1px solid var(--cl-blue-line); box-shadow: inset 0 0 0 1px var(--cl-blue-line);
+  background: #fff; color: var(--nm-accent-text);
+}
 html[data-nm-theme="clay"] .nm-sc-edit-toggle:hover { background: var(--cl-hover); color: var(--nm-text); }
 html[data-nm-theme="clay"] .nm-sc-editing .nm-sc-chip { border-color: var(--cl-blue-line); }
 html[data-nm-theme="clay"] :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) { border-color: #e4e5e8; border-radius: 8px; }
@@ -671,7 +688,7 @@ html[data-nm-theme="clay"] .nm-sc-suggest-label { text-transform: none; letter-s
 html[data-nm-theme="clay"] .nm-sc-suggestion { border-color: var(--cl-control); border-radius: 4px; }
 html[data-nm-theme="clay"] :is(.nm-sc-toast, .nm-toast) {
   background: #16181d; color: #fff; border-radius: 8px;
-  box-shadow: 0 12px 28px -8px rgba(16, 24, 40, .4);
+  box-shadow: var(--cl-pop-shadow);
   font-family: var(--nm-font); font-weight: 500;
 }
 html[data-nm-theme="clay"] .nm-sc-toast-undo { color: #8cc4ff; background: rgba(255, 255, 255, .08); }
@@ -723,66 +740,151 @@ html[data-nm-theme="clay"] .nm-swatch { border-radius: 4px; border-color: rgba(1
 html[data-nm-theme="clay"] .block_myoverview [data-region="filter"] { margin-block: 0 1rem !important; }
 html[data-nm-theme="clay"] .block_myoverview [data-region="filter"] > div { gap: .5rem !important; }
 html[data-nm-theme="clay"] .block_myoverview [data-region="filter"] > div > * { margin: 0 !important; }
-html[data-nm-theme="clay"] .block_myoverview [data-region="filter"] .simplesearchform input { min-block-size: 30px; block-size: 30px; padding-block: 0; font-size: .8125rem; }
-html[data-nm-theme="clay"] .card-grid { row-gap: 1rem; margin-inline: -.5rem !important; }
-html[data-nm-theme="clay"] .card-grid > .col { padding-inline: .5rem !important; margin-block-end: 0 !important; }
+html[data-nm-theme="clay"] .block_myoverview [data-region="filter"] .simplesearchform input { min-block-size: 32px; block-size: 32px; padding-block: 0; font-size: .8125rem; }
+/* Card view becomes Clay's file table: one hairline row per course, the course
+   image shrunk to a 28px swatch (Clay's row glyph), name + category columns. */
+html[data-nm-theme="clay"] .block_myoverview > .card-body { container: cl-courses / inline-size; }
+html[data-nm-theme="clay"] .card-grid {
+  position: relative;
+  display: block !important;
+  margin: 0 -1.25rem !important;
+  border-block-start: 1px solid var(--nm-border);
+}
+html[data-nm-theme="clay"] .card-grid > .col {
+  display: block !important;
+  inline-size: 100% !important; max-inline-size: none !important; flex: none !important;
+  padding: 0 !important; margin: 0 !important;
+}
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) {
+  display: grid !important;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: .625rem;
   inline-size: 100%;
+  min-block-size: 52px;
   margin: 0 !important;
-  background: #fff;
-  border: 1px solid var(--nm-border) !important;
-  border-radius: 8px !important;
-  box-shadow: none;
-  overflow: hidden;
-  transition: border-color var(--cl-fast), box-shadow 220ms cubic-bezier(.16, 1, .3, 1);
-}
-html[data-nm-theme="clay"] :is(.course-card, .dashboard-card):hover { border-color: #d5d8dc !important; box-shadow: 0 6px 16px -8px rgba(16, 24, 40, .16); }
-html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) :is(.card-img-top, .dashboard-card-img) {
-  block-size: 84px !important;
-  border-radius: 0 !important;
-  background-size: cover !important;
-  background-position: center !important;
-  border-block-end: 1px solid var(--nm-border);
-}
-html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container {
-  padding: .75rem .875rem .375rem !important;
+  padding: .5rem 1.25rem;
   background: transparent;
+  border: 0 !important;
+  border-block-end: 1px solid var(--cl-rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible;
+  transition: background-color var(--cl-fast);
 }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card):hover { background: var(--cl-hover); }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) > a:first-child { display: block; line-height: 0; }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) :is(.card-img-top, .dashboard-card-img) {
+  inline-size: 20px !important;
+  block-size: 20px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--cl-icon) !important;
+  -webkit-mask: var(--cl-i-table) center / 16px no-repeat;
+          mask: var(--cl-i-table) center / 16px no-repeat;
+}
+/* osiris pads (and scrolls) every .card-body in this block with an id selector + !important */
+html[data-nm-theme="clay"] body#page-my-index .block_myoverview > .card-body { padding: 1.125rem 1.25rem 1.25rem !important; overflow: visible; max-height: none; }
+html[data-nm-theme="clay"] body#page-my-index .block_myoverview :is(.course-card, .dashboard-card) .course-info-container.card-body,
+html[data-nm-theme="clay"] .block_myoverview :is(.course-card, .dashboard-card) .course-info-container.card-body {
+  overflow: visible;
+  padding: 0 !important;
+  background: transparent;
+  min-inline-size: 0;
+}
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container > .d-flex { display: block !important; }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .w-100 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "name" "short" "cat";
+  row-gap: 1px;
+  overflow: hidden;
+}
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .w-100 > .text-muted:first-child { grid-area: short; }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .w-100 > .text-muted:last-child { grid-area: cat; }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .text-muted {
-  font-size: .75rem;
+  font-size: .8125rem;
+  line-height: 1.35;
   color: var(--nm-text-muted) !important;
-  margin-block-end: .25rem !important;
+  margin: 0 !important;
+  min-inline-size: 0;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  flex-wrap: nowrap !important;
 }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .coursename {
+  grid-area: name;
   display: block;
-  margin: 0 0 .375rem !important;
+  margin: 0 !important;
   color: var(--nm-text) !important;
   font-size: .875rem;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -.005em;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
   white-space: normal;
+  overflow: hidden;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
 }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .coursename:hover { color: var(--nm-accent-text) !important; text-decoration: none; }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .coursename .multiline { white-space: normal; }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .w-100.text-truncate { white-space: normal; }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .categoryname {
   display: inline-flex; align-items: center; gap: .3125rem;
   max-inline-size: 100%;
-  font-size: .75rem;
-  color: #5f626a !important;
+  font-size: .8125rem;
+  color: var(--nm-text-muted) !important;
 }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .categoryname::before {
   content: ""; inline-size: 13px; block-size: 13px; flex: none; background: var(--cl-icon);
   -webkit-mask: var(--cl-i-folder) center / contain no-repeat; mask: var(--cl-i-folder) center / contain no-repeat;
 }
+html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) > .d-flex:last-child { margin: 0 !important; }
 html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) :is(.card-footer, .dashboard-card-footer) {
   background: transparent !important;
   border: 0 !important;
-  padding: 0 .625rem .625rem !important;
+  padding: 0 !important;
+}
+/* header row ("Name"); wide containers add the other column labels */
+html[data-nm-theme="clay"][lang^="en"] .card-grid { padding-block-start: 34px; border-block-start: 0; }
+html[data-nm-theme="clay"][lang^="en"] .card-grid::before {
+  content: "Name";
+  position: absolute; inset-block-start: 0; inset-inline: 0;
+  block-size: 34px; line-height: 34px;
+  padding-inline-start: calc(1.25rem + 20px + .625rem);
+  border-block-end: 1px solid var(--nm-border);
+  font-size: .8125rem; font-weight: 500; color: var(--cl-ink-2);
+}
+/* wide block: single-line rows with real columns and a header row */
+@container cl-courses (min-width: 520px) {
+  html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .w-100 {
+    grid-template-columns: minmax(0, 1fr) 11rem;
+    grid-template-areas: "name cat" "short cat";
+    column-gap: 1rem;
+    align-items: center;
+  }
+  html[data-nm-theme="clay"] :is(.course-card, .dashboard-card) .course-info-container .w-100 > .text-muted:last-child { align-self: center; }
+  html[data-nm-theme="clay"][lang^="en"] .card-grid { padding-block-start: 34px; border-block-start: 0; }
+  html[data-nm-theme="clay"][lang^="en"] .card-grid::before,
+  html[data-nm-theme="clay"][lang^="en"] .card-grid::after {
+    position: absolute; inset-block-start: 0;
+    block-size: 34px; line-height: 34px;
+    font-size: .8125rem; font-weight: 500; color: var(--cl-ink-2);
+  }
+  html[data-nm-theme="clay"][lang^="en"] .card-grid::before {
+    content: "Name";
+    inset-inline: 0;
+    padding-inline-start: calc(1.25rem + 20px + .625rem);
+    border-block-end: 1px solid var(--nm-border);
+  }
+  html[data-nm-theme="clay"][lang^="en"] .card-grid::after {
+    content: "Category";
+    inline-size: 11rem;
+    inset-inline-end: calc(1.25rem + 30px + .75rem);
+  }
 }
 /* the ⋮ menu becomes Clay's bordered "···" button */
 html[data-nm-theme="clay"] .coursemenubtn {
   inline-size: 30px; block-size: 24px;
+  margin: 0 !important;
   padding: 0 !important;
   display: inline-grid; place-items: center;
   background: #fff !important;
@@ -805,42 +907,45 @@ html[data-nm-theme="clay"] .block_myoverview :is(.list-group-item, .course-listi
 /* ==========================================================================
    Upcoming events = Clay's Recents table: name + location, date column.
    ========================================================================== */
-html[data-nm-theme="clay"] .block_calendar_upcoming .card-body > .card-text.content { margin-inline: -1.25rem; }
+html[data-nm-theme="clay"] .block_calendar_upcoming > .card-body { container: cl-up / inline-size; }
+html[data-nm-theme="clay"] .block_calendar_upcoming .card-body > .card-text.content { margin-inline: -1.25rem; position: relative; }
 html[data-nm-theme="clay"] .block.card.block_calendar_upcoming .footer { padding-inline: 1.25rem; }
 html[data-nm-theme="clay"] .event[data-region="event-item"] {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0;
-  padding: .75rem 1.25rem !important;
+  min-block-size: 44px;
+  padding: .5rem 1.25rem !important;
   border-block-end: 1px solid var(--cl-rule) !important;
   border-block-start: 0 !important;
   background: transparent;
   transition: background-color var(--cl-fast);
 }
 html[data-nm-theme="clay"] .block_calendar_upcoming [data-region="event-list-content"],
-html[data-nm-theme="clay"] .block_calendar_upcoming .nm-up { border-block-start: 1px solid var(--cl-rule); }
+html[data-nm-theme="clay"] .block_calendar_upcoming .nm-up { border-block-start: 1px solid var(--nm-border); }
 html[data-nm-theme="clay"] .event[data-region="event-item"]:hover { background: var(--cl-hover); }
+/* Clay rows carry a bare 16px glyph, not a boxed icon */
 html[data-nm-theme="clay"] .event[data-region="event-item"] .activityiconcontainer {
-  inline-size: 30px !important; block-size: 30px !important; min-inline-size: 30px;
+  inline-size: 20px !important; block-size: 20px !important; min-inline-size: 20px;
   flex: none;
   display: inline-grid; place-items: center;
   margin: 0 !important;
-  margin-inline-end: .75rem !important;
+  margin-inline-end: .625rem !important;
   padding: 0 !important;
-  background: #fff !important;
-  border: 1px solid var(--nm-border);
-  border-radius: 6px;
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
 }
 html[data-nm-theme="clay"] .event[data-region="event-item"] .activityiconcontainer img { inline-size: 18px; block-size: 18px; margin: 0; }
 html[data-nm-theme="clay"] .event[data-region="event-item"] > .overflow-auto {
   flex: 1 1 auto;
   min-inline-size: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "title date" "course date" "meta meta";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "title" "course" "date" "meta";
   column-gap: 1rem;
-  row-gap: .125rem;
-  align-items: start;
+  row-gap: 1px;
+  align-items: center;
   overflow: visible !important;
 }
 html[data-nm-theme="clay"] .event[data-region="event-item"] h4 {
@@ -849,8 +954,9 @@ html[data-nm-theme="clay"] .event[data-region="event-item"] h4 {
   font-family: var(--nm-font);
   font-size: .875rem;
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.4;
   letter-spacing: 0;
+  min-inline-size: 0;
 }
 html[data-nm-theme="clay"] .event[data-region="event-item"] h4 a { color: var(--nm-text); }
 html[data-nm-theme="clay"] .event[data-region="event-item"] h4 a:hover { color: var(--nm-accent-text); text-decoration: none; }
@@ -859,8 +965,9 @@ html[data-nm-theme="clay"] .event[data-region="event-item"] h6 {
   display: flex; align-items: center; gap: .3125rem;
   margin: 0 !important;
   font-family: var(--nm-font);
-  font-size: .75rem;
+  font-size: .8125rem;
   font-weight: 400;
+  line-height: 1.4;
   letter-spacing: 0;
   color: var(--nm-text-muted) !important;
   min-inline-size: 0;
@@ -872,20 +979,74 @@ html[data-nm-theme="clay"] .event[data-region="event-item"] h6::before {
 html[data-nm-theme="clay"] .event[data-region="event-item"] div.date {
   grid-area: date;
   font-size: .8125rem;
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--nm-text-muted);
-  text-align: end;
   white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
 }
 html[data-nm-theme="clay"] .event[data-region="event-item"] div.date a { color: inherit; }
 html[data-nm-theme="clay"] .event[data-region="event-item"] div.date a:hover { color: var(--nm-text); text-decoration: none; }
-html[data-nm-theme="clay"] .event[data-region="event-item"] .nm-up-meta { grid-area: meta; margin-block-start: .375rem; }
+html[data-nm-theme="clay"] .event[data-region="event-item"] .nm-up-meta { grid-area: meta; margin-block-start: .25rem; }
+/* titles get the room they need: they wrap instead of truncating */
+html[data-nm-theme="clay"] .event[data-region="event-item"] h4 a.text-truncate { white-space: normal; overflow: visible; text-overflow: clip; }
+html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content { padding-block-start: 34px; }
+html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming :is([data-region="event-list-content"], .nm-up) { border-block-start: 0; }
+html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content::before {
+  content: "Name";
+  position: absolute; inset-block-start: 0; inset-inline: 0;
+  block-size: 34px; line-height: 34px;
+  padding-inline-start: calc(1.25rem + 28px + 30px);
+  border-block-end: 1px solid var(--nm-border);
+  font-family: var(--nm-font); font-size: .8125rem; font-weight: 500; color: var(--cl-ink-2);
+}
+/* wide block: Clay's table under a header row. Name (course beneath, like Clay's
+   location line) · Due; from 760px the course gets its own column. */
+@container cl-up (min-width: 480px) {
+  html[data-nm-theme="clay"] .event[data-region="event-item"] > .overflow-auto {
+    grid-template-columns: minmax(0, 1fr) 12.5rem;
+    grid-template-areas: "title date" "course date" "meta meta";
+  }
+  html[data-nm-theme="clay"] .event[data-region="event-item"] div.date { text-align: end; overflow: visible; }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content { padding-block-start: 34px; }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming :is([data-region="event-list-content"], .nm-up) { border-block-start: 0; }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .calendarwrapper { position: static; }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content::before,
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content::after,
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .calendarwrapper::before {
+    position: absolute; inset-block-start: 0;
+    block-size: 34px; line-height: 34px;
+    font-family: var(--nm-font); font-size: .8125rem; font-weight: 500; color: var(--cl-ink-2);
+  }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content::before {
+    content: "Name";
+    inset-inline: 0;
+    padding-inline-start: calc(1.25rem + 28px + 30px);
+    border-block-end: 1px solid var(--nm-border);
+  }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .calendarwrapper::before {
+    content: "Due";
+    inset-inline-end: 1.25rem;
+    text-align: end;
+  }
+}
+@container cl-up (min-width: 760px) {
+  html[data-nm-theme="clay"] .event[data-region="event-item"] > .overflow-auto {
+    grid-template-columns: minmax(0, 1fr) 13rem 12.5rem;
+    grid-template-areas: "title course date" "meta meta meta";
+  }
+  html[data-nm-theme="clay"] .event[data-region="event-item"] h6 > * { overflow: hidden; text-overflow: ellipsis; }
+  html[data-nm-theme="clay"][lang^="en"] .block_calendar_upcoming .card-body > .card-text.content::after {
+    content: "Course";
+    inline-size: 13rem;
+    inset-inline-end: calc(1.25rem + 12.5rem + 1rem);
+  }
+}
 /* done-split */
 html[data-nm-theme="clay"] .nm-up .nm-up-count {
   padding: .0625rem .5rem; border-radius: 999px; border: 1px solid var(--nm-border);
   font-size: .75rem; font-weight: 500; color: var(--cl-ink-2); letter-spacing: 0;
 }
-html[data-nm-theme="clay"] .nm-up .nm-up-lead { inline-size: 16px; block-size: 16px; margin-inline-end: .75rem; margin-block-start: .4375rem; }
+html[data-nm-theme="clay"] .nm-up .nm-up-lead { inline-size: 16px; block-size: 16px; margin-inline-end: .75rem; margin-block-start: 0; align-self: center; }
 html[data-nm-theme="clay"] .nm-up-check .nm-up-box { border: 1.5px solid #b3b7bd; border-radius: 4px; background: #fff; }
 html[data-nm-theme="clay"] .nm-up-check .nm-up-box::after { inline-size: .25rem; block-size: .5rem; border-width: 0 1.75px 1.75px 0; }
 html[data-nm-theme="clay"] .nm-up-check:hover .nm-up-box { border-color: var(--nm-accent); }
@@ -896,7 +1057,7 @@ html[data-nm-theme="clay"] .nm-up-tag { border-radius: 4px; font-weight: 500; pa
 html[data-nm-theme="clay"] .nm-up-tag-auto { background: #e7f6ed; color: var(--nm-success-text); }
 html[data-nm-theme="clay"] .nm-up-tag-manual { border-color: var(--nm-border); background: #fff; }
 html[data-nm-theme="clay"] .nm-up .nm-up-edit { font-weight: 500; }
-html[data-nm-theme="clay"] .nm-up-opens { letter-spacing: .04em; font-weight: 600; }
+html[data-nm-theme="clay"] .nm-up-opens { font-size: .75rem; letter-spacing: .02em; font-weight: 600; }
 html[data-nm-theme="clay"] .nm-up details.nm-up-done { margin: 0; }
 html[data-nm-theme="clay"] .nm-up .nm-up-done-summary {
   padding: .5rem 1.25rem;
@@ -914,7 +1075,7 @@ html[data-nm-theme="clay"] .nm-up :is(.nm-up-empty, .nm-up-note) { padding-inlin
 html[data-nm-theme="clay"] .block_timeline [data-region="timeline"] > div:first-child { padding: 0 !important; }
 html[data-nm-theme="clay"] .block_timeline [data-region="timeline"] > div:first-child > div { gap: .5rem !important; }
 html[data-nm-theme="clay"] .block_timeline [data-region="timeline"] > div:first-child .border-bottom { border: 0 !important; padding: 0 !important; }
-html[data-nm-theme="clay"] .block_timeline .searchbar input { min-block-size: 30px; block-size: 30px; padding-block: 0; font-size: .8125rem; }
+html[data-nm-theme="clay"] .block_timeline .searchbar input { min-block-size: 32px; block-size: 32px; padding-block: 0; font-size: .8125rem; }
 html[data-nm-theme="clay"] [data-region="timeline"] h5 {
   font-size: .8125rem; font-weight: 600 !important; color: var(--cl-ink-2);
   padding-block-end: .375rem; margin-block-start: 1rem !important; border-block-end: 1px solid var(--nm-border);
@@ -930,9 +1091,24 @@ html[data-nm-theme="clay"] [data-region="no-events-empty-message"] { color: var(
 html[data-nm-theme="clay"] .block_timeline [data-region="empty-message"] img,
 html[data-nm-theme="clay"] [data-region="no-events-empty-message"] img { opacity: .55; filter: grayscale(1); block-size: 56px; inline-size: auto; }
 
-/* ---------- Recently accessed: table rows ---------- */
-html[data-nm-theme="clay"] .block_recentlyaccesseditems .card-body > .card-text.content { margin-inline: -1.25rem; }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] [data-region="items-list"] { border-block-start: 1px solid var(--cl-rule); }
+/* ---------- Recently accessed: Clay table rows (Name · Course) under a header row ---------- */
+html[data-nm-theme="clay"] .block_recentlyaccesseditems > .card-body { container: cl-recent / inline-size; }
+html[data-nm-theme="clay"] .block_recentlyaccesseditems .card-body > .card-text.content { margin-inline: -1.25rem; position: relative; }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] [data-region="items-list"] { border-block-start: 1px solid var(--nm-border); }
+html[data-nm-theme="clay"][lang^="en"] .block_recentlyaccesseditems .card-body > .card-text.content { padding-block-start: 34px; }
+html[data-nm-theme="clay"][lang^="en"] [data-region="recentlyaccesseditems-view"] [data-region="items-list"] { border-block-start: 0; }
+html[data-nm-theme="clay"][lang^="en"] .block_recentlyaccesseditems .card-body > .card-text.content::before,
+html[data-nm-theme="clay"][lang^="en"] .block_recentlyaccesseditems .card-body > .card-text.content::after {
+  position: absolute; inset-block-start: 0;
+  block-size: 34px; line-height: 34px;
+  font-family: var(--nm-font); font-size: .8125rem; font-weight: 500; color: var(--cl-ink-2);
+}
+html[data-nm-theme="clay"][lang^="en"] .block_recentlyaccesseditems .card-body > .card-text.content::before {
+  content: "Name";
+  inset-inline: 0;
+  padding-inline-start: calc(1.25rem + 20px + .625rem);
+  border-block-end: 1px solid var(--nm-border);
+}
 html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card {
   margin: 0 !important;
   background: transparent;
@@ -944,17 +1120,23 @@ html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card {
 }
 html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card:hover { background: var(--cl-hover); }
 html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card a { color: inherit; text-decoration: none; }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card-body { padding: .625rem 1.25rem !important; margin: 0 !important; }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .d-flex.text-truncate { align-items: center; }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .activity-icon.activityiconcontainer {
-  inline-size: 30px !important; block-size: 30px !important; min-inline-size: 30px;
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card-body { display: flex; align-items: center; min-block-size: 44px; padding: .5rem 1.25rem !important; margin: 0 !important; }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .card-body > .d-flex.text-truncate { align-items: center; flex: 1 1 auto; min-inline-size: 0; }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .activity-icon.activityiconcontainer,
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer {
+  inline-size: 20px !important; block-size: 20px !important; min-inline-size: 20px;
   display: inline-grid; place-items: center;
-  background: #fff !important; border: 1px solid var(--nm-border); border-radius: 6px; padding: 0;
+  background: transparent !important; border: 0; border-radius: 0; padding: 0; margin: 0;
 }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .activity-icon img { inline-size: 18px; block-size: 18px; }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] h4 { font-family: var(--nm-font); font-size: .875rem; font-weight: 500; letter-spacing: 0; color: var(--nm-text); }
-html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] small { font-size: .75rem; color: var(--nm-text-muted); }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer img { inline-size: 18px; block-size: 18px; margin: 0; }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .w-100 { margin-inline-start: .625rem !important; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 1px; }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] h4 { margin: 0; font-family: var(--nm-font); font-size: .875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0; color: var(--nm-text); }
+html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] small { display: block; font-size: .8125rem; line-height: 1.4; color: var(--nm-text-muted); }
 html[data-nm-theme="clay"] [data-region="more-items-button-container"] { padding: .75rem 1.25rem 0 !important; margin: 0 !important; }
+@container cl-recent (min-width: 520px) {
+  html[data-nm-theme="clay"] [data-region="recentlyaccesseditems-view"] .w-100 { grid-template-columns: minmax(0, 1fr) 14rem; column-gap: 1rem; align-items: center; }
+  html[data-nm-theme="clay"][lang^="en"] .block_recentlyaccesseditems .card-body > .card-text.content::after { content: "Course"; inline-size: 14rem; inset-inline-end: 1.25rem; }
+}
 
 /* ---------- Announcements ---------- */
 html[data-nm-theme="clay"] .block_news_items .card-text.content { color: var(--nm-text-muted); font-size: .875rem; }
@@ -1025,9 +1207,9 @@ html[data-nm-theme="clay"] .block_calendar_month .calendar-controls .arrow_link 
 html[data-nm-theme="clay"] .block_calendar_month .calendar-controls .arrow_text {
   position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
 }
-html[data-nm-theme="clay"] .maincalendar .calendar-controls .current { font-size: 1.375rem !important; letter-spacing: -.015em; }
-html[data-nm-theme="clay"] .maincalendar .calendar-controls .arrow_link { padding-inline: .5rem .625rem; }
-html[data-nm-theme="clay"] .maincalendar .calendar-controls .arrow_link.next { padding-inline: .625rem .5rem; }
+html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) .calendar-controls .current { font-size: 1.375rem !important; letter-spacing: -.015em; }
+html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) .calendar-controls .arrow_link { padding-inline: .5rem .625rem; }
+html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) .calendar-controls .arrow_link.next { padding-inline: .625rem .5rem; }
 
 /* header row: course filter + New event */
 html[data-nm-theme="clay"] :is(.block_calendar_month, .maincalendar) div.header {
@@ -1037,7 +1219,7 @@ html[data-nm-theme="clay"] :is(.block_calendar_month, .maincalendar) div.header 
 html[data-nm-theme="clay"] :is(.block_calendar_month, .maincalendar) div.header > * { margin: 0 !important; float: none !important; }
 html[data-nm-theme="clay"] :is(.block_calendar_month, .maincalendar) div.header .cal_courses_flt { flex: 1 1 12rem; inline-size: auto; min-block-size: 30px; block-size: 30px; padding-block: 0; font-size: .8125rem; }
 html[data-nm-theme="clay"] :is(.block_calendar_month, .maincalendar) div.header .btn { block-size: 30px; padding-block: 0; font-size: .8125rem; }
-html[data-nm-theme="clay"] .maincalendar div.header .btn-primary { margin-inline-start: auto !important; }
+html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) div.header .btn-primary { margin-inline-start: auto !important; }
 
 /* the grid */
 html[data-nm-theme="clay"] table.calendarmonth {
@@ -1108,8 +1290,11 @@ html[data-nm-theme="clay"] .calendar-circle.calendar_event_group { background: v
 html[data-nm-theme="clay"] .calendar-circle.calendar_event_user { background: var(--cl-pink) !important; }
 html[data-nm-theme="clay"] .calendar-circle.calendar_event_other { background: var(--cl-orange) !important; }
 /* dashboard block: events collapse to coloured squares, no "Q…" crumbs */
-html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth td { block-size: 44px; padding: .25rem !important; }
-html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth thead th { padding: .375rem .25rem !important; text-align: center; font-size: .6875rem; }
+html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth td { block-size: 38px; padding: .1875rem .125rem !important; }
+html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth td > div { block-size: auto !important; }
+html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth .day-number-circle { min-inline-size: 22px; block-size: 20px; }
+html[data-nm-theme="clay"] .block_calendar_month [data-region="day-content"] ul { margin-block-start: 1px; }
+html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth thead th { padding: .375rem .125rem !important; text-align: center; font-size: .75rem; }
 html[data-nm-theme="clay"] .block_calendar_month table.calendarmonth td > div { text-align: center !important; }
 html[data-nm-theme="clay"] .block_calendar_month [data-region="day-content"] ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; }
 html[data-nm-theme="clay"] .block_calendar_month [data-region="day-content"] li { margin: 0; }
@@ -1118,24 +1303,29 @@ html[data-nm-theme="clay"] .block_calendar_month [data-region="event-item"] a { 
 html[data-nm-theme="clay"] .block_calendar_month .eventname { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
 html[data-nm-theme="clay"] .block_calendar_month .calendar-circle { inline-size: 6px !important; block-size: 6px !important; border-radius: 1.5px !important; }
 html[data-nm-theme="clay"] .block_calendar_month :is(.bottom, .footer) { font-size: .8125rem; }
-html[data-nm-theme="clay"] .maincalendar .bottom { margin-block-start: .75rem; font-size: .8125rem; }
-html[data-nm-theme="clay"] .maincalendar table.calendarmonth td { block-size: 7rem; }
+html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) .bottom { margin-block-start: .75rem; font-size: .8125rem; }
+html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) table.calendarmonth td { block-size: 7rem; }
+html[data-nm-theme="clay"] #region-main .maincalendar:not(.block .maincalendar) .calendarwrapper td > div { height: auto !important; }
 
 /* ==========================================================================
    Course page: sections as tables, activities as rows.
    ========================================================================== */
+/* course page gets Clay's broad working surface instead of osiris' 60% column */
+@media (min-width: 992px) {
+  html[data-nm-theme="clay"] body.limitedwidth.path-course-view #page.drawers .main-inner { max-width: min(1080px, 100%) !important; }
+}
 html[data-nm-theme="clay"] li.section.course-section { margin-block: 0 1.25rem; padding: 0; border: 0; list-style: none; }
 html[data-nm-theme="clay"] .course-section .section-item {
   padding: 0 !important;
-  border: 1px solid var(--nm-border) !important;
-  border-radius: 8px !important;
-  background: #fff;
-  overflow: clip;
+  border: 0 !important;
+  border-block-end: 1px solid var(--nm-border) !important;
+  border-radius: 0 !important;
+  background: transparent;
 }
 html[data-nm-theme="clay"] .course-section .course-section-header > .d-flex { align-items: center !important; }
 html[data-nm-theme="clay"] .course-section .course-section-header {
   align-items: center !important;
-  padding: .875rem 1.25rem;
+  padding: .75rem 0;
   border-block-end: 1px solid var(--nm-border);
 }
 html[data-nm-theme="clay"] .course-section .sectionname {
@@ -1167,7 +1357,7 @@ html[data-nm-theme="clay"] .course-section .summarytext { padding: .75rem 1.25re
 html[data-nm-theme="clay"] ul.section[data-for="cmlist"] { margin: 0 !important; padding: 0 !important; }
 html[data-nm-theme="clay"] li.activity { margin: 0 !important; padding: 0 !important; border: 0 !important; }
 html[data-nm-theme="clay"] li.activity .activity-item {
-  padding: .75rem 1.25rem !important;
+  padding: .625rem .5rem !important;
   border: 0 !important;
   border-block-end: 1px solid var(--cl-rule) !important;
   border-radius: 0 !important;
@@ -1175,24 +1365,25 @@ html[data-nm-theme="clay"] li.activity .activity-item {
   transition: background-color var(--cl-fast);
 }
 html[data-nm-theme="clay"] li.activity:last-child .activity-item { border-block-end: 0 !important; }
+html[data-nm-theme="clay"] .course-section .summarytext { padding-inline: .5rem; }
 html[data-nm-theme="clay"] li.activity .activity-item:hover { background: var(--cl-hover); }
 html[data-nm-theme="clay"] li.activity .activity-grid { align-items: center; row-gap: 0; }
 html[data-nm-theme="clay"] li.activity .activity-grid > :empty { display: none !important; }
 html[data-nm-theme="clay"] li.activity .activityiconcontainer {
-  inline-size: 34px !important; block-size: 34px !important; min-inline-size: 34px;
+  inline-size: 24px !important; block-size: 24px !important; min-inline-size: 24px;
   display: inline-grid !important; place-items: center;
   padding: 0 !important;
-  background: #fff !important;
-  border: 1px solid var(--nm-border);
-  border-radius: 6px !important;
+  background: transparent !important;
+  border: 0;
+  border-radius: 0 !important;
   align-self: center !important;
-  margin-inline-end: .75rem !important;
+  margin-inline-end: .625rem !important;
 }
 html[data-nm-theme="clay"] li.activity .activityiconcontainer img { inline-size: 20px; block-size: 20px; margin: 0; }
-html[data-nm-theme="clay"] li.activity .activity-name-area { align-self: center !important; min-block-size: 34px; justify-content: center; margin-block: 0 !important; }
-html[data-nm-theme="clay"] li.activity .activitytitle { align-self: stretch !important; display: flex; align-items: center; min-block-size: 34px; }
+html[data-nm-theme="clay"] li.activity .activity-name-area { align-self: center !important; min-block-size: 24px; justify-content: center; margin-block: 0 !important; }
+html[data-nm-theme="clay"] li.activity .activitytitle { align-self: stretch !important; display: flex; align-items: center; min-block-size: 24px; }
 html[data-nm-theme="clay"] li.activity .activityname a,
-html[data-nm-theme="clay"] li.activity .activityname .instancename { color: var(--nm-text) !important; font-size: .9375rem; font-weight: 500; }
+html[data-nm-theme="clay"] li.activity .activityname .instancename { color: var(--nm-text) !important; font-size: .875rem; font-weight: 500; }
 html[data-nm-theme="clay"] li.activity .activityname a:hover { text-decoration: none; }
 html[data-nm-theme="clay"] li.activity .activity-item:hover .instancename { color: var(--nm-accent-text) !important; }
 html[data-nm-theme="clay"] li.activity :is(.description, .activity-altcontent) { color: var(--cl-ink-2); font-size: .8125rem; }
@@ -1331,7 +1522,7 @@ html[data-nm-theme="clay"] .page-item.active .page-link { background: #fff; bord
 /* footer */
 html[data-nm-theme="clay"] #page-footer { background: transparent !important; color: var(--nm-text-muted); }
 html[data-nm-theme="clay"] #page-footer .footer-content-popover {
-  background: #fff !important; border: 1px solid var(--nm-border); border-radius: 8px; box-shadow: none !important;
+  background: #fff !important; border: 0; border-block-start: 1px solid var(--nm-border); border-radius: 0; box-shadow: none !important;
   font-size: .8125rem;
 }
 html[data-nm-theme="clay"] #page-footer .footer-section { border-color: var(--cl-rule) !important; }
@@ -1343,7 +1534,7 @@ html[data-nm-theme="clay"] #page-footer .btn-footer-popover { background: #fff !
    ========================================================================== */
 :root[data-nm-theme="clay"][data-nm-site="login"] {
   --nm-login-photo-radius: 8px;
-  --nm-login-shadow: var(--cl-tile-shadow);
+  --nm-login-shadow: none;
 }
 :root[data-nm-theme="clay"][data-nm-site="login"] body { background: #fff; }
 :root[data-nm-theme="clay"][data-nm-site="login"] body > header { border-block-end: 1px solid #e9e9e9; }
@@ -1395,23 +1586,23 @@ html[data-nm-theme="clay"] #page-footer .btn-footer-popover { background: #fff !
 :root[data-nm-theme="clay"][data-nm-site="login"] footer .footer-h1 { font-family: var(--nm-heading-font); font-weight: 700; }
 :root[data-nm-theme="clay"][data-nm-site="login"] footer :is(.footer-email, .footer-phone) { color: var(--cl-ink-2); }
 
+/* table rows: Moodle's coloured activity glyphs become Clay's quiet grey utility icons */
+html[data-nm-theme="clay"] :is(.event[data-region="event-item"], [data-region="recentlyaccesseditems-view"], li.activity) .activityiconcontainer img:not(.nofilter) {
+  filter: grayscale(1) brightness(0) opacity(.56) !important;   /* Moodle tints monologo glyphs with filter */
+}
+
 /* ==========================================================================
    Narrow screens
    ========================================================================== */
 @media (max-width: 767.98px) {
-  html[data-nm-theme="clay"] #page-header { padding-block: 1.25rem .5rem; }
+  html[data-nm-theme="clay"] #page-header { padding-block: .25rem .25rem; }
   html[data-nm-theme="clay"] #page-header :is(h1, .h1) { font-size: 1.5rem; }
-  html[data-nm-theme="clay"] .event[data-region="event-item"] > .overflow-auto {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "title" "course" "date" "meta";
-  }
-  html[data-nm-theme="clay"] .event[data-region="event-item"] div.date { text-align: start; white-space: normal; font-size: .75rem; }
   html[data-nm-theme="clay"] nav.navbar.fixed-top .primary-navigation .nav-link { padding-inline: .5rem !important; white-space: nowrap; }
   html[data-nm-theme="clay"] .secondary-navigation .nav-tabs .nav-link { block-size: 34px; padding-inline: .75rem !important; font-size: .875rem; }
-  html[data-nm-theme="clay"] .maincalendar .calendar-controls .arrow_text { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
-  html[data-nm-theme="clay"] .maincalendar .calendar-controls .arrow_link { inline-size: 30px !important; padding: 0 !important; }
-  html[data-nm-theme="clay"] .maincalendar table.calendarmonth td { block-size: 3.25rem; padding: .25rem !important; }
-  html[data-nm-theme="clay"] .maincalendar table.calendarmonth thead th { padding-inline: .25rem !important; font-size: .6875rem; }
+  html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) .calendar-controls .arrow_text { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+  html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) .calendar-controls .arrow_link { inline-size: 30px !important; padding: 0 !important; }
+  html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) table.calendarmonth td { block-size: 3.25rem; padding: .25rem !important; }
+  html[data-nm-theme="clay"] .maincalendar:not(.block .maincalendar) table.calendarmonth thead th { padding-inline: .25rem !important; font-size: .75rem; }
 }
 
 /* ==========================================================================

@@ -1,4 +1,4 @@
-// Regenerates docs/screenshots/: every theme on the dashboard fixture, desktop and phone width.
+// Regenerates docs/screenshots/: every theme on the user's real dashboard (fixtures/live, offline), desktop and phone width.
 import {launch, ROOT} from './harness.mjs';
 import {mkdirSync} from 'node:fs';
 import {join} from 'node:path';
@@ -20,9 +20,10 @@ const storage = {
   ],
 };
 
-for (const theme of ['off', 'quiet-focus', 'night-operator', 'daily-quest', 'campus-pop']) {
+const THEMES = ['off', 'quiet-focus', 'night-operator', 'daily-quest', 'campus-pop', 'ahead', 'fal', 'giga', 'cloudstudio', 'butter', 'clay'];
+for (const theme of THEMES) {
   for (const [tag, viewport] of [['desktop', {width: 1280, height: 900}], ['phone', {width: 390, height: 844}]]) {
-    const h = await launch({storage: {...storage, theme}, local: {highscore: 2450, gamesPlayed: 7}, viewport});
+    const h = await launch({live: true, storage: {...storage, theme}, local: {highscore: 2450, gamesPlayed: 7}, viewport});
     const page = await h.open('/my/');
     await page.evaluate(() => { const d = document.querySelector('.nm-up-done'); if (d) d.open = true; });
     await page.waitForTimeout(1200); // fonts + favicons

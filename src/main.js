@@ -7,29 +7,53 @@
     try { Promise.resolve(f.init()).catch(e => console.warn('[Re-Moodle]', f.name, e)); }
     catch (e) { console.warn('[Re-Moodle]', f.name, e); }
   }
+  try { alignFooter(); } catch (e) { console.warn('[Re-Moodle] footer', e); }
 
-  // In-page theme picker: a popover of preview tiles, one per theme, painted from each theme's swatch.
+  // Under a theme, base.css drops osiris's 60% footer column and sets the footer's inline margins to
+  // --nm-foot-start/-end, so its edges line up with the content column. That column's edges come from #page-header,
+  // which every theme positions; they're measured against the footer's parent, which the margins don't move.
+  function alignFooter() {
+    const foot = document.getElementById('page-footer');
+    const ref = () => document.getElementById('page-header') || document.getElementById('region-main');
+    if (!foot || !ref()) return;
+    let raf = 0;
+    const run = () => {
+      raf = 0;
+      if (!document.documentElement.dataset.nmTheme) return; // stock Moodle keeps its own footer
+      const parent = foot.parentElement;
+      const r = ref()?.getBoundingClientRect(), p = parent.getBoundingClientRect(), ps = getComputedStyle(parent);
+      if (!r?.width || !p.width) return;
+      // the parent's content box
+      const left = p.left + parseFloat(ps.borderLeftWidth) + parseFloat(ps.paddingLeft);
+      const right = p.right - parseFloat(ps.borderRightWidth) - parseFloat(ps.paddingRight);
+      const rtl = getComputedStyle(foot).direction === 'rtl';
+      const px = v => `${Math.max(0, Math.round(v))}px`;
+      foot.style.setProperty('--nm-foot-start', px(rtl ? right - r.right : r.left - left));
+      foot.style.setProperty('--nm-foot-end', px(rtl ? r.left - left : right - r.right));
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(run); };
+    run();
+    new ResizeObserver(schedule).observe(ref());
+    new MutationObserver(schedule).observe(document.documentElement, {attributes: true, attributeFilter: ['data-nm-theme']});
+    window.addEventListener('resize', schedule);
+    document.fonts?.ready.then(schedule);
+  }
+
+  // In-page theme picker: a popover of preview tiles, grouped Calm / Dark / Bold, each showing its theme's signature
+  // (swatch colors, heading font, radius, border, shadow; see NM.themeTiles in core.js).
   // It lives in the top layer (popover="manual", position:fixed, clamped to the viewport), so a theme's
   // overflow:hidden or transform on the header can't clip it. Picking a theme keeps it open, so you can
   // compare themes live; Esc, an outside click or tabbing out closes it.
   function themePicker(slot) {
     const {el} = NM;
-    const tiles = NM.THEMES.map(t => el('button', {
-      type: 'button', class: 'nm-theme-tile', role: 'radio', 'aria-checked': 'false', tabindex: '-1', title: t.name,
-      dataset: {theme: t.id}, style: `--t-bg:${t.swatch[0]};--t-accent:${t.swatch[1]}`,
-    },
-    el('span', {class: 'nm-theme-prev', 'aria-hidden': 'true'},
-      el('span', {class: 'nm-theme-prev-card'},
-        el('span', {class: 'nm-theme-prev-bar'}), el('span', {class: 'nm-theme-prev-line'}), el('span', {class: 'nm-theme-prev-line'}))),
-    el('span', {class: 'nm-theme-name'}, t.name)));
-    const grid = el('div', {class: 'nm-theme-grid', role: 'radiogroup', 'aria-labelledby': 'nm-theme-pop-title'}, tiles);
+    const {nodes, tiles} = NM.themeTiles('nm-theme-g');
+    const grid = el('div', {class: 'nm-theme-grid', role: 'radiogroup', 'aria-labelledby': 'nm-theme-pop-title'}, nodes);
     const pop = el('div', {id: 'nm-theme-pop', class: 'nm-theme-menu nm-theme-pop', role: 'dialog', 'aria-labelledby': 'nm-theme-pop-title',
       popover: 'manual', hidden: true},
     el('div', {class: 'nm-theme-pop-head'},
-      el('span', {class: 'nm-theme-pop-eyebrow'}, 'Re-Moodle'),
       el('h2', {id: 'nm-theme-pop-title', class: 'nm-theme-pop-title'}, 'Theme')),
     grid);
-    const btn = el('button', {type: 'button', class: 'nm-icon-btn nm-theme-btn', title: 'Theme', 'aria-label': 'Choose theme',
+    const btn = el('button', {type: 'button', class: 'nm-icon-btn nm-theme-btn', title: 'Choose theme', 'aria-label': 'Choose theme',
       'aria-haspopup': 'dialog', 'aria-expanded': 'false', 'aria-controls': 'nm-theme-pop'}, NM.icon('palette'));
     slot.append(el('div', {class: 'nm-theme-wrap'}, btn));
     document.body.append(pop);
@@ -87,22 +111,14 @@
       focusTile(t);
     });
 
-    // Arrows move through the grid (visual direction, RTL aware), Home/End jump, Enter/Space select (native button click).
+    // Arrows move through the grid (visual direction, RTL aware; Up/Down by geometry), Home/End jump,
+    // Enter/Space select (native button click).
     pop.addEventListener('keydown', e => {
       if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); return close(true); }
       const i = tiles.indexOf(document.activeElement);
       if (i < 0) return;
-      const cols = Math.max(1, tiles.filter(t => t.offsetTop === tiles[0].offsetTop).length);
-      const side = rtl() ? -1 : 1;
-      const step = {ArrowRight: side, ArrowLeft: -side, ArrowDown: cols, ArrowUp: -cols}[e.key];
-      let j;
-      if (step !== undefined) {
-        j = i + step;
-        if (Math.abs(step) === cols && (j < 0 || j >= tiles.length)) j = i; // up/down stop at the edges
-        j = Math.max(0, Math.min(tiles.length - 1, j));
-      } else if (e.key === 'Home') j = 0;
-      else if (e.key === 'End') j = tiles.length - 1;
-      else return;
+      const j = NM.tileStep(tiles, i, e.key, rtl());
+      if (j === null) return;
       e.preventDefault();
       focusTile(tiles[j]);
     });

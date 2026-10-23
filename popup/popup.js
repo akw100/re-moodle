@@ -1,17 +1,20 @@
-// Toolbar popup: the same theme tiles as the in-page picker (NM.THEMES and NM.el come from src/core.js), plus the motion switch.
+// Toolbar popup: the same grouped theme tiles as the in-page picker (NM.themeTiles / NM.tileStep from src/core.js),
+// plus the motion switch.
 const box = document.getElementById('themes');
 const motion = document.getElementById('motion');
 document.getElementById('mark').append(NM.icon('palette'));
 
-const tiles = NM.THEMES.map(t => NM.el('button', {
-  type: 'button', class: 'nm-theme-tile', role: 'radio', 'aria-checked': 'false', tabindex: '-1', title: t.name,
-  dataset: {theme: t.id}, style: `--t-bg:${t.swatch[0]};--t-accent:${t.swatch[1]}`,
-},
-NM.el('span', {class: 'nm-theme-prev', 'aria-hidden': 'true'},
-  NM.el('span', {class: 'nm-theme-prev-card'},
-    NM.el('span', {class: 'nm-theme-prev-bar'}), NM.el('span', {class: 'nm-theme-prev-line'}), NM.el('span', {class: 'nm-theme-prev-line'}))),
-NM.el('span', {class: 'nm-theme-name'}, t.name)));
-box.append(...tiles);
+const {nodes, tiles} = NM.themeTiles('nm-pg');
+box.append(...nodes);
+
+// The tiles' "Aa" samples use each theme's private font family. On Moodle those @font-face rules are already loaded
+// (every theme file is a content-script stylesheet); here, copy just the @font-face rules out of the theme files.
+Promise.all(NM.THEMES.filter(t => t.id !== 'off').map(t =>
+  fetch(chrome.runtime.getURL(`themes/${t.id}.css`)).then(r => r.text()).catch(() => '')))
+  .then(css => {
+    const faces = css.join('\n').match(/@font-face\s*{[^}]*}/g) || [];
+    document.head.append(Object.assign(document.createElement('style'), {textContent: faces.join('\n')}));
+  });
 
 const mark = id => tiles.forEach(t => {
   const on = t.dataset.theme === id;
@@ -25,16 +28,13 @@ box.addEventListener('click', e => {
   mark(t.dataset.theme);
   chrome.storage.sync.set({theme: t.dataset.theme});
 });
-// Arrows move focus across the 3-column grid, Home/End jump; Enter/Space select (native button click).
+// Arrows move focus through the grid (Up/Down by geometry, across the group headings), Home/End jump;
+// Enter/Space select (native button click).
 box.addEventListener('keydown', e => {
   const i = tiles.indexOf(document.activeElement);
   if (i < 0) return;
-  const cols = tiles.filter(t => t.offsetTop === tiles[0].offsetTop).length || 1;
-  const step = {ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols}[e.key];
-  let j = step !== undefined ? i + step : e.key === 'Home' ? 0 : e.key === 'End' ? tiles.length - 1 : null;
+  const j = NM.tileStep(tiles, i, e.key, getComputedStyle(box).direction === 'rtl');
   if (j === null) return;
-  if (Math.abs(step) === cols && (j < 0 || j >= tiles.length)) j = i;
-  j = Math.max(0, Math.min(tiles.length - 1, j));
   e.preventDefault();
   tiles.forEach(t => { t.tabIndex = t === tiles[j] ? 0 : -1; });
   tiles[j].focus();

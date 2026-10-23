@@ -1,10 +1,10 @@
 /* Upcoming events done-split (src/features/upcoming.js). Tokens only, logical properties only (RTL-safe).
    Theme hooks: .nm-up (block), .nm-up-count, .nm-up-row[-todo|-done|-info|-manual], .nm-up-check/.nm-up-box,
-   .nm-up-meta, .nm-up-tag[-auto|-manual], .nm-up-edit, .nm-up-opens, details.nm-up-done > summary.nm-up-done-summary,
+   .nm-up-meta, .nm-up-tag[-auto|-manual], .nm-up-edit, .nm-up-opens, details.nm-up-done > summary.nm-up-done-summary + p.nm-up-done-help,
    .nm-up-empty, .nm-up-note. */
 
 /* English labels inside a Hebrew (RTL) page: isolate their bidi direction without flipping layout. */
-.nm-up-count, .nm-up-tag, .nm-up-opens, .nm-up-edit, .nm-up-done-label, .nm-up-empty, .nm-up-note { unicode-bidi: plaintext; }
+.nm-up-count, .nm-up-tag, .nm-up-opens, .nm-up-edit, .nm-up-done-label, .nm-up-done-help, .nm-up-empty, .nm-up-note { unicode-bidi: plaintext; }
 
 /* ---- header count ---- */
 .nm-up .nm-up-count {
@@ -58,6 +58,7 @@
 .nm-up-tag {
   display: inline-flex; align-items: center; padding-block: .08rem; padding-inline: .5rem;
   border-radius: 999px; font-weight: 600; white-space: nowrap;
+  font-size: max(12px, 1em) !important; /* floor: themes can't shrink it */
 }
 .nm-up-tag-auto { color: var(--nm-success-text); background: color-mix(in srgb, var(--nm-success) 13%, transparent); }
 .nm-up-tag-manual { color: var(--nm-text-muted); background: var(--nm-surface-2); border: 1px solid var(--nm-border); }
@@ -78,13 +79,16 @@
 .nm-up .nm-up-row-done .date a { color: inherit !important; }
 .nm-up .nm-up-row-done .activityiconcontainer { opacity: .5; filter: grayscale(1); }
 
+/* stock Moodle sets event titles at line-height 1.2, cramped once they wrap */
+html:not([data-nm-theme]) .nm-up .nm-up-row :is(h4.h6, h4.h6 > a) { line-height: 1.35; }
+
 /* info rows ("... opens"): quiet, no checkbox */
 .nm-up .nm-up-row-info a[data-event-id] { color: var(--nm-text-muted); font-weight: 400; }
 .nm-up .nm-up-row-info h6 { opacity: .75; }
 .nm-up .nm-up-row-info .activityiconcontainer { opacity: .6; }
 .nm-up-opens {
   display: inline-flex; align-items: center; gap: .3rem; color: var(--nm-text-muted);
-  font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: .68rem;
+  font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: max(12px, .68rem) !important; /* floor: themes can't shrink it */
 }
 .nm-up-opens::before {
   content: ""; inline-size: .4rem; block-size: .4rem; border-radius: 50%;
@@ -113,6 +117,10 @@
 .nm-up .nm-up-done-summary:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
 .nm-up .nm-up-done-hint { color: var(--nm-text-muted); font-weight: 400; unicode-bidi: isolate; }
 .nm-up details.nm-up-done > .event:last-child { border-block-end: 0 !important; }
+.nm-up .nm-up-done-help {
+  margin: .5rem 0 .25rem; padding-inline: .65rem; max-inline-size: 60ch;
+  font-family: var(--nm-font); font-size: .76rem; line-height: 1.45; color: var(--nm-text-muted);
+}
 
 .nm-up .nm-up-empty {
   margin: 0; padding-block: .75rem .25rem; color: var(--nm-text-muted);

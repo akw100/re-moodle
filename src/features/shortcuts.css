@@ -9,7 +9,7 @@
 .nm-sc-bar {
   --nm-sc-h: var(--nm-sc-chip-height, 30px);
   --nm-sc-r: var(--nm-sc-chip-radius, var(--nm-radius));
-  --nm-sc-shadow: var(--nm-sc-elev, 0 12px 32px -6px color-mix(in srgb, var(--nm-text) 22%, transparent), 0 2px 6px color-mix(in srgb, var(--nm-text) 8%, transparent));
+  --nm-sc-shadow: var(--nm-sc-elev, 0 1px 2px color-mix(in srgb, var(--nm-text) 10%, transparent), 0 6px 16px -4px color-mix(in srgb, var(--nm-text) 20%, transparent));
   position: relative;
   display: flex; align-items: center; gap: 6px;
   flex: 0 1 auto; min-inline-size: 0;

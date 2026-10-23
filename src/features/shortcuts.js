@@ -163,7 +163,7 @@ NM.feature('shortcuts', async () => {
   const addBtn = el('button', {type: 'button', class: 'nm-sc-add', 'aria-haspopup': 'dialog', 'aria-expanded': 'false', 'aria-controls': 'nm-sc-pop',
     onclick: () => (pop.hidden ? openPop({mode: 'add', opener: addBtn}) : closePop(true))}, icon('plus'), addLabel);
   const editLabel = el('span', {class: 'nm-sc-edit-label'}, 'Edit');
-  const editBtn = el('button', {type: 'button', class: 'nm-sc-edit-toggle', 'aria-pressed': 'false', title: 'Edit shortcuts',
+  const editBtn = el('button', {type: 'button', class: 'nm-sc-edit-toggle', 'aria-pressed': 'false', title: 'Edit shortcuts', 'aria-label': 'Edit shortcuts',
     onclick: () => setEditing(!editing)}, icon('pencil'), editLabel);
   const live = el('span', {class: 'nm-sc-sr', 'aria-live': 'polite'});
   const announce = msg => { live.textContent = ''; setTimeout(() => { live.textContent = msg; }, 30); };

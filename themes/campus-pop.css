@@ -5,8 +5,7 @@
    The one authored motion moment is the dashboard marquee; everything else is a tactile hover lift / press. */
 /* Fonts: Chrome ignores @import inside extension content-script CSS, so the Google Fonts faces are declared directly
    (latin + hebrew subsets, woff2 from fonts.gstatic.com). Private family names so they never clash with the page.
-   Substitutes for Gumroad's Mabry: Space Grotesk (display), DM Sans (text), Space Mono (labels), Noto Sans Hebrew. */
-@font-face { font-family: "Pop Grotesk"; font-weight: 500 700; font-display: swap; src: url(https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+   Substitute for Gumroad's single sans (Mabry): DM Sans for everything; Space Mono only in the marquee and sticker. */
 @font-face { font-family: "Pop Sans"; font-weight: 400 800; font-display: swap; src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHTWEBlw.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: "Pop Mono"; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/spacemono/v17/i7dPIFZifjKcF5UAWdDRYEF8RXi4EwQ.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: "Pop Mono"; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/spacemono/v17/i7dMIFZifjKcF5UAWdDRaPpZUFWaHi6WZ3Q.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -25,7 +24,7 @@ html[data-nm-theme="campus-pop"] {
   --pop-red: #DC341E;
   --pop-hl: var(--pop-yellow);          /* highlighter color; flipped to white on yellow fields */
   --pop-mono: "Pop Mono", "Space Mono", ui-monospace, "Pop Hebrew", "Noto Sans Hebrew", monospace;
-  --pop-ease: cubic-bezier(.2, .9, .3, 1.4);
+  --pop-ease: cubic-bezier(.16, 1, .3, 1);
   --pop-chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M10.5 2.5 5 8l5.5 5.5' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='square'/%3E%3C/svg%3E");
 
   /* Shared widget tokens */
@@ -43,10 +42,10 @@ html[data-nm-theme="campus-pop"] {
   --nm-warning: var(--pop-yellow);
   --nm-danger: var(--pop-red);
   --nm-radius: 4px;
-  --nm-shadow: 4px 4px 0 #000;
+  --nm-shadow: none;
   --nm-font: "Pop Sans", "DM Sans", "Pop Hebrew", "Noto Sans Hebrew", system-ui, sans-serif;
-  --nm-heading-font: "Pop Grotesk", "Space Grotesk", "Pop Hebrew", "Noto Sans Hebrew", system-ui, sans-serif;
-  --nm-border-width: 2px;
+  --nm-heading-font: "Pop Sans", "DM Sans", "Pop Hebrew", "Noto Sans Hebrew", system-ui, sans-serif;
+  --nm-border-width: 1px;
   --nm-confetti: #FF90E8, #FFC900, #23A094, #90A8ED, #000000;
 
   /* Bootstrap 5 variables */
@@ -98,8 +97,8 @@ html[data-nm-theme="campus-pop"] {
     & * { scrollbar-width: thin; scrollbar-color: #000 transparent; }
   }
   &::-webkit-scrollbar, & ::-webkit-scrollbar { inline-size: 16px; block-size: 16px; background: var(--pop-canvas); }
-  &::-webkit-scrollbar-track, & ::-webkit-scrollbar-track { background: var(--pop-canvas); border-inline-start: 2px solid #000; }
-  &::-webkit-scrollbar-thumb, & ::-webkit-scrollbar-thumb { background: var(--pop-pink); border: 2px solid #000; border-radius: 0; }
+  &::-webkit-scrollbar-track, & ::-webkit-scrollbar-track { background: var(--pop-canvas); border-inline-start: 1px solid #000; }
+  &::-webkit-scrollbar-thumb, & ::-webkit-scrollbar-thumb { background: var(--pop-pink); border: 1px solid #000; border-radius: 0; }
   &::-webkit-scrollbar-thumb:hover, & ::-webkit-scrollbar-thumb:hover { background: var(--pop-yellow); }
   &::-webkit-scrollbar-corner, & ::-webkit-scrollbar-corner { background: var(--pop-canvas); }
   & body ::-webkit-scrollbar { inline-size: 12px; block-size: 12px; background: transparent; }
@@ -123,10 +122,10 @@ html[data-nm-theme="campus-pop"] {
   & h1, & h2, & h3, & h4, & h5, & h6, & .h1, & .h2, & .h3, & .h4, & .h5, & .h6 {
     font-family: var(--nm-heading-font);
     color: #000;
-    letter-spacing: -.02em;
+    letter-spacing: -.01em;
   }
-  & #region-main h2 { font-weight: 700; letter-spacing: -.035em; }
-  & #region-main h3 { font-weight: 700; letter-spacing: -.03em; margin-block: 1.75rem .75rem; }
+  & #region-main h2 { font-weight: 500; letter-spacing: -.035em; }
+  & #region-main h3 { font-weight: 500; letter-spacing: -.01em; margin-block: 1.75rem .75rem; }
   & .text-muted, & .muted, & .text-secondary { color: rgba(0, 0, 0, .76) !important; }
   & .text-primary { color: #000 !important; }
   & .bg-white { background-color: #FFF !important; }
@@ -157,7 +156,7 @@ html[data-nm-theme="campus-pop"] {
   /* ---------- Black nav bar, white labels, pink selection ---------- */
   & nav.navbar.fixed-top {
     background: #000 !important;
-    border-bottom: 2px solid #000;
+    border-bottom: 1px solid #000;
     box-shadow: none !important;
     padding-block: 0;
     min-height: 60px;
@@ -170,6 +169,12 @@ html[data-nm-theme="campus-pop"] {
     border-inline-end: 1px solid #333;
   }
   & nav.navbar .navbar-brand img, & nav.navbar .logo { filter: brightness(0) invert(1); }
+  /* phone drawer toggle: Bootstrap's dark-grey bars vanish on the black bar, so draw them white */
+  & nav.navbar .navbar-toggler { color: #FFF; opacity: 1; }
+  & nav.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M4 7.5h22M4 15h22M4 22.5h22' stroke='%23FFF' stroke-width='2.6' stroke-linecap='square'/%3E%3C/svg%3E") !important;
+    filter: none !important; opacity: 1 !important;
+  }
   & nav.navbar .primary-navigation, & nav.navbar .moremenu, & nav.navbar .more-nav { height: 100%; align-items: stretch; }
   & nav.navbar .more-nav > .nav-item { display: flex; border-inline-end: 1px solid #333; }
   & nav.navbar .nav-link,
@@ -194,47 +199,47 @@ html[data-nm-theme="campus-pop"] {
   & nav.navbar .more-nav .nav-link.active,
   & nav.navbar .more-nav .nav-link[aria-current="true"],
   & nav.navbar .more-nav .nav-link[aria-current="page"] {
-    background: var(--pop-pink) !important;
-    color: #000 !important;
-    font-weight: 700;
+    background: transparent !important;
+    color: var(--pop-pink) !important;
+    font-weight: 500;
   }
   & nav.navbar #usernavigation { align-items: center; gap: .5rem; padding-inline-start: 1rem; border-inline-start: 1px solid #333; }
   & nav.navbar .usermenu .userbutton { color: #FFF; font-weight: 500; }
   & nav.navbar .userpicture, & nav.navbar .avatar img { border: 2px solid var(--pop-pink); border-radius: 50%; }
   & nav.navbar .userinitials {
     background: var(--pop-yellow) !important; color: #000 !important;
-    border: 2px solid var(--pop-pink); font: 700 .8rem/1 var(--pop-mono);
+    border: 2px solid var(--pop-pink); font: 600 0.9rem/1 var(--nm-font);
   }
   & nav.navbar .dropdown-menu,
   & nav.navbar .popover-region-container { color: #000; }
   & nav.navbar .dropdown-menu .dropdown-item { color: #000 !important; }
-  & nav.navbar .popover-region-container { border: 2px solid #000; border-radius: 4px; box-shadow: 6px 6px 0 #000; }
+  & nav.navbar .popover-region-container { border: 1px solid #000; border-radius: 4px; box-shadow: 4px 4px 0 #000; }
 
   /* Dropdowns / popovers / modals: brutalist panels */
   & .dropdown-menu {
     --bs-dropdown-border-color: #000;
     --bs-dropdown-link-active-bg: var(--pop-pink);
     --bs-dropdown-link-active-color: #000;
-    border: 2px solid #000; border-radius: 4px; box-shadow: 4px 4px 0 #000;
+    border: 1px solid #000; border-radius: 4px; box-shadow: 4px 4px 0 #000;
     background: #FFF; padding: .3rem;
   }
   & .dropdown-item { border-radius: 2px; font-weight: 500; }
   & .dropdown-item:hover, & .dropdown-item:focus { background: var(--pop-pink); color: #000; }
   & .dropdown-item.active, & .dropdown-item:active { background: var(--pop-yellow); color: #000; }
-  & .modal-content, & .popover { border: 2px solid #000; border-radius: 4px; box-shadow: 8px 8px 0 #000; }
-  & .modal-header { background: var(--pop-pink); border-bottom: 2px solid #000; }
-  & .modal-footer { border-top: 2px solid #000; }
-  & .modal-title { font-family: var(--nm-heading-font); font-weight: 700; letter-spacing: -.03em; }
+  & .modal-content, & .popover { border: 1px solid #000; border-radius: 4px; box-shadow: 4px 4px 0 #000; }
+  & .modal-header { background: var(--pop-pink); border-bottom: 1px solid #000; }
+  & .modal-footer { border-top: 1px solid #000; }
+  & .modal-title { font-family: var(--nm-heading-font); font-weight: 700; letter-spacing: -.01em; }
   & .modal-backdrop.show { opacity: .35; }
 
   /* ---------- Page headers ---------- */
   & #page-header { position: relative; }
   & #page-header h1, & #page-header .h2 {
     font-family: var(--nm-heading-font);
-    font-weight: 700;
-    font-size: clamp(2.1rem, 1.35rem + 2.3vw, 3.6rem);
-    line-height: .95;
-    letter-spacing: -.04em;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 1.3rem + 1.4vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -.01em;
     margin: 0;
     padding-block: .05em .1em;
     color: #000;
@@ -244,8 +249,8 @@ html[data-nm-theme="campus-pop"] {
   /* breadcrumbs: mono ledger */
   & #page-header .breadcrumb {
     margin-block-end: 1rem;
-    font: 400 .76rem/1.4 var(--pop-mono);
-    text-transform: uppercase;
+    font: 400 0.85rem/1.4 var(--nm-font);
+    text-transform: none;
     letter-spacing: .02em;
   }
   & #page-header .breadcrumb-item + .breadcrumb-item::before { color: #000; font-weight: 700; }
@@ -254,38 +259,39 @@ html[data-nm-theme="campus-pop"] {
   /* Dashboard: pink poster with a marquee and a giant highlighted "Dashboard" */
   & body.pagelayout-mydashboard #page-header {
     overflow-x: clip;                        /* clips the marquee sideways only; menus still drop down */
-    margin-block: 1rem 2rem;
-    padding: 4.25rem 1.5rem 1.6rem !important;
+    margin-block: 1rem 1.75rem;
+    padding: 3rem 1.5rem 1rem !important;
     background: var(--pop-pink) !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: none;
     max-width: none;
   }
   & body.pagelayout-mydashboard #page-header h1 {
     display: inline;
-    font-size: clamp(3rem, 1.6rem + 5.6vw, 6rem);
-    line-height: .9;
-    padding: 0 .06em;
-    background: linear-gradient(transparent 56%, var(--pop-yellow) 56%, var(--pop-yellow) 86%, transparent 86%);
-    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    font-size: clamp(2.6rem, 1.6rem + 2.2vw, 3.5rem);
+    font-weight: 500;
+    line-height: .95;
+    letter-spacing: -.035em;
   }
   /* The sticker rides in the title's own line box, so no header edge can clip it */
   & body.pagelayout-mydashboard #page-header .page-header-headings { white-space: nowrap; }
+  & body.pagelayout-mydashboard #page-header :is(.page-context-header, .page-header-headings) { overflow: visible !important; padding-inline-end: .6rem; padding-block: .35rem .25rem; }
   & body.pagelayout-mydashboard #page-header .page-header-headings::after {
     content: "you got\Athis \2726" / "";
     white-space: pre;
     display: inline-grid; place-items: center;
     vertical-align: top;
-    position: relative; top: -.35rem;
-    margin-inline-start: .55rem;
-    inline-size: 4.4rem; block-size: 4.4rem;
+    position: relative; top: -.4rem;
+    margin-inline-start: .5rem;
+    inline-size: 4.1rem; block-size: 4.1rem;
     border-radius: 50%;
     background: var(--pop-yellow);
     color: #000;
-    border: 2px solid #000;
+    border: 1px solid #000;
     box-shadow: 3px 3px 0 #000;
-    font: 700 .64rem/1.05 var(--pop-mono);
+    font: 700 .75rem/1.05 var(--pop-mono);
+    letter-spacing: -.03em;
     text-transform: uppercase;
     text-align: center;
     rotate: 12deg;
@@ -297,26 +303,29 @@ html[data-nm-theme="campus-pop"] {
     position: absolute;
     top: 0; left: 0;
     width: max-content;
-    padding: .55rem 0 .5rem;
+    padding: .4rem 0 .35rem;
     background: #000;
     color: var(--pop-yellow);
-    font: 700 .8rem/1.2 var(--pop-mono);
+    font: 700 .78rem/1.2 var(--pop-mono);
     letter-spacing: .08em;
     white-space: pre;
     direction: ltr; unicode-bidi: isolate;
     animation: nm-pop-marquee 80s linear infinite;
     pointer-events: none;
   }
-  & #page-header .nm-header-slot { gap: .6rem; padding-top: .9rem; }
+  & #page-header .nm-header-slot { gap: .6rem; padding-top: .35rem; align-items: center; }
+  /* chips wrap onto a second line instead of scrolling under "+ Add" (the list box dissolves, as on phones) */
+  & body.pagelayout-mydashboard #page-header .nm-sc-bar { flex-wrap: wrap; row-gap: 12px; }
+  & body.pagelayout-mydashboard #page-header .nm-sc-list { display: contents; mask-image: none !important; }
 
   /* Course page: a yellow poster, the teacher as a sticker */
   & body.pagelayout-course #page-header {
     margin-block: 1rem 1.5rem;
-    padding: 1.6rem 1.5rem 1.4rem !important;
+    padding: 1.25rem 1.5rem 1.1rem !important;
     background: var(--pop-yellow) !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: none;
     max-width: none;
     --pop-hl: #FFF;
   }
@@ -330,25 +339,25 @@ html[data-nm-theme="campus-pop"] {
     display: inline-block;
     padding: .3rem .65rem;
     background: #FFF;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 3px;
-    box-shadow: 2px 2px 0 #000;
-    font: 700 .74rem/1.3 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .03em;
+    box-shadow: none;
+    font: 600 0.83rem/1.3 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
     text-decoration: none;
-    rotate: -2deg;
+    rotate: none;
     transition: translate .12s var(--pop-ease), box-shadow .12s, background-color .12s;
   }
-  & #page-header ul.teachers > span:nth-child(even) a:not(.btn) { background: var(--pop-pink); rotate: 1.5deg; }
+  & #page-header ul.teachers > span:nth-child(even) a:not(.btn) { background: var(--pop-pink); rotate: none; }
   & #page-header ul.teachers a:not(.btn):hover { translate: -2px -2px; box-shadow: 4px 4px 0 #000; background: var(--pop-pink); }
 
   /* Activity pages: big title with the activity icon as a tilted sticker; dates as tags */
   & #page-header .page-header-image .activityiconcontainer {
     inline-size: 3.1rem; block-size: 3.1rem;
     margin-inline-end: 1rem !important;
-    box-shadow: 3px 3px 0 #000;
-    rotate: -8deg;
+    box-shadow: none;
+    rotate: none;
   }
   & #page-header .page-header-image .activityiconcontainer .activityicon { inline-size: 1.5rem; block-size: 1.5rem; }
   & .activity-dates { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: 1rem .5rem; }
@@ -359,14 +368,14 @@ html[data-nm-theme="campus-pop"] {
     padding: .35rem .7rem;
     background: #FFF;
     color: #000 !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 3px;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: none;
     font-size: .88rem;
   }
   & .activity-dates .date-item:nth-child(even) { background: var(--pop-yellow); }
   & .activity-dates .date-item-label {
-    font: 700 .72rem/1 var(--pop-mono); text-transform: uppercase; letter-spacing: .03em; color: #000 !important;
+    font: 600 0.81rem/1 var(--nm-font); text-transform: none; letter-spacing: 0; color: #000 !important;
     margin-inline-end: .25rem;
   }
   & .header-extra { margin-inline-start: 0 !important; }
@@ -383,9 +392,9 @@ html[data-nm-theme="campus-pop"] {
     margin: 1rem 8px 1.5rem 0 !important;
     padding: 1rem 1.25rem !important;
     background: #FFF !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: none;
   }
   & .activity-description .box, & .activity-description .box.generalbox {
     max-inline-size: none; margin: 0 !important; padding: 0 !important;
@@ -397,18 +406,18 @@ html[data-nm-theme="campus-pop"] {
   & .drawer-toggler .btn, & .drawer-toggles .btn, & .drawerheader .btn {
     background: #FFF !important;
     color: #000 !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
-    box-shadow: 3px 3px 0 #000;
+    box-shadow: none;
   }
   & .drawer-toggler .btn .icon, & .drawerheader .btn .icon { filter: brightness(0); }
   & .drawer { background: #FFF !important; border-color: #000 !important; }
-  & .drawer.drawer-left { border-inline-end: 2px solid #000 !important; }
-  & .drawer.drawer-right { border-inline-start: 2px solid #000 !important; }
+  & .drawer.drawer-left { border-inline-end: 1px solid #000 !important; }
+  & .drawer.drawer-right { border-inline-start: 1px solid #000 !important; }
   & .courseindex .courseindex-item.pageitem { background: var(--pop-pink) !important; color: #000 !important; }
   & .courseindex .courseindex-item.pageitem a { color: #000 !important; }
 
-  /* ---------- Course tabs: bordered buttons, pink = current ---------- */
+  /* ---------- Course tabs: one connected hairline strip, pink = current (the login pills use the same strip) ---------- */
   & .secondary-navigation {
     background: transparent !important;
     border: 0 !important;
@@ -416,37 +425,42 @@ html[data-nm-theme="campus-pop"] {
     padding: 0 !important;
     margin-block: 0 1.5rem;
   }
-  & .secondary-navigation .navigation { background: transparent !important; border: 0 !important; padding: 0; height: auto !important; min-height: 0; }
+  & .secondary-navigation .navigation { background: transparent !important; border: 0 !important; padding: 0; height: auto !important; min-height: 0; margin-inline: 0 !important; }
+  & body.pagelayout-course #region-main > [role="main"], & body.pagelayout-course #region-main > div:has(> .course-content) { padding-inline: 0 !important; }
   & .secondary-navigation .nav-tabs {
     border: 0 !important;
-    gap: .5rem;
+    gap: 0;
     flex-wrap: wrap;
-    padding: 2px 6px 6px 2px;
+    padding: 0;
     margin: 0;
     background: transparent !important;
   }
   & .secondary-navigation .nav-tabs .nav-item { margin: 0; }
+  & .secondary-navigation .nav-tabs .nav-item + .nav-item { margin-inline-start: -1px; }
   & .secondary-navigation .nav-tabs .nav-link {
     display: flex; align-items: center;
-    min-height: 2.4rem;
-    padding: .4rem .95rem !important;
+    height: auto !important;
+    min-height: 2.75rem;
+    padding: .5rem 1.1rem !important;
     background: #FFF !important;
     color: #000 !important;
-    border: 2px solid #000 !important;
-    border-radius: 4px !important;
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
     box-shadow: none;
-    font-weight: 600;
+    font-weight: 500;
     white-space: nowrap;
     margin: 0 !important;
-    transition: translate .12s var(--pop-ease), box-shadow .12s, background-color .12s;
+    transition: background-color .12s;
   }
+  & .secondary-navigation .nav-tabs .nav-item:first-child .nav-link { border-start-start-radius: 4px !important; border-end-start-radius: 4px !important; }
+  & .secondary-navigation .nav-tabs .nav-item:last-child .nav-link { border-start-end-radius: 4px !important; border-end-end-radius: 4px !important; }
   & .secondary-navigation .nav-tabs .nav-link:not(.dropdown-toggle)::after { content: none !important; }
-  & .secondary-navigation .nav-tabs .nav-link:hover { translate: -2px -2px; box-shadow: 3px 3px 0 #000; background: var(--pop-yellow) !important; }
+  & .secondary-navigation .nav-tabs .nav-link:hover { background: var(--pop-yellow) !important; }
   & .secondary-navigation .nav-tabs .nav-link.active,
   & .secondary-navigation .nav-tabs .nav-link[aria-current="true"] {
     background: var(--pop-pink) !important;
-    box-shadow: 3px 3px 0 #000;
-    font-weight: 700;
+    box-shadow: none;
+    font-weight: 600;
   }
 
   /* ---------- Course page: sections are white panels with a flat colored band; activities are a ledger ---------- */
@@ -454,16 +468,16 @@ html[data-nm-theme="campus-pop"] {
   & .course-content li.course-section, & .course-content li.section.main {
     --pop-sec: var(--pop-pink);
     background: #FFF !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: none;
     margin: 0 0 1.75rem !important;
     padding: 0 !important;
   }
   & .course-content .section-list > li:nth-child(4n+2) { --pop-sec: var(--pop-yellow); }
   & .course-content .section-list > li:nth-child(4n+3) { --pop-sec: var(--pop-lilac); }
   & .course-content .section-list > li:nth-child(4n+4) { --pop-sec: var(--pop-teal); }
-  & .course-content li.section.current { box-shadow: 6px 6px 0 var(--pop-pink), 6px 6px 0 2px #000; }
+  & .course-content li.section.current { box-shadow: none; }
   & .course-section .section-item { padding: 0 !important; border: 0 !important; background: transparent !important; }
   & .course-section-header {
     align-items: center;
@@ -471,7 +485,7 @@ html[data-nm-theme="campus-pop"] {
     margin: 0 !important;
     padding: .8rem 1rem !important;
     background: var(--pop-sec);
-    border-bottom: 2px solid #000;
+    border-bottom: 1px solid #000;
     border-radius: 2px 2px 0 0;
   }
   & .course-section-header > .d-flex { min-width: 0; }
@@ -480,7 +494,7 @@ html[data-nm-theme="campus-pop"] {
     font-weight: 700;
     font-size: 1.35rem !important;
     line-height: 1.1;
-    letter-spacing: -.03em;
+    letter-spacing: -.01em;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -494,9 +508,9 @@ html[data-nm-theme="campus-pop"] {
     margin-inline-end: .75rem !important;
     background: #FFF !important;
     color: #000 !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 50% !important;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: none;
     transition: translate .12s var(--pop-ease), box-shadow .12s;
   }
   & .course-section .icons-collapse-expand:hover { translate: -2px -2px; box-shadow: 4px 4px 0 #000; }
@@ -507,11 +521,11 @@ html[data-nm-theme="campus-pop"] {
     padding: .25rem .55rem;
     background: #FFF;
     color: #000 !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 3px;
-    font: 700 .7rem/1.3 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .03em;
+    font: 600 0.8rem/1.3 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
     text-decoration: none !important;
   }
   & .section-collapsemenu:hover { background: var(--pop-yellow) !important; box-shadow: none !important; }
@@ -546,13 +560,13 @@ html[data-nm-theme="campus-pop"] {
   & .course-section .activity-information { margin-block-start: .35rem; }
   & .activity-completion .btn, & .completion-info .btn, & [data-region="completionrequirements"] .btn,
   & .activity-information .badge, & .completion-dialog .badge {
-    font: 700 .68rem/1.2 var(--pop-mono) !important;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    border: 2px solid #000 !important;
+    font: 600 0.8rem/1.2 var(--nm-font) !important;
+    text-transform: none;
+    letter-spacing: 0;
+    border: 1px solid #000 !important;
     border-radius: 3px !important;
-    box-shadow: 2px 2px 0 #000;
-    rotate: 0deg;
+    box-shadow: none;
+    rotate: none;
   }
   /* HUJI renders an empty pill (whitespace only, so :empty misses it): drop the pill chrome, keep any real text */
   & .activitybadge {
@@ -563,56 +577,68 @@ html[data-nm-theme="campus-pop"] {
     box-shadow: none !important;
     background: none !important;
     color: #000 !important;
-    font: 700 .7rem/1.2 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .03em;
+    font: 600 0.8rem/1.2 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
     rotate: none !important;
   }
 
   /* ---------- Blocks: white panels, black rules, hard shadow, flat colored title band ---------- */
+  /* Gumroad's creator dashboard: the section title sits on the canvas, the content is one hairline-ruled white table */
   & .block.card, & .nm-block {
-    --pop-band: var(--pop-yellow);
-    --pop-band-ink: #000;
-    background: #FFF !important;
-    border: 2px solid #000 !important;
-    border-radius: 4px !important;
-    box-shadow: 6px 6px 0 #000 !important;
-    margin-bottom: 2rem !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 2.25rem !important;
     overflow: visible;
   }
-  & .block-region > .block:nth-child(5n+1) { --pop-band: var(--pop-yellow); }
-  & .block-region > .block:nth-child(5n+2) { --pop-band: var(--pop-pink); }
-  & .block-region > .block:nth-child(5n+3) { --pop-band: var(--pop-lilac); }
-  & .block-region > .block:nth-child(5n+4) { --pop-band: var(--pop-teal); }
-  & .block-region > .block:nth-child(5n+5) { --pop-band: #000; --pop-band-ink: #FFF; }
-  & .block.card > .card-body { padding: 1.25rem !important; }
+  & .block.card > .card-body, & #page-my-index.pagelayout-mydashboard .block.block_myoverview > .card-body { padding: 0 !important; }
   & .block_myoverview.card > .card-body { max-height: none !important; overflow: visible !important; }
   & .block.card > .card-body > .card-title,
   & .block.card > .card-body > .d-flex:has(> .card-title),
   & .block.card > .card-body > .nm-block-head {
-    margin: -1.25rem -1.25rem 0 !important;
-    padding: .8rem 1.25rem .75rem !important;
-    background: var(--pop-band);
-    color: var(--pop-band-ink);
-    border-bottom: 2px solid #000;
-    border-radius: 2px 2px 0 0;
+    margin: 0 0 .85rem !important;
+    padding: 0 !important;
+    background: none;
+    border: 0;
     align-items: center;
+    min-block-size: 2.25rem;
   }
   & .block.card .card-title {
     font-family: var(--nm-heading-font);
-    font-weight: 700;
-    font-size: 1.25rem !important;
-    line-height: 1.1;
-    letter-spacing: -.03em;
-    color: var(--pop-band-ink);
+    font-weight: 400;
+    font-size: 1.6rem !important;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    color: #000;
     margin-bottom: 0;
   }
   & .block.card > .card-body > .d-flex:has(> .card-title) > .card-title,
   & .block.card > .card-body > .nm-block-head > .card-title {
     margin: 0 !important; padding: 0 !important; background: none; border: 0; flex: 1 1 auto;
   }
-  & .block.card .card-text.content { margin-top: 1.1rem !important; }
+  & .block.card > .card-body > .card-text.content {
+    margin-top: 0 !important;
+    padding: .35rem 1.25rem 1rem;
+    background: #FFF;
+    border: 1px solid #000;
+    border-radius: 4px;
+  }
   & .block.card .card-text .card-text.content { margin-top: 0 !important; }
+  /* the course grid sits straight on the canvas, like Gumroad Discover's product cards */
+  & .block_myoverview.card > .card-body > .card-text.content { padding: 0; background: transparent; border: 0; }
+  & .nm-top-row { gap: 1.5rem; }
+  /* Course overview spans rows 1-2; an auto row 1 would soak up half its height and strand Announcements in blank space */
+  @media (min-width: 768px) {
+    & body.pagelayout-mydashboard #block-region-content { grid-template-rows: auto 1fr; }
+    /* deadlines first: Upcoming events takes the top-right cell beside the courses, Announcements drops below it
+       (HUJI places these with inline grid-row styles, hence !important) */
+    & body.pagelayout-mydashboard:not(.editing) #block-region-content > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
+    & body.pagelayout-mydashboard:not(.editing) #block-region-content > .block_news_items { grid-row: 2 / 3 !important; }
+  }
+  @media (min-width: 768px) { & .block-region > .block.card { align-self: start; } }
+  & .nm-block-game .nm-block-content { padding-block: 1rem; }
 
   /* Block footers ("Go to calendar...", "Older topics ...") become small CTA tags */
   & .block .footer { margin-top: 1rem; text-align: start; }
@@ -621,12 +647,12 @@ html[data-nm-theme="campus-pop"] {
     margin-block: .2rem;
     padding: .3rem .7rem;
     background: #FFF;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
-    font: 700 .74rem/1.3 var(--pop-mono) !important;
-    text-transform: uppercase;
+    font: 600 0.83rem/1.3 var(--nm-font) !important;
+    text-transform: none;
     text-decoration: none !important;
-    letter-spacing: .03em;
+    letter-spacing: 0;
     transition: translate .12s var(--pop-ease), box-shadow .12s;
   }
   & .block .footer a:hover { translate: -3px -3px; box-shadow: 3px 3px 0 #000 !important; background: var(--pop-yellow) !important; }
@@ -650,31 +676,31 @@ html[data-nm-theme="campus-pop"] {
     inline-size: 100%;
     height: 100%;
     margin: 0 !important;
-    background: var(--pop-card, var(--pop-pink)) !important;
-    border: 2px solid #000 !important;
+    background: #FFF !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
-    box-shadow: 4px 4px 0 #000 !important;
+    box-shadow: none !important;
     overflow: visible;
     transition: translate .15s var(--pop-ease), box-shadow .15s;
   }
   & :is(.course-card, .dashboard-card):hover, & :is(.course-card, .dashboard-card):focus-within {
     translate: -4px -4px;
-    box-shadow: 8px 8px 0 #000 !important;
+    box-shadow: 4px 4px 0 #000 !important;
     z-index: 2;
   }
   & :is(.course-card, .dashboard-card):active { translate: 0 0; box-shadow: 0 0 0 #000 !important; }
-  & :is(.course-card, .dashboard-card) > a:first-child { display: block; border-bottom: 2px solid #000; border-radius: 2px 2px 0 0; overflow: hidden; }
+  & :is(.course-card, .dashboard-card) > a:first-child { display: block; border-bottom: 1px solid #000; border-radius: 2px 2px 0 0; overflow: hidden; }
   & :is(.course-card .card-img-top, .dashboard-card .dashboard-card-img) {
     position: relative;
-    height: 7rem;
+    height: 5rem;
     border-radius: 0 !important;
     background-size: cover !important;
     background-position: center !important;
-    filter: saturate(1.3) contrast(1.05);
+
   }
   /* zine halftone over the course image */
   & :is(.course-card .card-img-top, .dashboard-card .dashboard-card-img)::after {
-    content: "";
+    content: none;
     position: absolute; inset: 0;
     background: radial-gradient(rgba(0, 0, 0, .3) 1px, transparent 1.6px) 0 0 / 7px 7px;
     mix-blend-mode: multiply;
@@ -683,7 +709,7 @@ html[data-nm-theme="campus-pop"] {
   & :is(.course-card, .dashboard-card) .text-truncate { overflow: visible; white-space: normal; }
   /* course short name: a mono label line */
   & .course-card .card-body .text-muted.mb-1 {
-    font: 400 .72rem/1.35 var(--pop-mono);
+    font: 400 0.81rem/1.35 var(--nm-font);
     color: #000 !important;
     margin-bottom: .35rem !important;
     unicode-bidi: plaintext;
@@ -692,31 +718,31 @@ html[data-nm-theme="campus-pop"] {
     display: block;
     color: #000 !important;
     font-family: var(--nm-heading-font);
-    font-weight: 700;
-    font-size: 1.15rem;
-    line-height: 1.15;
-    letter-spacing: -.03em;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    letter-spacing: -.01em;
     text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
+    text-decoration-thickness: 1px !important;
     text-underline-offset: .15em;
     background: none !important;
     box-shadow: none !important;
   }
-  & :is(.course-card, .dashboard-card) .coursename:hover { text-decoration-thickness: 3px !important; }
+  & :is(.course-card, .dashboard-card) .coursename:hover { text-decoration-thickness: 2px !important; }
   & :is(.course-card, .dashboard-card) .coursename .multiline { white-space: normal; display: inline; }
   & :is(.course-card, .dashboard-card) .categoryname {
     display: inline-block;
     margin-block: .55rem .1rem;
     padding: .15rem .5rem;
-    background: #FFF;
+    background: var(--pop-card, var(--pop-pink));
     color: #000 !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 3px;
-    box-shadow: 2px 2px 0 #000;
-    font: 700 .66rem/1.3 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    rotate: var(--pop-tilt, -2deg);
+    box-shadow: none;
+    font: 600 0.8rem/1.3 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
+    rotate: none;
     max-inline-size: 100%;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
@@ -725,17 +751,17 @@ html[data-nm-theme="campus-pop"] {
     padding: .2rem .75rem .75rem 1rem !important;
     border: 0 !important;
   }
-  & :is(.course-card, .dashboard-card) .progress-text { font: 400 .74rem/1.4 var(--pop-mono); text-transform: uppercase; margin-bottom: .35rem; }
+  & :is(.course-card, .dashboard-card) .progress-text { font: 400 0.83rem/1.4 var(--nm-font); text-transform: none; margin-bottom: .35rem; }
   & :is(.course-card, .dashboard-card) .progress {
     height: 14px;
     background: #FFF !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 2px;
     overflow: hidden;
   }
   & :is(.course-card, .dashboard-card) .progress-bar {
     background: repeating-linear-gradient(-45deg, #000 0 6px, #2b2b2b 6px 12px) !important;
-    border-inline-end: 2px solid #000;
+    border-inline-end: 1px solid #000;
   }
   & :is(.course-card, .dashboard-card) :is(.coursemenubtn, .dropdown > .btn) {
     display: inline-grid; place-items: center;
@@ -743,21 +769,22 @@ html[data-nm-theme="campus-pop"] {
     padding: 0 !important;
     background: #FFF !important;
     color: #000 !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
   }
   & :is(.course-card, .dashboard-card) :is(.coursemenubtn, .dropdown > .btn) .icon { color: #000; margin: 0; }
   & .course-listitem, & .course-summaryitem {
-    border: 2px solid #000 !important; border-radius: 4px !important; margin-bottom: .8rem;
-    box-shadow: 4px 4px 0 #000; background: #FFF;
+    border: 1px solid #000 !important; border-radius: 4px !important; margin-bottom: .8rem;
+    box-shadow: none; background: #FFF;
   }
   & [data-region="courses-view"] .paging .page-link, & .block_myoverview .pagination .page-link {
-    border: 2px solid #000; color: #000; background: #FFF; font-weight: 700; margin-inline: 2px; border-radius: 3px !important;
+    border: 1px solid #000; color: #000; background: #FFF; font-weight: 700; margin-inline: 2px; border-radius: 3px !important;
   }
   & .block_myoverview .pagination .page-item.active .page-link { background: var(--pop-pink); }
 
   /* Highlighter on key words */
-  & .block strong, & .block b, & mark, & .highlight, & .quizreviewsummary b {
+  /* bold text stays plain bold, as in Gumroad's tables; only real search/mark hits get the highlighter */
+  & mark, & .highlight {
     background: linear-gradient(transparent 52%, var(--pop-hl) 52%, var(--pop-hl) 92%, transparent 92%);
     -webkit-box-decoration-break: clone; box-decoration-break: clone;
     color: inherit;
@@ -779,20 +806,16 @@ html[data-nm-theme="campus-pop"] {
   & .event h4 a { white-space: normal; }
   & .event h6.text-primary, & .event h6 {
     display: inline-block;
-    margin-top: .3rem !important;
-    margin-bottom: .3rem;
-    font: 700 .68rem/1.3 var(--pop-mono);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: #000 !important;
+    margin-top: .15rem !important;
+    margin-bottom: .15rem;
+    font: 500 .85rem/1.4 var(--nm-font);
+    letter-spacing: 0;
+    text-transform: none;
+    color: #3D3D3D !important;
   }
-  & .event .date { font: 400 .78rem/1.4 var(--pop-mono); text-transform: uppercase; }
-  & .event .date a {
-    font-weight: 700;
-    text-decoration: none !important;
-    background: linear-gradient(transparent 50%, var(--pop-pink) 50%, var(--pop-pink) 92%, transparent 92%);
-  }
-  & .event:hover .date a { background: linear-gradient(transparent 50%, #FFF 50%, #FFF 92%, transparent 92%); }
+  /* dates: plain body text, the way Gumroad's activity table sets its timestamps */
+  & .event .date { font: 400 .9rem/1.45 var(--nm-font); text-transform: none; letter-spacing: 0; color: #3D3D3D; }
+  & .event .date a { font-weight: 600; color: #000 !important; text-decoration: none !important; background: none !important; box-shadow: none !important; }
 
   /* Activity icons become round stickers */
   & .activityiconcontainer {
@@ -800,10 +823,10 @@ html[data-nm-theme="campus-pop"] {
     display: inline-grid; place-items: center;
     width: 2.3rem; height: 2.3rem;
     padding: 0;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 50% !important;
     background: var(--pop-lilac) !important;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: none;
   }
   & .activityiconcontainer.assessment { background: var(--pop-pink) !important; }
   & .activityiconcontainer.content { background: var(--pop-lilac) !important; }
@@ -814,8 +837,8 @@ html[data-nm-theme="campus-pop"] {
   /* full-color plugin icons (Leganto reading list) sit on white so they keep their own art */
   & .activityiconcontainer:has(.nofilter) { background: #FFF !important; overflow: hidden; }
   & .activityiconcontainer .nofilter { width: 1.35rem; height: 1.35rem; filter: none !important; border-radius: 2px; }
-  & .event:nth-child(odd) .activityiconcontainer, & .course-section li.activity:nth-child(odd) .activityiconcontainer { rotate: -6deg; }
-  & .event:nth-child(even) .activityiconcontainer, & .course-section li.activity:nth-child(even) .activityiconcontainer { rotate: 5deg; }
+  & .event:nth-child(odd) .activityiconcontainer, & .course-section li.activity:nth-child(odd) .activityiconcontainer { rotate: none; }
+  & .event:nth-child(even) .activityiconcontainer, & .course-section li.activity:nth-child(even) .activityiconcontainer { rotate: none; }
 
   /* ---------- Timeline ---------- */
   & .block_timeline .list-group, & [data-region="timeline"] .list-group {
@@ -826,11 +849,11 @@ html[data-nm-theme="campus-pop"] {
     display: inline-block;
     margin-top: 1.1rem !important;
     padding: .15rem .45rem;
-    font: 700 .74rem/1.3 var(--pop-mono) !important;
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    font: 600 0.83rem/1.3 var(--nm-font) !important;
+    text-transform: none;
+    letter-spacing: 0;
     background: #000; color: #FFF;
-    rotate: -1.5deg;
+    rotate: none;
     align-self: flex-start;
   }
   & .timeline-event-list-item {
@@ -847,10 +870,10 @@ html[data-nm-theme="campus-pop"] {
   & [data-region="no-events-empty-message"] p, & .block_timeline [data-region="empty-message"] p {
     display: inline-block;
     padding: .25rem .6rem;
-    border: 2px dashed #000;
+    border: 1px dashed #000;
     border-radius: 4px;
-    font: 700 .74rem/1.3 var(--pop-mono);
-    text-transform: uppercase;
+    font: 600 0.83rem/1.3 var(--nm-font);
+    text-transform: none;
     color: #000 !important;
   }
 
@@ -866,15 +889,15 @@ html[data-nm-theme="campus-pop"] {
     grid-row: span 2;
     align-self: start;
     padding: .2rem .45rem;
-    border: 2px solid #000;
+    border: 1px solid #000;
     background: var(--pop-yellow);
-    font: 700 .7rem/1.25 var(--pop-mono);
-    text-transform: uppercase;
-    rotate: -2deg;
-    box-shadow: 2px 2px 0 #000;
+    font: 600 0.8rem/1.25 var(--nm-font);
+    text-transform: none;
+    rotate: none;
+    box-shadow: none;
   }
-  & .block_news_items .post:nth-child(even) .date { background: var(--pop-pink); rotate: 2deg; }
-  & .block_news_items .post .name { font: 400 .72rem/1.3 var(--pop-mono); text-transform: uppercase; color: rgba(0, 0, 0, .76); }
+  & .block_news_items .post:nth-child(even) .date { background: var(--pop-pink); rotate: none; }
+  & .block_news_items .post .name { font: 400 0.81rem/1.3 var(--nm-font); text-transform: none; color: rgba(0, 0, 0, .76); }
   & .block_news_items .post .info { font-weight: 600; }
 
   /* ---------- Calendar month nav (dashboard block + calendar page) ---------- */
@@ -896,7 +919,7 @@ html[data-nm-theme="campus-pop"] {
     font-weight: 700;
     font-size: 1.3rem;
     line-height: 1.1;
-    letter-spacing: -.03em;
+    letter-spacing: -.01em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -916,7 +939,7 @@ html[data-nm-theme="campus-pop"] {
     padding: 0 .75rem !important;
     background: #FFF !important;
     color: #000 !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px;
     font-size: 0;                           /* swallows the &nbsp; between the arrow and the label */
     text-decoration: none !important;
@@ -925,7 +948,7 @@ html[data-nm-theme="campus-pop"] {
   }
   & .calendar-controls .arrow_link:hover { translate: -2px -2px; box-shadow: 3px 3px 0 #000 !important; background: var(--pop-pink) !important; }
   & .calendar-controls .arrow_link:active { translate: 0 0; box-shadow: none !important; }
-  & .calendar-controls .arrow_text { font: 700 .72rem/1 var(--pop-mono); text-transform: uppercase; letter-spacing: .03em; }
+  & .calendar-controls .arrow_text { font: 600 0.81rem/1 var(--nm-font); text-transform: none; letter-spacing: 0; }
   /* Moodle's ◀︎/▶︎ glyphs render inconsistently; draw a chevron instead */
   & .calendar-controls .arrow {
     flex: none;
@@ -951,17 +974,17 @@ html[data-nm-theme="campus-pop"] {
     table-layout: fixed;
     border-collapse: collapse;
     background: #FFF;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
   }
   & :is(.calendartable, .minicalendar) th {
     padding: .45rem .25rem !important;
     background: #000 !important;
     color: #FFF !important;
     border: 1px solid #000 !important;
-    font: 700 .68rem/1 var(--pop-mono) !important;
-    text-transform: uppercase;
+    font: 600 0.8rem/1 var(--nm-font) !important;
+    text-transform: none;
     text-align: center !important;
-    letter-spacing: .04em;
+    letter-spacing: 0;
   }
   & :is(.calendartable, .minicalendar) td {
     border: 1px solid #000 !important;
@@ -978,18 +1001,14 @@ html[data-nm-theme="campus-pop"] {
     border: 2px solid transparent;
     background: transparent !important;
     color: #000 !important;
-    font: 700 .82rem/1 var(--pop-mono);
+    font: 600 0.92rem/1 var(--nm-font);
     font-kerning: none;
   }
   & :is(.calendartable, .minicalendar) .day-number::before { content: none !important; display: none !important; }
   & :is(.calendartable, .minicalendar) .day-number { color: inherit !important; background: none !important; padding: 0 !important; inline-size: auto !important; block-size: auto !important; }
-  & :is(.calendartable, .minicalendar) td.today .day-number-circle {
-    background: var(--pop-pink) !important;
-    border-color: #000;
-    box-shadow: 2px 2px 0 #000;
-    rotate: -10deg;
-  }
-  & :is(.calendartable, .minicalendar) td.today { box-shadow: inset 0 0 0 2px #000; }
+  /* today: the whole cell turns pink (a drawn circle sat off-center under Moodle's day number) */
+  & :is(.calendartable, .minicalendar) td.today { background: var(--pop-pink) !important; box-shadow: inset 0 0 0 2px #000; }
+  & :is(.calendartable, .minicalendar) td.today .day-number-circle { background: transparent !important; border-color: transparent; font-weight: 800; }
   & :is(.calendartable, .minicalendar) a.day, & :is(.calendartable, .minicalendar) a.aalink { text-decoration: none !important; background: none !important; box-shadow: none !important; }
 
   /* Dashboard block: a compact grid; days with deadlines become yellow cells */
@@ -1019,7 +1038,7 @@ html[data-nm-theme="campus-pop"] {
     color: #000 !important;
     border: 1.5px solid #000;
     border-radius: 3px;
-    font-size: .74rem;
+    font-size: .8rem;
     font-weight: 600;
     line-height: 1.35;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -1036,7 +1055,7 @@ html[data-nm-theme="campus-pop"] {
   & .maincalendar [data-region="event-item"]:is([data-event-eventtype="site"], [data-event-eventtype="user"], [data-event-eventtype="category"]) > a:hover { background: var(--pop-lilac) !important; }
   & .maincalendar [data-region="event-item"] .calendar-circle { display: none; }
   & .maincalendar [data-region="event-item"] .eventname { unicode-bidi: plaintext; }
-  & .maincalendar [data-action="view-more-events"] a { font: 700 .7rem/1.2 var(--pop-mono); text-transform: uppercase; }
+  & .maincalendar [data-action="view-more-events"] a { font: 600 0.8rem/1.2 var(--nm-font); text-transform: none; }
   & .maincalendar .header { gap: .5rem; align-items: center; margin-bottom: 1rem; }
   & .maincalendar .calendar-controls { margin-block: .25rem 1rem; }
   & .maincalendar .calendar-controls .current { font-size: clamp(1.4rem, 1rem + 1.2vw, 2rem); }
@@ -1044,14 +1063,23 @@ html[data-nm-theme="campus-pop"] {
 
   /* ---------- Recently accessed + generic inner cards ---------- */
   & .block .card:not(.course-card):not(.dashboard-card) {
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
     background: #FFF;
-    box-shadow: 3px 3px 0 #000;
-    transition: translate .12s var(--pop-ease), box-shadow .12s, background-color .12s;
+    box-shadow: none;
+    transition: background-color .12s;
   }
-  & .block a.card:not(.course-card):not(.dashboard-card):hover { translate: -3px -3px; box-shadow: 6px 6px 0 #000; background: var(--pop-yellow); }
-  & .block a.card:not(.course-card):not(.dashboard-card):active { translate: 0 0; box-shadow: none; }
+  & .block a.card:not(.course-card):not(.dashboard-card):hover { background: var(--pop-yellow); }
+  /* recently accessed: rows of one ledger, not a stack of boxed cards */
+  & .block_recentlyaccesseditems .card:not(.course-card):not(.dashboard-card) {
+    margin: 0 -1.25rem !important;
+    border: 0 !important;
+    border-bottom: 1px solid #000 !important;
+    border-radius: 0 !important;
+    background: transparent;
+  }
+  & .block_recentlyaccesseditems .card-text.content :is(.mb-2, .mb-3):has(> .card) { margin-bottom: 0 !important; }
+  & .block_recentlyaccesseditems :is(div, li):last-child > .card { border-bottom: 0 !important; }
   & .block a.card h6 { font-weight: 700; color: #000; }
 
   /* ---------- Tables: ruled ledgers with a hard shadow ---------- */
@@ -1063,9 +1091,9 @@ html[data-nm-theme="campus-pop"] {
     --bs-table-hover-bg: var(--pop-yellow);
     background: #FFF;
     color: #000;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-collapse: collapse;
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: none;
   }
   & .generaltable > :not(caption) > * > * {
     background: transparent !important;
@@ -1076,9 +1104,9 @@ html[data-nm-theme="campus-pop"] {
     color: #000;
   }
   & .generaltable thead th, & .generaltable tbody th {
-    font: 700 .74rem/1.35 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .03em;
+    font: 600 0.83rem/1.35 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
   }
   & .generaltable thead th { background: #000 !important; color: #FFF !important; }
   & .generaltable tbody th { background: var(--pop-canvas) !important; }
@@ -1096,68 +1124,68 @@ html[data-nm-theme="campus-pop"] {
   & .submissionstatustable .generaltable td.submissionnotgraded { font-style: normal; }
   & .submissionstatustable h3, & .submissionsummarytable + h3 { margin-top: 2rem; }
   & .submissionstatustable .box { padding-block: .5rem !important; }
-  & .commentscontainer .comment-link { font: 700 .74rem/1.3 var(--pop-mono); text-transform: uppercase; }
+  & .commentscontainer .comment-link { font: 600 0.83rem/1.3 var(--nm-font); text-transform: none; }
 
   /* Quiz: attempts are colored cards, the final grade is a big sticker */
-  & .quizinfo p { margin-bottom: .25rem; font: 400 .82rem/1.5 var(--pop-mono); text-transform: uppercase; text-align: start !important; }
+  & .quizinfo p { margin-bottom: .25rem; font: 400 0.92rem/1.5 var(--nm-font); text-transform: none; text-align: start !important; }
   & #feedback h3 {
     display: inline-block;
     margin: 1rem 0 .5rem;
     padding: .6rem 1rem;
     background: var(--pop-yellow);
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: none;
     font-size: clamp(1.15rem, 1rem + .6vw, 1.5rem);
-    rotate: -1deg;
+    rotate: none;
   }
   & .card:has(> .quizreviewsummary), & .card:has(.quizattemptsummary), & #region-main .list-unstyled > li > .card {
     background: #FFF !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: none;
     overflow: hidden;
   }
   & #region-main .list-unstyled.row { --bs-gutter-x: 1.5rem; row-gap: 1.25rem; }
   & #region-main .list-unstyled.row > li { padding-inline-end: 1.25rem !important; }
   & #region-main .list-unstyled > li > .card > .card-header {
     background: var(--pop-pink) !important;
-    border-bottom: 2px solid #000 !important;
+    border-bottom: 1px solid #000 !important;
     padding: .7rem 1rem !important;
   }
   & #region-main .list-unstyled > li:nth-child(even) > .card > .card-header { background: var(--pop-lilac) !important; }
-  & #region-main .list-unstyled > li > .card .card-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.03em; }
+  & #region-main .list-unstyled > li > .card .card-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.01em; }
   & .card .quizreviewsummary, & .card .quizattemptsummary { border: 0 !important; box-shadow: none; margin: 0; }
   & .card .quizreviewsummary th { text-align: start !important; inline-size: 38%; border-inline-start: 0 !important; }
   & .card .quizreviewsummary td { border-inline-end: 0 !important; }
   & .quizreviewsummary :is(th, td) { vertical-align: middle; }
   & .card .quizreviewsummary tr:last-child > * { border-bottom: 0 !important; }
-  & #region-main .list-unstyled > li > .card > .card-body { border-top: 2px solid #000; padding: .75rem 1rem !important; }
+  & #region-main .list-unstyled > li > .card > .card-body { border-top: 1px solid #000; padding: .75rem 1rem !important; }
   & #region-main .list-unstyled > li > .card > .card-body a:not(.btn) {
     display: inline-block;
     padding: .3rem .75rem;
     background: #000;
     color: #FFF !important;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
-    font: 700 .74rem/1.3 var(--pop-mono);
-    text-transform: uppercase;
+    font: 600 0.83rem/1.3 var(--nm-font);
+    text-transform: none;
     text-decoration: none !important;
-    letter-spacing: .03em;
+    letter-spacing: 0;
     transition: translate .12s var(--pop-ease), box-shadow .12s, background-color .12s;
   }
   & #region-main .list-unstyled > li > .card > .card-body a:not(.btn):hover { background: var(--pop-pink) !important; color: #000 !important; translate: -2px -2px; box-shadow: 3px 3px 0 #000 !important; }
   & .quizattempt { text-align: start; }
-  & .quizattempt > p { font: 700 .78rem/1.4 var(--pop-mono); text-transform: uppercase; }
+  & .quizattempt > p { font: 600 0.87rem/1.4 var(--nm-font); text-transform: none; }
   & .continuebutton, & .quizattempt .singlebutton { text-align: start; }
 
   /* ---------- Buttons ---------- */
   & .btn {
-    --bs-btn-border-width: 2px;
+    --bs-btn-border-width: 1px;
     --bs-btn-border-radius: 4px;
     --bs-btn-font-weight: 600;
     font-family: var(--nm-font);
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
     box-shadow: none;
     transition: translate .12s var(--pop-ease), box-shadow .12s, background-color .12s, color .12s;
@@ -1189,7 +1217,7 @@ html[data-nm-theme="campus-pop"] {
   & .form-control, & .form-select, & .custom-select {
     background-color: #FFF;
     color: #000;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
     font-family: var(--nm-font);
     min-height: 2.5rem;
@@ -1201,7 +1229,7 @@ html[data-nm-theme="campus-pop"] {
     outline-offset: 2px;
     box-shadow: 0 0 0 5px var(--pop-pink);
   }
-  & .form-check-input { border: 2px solid #000; }
+  & .form-check-input { border: 1px solid #000; }
   & .form-check-input:checked { background-color: var(--pop-teal); border-color: #000; }
   & .form-switch .form-check-input:checked { background-color: var(--pop-pink); }
   & fieldset legend, & .fitemtitle label, & .col-form-label { font-weight: 700; }
@@ -1212,7 +1240,7 @@ html[data-nm-theme="campus-pop"] {
     flex: none;
     width: 1.3rem; height: 1.3rem;
     margin: 0;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 50%;
     background: #FFF center / 72% no-repeat;
     cursor: pointer;
@@ -1229,22 +1257,23 @@ html[data-nm-theme="campus-pop"] {
   & .badge:not(.activitybadge), & .nm-up-count, & .nm-todo-done-count, & .nm-game-badge, & .nm-todo-head-count:not([hidden]) {
     display: inline-block;
     padding: .2rem .45rem;
-    background: var(--pop-yellow) !important;
+    background: #FFF !important;
     color: #000 !important;
-    border: 2px solid #000;
-    border-radius: 3px;
-    box-shadow: 2px 2px 0 #000;
-    font: 700 .7rem/1.2 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    rotate: -3deg;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: none;
+    font: 600 0.8rem/1.2 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
+    rotate: none;
   }
-  & .badge:not(.activitybadge):nth-of-type(even), & .nm-todo-head-count { background: var(--pop-pink) !important; rotate: 3deg; }
+  & .nm-todo-head-count { background: var(--pop-pink) !important; }
   & .nm-todo-head-count { margin-inline-start: .9rem; vertical-align: .2em; }
   & .nm-up-tag {
-    font: 700 .64rem/1.2 var(--pop-mono); text-transform: uppercase; letter-spacing: .03em;
-    border: 1.5px solid #000; border-radius: 3px; color: #000; rotate: -2deg; display: inline-block;
+    font: 600 0.8rem/1.2 var(--nm-font); text-transform: none; letter-spacing: 0;
+    border: 1.5px solid #000; border-radius: 3px; color: #000; rotate: none; display: inline-block;
   }
+  & .nm-up-opens { font: 500 .8rem/1.3 var(--nm-font); text-transform: none; letter-spacing: 0; color: #3D3D3D; }
   & .nm-up-tag-auto { background: var(--pop-teal); }
   & .nm-up-tag-manual { background: var(--pop-lilac); }
 
@@ -1254,7 +1283,7 @@ html[data-nm-theme="campus-pop"] {
     font-weight: 600;
     background: #FFF;
     color: #000;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
     box-shadow: none;
     transition: translate .12s var(--pop-ease), rotate .2s var(--pop-ease), box-shadow .12s, background-color .12s, color .12s;
@@ -1264,19 +1293,19 @@ html[data-nm-theme="campus-pop"] {
   & .nm-btn:active, & .nm-icon-btn:active { translate: 0 0; box-shadow: none; }
   & .nm-btn-primary { background: #000; color: #FFF; border-color: #000; }
   & .nm-btn-primary:hover { background: var(--pop-pink); color: #000; }
-  & .nm-icon-btn { inline-size: 2.5rem; block-size: 2.5rem; font-size: 1.15rem; }
-  & .nm-theme-btn { background: var(--pop-yellow); box-shadow: 3px 3px 0 #000; rotate: 4deg; }
-  & .nm-theme-btn:hover { rotate: -4deg; translate: -3px -3px; box-shadow: 6px 6px 0 #000; background: var(--pop-yellow); }
+  & .nm-icon-btn { inline-size: 2.75rem; block-size: 2.75rem; font-size: 1.15rem; }
+  & .nm-theme-btn { background: var(--pop-yellow); box-shadow: none; rotate: none; }
+  & .nm-theme-btn:hover { rotate: none; translate: -3px -3px; box-shadow: 6px 6px 0 #000; background: var(--pop-yellow); }
 
   & .nm-theme-menu {
     min-width: 15rem;
     padding: 0;
     background: #FFF;
-    border: 2px solid #000;
+    border: 1px solid #000;
     border-radius: 4px;
     box-shadow: 6px 6px 0 #000;
     overflow: hidden;
-    rotate: -1deg;
+    rotate: none;
   }
   & .nm-theme-option {
     padding: .65rem .8rem;
@@ -1292,10 +1321,10 @@ html[data-nm-theme="campus-pop"] {
     content: "✓"; color: #000;
     display: inline-grid; place-items: center;
     width: 1.4rem; height: 1.4rem;
-    background: #FFF; border: 2px solid #000; border-radius: 50%;
+    background: #FFF; border: 1px solid #000; border-radius: 50%;
     font-weight: 800; font-size: .8rem;
   }
-  & .nm-swatch { border: 2px solid #000; border-radius: 3px; inline-size: 1.25rem; block-size: 1.25rem; rotate: -6deg; }
+  & .nm-swatch { border: 1px solid #000; border-radius: 3px; inline-size: 1.25rem; block-size: 1.25rem; rotate: none; }
   & .nm-block-content { font-family: var(--nm-font); }
 
   /* ---------- Feature widgets (nm-up-*, nm-todo-*, nm-sc-*, nm-game-*) ---------- */
@@ -1309,43 +1338,43 @@ html[data-nm-theme="campus-pop"] {
   }
   & .nm-sc-list { padding: 10px 8px 12px; margin: -10px -6px -12px; gap: 10px; }
   & .nm-sc-chip {
-    --pop-ticket: var(--pop-yellow);
+    --pop-ticket: #FFF;
     background: var(--pop-ticket) !important;
     color: #000 !important;
-    border: 2px solid #000 !important;
-    box-shadow: 3px 3px 0 #000 !important;
-    rotate: -2deg;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    rotate: none;
     transition: translate .12s var(--pop-ease), rotate .25s var(--pop-ease), box-shadow .12s;
   }
-  & .nm-sc-chip:nth-child(even) { --pop-ticket: var(--pop-pink-2); rotate: 1.5deg; }
-  & .nm-sc-chip:nth-child(3n) { rotate: -.5deg; }
-  & .nm-sc-chip:hover { translate: -3px -3px; rotate: -4deg; box-shadow: 6px 6px 0 #000 !important; }
-  & .nm-sc-chip:nth-child(even):hover { rotate: 4deg; }
+  & .nm-sc-chip:hover { --pop-ticket: var(--pop-yellow); }
+  & .nm-sc-chip:nth-child(3n) { rotate: none; }
+  & .nm-sc-chip:hover { translate: -3px -3px; rotate: none; box-shadow: 6px 6px 0 #000 !important; }
+  & .nm-sc-chip:nth-child(even):hover { rotate: none; }
   & .nm-sc-chip:active { translate: 0 0; box-shadow: 0 0 0 #000 !important; }
   & .nm-sc-chip .nm-sc-link { font-weight: 700; font-size: .84rem; padding-inline: 8px 12px; gap: 8px; }
   & .nm-sc-chip .nm-sc-icon {
     inline-size: 26px; block-size: 100%;
-    padding-inline-end: 8px;
-    border-inline-end: 2px dashed #000;
-    place-items: center start;
+    padding-inline-end: 0;
+    border-inline-end: 0;
+    place-items: center;
   }
   & .nm-sc-chip .nm-sc-letter { background: #000; color: #FFF; border-radius: 50%; }
   /* punched notches on the perforation line (fill = the pink header field behind the chips) */
   & .nm-sc-chip:not(.nm-sc-drop-before)::before,
   & .nm-sc-chip:not(.nm-sc-drop-after)::after {
-    content: "";
+    content: none;
     position: absolute;
     inset-inline-start: 25px;
     inline-size: 12px; block-size: 12px;
     border-radius: 50%;
     background: var(--pop-notch, var(--pop-pink));
-    border: 2px solid #000;
+    border: 1px solid #000;
     pointer-events: none;
   }
   & .nm-sc-chip:not(.nm-sc-drop-before)::before { top: -8px; clip-path: inset(50% -2px -2px -2px); }
   & .nm-sc-chip:not(.nm-sc-drop-after)::after { bottom: -8px; clip-path: inset(-2px -2px 50% -2px); }
   & .nm-sc-add, & .nm-sc-edit-toggle {
-    border: 2px dashed #000 !important;
+    border: 1px dashed #000 !important;
     background: #FFF !important;
     color: #000 !important;
     font-weight: 700;
@@ -1356,26 +1385,26 @@ html[data-nm-theme="campus-pop"] {
   & .nm-sc-pop, & .nm-sc-card, & .nm-sc-menu, & .nm-sc-toast {
     background: #FFF !important;
     color: #000;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
     box-shadow: 6px 6px 0 #000 !important;
   }
-  & .nm-sc-card-img { border-bottom: 2px solid #000; }
-  & .nm-sc-card-title, & .nm-sc-pop-title { font-family: var(--nm-heading-font); font-weight: 700; letter-spacing: -.03em; }
-  & .nm-sc-card-host, & .nm-sc-card-path, & .nm-sc-url { font-family: var(--pop-mono); font-size: .72rem; }
-  & .nm-sc-input, & .nm-sc-field input { border: 2px solid #000 !important; border-radius: 4px !important; background: #FFF; }
-  & .nm-sc-save { background: #000 !important; color: #FFF !important; border: 2px solid #000 !important; border-radius: 4px !important; }
-  & .nm-sc-toast, & .nm-toast { background: #000 !important; color: #FFF !important; border: 2px solid #000 !important; border-radius: 4px !important; box-shadow: 6px 6px 0 var(--pop-pink) !important; }
+  & .nm-sc-card-img { border-bottom: 1px solid #000; }
+  & .nm-sc-card-title, & .nm-sc-pop-title { font-family: var(--nm-heading-font); font-weight: 700; letter-spacing: -.01em; }
+  & .nm-sc-card-host, & .nm-sc-card-path, & .nm-sc-url { font-family: var(--nm-font); font-size: .8rem; }
+  & .nm-sc-input, & .nm-sc-field input { border: 1px solid #000 !important; border-radius: 4px !important; background: #FFF; }
+  & .nm-sc-save { background: #000 !important; color: #FFF !important; border: 1px solid #000 !important; border-radius: 4px !important; }
+  & .nm-sc-toast, & .nm-toast { background: #000 !important; color: #FFF !important; border: 1px solid #000 !important; border-radius: 4px !important; box-shadow: 6px 6px 0 var(--pop-pink) !important; }
 
   /* Todo + upcoming "Done" section */
   & .nm-block details > summary, & .block_calendar_upcoming details > summary, & [class*="nm-up-"] > summary {
-    font: 700 .78rem/1.3 var(--pop-mono);
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    font: 600 0.87rem/1.3 var(--nm-font);
+    text-transform: none;
+    letter-spacing: 0;
     cursor: pointer;
   }
   & .nm-todo-check, & .nm-up-check .nm-up-box {
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 50% !important;
     background: #FFF;
   }
@@ -1384,45 +1413,46 @@ html[data-nm-theme="campus-pop"] {
   & .nm-todo-check:checked::after, & .nm-up-check .nm-up-box::after { color: #000; border-color: #000; }
   & .nm-todo-item { border-color: #000 !important; }
   & .nm-todo-item:hover { background: var(--pop-yellow); }
-  & .nm-todo-add { border: 2px dashed #000; border-radius: 4px; background: #FFF; }
+  & .nm-todo-add { border: 1px dashed #000; border-radius: 4px; background: #FFF; }
   & .nm-todo-add:hover { background: var(--pop-canvas); }
   & .nm-todo-add:focus-within { border-style: solid; border-color: #000; box-shadow: 4px 4px 0 #000; }
   & .nm-todo-add-plus { color: #000; font-weight: 700; }
-  & .nm-todo-due { font-family: var(--pop-mono); font-size: .72rem; text-transform: uppercase; }
+  & .nm-todo-due { font-family: var(--nm-font); font-size: .8rem; text-transform: none; }
   & .nm-todo-done-toggle, & .nm-up .nm-up-done-summary {
-    font: 700 .78rem/1.3 var(--pop-mono) !important;
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    font: 600 0.87rem/1.3 var(--nm-font) !important;
+    text-transform: none;
+    letter-spacing: 0;
     color: #000;
   }
-  & .nm-up .nm-up-done-summary { background: var(--pop-yellow); border: 2px solid #000; border-radius: 4px; }
+  & .nm-up .nm-up-done-summary { background: var(--pop-yellow); border: 1px solid #000; border-radius: 4px; }
   & .nm-up .nm-up-done-summary .nm-up-done-hint { color: rgba(0, 0, 0, .78); opacity: 1; }
   & .nm-up-row-done { background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(35, 160, 148, .08) 10px 20px); }
-  & .nm-up-edit { font-family: var(--pop-mono); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+  & .nm-up-edit { font-family: var(--nm-font); font-size: .8rem; font-weight: 600; text-transform: none; }
 
   /* Arcade: oversized black score with a hard pink offset (pink text alone fails contrast on white) */
   & .nm-game-stat-value, & .nm-game-final, & .nm-game-combo-value {
     color: #000 !important;
-    text-shadow: 3px 3px 0 var(--pop-pink);
-    letter-spacing: -.04em;
+    text-shadow: none;
+    letter-spacing: -.01em;
   }
-  & .nm-game-stat-value { font-size: 3.4rem; line-height: .95; }
-  & .nm-game-final { font-size: 6rem; text-shadow: 5px 5px 0 var(--pop-pink); }
-  & .nm-game-teaser-art { box-shadow: 4px 4px 0 #000; }
-  & .nm-game-card { border: 2px solid #000 !important; border-radius: 4px !important; box-shadow: 8px 8px 0 #000 !important; }
+  & .nm-game-stat-value { font-size: 2.6rem; line-height: 1; font-weight: 500; }
+  & .nm-game-final { font-size: 6rem; text-shadow: none; }
+  & .nm-game-teaser-art { box-shadow: none; }
+  & .nm-game-card { border: 1px solid #000 !important; border-radius: 4px !important; box-shadow: none !important; }
 
   /* ---------- Footer popover ---------- */
-  & .footer-popover, & #page-footer .footer-content-popover {
+  & #page-footer.footer-popover { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  & #page-footer .footer-content-popover {
     background: #FFF !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius: 4px !important;
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: none;
   }
   & .footer-popover .footer-section { border-color: #000 !important; }
   & .footer-popover a { color: #000; text-decoration: underline; text-underline-offset: .2em; }
   & .btn-footer-popover {
     background: var(--pop-pink) !important; color: #000 !important;
-    border: 2px solid #000 !important; box-shadow: 3px 3px 0 #000;
+    border: 1px solid #000 !important; box-shadow: 3px 3px 0 #000;
   }
 
   /* ---------- Motion off: no marquee, lifts or tilts in motion ---------- */
@@ -1447,17 +1477,24 @@ html[data-nm-theme="campus-pop"] {
     & .maincalendar :is(.calendartable) td.hasevent { background: var(--pop-yellow); }
   }
   @media (max-width: 575.98px) {
-    & body.pagelayout-mydashboard #page-header { padding: 3.6rem 1rem 1.2rem !important; margin-inline: 0; }
+    & body.pagelayout-mydashboard #page-header { padding: 2.5rem 1rem 1rem !important; margin-inline: 0; margin-block-end: 1.25rem; }
+    & body.pagelayout-mydashboard #page-header h1 { font-size: 2.5rem; }
     & body.pagelayout-mydashboard #page-header .page-header-headings::after {
-      inline-size: 3.3rem; block-size: 3.3rem; font-size: .5rem; margin-inline-start: .3rem; top: -.2rem; box-shadow: 2px 2px 0 #000;
+      inline-size: 3.8rem; block-size: 3.8rem; font-size: .75rem; text-transform: uppercase; margin-inline-start: .3rem; top: -.3rem; box-shadow: 2px 2px 0 #000;
     }
+    & #page-header .nm-header-slot { padding-top: .5rem !important; gap: .5rem; }
+    & body.pagelayout-mydashboard #page-header .nm-sc-bar { --nm-sc-chip-height: 34px; row-gap: 8px; gap: 6px; }
+    & body.pagelayout-mydashboard #page-header .nm-sc-chip .nm-sc-link { font-size: .8125rem; padding-inline: 4px 9px; gap: 4px; }
+    & body.pagelayout-mydashboard #page-header .nm-sc-chip .nm-sc-icon { inline-size: 20px; }
+    & body.pagelayout-mydashboard #page-header :is(.nm-sc-add, .nm-sc-edit-toggle) { block-size: 34px; }
+    & body.pagelayout-mydashboard #page-header .nm-icon-btn { inline-size: 2.4rem; block-size: 2.4rem; }
     & body.pagelayout-course #page-header { padding: 1.2rem 1rem 1.1rem !important; }
     & .block.card > .card-body { padding: 1rem !important; }
     & .block.card > .card-body > .card-title,
     & .block.card > .card-body > .d-flex:has(> .card-title),
     & .block.card > .card-body > .nm-block-head { margin: -1rem -1rem 0 !important; padding: .75rem 1rem !important; }
     & .block_calendar_upcoming .event, & .block_calendar_upcoming [data-region="event-item"] { margin-inline: -1rem; padding-inline: 1rem !important; }
-    & .block.card, & .nm-block, & .course-content li.course-section, & .generaltable { box-shadow: 4px 4px 0 #000 !important; }
+    & .block.card, & .nm-block, & .course-content li.course-section, & .generaltable { box-shadow: none !important; }
     & .course-content li.course-section, & .course-content li.section.main { margin-inline-end: 4px !important; }
     & .course-section-header { padding: .65rem .75rem !important; }
     & .course-section .content, & .course-section .course-content-item-content { padding-inline: .75rem !important; }
@@ -1482,54 +1519,51 @@ html[data-nm-theme="campus-pop"][dir="rtl"] body.pagelayout-mydashboard #page-he
 /* ---------- Login page (HUJI IdP): touches on top of src/login.css, which loads after the themes,
    so these start with :root to outrank its html[data-nm-site][data-nm-theme] rules ---------- */
 html[data-nm-theme="campus-pop"] {
-  --nm-login-shadow: 8px 8px 0 #000;
+  --nm-login-shadow: none;
   --nm-login-photo-radius: 4px;
 }
 :root[data-nm-theme="campus-pop"][data-nm-site="login"] {
   overflow-x: clip;
   & body { background: var(--pop-canvas); font-family: var(--nm-font); }
-  & body > header { background: #FFF; border-bottom: 2px solid #000; }
+  & body > header { background: #FFF; border-bottom: 1px solid #000; }
   & header .navbar > .container { padding-block: 14px; }
   & header select.selectpicker {
     background-color: var(--pop-yellow);
     border-radius: 4px;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: none;
     font-weight: 700;
     color: #000;
   }
-  & body > .container > .row > .col-lg-7 { border: 2px solid #000; box-shadow: 8px 8px 0 #000; background: var(--pop-lilac); }
+  & body > .container > .row > .col-lg-7 { border: 1px solid #000; box-shadow: none; background: var(--pop-lilac); }
   & body > .container > .row > .col-lg-5 { border-radius: 4px; }
   & body > .container > .row > .tab-pane { border-radius: 0 0 4px 4px; }
   & .col-lg-5 h1 {
     display: inline;
     font-family: var(--nm-heading-font);
-    font-weight: 700;
+    font-weight: 500;
     font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.6rem);
     line-height: 1.05;
-    letter-spacing: -.04em;
-    background: linear-gradient(transparent 58%, var(--pop-pink) 58%, var(--pop-pink) 88%, transparent 88%);
-    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    letter-spacing: -.035em;
   }
   & .col-lg-5 > h1 + p { margin-top: 1rem; color: #000; }
-  /* the three login methods: one black-ruled strip, pink = current */
+  /* the three login methods: Gumroad's tab buttons, plain labels with the current one as a pink bordered pill */
   & .col-lg-5 .nav-pills {
-    gap: 0; padding: 0;
-    background: #FFF;
-    border: 2px solid #000;
-    border-radius: 4px;
-    box-shadow: 3px 3px 0 #000;
-    overflow: hidden;
+    gap: .35rem; padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
-  & .col-lg-5 .nav-pills .nav-item + .nav-item { border-inline-start: 2px solid #000; }
+  & .col-lg-5 .nav-pills .nav-item + .nav-item { border: 0; }
   & .col-lg-5 .nav-pills .nav-item a.nav-link {
-    border-radius: 0; color: #000; font-weight: 600; min-block-size: 46px;
-    transition: background-color .12s;
+    border: 1px solid transparent; border-radius: 4px; color: #000; font-size: 14px; font-weight: 500; min-block-size: 48px;
+    padding: .5rem .6rem;
+    transition: background-color .12s, border-color .12s;
   }
-  & .col-lg-5 .nav-pills .nav-item a.nav-link:hover { background: var(--pop-yellow); color: #000; }
-  & .col-lg-5 .nav-pills .nav-item a.nav-link.active { background: var(--pop-pink); color: #000; font-weight: 700; box-shadow: none; }
-  & .tab-pane label { font: 700 .74rem/1.4 var(--pop-mono); text-transform: uppercase; letter-spacing: .03em; color: #000; }
+  & .col-lg-5 .nav-pills .nav-item a.nav-link:hover { background: transparent; border-color: #000; color: #000; }
+  & .col-lg-5 .nav-pills .nav-item a.nav-link.active { background: var(--pop-pink); border-color: #000; color: #000; font-weight: 600; box-shadow: none; }
+  & .tab-pane label { font: 600 0.83rem/1.4 var(--nm-font); text-transform: none; letter-spacing: 0; color: #000; }
   & .tab-pane .form-control { background: #FFF; border-color: #000; }
-  & .tab-pane .form-control:focus { border-color: #000; box-shadow: 0 0 0 4px var(--pop-pink); outline: 2px solid #000; outline-offset: 0; }
+  & .tab-pane .form-control:focus { border-color: #000; box-shadow: 0 0 0 4px var(--pop-pink); outline: 1px solid #000; outline-offset: 0; }
   & .tab-pane .btn-primary, & .tab-pane .btn-primary:hover {
     background: #000; color: #FFF; border-color: #000; font-weight: 700;
     transition: translate .12s var(--pop-ease), box-shadow .12s, background-color .12s, color .12s;
@@ -1540,7 +1574,7 @@ html[data-nm-theme="campus-pop"] {
   & .tab-pane form p { color: #000; }
   & .tab-pane a.nav-link { color: #000; text-decoration-color: #000; text-decoration-thickness: 1px; }
   & .tab-pane a.nav-link:hover { background: var(--pop-pink); }
-  & footer.bg-gray { background: #000; border-top: 2px solid #000; margin-top: 2rem; }
+  & footer.bg-gray { background: #000; border-top: 1px solid #000; margin-top: 2rem; }
   & footer .footer, & footer .footer-copy, & footer :is(.footer-email, .footer-phone) { color: #FFF; }
   & footer .footer-h1 { font-family: var(--nm-heading-font); font-weight: 700; color: var(--pop-yellow); }
   & footer :is(.footer-email, .footer-phone) { color: var(--pop-pink); }

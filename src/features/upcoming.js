@@ -115,9 +115,12 @@ NM.feature('upcoming', () => {
 
     let det = list.querySelector(':scope > details.nm-up-done');
     if (!det) {
+      // The rule behind the section, said once: a hover hint on the summary, and a quiet first line when opened.
+      const help = 'Moved here automatically when Moodle no longer lists it as needing action. You can still open and edit it.';
       det = NM.el('details', {class: 'nm-up-done'},
-        NM.el('summary', {class: 'nm-up-done-summary'},
-          NM.el('span', {class: 'nm-up-done-label'}), NM.el('span', {class: 'nm-up-done-hint'}, '· still editable')));
+        NM.el('summary', {class: 'nm-up-done-summary', title: help},
+          NM.el('span', {class: 'nm-up-done-label'}), NM.el('span', {class: 'nm-up-done-hint'}, '· still editable')),
+        NM.el('p', {class: 'nm-up-done-help'}, help));
       try { det.open = sessionStorage.getItem(OPEN_KEY) === '1'; } catch {}
       det.addEventListener('toggle', () => { try { sessionStorage.setItem(OPEN_KEY, det.open ? '1' : '0'); } catch {} });
     }

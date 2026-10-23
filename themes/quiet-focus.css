@@ -1,4 +1,4 @@
-/* Quiet Focus fonts: Inter (as "QF Sans") and Noto Sans Hebrew (as "QF Hebrew"), latin/latin-ext/hebrew subsets from fonts.gstatic.com. */
+/* Quiet Focus fonts: Todoist uses the system UI font, so the stack starts with it (SF on macOS, Segoe UI on Windows). Inter ("QF Sans") and Noto Sans Hebrew ("QF Hebrew") from fonts.gstatic.com are the fallbacks, Hebrew everywhere SF has no glyphs. */
 @font-face { font-family: "QF Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZFhiJ-Ek-_0ewmM.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: "QF Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_0ew.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: "QF Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fAZFhiJ-Ek-_0ewmM.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
@@ -23,7 +23,7 @@
 html[data-nm-theme="quiet-focus"] {
   /* ---- Todoist palette ---- */
   --qf-red: #d1453b;            /* Todoist P1 / brand red, AA with white text */
-  --qf-red-text: #c3392c;       /* red used as text, AA on white and on peach */
+  --qf-red-text: #b03a2e;       /* Todoist's brick red as text: 6.0:1 on white, 5.4:1 on peach */
   --qf-red-hover: #b8352a;
   --qf-chrome: #fcfaf8;         /* sidebar */
   --qf-hover: #f3f0ee;          /* sidebar row hover */
@@ -55,6 +55,11 @@ html[data-nm-theme="quiet-focus"] {
   --qf-i-file: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 1.8h5.2L12.5 5v9.2H4z M9 1.8V5.2h3.5' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/></svg>");
   --qf-plus-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3v10M3 8h10' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round'/></svg>");
   --qf-search-grey: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='7' cy='7' r='4.6' fill='none' stroke='%23808080' stroke-width='1.2'/><path d='M10.4 10.4 13.5 13.5' stroke='%23808080' stroke-width='1.2' stroke-linecap='round'/></svg>");
+  --qf-i-today: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='4' y='4.5' width='16' height='15' rx='2.5' fill='none' stroke='black' stroke-width='1.3'/><path d='M4 8.5h16' stroke='black' stroke-width='1.3'/><rect x='8.5' y='11.5' width='7' height='5' rx='1'/></svg>");
+  --qf-i-folder: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3.8 7.2c0-1 .8-1.7 1.7-1.7h3.9l2 2h7.1c1 0 1.7.8 1.7 1.7v7.9c0 1-.8 1.7-1.7 1.7H5.5c-1 0-1.7-.8-1.7-1.7z' fill='none' stroke='black' stroke-width='1.3' stroke-linejoin='round'/></svg>");
+  --qf-i-home: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4.5 10.5 12 4.5l7.5 6V19a.5.5 0 0 1-.5.5h-4.5v-5h-5v5H5a.5.5 0 0 1-.5-.5z' fill='none' stroke='black' stroke-width='1.3' stroke-linejoin='round'/></svg>");
+  --qf-i-grid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='4.5' y='4.5' width='6' height='6' rx='1.5' fill='none' stroke='black' stroke-width='1.3'/><rect x='13.5' y='4.5' width='6' height='6' rx='1.5' fill='none' stroke='black' stroke-width='1.3'/><rect x='4.5' y='13.5' width='6' height='6' rx='1.5' fill='none' stroke='black' stroke-width='1.3'/><rect x='13.5' y='13.5' width='6' height='6' rx='1.5' fill='none' stroke='black' stroke-width='1.3'/></svg>");
+  --qf-chev-grey: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.5 6.25 8 9.75l3.5-3.5' fill='none' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   --qf-check-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 8.4l2.6 2.5L12 5.4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
 
   /* ---- nm tokens ---- */
@@ -66,15 +71,15 @@ html[data-nm-theme="quiet-focus"] {
   --nm-border: #eeeeee;
   --nm-accent: #d1453b;
   --nm-accent-contrast: #ffffff;
-  --nm-accent-text: #c3392c;
+  --nm-accent-text: #b03a2e;
   --nm-success: #058527;
   --nm-success-text: #058527;
   --nm-warning: #eb8909;
   --nm-danger: #d1453b;
   --nm-radius: 6px;
   --nm-shadow: none;
-  --nm-font: "QF Sans", "QF Hebrew", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --nm-heading-font: "QF Sans", "QF Hebrew", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --nm-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "QF Hebrew", "QF Sans", Roboto, Arial, sans-serif;
+  --nm-heading-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "QF Hebrew", "QF Sans", Roboto, Arial, sans-serif;
   --nm-border-width: 1px;
   --nm-confetti: #d1453b, #eb8909, #246fe0, #058527, #692fc2;
   --nm-sc-chip-radius: 5px;
@@ -94,7 +99,7 @@ html[data-nm-theme="quiet-focus"] {
   --bs-heading-color: #202020;
   --bs-secondary-color: #666666;
   --bs-secondary-color-rgb: 102, 102, 102;
-  --bs-tertiary-color: #808080;
+  --bs-tertiary-color: #6f6f6f;
   --bs-secondary-bg: #fcfaf8;
   --bs-tertiary-bg: #fcfaf8;
   --bs-tertiary-bg-rgb: 252, 250, 248;
@@ -113,8 +118,8 @@ html[data-nm-theme="quiet-focus"] {
   --bs-danger-rgb: 209, 69, 59;
   --bs-info: #246fe0;
   --bs-info-rgb: 36, 111, 224;
-  --bs-link-color: #c3392c;
-  --bs-link-color-rgb: 195, 57, 44;
+  --bs-link-color: #b03a2e;
+  --bs-link-color-rgb: 176, 58, 46;
   --bs-link-hover-color: #b8352a;
   --bs-link-hover-color-rgb: 184, 53, 42;
   --bs-link-decoration: none;
@@ -157,7 +162,6 @@ html[data-nm-theme="quiet-focus"] {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "cv11", "ss03";   /* Inter: single-storey a off, rounder 1/l, closer to SF */
   }
   & :is(#page, #page-wrapper, #topofscroll, #page-header, #page-content, #region-main, #region-main-box, .main-inner) {
     background: transparent !important;
@@ -245,7 +249,7 @@ html[data-nm-theme="quiet-focus"] {
   /* Avatar: round, warm, precise */
   & .userinitials, & .usermenu .avatar .userinitials {
     inline-size: 28px; block-size: 28px; margin-inline-end: 0;
-    background: #f1e7e1; color: #6b3f30; font-size: .6875rem; font-weight: 600; letter-spacing: .02em;
+    background: #f1e7e1; color: #6b3f30; font-size: .75rem; font-weight: 600; letter-spacing: .02em;
   }
   & .usermenu img.userpicture { border-radius: 50%; inline-size: 28px; block-size: 28px; }
   & .usermenu .dropdown-toggle { padding: .25rem .375rem !important; border-radius: 6px; }
@@ -298,7 +302,7 @@ html[data-nm-theme="quiet-focus"] {
      ====================================================================== */
   & #page-header { margin-block-end: 1.75rem; padding: 0 !important; }
   & #page-header h1 {
-    font-size: 1.625rem; font-weight: 700; line-height: 1.25; margin: 0; color: var(--qf-ink);
+    font-size: 1.625rem; font-weight: 700; line-height: 2rem; margin: 0; color: var(--qf-ink);
   }
   & #page-header .page-context-header { padding-block: 0; }
   & #page-header #page-navbar .breadcrumb { background: none; padding: 0; margin-block-end: .5rem; font-size: .8125rem; }
@@ -475,7 +479,7 @@ html[data-nm-theme="quiet-focus"] {
   }
   & .coursemenubtn {
     inline-size: 28px; block-size: 28px; padding: 0; display: inline-grid; place-items: center;
-    background: transparent; border: 0; border-radius: 5px; color: #808080;
+    background: transparent; border: 0; border-radius: 5px; color: #666666;
   }
   & .coursemenubtn:hover, & .coursemenubtn[aria-expanded="true"] { background: var(--qf-hover); color: var(--qf-ink); }
   & .progress { block-size: 4px; background: #f0f0f0 !important; border-radius: 999px; overflow: hidden; }
@@ -565,7 +569,7 @@ html[data-nm-theme="quiet-focus"] {
   & .nm-up .nm-up-row-done div.date { color: var(--qf-ink-2) !important; opacity: 1; }
   & .nm-up .nm-up-row-done h6 { opacity: 1; }
   & .nm-up .nm-up-tag { border-radius: 4px; font-weight: 500; padding-inline: .375rem; }
-  & .nm-up .nm-up-tag-auto { color: var(--qf-today); background: #eaf5ec; }
+  & .nm-up .nm-up-tag-auto { color: #04661e; background: #eaf5ec; }
   & .nm-up .nm-up-tag-manual { background: var(--qf-field); border: 0; }
   & .nm-up .nm-up-edit { color: var(--qf-red-text); font-weight: 500; }
 
@@ -682,7 +686,7 @@ html[data-nm-theme="quiet-focus"] {
   & .block_calendar_month table.calendarmonth { inline-size: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; margin: 0; }
   & .block_calendar_month table.calendarmonth :is(th, td) { border: 0 !important; background: transparent !important; }
   & .block_calendar_month table.calendarmonth th {
-    padding: .25rem 0 .375rem; text-align: center; font-size: .6875rem; font-weight: 500; color: var(--qf-ink-2);
+    padding: .25rem 0 .375rem; text-align: center; font-size: .75rem; font-weight: 500; color: var(--qf-ink-2);
   }
   & .block_calendar_month table.calendarmonth td {
     block-size: 2.25rem !important; padding: 2px 0 6px !important; text-align: center !important; vertical-align: top; position: relative;
@@ -771,7 +775,7 @@ html[data-nm-theme="quiet-focus"] {
      Course page
      ====================================================================== */
   /* tabs = Todoist's List / Board segmented control */
-  & .secondary-navigation { margin-block-end: 1.75rem; padding: 0; background: none; border: 0; }
+  & .secondary-navigation { margin-block-end: 1.25rem; padding: 0; background: none; border: 0; }
   & .secondary-navigation .navigation { border: 0; background: none; }
   & .secondary-navigation .nav-tabs {
     display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; border: 0;
@@ -1042,7 +1046,7 @@ html[data-nm-theme="quiet-focus"] {
   & .nm-sc-add { border: 0; color: var(--qf-ink-2); padding-inline: 6px 10px; }
   & .nm-sc-add .nm-sc-svg { color: var(--qf-red); }
   & .nm-sc-add:is(:hover, [aria-expanded="true"]) { color: var(--qf-red-text); background: transparent; border: 0; }
-  & .nm-sc-edit-toggle { color: #808080; }
+  & .nm-sc-edit-toggle { color: #666666; }
   & .nm-sc-edit-toggle:hover { background: var(--qf-hover); color: var(--qf-ink); }
   & .nm-sc-edit-toggle[aria-pressed="true"] { background: var(--qf-red); border-color: var(--qf-red); }
   & :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) { border-color: #ebebeb; border-radius: 10px; }
@@ -1060,6 +1064,278 @@ html[data-nm-theme="quiet-focus"] {
   }
   & .nm-sc-toast-undo { background: transparent; color: #ff8f80; font-weight: 600; }
   & .nm-sc-toast-undo:hover { background: rgba(255, 255, 255, .08); }
+
+  /* ======================================================================
+     Todoist structure
+     ====================================================================== */
+  /* Course overview cards become Todoist project rows: a coloured # in place of the artwork,
+     the course name, and a quiet meta line. The colours are Todoist's project palette. */
+  & .card-grid[data-region="card-deck"] { display: flex; flex-direction: column; margin: 0 !important; row-gap: 0; }
+  & .card-grid[data-region="card-deck"] > .col { flex: none; inline-size: 100%; max-inline-size: none; padding: 0 !important; margin: 0 !important; }
+  & .card-grid[data-region="card-deck"] > .col { --qf-proj: #b8255f; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+2) { --qf-proj: #4073ff; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+3) { --qf-proj: #299438; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+4) { --qf-proj: #eb8909; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+5) { --qf-proj: #884dff; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+6) { --qf-proj: #158fad; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+7) { --qf-proj: #e05194; }
+  & .card-grid[data-region="card-deck"] > .col:nth-child(8n+8) { --qf-proj: #808080; }
+  & .card-grid[data-region="card-deck"] .course-card {
+    display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; column-gap: .75rem;
+    padding: .5625rem .25rem .5625rem 0; border: 0; border-block-end: 1px solid var(--qf-rule); border-radius: 0;
+    background: transparent; overflow: visible;
+  }
+  & .card-grid[data-region="card-deck"] .course-card:hover { box-shadow: none; border-color: var(--qf-rule); background: transparent; }
+  & .card-grid[data-region="card-deck"] .course-card > a:first-child { display: block; inline-size: 18px; block-size: 18px; align-self: start; margin-block-start: 1px; }
+  & .card-grid[data-region="card-deck"] .course-card .card-img-top {
+    inline-size: 18px; block-size: 18px !important; border-radius: 0;
+    background: var(--qf-proj) !important; filter: none;
+    -webkit-mask: var(--qf-i-hash) center / 16px no-repeat; mask: var(--qf-i-hash) center / 16px no-repeat;
+  }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container { padding: 0 !important; min-inline-size: 0; }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container .w-100 {
+    display: flex; flex-wrap: wrap; align-items: baseline; column-gap: .5rem; row-gap: .125rem; white-space: normal;
+  }
+  & .card-grid[data-region="card-deck"] .course-card .coursename { order: -1; flex: 1 0 100%; margin: 0 !important; font-size: .875rem; font-weight: 400; line-height: 1.45; }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted { margin: 0 !important; font-size: .75rem; line-height: 1.4; }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted + a + .text-muted::before { content: "·"; margin-inline-end: .5rem; color: #b3b3b3; }
+  & .card-grid[data-region="card-deck"] .course-card .categoryname::before { display: none; }
+  & .card-grid[data-region="card-deck"] .course-card :is(.card-footer, .dashboard-card-footer) { padding: 0 !important; }
+  & .card-grid[data-region="card-deck"] .course-card .coursemenubtn { opacity: .85; }
+
+  /* No visible text under 12px anywhere */
+  & :is(.nm-up-opens, .nm-up-tag, .nm-game-label, .nm-sc-suggest-label, .nm-sc-card-hint, .nm-game-teaser-line span, .nm-game-drop) { font-size: .75rem !important; }
+  & .nm-sc-letter { inline-size: 18px; block-size: 18px; font-size: 12px; }
+  & .nm-sc-icon { inline-size: 18px; block-size: 18px; }
+
+  /* Section-header rhythm: more air above a header than between it and its rows */
+  & :is(.block.card, section.nm-block) { padding-block-start: .75rem; }
+  & .block.card .card-text.content { margin-block-start: .25rem !important; }
+
+  /* Footer: on the same left edge as the content column, one quiet line */
+  & #page-footer { max-inline-size: none; }
+  & body.pagelayout-mydashboard #page-footer { margin-inline: 0 !important; padding-inline: 2rem; }
+  @media (max-width: 767.98px) { & body.pagelayout-mydashboard #page-footer { padding-inline: 1rem; } }
+  & #page-footer .footer-content-popover {
+    display: flex !important; flex-wrap: wrap; align-items: baseline; gap: .25rem 1.5rem;
+    max-inline-size: none; margin: 0; padding: 1rem 0 2rem !important;
+  }
+  & #page-footer .footer-content-popover :is(.footer-section, .logininfo:has(> .logininfo)) { display: contents; }
+  & #page-footer .tool_usertours-resettourcontainer:empty { display: none; }
+  & #page-footer .footer-support-link a { display: inline-flex; align-items: center; gap: .375rem; }
+  & #page-footer .footer-content-debugging:empty, & #page-footer .footer-dark-inner:empty { display: none; }
+
+  /* Dashboard: one dominant task column (to-dos, then what's due, then courses) and a quiet aside */
+  @media (min-width: 992px) {
+    & body.pagelayout-mydashboard #nm-top-row { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 3rem; align-items: start; }
+    & body.pagelayout-mydashboard .nm-block-game .nm-game-teaser { flex: none; }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block-todo { grid-column: 1 / 5; }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block-game { grid-column: 5 / 7; }
+    & body.pagelayout-mydashboard #block-region-content {
+      display: grid !important; grid-template-columns: repeat(6, minmax(0, 1fr)) !important; column-gap: 3rem !important; align-items: start;
+    }
+    & body.pagelayout-mydashboard #block-region-content > .block { grid-column: 1 / 5; grid-row: auto; align-self: start; }
+    & body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { grid-column: 1 / 5 !important; grid-row: 1 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { grid-column: 1 / 5 !important; grid-row: 2 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-column: 5 / 7 !important; grid-row: 1 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_timeline { grid-column: 5 / 7 !important; grid-row: 2 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_recentlyaccesseditems { grid-column: 1 / 5 !important; grid-row: 3 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_calendar_month { grid-column: 5 / 7 !important; grid-row: 3 !important; }
+  }
+
+  /* The arcade is a quiet side card: a neutral button, a smaller score */
+  & .nm-game-play {
+    background: #f5f5f5 !important; color: #444 !important; border: 1px solid transparent !important; box-shadow: none !important;
+    min-block-size: 32px; padding: .375rem .75rem; font-weight: 600;
+  }
+  & .nm-game-play:hover { background: #ebebeb !important; color: var(--qf-ink) !important; }
+  & .nm-game-stat-value { font-size: 1.25rem; font-weight: 600; }
+
+  /* ---- The Todoist sidebar: Moodle's top bar becomes a warm left rail ---- */
+  @media (min-width: 1200px) {
+    & { --qf-rail: 264px; }
+    & nav.navbar.fixed-top {
+      inset-block: 0; inset-inline-start: 0; inset-inline-end: auto;
+      inline-size: var(--qf-rail); block-size: 100vh; min-block-size: 0;
+      padding: 0; align-items: stretch; border: 0;
+    }
+    & nav.navbar.fixed-top > .container-fluid {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; grid-template-rows: auto auto 1fr auto auto;
+      align-items: center; align-content: stretch; block-size: 100%; padding: .625rem .75rem 1rem; column-gap: 2px;
+    }
+    & nav.navbar.fixed-top #usernavigation { display: contents; }
+    & nav.navbar.fixed-top #usernavigation > .divider { display: none !important; }
+    & nav.navbar.fixed-top .usermenu-container { grid-row: 1; grid-column: 1; min-inline-size: 0; }
+    & nav.navbar.fixed-top .simplesearchform { grid-row: 1; grid-column: 2; position: static; }
+    & nav.navbar.fixed-top .popover-region-notifications { grid-row: 1; grid-column: 3; }
+    & nav.navbar.fixed-top [data-region="popover-region-messages"] { grid-row: 1; grid-column: 4; }
+    & nav.navbar.fixed-top :is(.simplesearchform > .nav-link, .popover-region-toggle) {
+      inline-size: 32px; block-size: 32px; padding: 0 !important; display: grid; place-items: center; border-radius: 5px;
+    }
+    & nav.navbar.fixed-top .simplesearchform .collapse:is(.show, .collapsing) {
+      position: absolute; inset-inline: .75rem; inset-block-start: 3.25rem; z-index: 5; inline-size: auto !important;
+    }
+    & nav.navbar.fixed-top .popover-region-container { inset-inline-start: 0; inset-inline-end: auto; }
+    & nav.navbar.fixed-top .usermenu .dropdown-menu { inset-inline-start: 0 !important; inset-inline-end: auto !important; }
+
+    /* the user row: avatar, name, chevron (Todoist's "Samlee ⌄") */
+    & nav.navbar.fixed-top .usermenu .dropdown-toggle { padding: .25rem !important; display: flex; align-items: center; max-inline-size: 100%; }
+    & nav.navbar.fixed-top .usermenu .dropdown-toggle::after { display: none; }
+    & nav.navbar.fixed-top .usermenu .userinitials { position: relative; overflow: visible; }
+    & nav.navbar.fixed-top .usermenu .dropdown-toggle { padding-inline-end: 7.25rem !important; }
+    & nav.navbar.fixed-top .usermenu .userinitials::after {
+      content: attr(title); position: absolute; inset-inline-start: calc(100% + .5rem); inset-block-start: 50%; transform: translateY(-50%);
+      max-inline-size: 6.75rem; padding-inline-end: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      font-size: .875rem; font-weight: 600; letter-spacing: 0; color: var(--qf-ink);
+      background: var(--qf-chev-grey) no-repeat right center / 12px;
+    }
+    &[dir="rtl"] nav.navbar.fixed-top .usermenu .userinitials::after { background-position: left center; }
+
+    /* the list of places */
+    & nav.navbar.fixed-top .primary-navigation { grid-row: 2; grid-column: 1 / -1; align-self: start; margin-block-start: 1rem; }
+    & nav.navbar.fixed-top :is(.primary-navigation, .primary-navigation .navigation, .moremenu) { block-size: auto !important; }
+    & nav.navbar.fixed-top .navbar-nav.more-nav { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 1px; }
+    & nav.navbar.fixed-top .more-nav > .nav-item { inline-size: 100%; }
+    & nav.navbar.fixed-top .more-nav .nav-link {
+      inline-size: 100%; block-size: 36px; padding: 0 .5rem !important; gap: .625rem; justify-content: flex-start;
+      font-size: .875rem; border-radius: 5px;
+    }
+    & nav.navbar.fixed-top .more-nav .nav-link::before {
+      content: ""; inline-size: 20px; block-size: 20px; flex: none; background: var(--qf-ink-2);
+      -webkit-mask: var(--qf-i-folder) center / contain no-repeat; mask: var(--qf-i-folder) center / contain no-repeat;
+    }
+    & nav.navbar.fixed-top .more-nav .nav-link:is(.active, [aria-current="true"])::before { background: var(--qf-red); }
+    & nav.navbar.fixed-top .more-nav > [data-key="myhome"] > .nav-link::before { -webkit-mask-image: var(--qf-i-today); mask-image: var(--qf-i-today); }
+    & nav.navbar.fixed-top .more-nav > [data-key="home"] > .nav-link::before { -webkit-mask-image: var(--qf-i-home); mask-image: var(--qf-i-home); }
+    & nav.navbar.fixed-top .more-nav > [data-key="mycourses"] > .nav-link::before { -webkit-mask-image: var(--qf-i-grid); mask-image: var(--qf-i-grid); }
+    & nav.navbar.fixed-top .more-nav .dropdown-toggle::after {
+      margin-inline-start: auto; -webkit-mask-image: var(--qf-i-chev-r); mask-image: var(--qf-i-chev-r); transform: none !important;
+    }
+    &[dir="rtl"] nav.navbar.fixed-top .more-nav .dropdown-toggle::after { -webkit-mask-image: var(--qf-i-chev-l); mask-image: var(--qf-i-chev-l); }
+    & nav.navbar.fixed-top .more-nav .dropdown-menu { inset-inline-start: calc(100% + 6px) !important; inset-inline-end: auto !important; inset-block-start: -4px !important; margin: 0 !important; }
+
+    /* edit mode and the university mark sit at the foot of the rail */
+    & nav.navbar.fixed-top .editmode-switch-form { grid-row: 4; grid-column: 1 / -1; margin: 0 !important; padding: .375rem .5rem; justify-content: space-between; }
+    & nav.navbar.fixed-top .navbar-brand {
+      grid-row: 5; grid-column: 1 / -1; display: flex !important; margin: .25rem 0 0 !important; padding: .375rem .5rem !important;
+      font-size: .8125rem; font-weight: 600; color: var(--qf-ink-2); border-radius: 5px;
+    }
+    & nav.navbar.fixed-top .navbar-brand .logo { max-block-size: 24px; }
+    & nav.navbar.fixed-top .navbar-brand:hover { background: var(--qf-hover); color: var(--qf-ink); }
+    & nav.navbar.fixed-top .navbar-toggler { display: none !important; }
+
+    /* the page moves over */
+    & #page { margin-block-start: 0 !important; margin-inline-start: var(--qf-rail) !important; flex: 1 1 auto; inline-size: auto !important; min-inline-size: 0; }
+    & #page.show-drawer-left { margin-inline-start: calc(var(--qf-rail) + 285px) !important; }
+    & .drawer { inset-block-start: 0 !important; block-size: 100vh !important; }
+    & .drawer.drawer-left.show { inset-inline-start: var(--qf-rail) !important; }
+    & .drawer-toggles .drawer-toggler { inset-block-start: 1rem !important; }
+    & .drawer-toggles .drawer-left-toggle { inset-inline-start: calc(var(--qf-rail) + .5rem) !important; }
+  }
+
+  /* ---- Todoist restraint: neutral circles, grey metadata, red only where it means something ---- */
+  & .nm-up .nm-up-row-todo:nth-child(n of .nm-up-row-todo) .nm-up-check { --qf-pc: #808080; --qf-pw: 1px; }
+  & .nm-up-check .nm-up-box { background: transparent; }
+  & .nm-todo-item .nm-todo-check { --qf-pc: #808080 !important; --qf-pw: 1px !important; background: transparent; }
+  & .nm-todo-item:has(.nm-todo-due.is-overdue) .nm-todo-check,
+  & .nm-todo-item:has(.nm-todo-due.is-today) .nm-todo-check { --qf-pc: var(--qf-p1) !important; --qf-pw: 1.5px !important; background: color-mix(in srgb, var(--qf-p1) 8%, transparent); }
+  & .nm-todo-item .nm-todo-check:checked { background: var(--qf-pc); }
+  & .nm-todo-due:not(.is-today):not(.is-tomorrow):not(.is-overdue) { color: var(--qf-ink-2); }
+  & .event[data-region="event-item"] div.date { color: var(--qf-ink-2); }
+  & .event[data-region="event-item"] h6::after { background: #808080; }
+  & .nm-up .nm-up-edit { color: var(--qf-ink-2); font-weight: 500; }
+  & .nm-up .nm-up-edit:hover { color: var(--qf-red-text); }
+  & .nm-up .nm-up-tag { padding: 2px 6px; border-radius: 3px; line-height: 1.3; }
+  & .nm-up :is(.nm-up-done-help, .nm-up-note) { font-size: .75rem; line-height: 1.5; color: var(--qf-ink-2); }
+
+  /* flat controls: shortcuts are plain rows until hovered */
+  & .nm-sc-chip { background: transparent; border-color: transparent; border-radius: 4px; }
+  & .nm-sc-chip:hover { background: #f5f5f5; }
+
+  /* course tabs: flat, the active one in the sidebar's peach */
+  & .secondary-navigation .nav-tabs { background: transparent; padding: 0; gap: 2px; border-radius: 0; }
+  & .secondary-navigation .nav-tabs .nav-link { block-size: 32px; display: inline-flex; align-items: center; padding: 0 .625rem; border-radius: 5px; font-size: .875rem; font-weight: 400; }
+  & .secondary-navigation .nav-tabs .nav-link:hover { background: var(--qf-hover); }
+  & .secondary-navigation .nav-tabs .nav-link.active { background: var(--qf-active); color: var(--qf-red-text); box-shadow: none; font-weight: 500; }
+
+  /* course page: title, tabs, sections and rows share one left edge */
+  & .secondary-navigation :is(.navigation, nav.moremenu), & #region-main > [role="main"], & .course-content { padding-inline: 0 !important; margin-inline: 0 !important; }
+
+  /* Dashboard reflow, take two: courses sit in the aside like Todoist's project list, right beside what's due */
+  @media (min-width: 992px) {
+    & body.pagelayout-mydashboard #nm-top-row { margin-block-end: 0; }
+    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { grid-column: 5 / 7 !important; grid-row: 1 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-column: 5 / 7 !important; grid-row: 3 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_timeline { grid-column: 1 / 5 !important; grid-row: 3 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_recentlyaccesseditems { grid-column: 1 / 5 !important; grid-row: 2 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_calendar_month { grid-column: 5 / 7 !important; grid-row: 2 !important; }
+    & body.pagelayout-mydashboard .block_myoverview [data-region="filter"] > .d-flex { flex-wrap: wrap; }
+    & body.pagelayout-mydashboard .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted:has(.categoryname) { display: none !important; }
+    & body.pagelayout-mydashboard .block_myoverview [data-region="filter"] .btn.dropdown-toggle { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; }
+  }
+  /* Phones and tablets: to-dos, what's due, courses first; the arcade goes last */
+  @media (max-width: 991.98px) {
+    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) { display: flex; flex-direction: column; }
+    & body.pagelayout-mydashboard :is(#nm-top-row, #block-region-content) { display: contents !important; }
+    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) > *,
+    & body.pagelayout-mydashboard #block-region-content > * { order: 5; }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block-todo { order: 1; }
+    & body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { order: 2; }
+    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { order: 3; }
+    & body.pagelayout-mydashboard #block-region-content > .block_timeline { order: 4; }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block-game { order: 9; }
+    & body.pagelayout-mydashboard :is(.block.card, section.nm-block) { margin-block-end: 1.5rem !important; }
+  }
+
+
+  /* ---- Round 3: one dominant task column ---- */
+  /* the full course name (Moodle's visible copy is cut server-side with "...") */
+  & .course-card .coursename .multiline > .visually-hidden { position: static !important; inline-size: auto !important; block-size: auto !important; margin: 0 !important; overflow: visible !important; clip: auto !important; clip-path: none !important; white-space: normal !important; }
+  & .course-card .coursename .multiline > [aria-hidden="true"] { display: none; }
+  & .card-grid[data-region="card-deck"] .course-card { grid-template-columns: 20px minmax(0, 1fr) 24px; column-gap: .5rem; padding: .75rem 0; }
+  & .card-grid[data-region="card-deck"] .course-card > a:first-child, & .card-grid[data-region="card-deck"] .course-card .card-img-top { inline-size: 20px; }
+  & .card-grid[data-region="card-deck"] .course-card .coursename { line-height: 1.25rem; }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted { line-height: 1.125rem; }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted + a + .text-muted::before { content: none; }
+  & .card-grid[data-region="card-deck"] .course-card .course-info-container .text-muted + a + .text-muted { flex-basis: 100%; }
+  & .card-grid[data-region="card-deck"] .course-card .coursemenubtn { inline-size: 24px; block-size: 24px; }
+  & #page-header h1 { font-size: 1.75rem; line-height: 2.125rem; }
+  & .course-section .course-section-header { margin-block-start: 0; }
+  & li.activity .activity-item { padding-block: .75rem !important; }
+
+  /* Dashboard: to-dos and what's due run straight down the main column; courses sit beside them;
+     the arcade waits in the aside below the course list. */
+  @media (min-width: 992px) {
+    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) {
+      display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 3rem; align-items: start; position: relative;
+    }
+    & body.pagelayout-mydashboard :is(#nm-top-row, #block-region-content) { display: contents !important; }
+    & body.pagelayout-mydashboard #region-main > div:has(> #nm-top-row) > #maincontent { position: absolute; }
+    & body.pagelayout-mydashboard #block-region-content > span:empty { display: none; }
+    & body.pagelayout-mydashboard :is(.block.card, section.nm-block) { margin-block-end: 2rem !important; }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block-todo { grid-column: 1 / 5 !important; grid-row: 1 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { grid-column: 1 / 5 !important; grid-row: 2 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_myoverview { grid-column: 5 / 7 !important; grid-row: 1 / 3 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_recentlyaccesseditems { grid-column: 1 / 5 !important; grid-row: 3 / 5 !important; }
+    & body.pagelayout-mydashboard #nm-top-row > .nm-block-game { grid-column: 5 / 7 !important; grid-row: 3 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_calendar_month { grid-column: 5 / 7 !important; grid-row: 4 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_timeline { grid-column: 1 / 5 !important; grid-row: 5 !important; }
+    & body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-column: 5 / 7 !important; grid-row: 5 !important; }
+  }
+  /* phone: a calmer toolbar (44px targets, no separators) and tighter header */
+  @media (max-width: 767.98px) {
+    & nav.navbar.fixed-top .divider { display: none !important; }
+    & nav.navbar.fixed-top :is(.navbar-toggler, .simplesearchform > .nav-link, .popover-region-toggle) { min-inline-size: 44px; min-block-size: 44px; display: inline-grid; place-items: center; }
+    & #page-header { margin-block-end: 1.5rem; }
+  }
+
+  /* login: flat method tabs and calmer fields, no outlined panel */
+  &[data-nm-site="login"] body > .container > .row > :is(.col-lg-5, .tab-pane) { border-color: transparent !important; box-shadow: none !important; }
+  &[data-nm-site="login"] .nav-pills { background: transparent !important; border: 0 !important; padding: 0 !important; gap: 4px; }
+  &[data-nm-site="login"] .nav-pills .nav-item a.nav-link { min-block-size: 36px; border-radius: 5px; }
+  &[data-nm-site="login"] .nav-pills .nav-item a.nav-link:hover { background: var(--qf-hover) !important; }
+  &[data-nm-site="login"] .nav-pills .nav-item a.nav-link.active { background: var(--qf-active) !important; color: var(--qf-red-text) !important; box-shadow: none !important; }
+  &[data-nm-site="login"] .form-control { block-size: 44px; border-color: #cccccc !important; border-radius: 6px !important; }
 
   /* ======================================================================
      Phones
