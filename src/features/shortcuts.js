@@ -1,7 +1,7 @@
 // Feature 5: shortcut chips on the "Dashboard" heading row.
 // DOM (prepended into NM.headerSlot(), so the game button and theme picker stay at the end):
 //   div.nm-sc-bar[.nm-sc-editing]
-//     ul.nm-sc-list                       horizontal scroller (fade masks: .nm-sc-more-start / .nm-sc-more-end)
+//     ul.nm-sc-list                       horizontal scroller (fade masks: .nm-sc-more-start / .nm-sc-more-end); wraps on phones
 //       li.nm-sc-chip[draggable]          one shortcut (the visible pill)
 //         a.nm-sc-link > span.nm-sc-icon > img.nm-sc-favicon | span.nm-sc-letter, span.nm-sc-title
 //         button.nm-sc-act.nm-sc-act-edit / .nm-sc-act-del    (edit mode only)

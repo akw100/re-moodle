@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Nicer Moodle",
+  "name": "Re-Moodle",
   "version": "0.1.0",
-  "description": "Themes, a done list, todos, shortcuts, confetti and a tiny game for Moodle.",
+  "description": "Remodel your Moodle: themes, a done list, to-dos, shortcuts, confetti and a tiny game.",
   "permissions": [
     "storage"
   ],
@@ -14,7 +14,7 @@
   },
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Nicer Moodle"
+    "default_title": "Re-Moodle"
   },
   "content_scripts": [
     {

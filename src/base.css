@@ -40,30 +40,136 @@
 .nm-icon-btn { inline-size: 2.25rem; block-size: 2.25rem; display: inline-grid; place-items: center; padding: 0; font-size: 1.05rem; }
 .nm-btn:focus-visible, .nm-icon-btn:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
 
+/* ==== THEME PICKER (shared piece; themes restyle it from their own files) ====
+   Markup (src/main.js):
+     .nm-theme-wrap > button.nm-icon-btn.nm-theme-btn[aria-expanded]        the palette button in the header slot
+     div.nm-theme-menu.nm-theme-pop[popover=manual][role=dialog]            top layer, position:fixed, placed by JS
+       .nm-theme-pop-head > .nm-theme-pop-eyebrow + h2.nm-theme-pop-title
+       .nm-theme-grid[role=radiogroup] > button.nm-theme-tile[role=radio][aria-checked]   (style: --t-bg, --t-accent)
+         .nm-theme-prev > .nm-theme-prev-card > .nm-theme-prev-bar + .nm-theme-prev-line x2  (painted from the swatch)
+         .nm-theme-name
+   popup/popup.html links this file and reuses everything from ".nm-theme-grid" down (tokens only). */
 .nm-theme-wrap { position: relative; margin-inline-start: auto; }
-.nm-theme-menu {
-  position: absolute; inset-inline-end: 0; top: calc(100% + .4rem); z-index: 1050; min-width: 13rem; padding: .35rem;
-  background: var(--nm-surface); color: var(--nm-text); border: var(--nm-border-width) solid var(--nm-border);
-  border-radius: var(--nm-radius); box-shadow: 0 10px 30px rgba(0,0,0,.18);
+.nm-theme-btn[aria-expanded="true"] { background: var(--nm-surface-2); border-color: color-mix(in srgb, var(--nm-border), var(--nm-text-muted) 40%); }
+
+.nm-theme-pop {
+  /* popover="manual" puts this in the top layer; undo the UA [popover] box. JS sets left/top/right/bottom inline. */
+  position: fixed !important; margin: 0 !important; z-index: 1060;
+  inline-size: min(24.5rem, calc(100vw - 16px)) !important; min-inline-size: 0 !important; max-inline-size: calc(100vw - 16px) !important;
+  max-block-size: calc(100vh - 16px); overflow: auto; overscroll-behavior: contain;
+  padding: 0; box-sizing: border-box;
+  background: var(--nm-surface); color: var(--nm-text);
+  border: var(--nm-border-width) solid var(--nm-border); border-radius: calc(var(--nm-radius) * 1.5);
+  box-shadow: 0 2px 6px rgb(0 0 0 / .08), 0 16px 40px -8px rgb(0 0 0 / .28);
+  font-family: var(--nm-font); font-size: 14px; line-height: 1.4; text-align: start;
 }
-.nm-theme-menu[hidden] { display: none; }
-.nm-theme-option {
-  display: flex; align-items: center; gap: .6rem; width: 100%; padding: .45rem .6rem; border: 0; border-radius: calc(var(--nm-radius) * .7);
-  background: none; color: inherit; font: inherit; text-align: start; cursor: pointer;
+.nm-theme-pop[hidden] { display: none !important; }
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-nm-motion="off"]) .nm-theme-pop:not([hidden]) { animation: nm-theme-in .16s cubic-bezier(.2, .8, .2, 1); }
 }
-.nm-theme-option:hover, .nm-theme-option[aria-checked="true"] { background: var(--nm-surface-2); }
-.nm-theme-option[aria-checked="true"]::after { content: "✓"; margin-inline-start: auto; color: var(--nm-accent); }
-.nm-swatch { inline-size: 1.1rem; block-size: 1.1rem; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); flex: none; }
+@keyframes nm-theme-in { from { opacity: 0; translate: 0 -6px; scale: .985; } }
+.nm-theme-pop-head { padding: 14px 16px 4px; }
+.nm-theme-pop-eyebrow {
+  display: block; margin: 0 0 2px;
+  font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--nm-text-muted);
+}
+.nm-theme-pop-title {
+  margin: 0; padding: 0; border: 0;
+  font-family: var(--nm-heading-font); font-size: 16px !important; font-weight: 600; line-height: 1.3; letter-spacing: normal; color: var(--nm-text);
+}
+.nm-theme-pop .nm-theme-grid { padding: 8px 10px 12px; }
+
+/* tiles (also used by the popup) */
+.nm-theme-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 0; }
+.nm-theme-grid, .nm-theme-grid * { box-sizing: border-box; }
+.nm-theme-tile {
+  /* Ink and surfaces derived from the swatch background: dark backgrounds get light ink and a lighter card,
+     light ones get dark ink and a slightly darker page behind a card in the background color. */
+  --t-ink: oklch(from var(--t-bg) clamp(0, (0.6 - l) * 100, 1) 0 0);
+  --t-page: oklch(from var(--t-bg) calc(l - 0.045 * (1 - clamp(0, (0.6 - l) * 100, 1))) c h);
+  --t-card: oklch(from var(--t-bg) calc(l + 0.075 * clamp(0, (0.6 - l) * 100, 1)) c h);
+  position: relative;
+  display: flex; flex-direction: column; gap: 6px; min-inline-size: 0;
+  margin: 0; padding: 6px 6px 7px;
+  border: 0; border-radius: calc(var(--nm-radius) * 1.25);
+  background: transparent; color: var(--nm-text); box-shadow: none;
+  font: inherit; text-align: start; cursor: pointer;
+  transition: background-color .12s;
+}
+.nm-theme-tile:hover { background: var(--nm-surface-2); }
+.nm-theme-tile:focus { outline: none; }
+.nm-theme-tile:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 0; }
+.nm-theme-prev {
+  position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden;
+  padding: 12% 12% 0;
+  border-radius: max(4px, var(--nm-radius));
+  background: var(--t-page);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 14%, transparent);
+  transition: box-shadow .12s, translate .12s;
+}
+.nm-theme-tile:hover .nm-theme-prev { translate: 0 -1px; }
+.nm-theme-prev-card {
+  position: relative; display: flex; flex-direction: column; gap: 5px;
+  block-size: 100%; padding: 9% 10%;
+  border-radius: 4px 4px 0 0;
+  background: var(--t-card);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--t-ink) 10%, transparent), 0 2px 6px -2px rgb(0 0 0 / .18);
+}
+.nm-theme-prev-bar { display: block; inline-size: 46%; block-size: 6px; border-radius: 3px; background: var(--t-accent); }
+.nm-theme-prev-line { display: block; inline-size: 82%; block-size: 4px; border-radius: 2px; background: color-mix(in oklab, var(--t-ink) 22%, transparent); }
+.nm-theme-prev-line + .nm-theme-prev-line { inline-size: 58%; }
+/* a tiny accent button at the card's bottom corner */
+.nm-theme-prev-card::after {
+  content: ""; position: absolute; inset-block-end: 12%; inset-inline-end: 10%;
+  inline-size: 22%; block-size: 8px; border-radius: 4px; background: var(--t-accent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--t-ink) 10%, transparent);
+}
+.nm-theme-name {
+  display: block; padding-inline: 2px;
+  font-size: 12.5px; font-weight: 500; line-height: 1.25; color: var(--nm-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* the current theme: a ring with a gap around its preview, a check badge, a bolder name */
+.nm-theme-tile[aria-checked="true"] .nm-theme-prev {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 14%, transparent), 0 0 0 2px var(--nm-surface), 0 0 0 4px var(--nm-accent);
+}
+.nm-theme-tile[aria-checked="true"] .nm-theme-name { font-weight: 650; }
+.nm-theme-tile[aria-checked="true"]::after, .nm-theme-tile[aria-checked="true"]::before {
+  content: ""; position: absolute; inset-block-start: 1px; inset-inline-end: 1px;
+  inline-size: 18px; block-size: 18px; border-radius: 50%;
+}
+.nm-theme-tile[aria-checked="true"]::after { background: var(--nm-accent); box-shadow: 0 0 0 2px var(--nm-surface); }
+.nm-theme-tile[aria-checked="true"]::before {
+  z-index: 1; background: var(--nm-accent-contrast);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 11px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 11px no-repeat;
+}
+html[data-nm-motion="off"] :is(.nm-theme-tile, .nm-theme-prev) { transition: none; }
+@media (prefers-reduced-motion: reduce) { :is(.nm-theme-tile, .nm-theme-prev) { transition: none; } }
+/* ==== END THEME PICKER ==== */
 
 .nm-block-content { font-family: var(--nm-font); }
 
 .nm-svg { display: inline-flex; inline-size: 1.15em; block-size: 1.15em; vertical-align: -0.2em; }
 .nm-svg svg { inline-size: 100%; block-size: 100%; }
 
-/* Our blocks: one row above Moodle's block grid (to-dos wide, arcade narrow). */
-.nm-top-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 1rem; margin-block-end: 1rem; align-items: stretch; }
+/* Our blocks: one row above Moodle's block grid (to-dos wide, arcade narrow).
+   It copies HUJI's dashboard region (osiris, >=768px): 6 equal columns, a .5rem gap, 1rem of space above the first
+   block, blocks stretched to the row height. The to-dos take 4 columns and the arcade 2 (3 + 3 below 1200px), so both
+   cards' edges sit on the same grid lines as HUJI's blocks, and the gap down to HUJI's first block is the same .5rem
+   (the region's own 1rem top padding minus .5rem). Below 768px HUJI stacks blocks 1rem apart, and so do we. */
+.nm-top-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-block: .75rem 1rem; align-items: stretch; }
 .nm-top-row > .nm-block { margin: 0 !important; min-inline-size: 0; }
-@media (max-width: 767.98px) { .nm-top-row { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 768px) {
+  .nm-top-row { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-block: 1rem -.5rem; }
+  .nm-top-row > .nm-block { grid-column: span 3; }
+  /* HUJI's dashboard block titles (stock look only; themes set their own) */
+  html:not([data-nm-theme]) .nm-top-row .nm-block-title { font-size: 1.75rem; font-weight: 500; margin-block-end: .5rem; }
+}
+@media (min-width: 1200px) {
+  .nm-top-row > .nm-block { grid-column: span 2; }
+  .nm-top-row > .nm-block-todo { grid-column: span 4; }
+}
 
 /* Every theme drops HUJI osiris's decorative image strips (block tops, course cards, activities, page background). */
 html[data-nm-theme] body { background-image: none !important; }
@@ -72,4 +178,22 @@ html[data-nm-theme] :is(.block, .block.block-info, .card.dashboard-card, .search
 }
 
 /* HUJI renders an empty activity badge pill next to many activity names; it carries no information. */
-html[data-nm-theme] .activitybadge:empty { display: none !important; }
+html[data-nm-theme] .activitybadge:is(:empty, .nm-empty) { display: none !important; }
+
+/* ==== SCROLLBARS + SELECTION (shared defaults for every theme; a theme overrides them in its own file) ====
+   Thin, token-colored. scrollbar-color is inherited, so setting it on html covers every scroll container;
+   inner containers get a transparent track so they don't show a strip of page color on a card surface.
+   (Chrome 121+ uses scrollbar-color/-width and ignores ::-webkit-scrollbar wherever those are set.) */
+html[data-nm-theme] {
+  --nm-scroll-thumb: color-mix(in srgb, var(--nm-text-muted) 45%, var(--nm-border));
+  --nm-scroll-track: var(--nm-bg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--nm-scroll-thumb) var(--nm-scroll-track);
+  caret-color: var(--nm-accent-text);
+}
+html[data-nm-theme] :is(.nm-sc-list, .drawer, .drawer .drawercontent, .dropdown-menu, textarea, .nm-theme-pop, .modal-body, pre, .nm-todo-list) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nm-scroll-thumb) transparent;
+}
+html[data-nm-theme] ::selection { background: color-mix(in srgb, var(--nm-accent) 30%, transparent); color: var(--nm-text); }
+/* ==== END SCROLLBARS + SELECTION ==== */

@@ -65,7 +65,7 @@ export async function launch({storage = {}, local = {}, mock = {}, live = false,
     async open(path) { // a Moodle path ('/my/') or a full URL (LOGIN_URL)
       const page = await context.newPage();
       page.on('pageerror', e => console.error('[pageerror]', e.message));
-      page.on('console', m => { if (m.type() === 'error' || m.text().includes('[Nicer Moodle]')) console.log('[console]', m.text()); });
+      page.on('console', m => { if (m.type() === 'error' || m.text().includes('[Re-Moodle]')) console.log('[console]', m.text()); });
       await page.goto(path.startsWith('http') ? path : WWWROOT + path);
       await page.waitForTimeout(600); // let document_idle scripts and the first AJAX round-trip finish
       return page;

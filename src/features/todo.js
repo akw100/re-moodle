@@ -156,7 +156,7 @@ NM.feature('todo', async () => {
     if (!open.length) {
       const allDone = done.length > 0;
       empty.replaceChildren(
-        el('div', {class: 'nm-todo-empty-art', 'aria-hidden': 'true'}, allDone ? '🎉' : '🌱'),
+        el('div', {class: 'nm-todo-empty-art', 'aria-hidden': 'true'}, NM.icon(allDone ? 'party' : 'sprout')),
         el('p', {class: 'nm-todo-empty-title'}, allDone ? 'All done. Nice work!' : 'A fresh start'),
         el('p', {class: 'nm-todo-empty-sub'}, allDone ? 'Enjoy the free time, or add what’s next.'
           : 'Anything on your mind? Type it above and press Enter.'));
@@ -309,6 +309,7 @@ NM.feature('todo', async () => {
   });
 
   toggle.addEventListener('click', () => { expanded = !expanded; render(latest); });
+  empty.addEventListener('click', () => input.focus()); // the empty state points at the add row; clicking it goes there
   clearBtn.addEventListener('click', clearCompleted);
 
   for (const list of [openList, doneList]) {

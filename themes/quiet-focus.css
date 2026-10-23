@@ -1,926 +1,1143 @@
+/* Quiet Focus fonts: Inter (as "QF Sans") and Noto Sans Hebrew (as "QF Hebrew"), latin/latin-ext/hebrew subsets from fonts.gstatic.com. */
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZFhiJ-Ek-_0ewmM.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_0ew.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fAZFhiJ-Ek-_0ewmM.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fAZ9hiJ-Ek-_0ew.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZFhiJ-Ek-_0ewmM.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hiJ-Ek-_0ew.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZFhiJ-Ek-_0ewmM.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "QF Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZ9hiJ-Ek-_0ew.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "QF Hebrew"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/notosanshebrew/v50/or3HQ7v33eiDljA1IufXTtVf7V6RvEEdhQlk0LlGxCyaeNKYZC0sqk3xXGiXd4qdpyhklO5B25IvCZQ.woff2) format("woff2"); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: "QF Hebrew"; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/notosanshebrew/v50/or3HQ7v33eiDljA1IufXTtVf7V6RvEEdhQlk0LlGxCyaeNKYZC0sqk3xXGiXRYqdpyhklO5B25IvCZQ.woff2) format("woff2"); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: "QF Hebrew"; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/notosanshebrew/v50/or3HQ7v33eiDljA1IufXTtVf7V6RvEEdhQlk0LlGxCyaeNKYZC0sqk3xXGiXqY2dpyhklO5B25IvCZQ.woff2) format("woff2"); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: "QF Hebrew"; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/notosanshebrew/v50/or3HQ7v33eiDljA1IufXTtVf7V6RvEEdhQlk0LlGxCyaeNKYZC0sqk3xXGiXkI2dpyhklO5B25IvCZQ.woff2) format("woff2"); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
 
 /* ==========================================================================
-   Quiet Focus — follows ONE reference: Todoist (Today / Inbox views).
-   White canvas, warm off-white chrome (#FCFAF8), restrained red (#C83C2D),
-   hairline rules, 14px type, circular task checkboxes, a centred agenda column.
-   Every rule is scoped under html[data-nm-theme="quiet-focus"].
+   Quiet Focus: one reference, Todoist.
+   White working canvas, warm off-white chrome (#FCFAF8), Todoist red used
+   sparingly, hairline rows, 14px body / 12px metadata, round priority circles,
+   purple weekday dates, "+ Add task" rows, the dark undo toast, and the
+   List/Board segmented control. Every rule below is scoped to the theme.
    ========================================================================== */
 
 html[data-nm-theme="quiet-focus"] {
-  /* --- nm tokens (every injected widget reads these) --- */
-  --nm-bg: #ffffff;
-  --nm-surface: #ffffff;
-  --nm-surface-2: #faf9f7;
-  --nm-text: #202020;
-  --nm-text-muted: #6f6f6f;
-  --nm-border: #eeeeee;
-  --nm-accent: #c83c2d;
-  --nm-accent-contrast: #ffffff;
-  --nm-success: #058527;
-  --nm-warning: #ad6200;
-  --nm-danger: #c83c2d;
-  --nm-radius: 6px;
-  --nm-shadow: none;
-  --nm-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Hebrew", Arial, sans-serif;
-  --nm-heading-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Hebrew", Arial, sans-serif;
-  --nm-border-width: 1px;
-  --nm-confetti: #dc4c3e, #f5a623, #058527, #246fe0, #692fc2, #ffefe5;
-
-  /* --- theme-private helpers --- */
-  --qf-chrome: #fcfaf8;          /* Todoist sidebar */
-  --qf-hover: #f2efed;           /* Todoist row hover */
-  --qf-active: #ffefe5;          /* Todoist active nav row (peach) */
-  --qf-active-text: #b8352a;     /* red on peach, AA */
-  --qf-rule: #f0f0f0;            /* task separators */
-  --qf-check: #8f8f8f;           /* priority-4 circle outline */
-  --qf-date: #058527;            /* "Today" green date label */
-  --qf-project: #a970ff;         /* "#" project glyph */
-  --qf-red-tint: rgba(200, 60, 45, .1);
-  --qf-ring: 0 0 0 3px rgba(200, 60, 45, .22);
+  /* ---- Todoist palette ---- */
+  --qf-red: #d1453b;            /* Todoist P1 / brand red, AA with white text */
+  --qf-red-text: #c3392c;       /* red used as text, AA on white and on peach */
+  --qf-red-hover: #b8352a;
+  --qf-chrome: #fcfaf8;         /* sidebar */
+  --qf-hover: #f3f0ee;          /* sidebar row hover */
+  --qf-active: #ffefe5;         /* active sidebar row (peach) */
+  --qf-rule: #eeeeee;           /* task separators */
+  --qf-field: #f5f3f1;          /* segmented control / search well */
+  --qf-ink: #202020;
+  --qf-ink-2: #666666;
+  --qf-p1: #d1453b; --qf-p2: #eb8909; --qf-p3: #246fe0; --qf-p4: #8f8f8f;
+  --qf-date: #692fc2;           /* weekday dates */
+  --qf-today: #058527;          /* "Today" */
+  --qf-tomorrow: #ad6200;       /* "Tomorrow" */
+  --qf-project: #a970ff;        /* project hash */
+  --qf-pop-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 8px 24px rgba(0, 0, 0, .10);
   --qf-ease: 120ms ease;
 
-  /* --- Bootstrap 5 / Boost variables --- */
+  /* ---- drawn icons (masks) ---- */
+  --qf-i-chev: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.5 6.25 8 9.75l3.5-3.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --qf-i-chev-l: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M9.75 4.5 6.25 8l3.5 3.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --qf-i-chev-r: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6.25 4.5 9.75 8l-3.5 3.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --qf-i-check: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 8.4l2.6 2.5L12 5.4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --qf-i-cal: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><rect x='1.5' y='1.5' width='9' height='9' rx='2' fill='none' stroke='black' stroke-width='1'/><rect x='3.5' y='3.5' width='5' height='1' rx='.5'/><rect x='3.5' y='6' width='2' height='2' rx='.5'/></svg>");
+  --qf-i-hash: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6.3 2.5 5.2 13.5M10.8 2.5 9.7 13.5M3 5.9h10.5M2.5 10.1H13' fill='none' stroke='black' stroke-width='1.2' stroke-linecap='round'/></svg>");
+  --qf-i-plus: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 2.5v11M2.5 8h11' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round'/></svg>");
+  --qf-i-person: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='5.5' r='2.6' fill='none' stroke='black' stroke-width='1.1'/><path d='M3 13.5c.6-2.6 2.6-4 5-4s4.4 1.4 5 4' fill='none' stroke='black' stroke-width='1.1' stroke-linecap='round'/></svg>");
+  --qf-i-search: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='7' cy='7' r='4.6' fill='none' stroke='black' stroke-width='1.2'/><path d='M10.4 10.4 13.5 13.5' stroke='black' stroke-width='1.2' stroke-linecap='round'/></svg>");
+  --qf-i-sidebar: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3.5' y='4.5' width='17' height='15' rx='2.5' fill='none' stroke='black' stroke-width='1.3'/><path d='M9.5 4.5v15' stroke='black' stroke-width='1.3'/></svg>");
+  --qf-i-chat: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.8 3.5h10.4v7.2H7.4l-2.9 2.3v-2.3H2.8z' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/></svg>");
+  --qf-i-file: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 1.8h5.2L12.5 5v9.2H4z M9 1.8V5.2h3.5' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/></svg>");
+  --qf-plus-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3v10M3 8h10' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round'/></svg>");
+  --qf-search-grey: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='7' cy='7' r='4.6' fill='none' stroke='%23808080' stroke-width='1.2'/><path d='M10.4 10.4 13.5 13.5' stroke='%23808080' stroke-width='1.2' stroke-linecap='round'/></svg>");
+  --qf-check-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 8.4l2.6 2.5L12 5.4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+
+  /* ---- nm tokens ---- */
+  --nm-bg: #ffffff;
+  --nm-surface: #ffffff;
+  --nm-surface-2: #fcfaf8;
+  --nm-text: #202020;
+  --nm-text-muted: #666666;
+  --nm-border: #eeeeee;
+  --nm-accent: #d1453b;
+  --nm-accent-contrast: #ffffff;
+  --nm-accent-text: #c3392c;
+  --nm-success: #058527;
+  --nm-success-text: #058527;
+  --nm-warning: #eb8909;
+  --nm-danger: #d1453b;
+  --nm-radius: 6px;
+  --nm-shadow: none;
+  --nm-font: "QF Sans", "QF Hebrew", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --nm-heading-font: "QF Sans", "QF Hebrew", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --nm-border-width: 1px;
+  --nm-confetti: #d1453b, #eb8909, #246fe0, #058527, #692fc2;
+  --nm-sc-chip-radius: 5px;
+  --nm-sc-chip-height: 28px;
+  --nm-sc-elev: var(--qf-pop-shadow);
+
+  /* ---- Bootstrap 5 / Boost ---- */
   --bs-body-bg: #ffffff;
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-body-color: #202020;
   --bs-body-color-rgb: 32, 32, 32;
   --bs-body-font-family: var(--nm-font);
+  --bs-font-sans-serif: var(--nm-font);
   --bs-body-font-size: .875rem;
   --bs-emphasis-color: #202020;
-  --bs-secondary-color: #6f6f6f;
-  --bs-secondary-color-rgb: 111, 111, 111;
+  --bs-emphasis-color-rgb: 32, 32, 32;
+  --bs-heading-color: #202020;
+  --bs-secondary-color: #666666;
+  --bs-secondary-color-rgb: 102, 102, 102;
   --bs-tertiary-color: #808080;
-  --bs-secondary-bg: #faf9f7;
+  --bs-secondary-bg: #fcfaf8;
   --bs-tertiary-bg: #fcfaf8;
-  --bs-primary: #c83c2d;
-  --bs-primary-rgb: 200, 60, 45;
+  --bs-tertiary-bg-rgb: 252, 250, 248;
+  --bs-primary: #d1453b;
+  --bs-primary-rgb: 209, 69, 59;
   --bs-primary-text-emphasis: #8f2a20;
   --bs-primary-bg-subtle: #ffefe5;
   --bs-primary-border-subtle: #f5c6bd;
-  --bs-secondary: #6f6f6f;
-  --bs-secondary-rgb: 111, 111, 111;
+  --bs-secondary: #666666;
+  --bs-secondary-rgb: 102, 102, 102;
   --bs-success: #058527;
   --bs-success-rgb: 5, 133, 39;
-  --bs-warning: #ad6200;
-  --bs-danger: #c83c2d;
-  --bs-danger-rgb: 200, 60, 45;
+  --bs-warning: #eb8909;
+  --bs-warning-rgb: 235, 137, 9;
+  --bs-danger: #d1453b;
+  --bs-danger-rgb: 209, 69, 59;
   --bs-info: #246fe0;
-  --bs-link-color: #c83c2d;
-  --bs-link-color-rgb: 200, 60, 45;
-  --bs-link-hover-color: #a3291d;
-  --bs-link-hover-color-rgb: 163, 41, 29;
+  --bs-info-rgb: 36, 111, 224;
+  --bs-link-color: #c3392c;
+  --bs-link-color-rgb: 195, 57, 44;
+  --bs-link-hover-color: #b8352a;
+  --bs-link-hover-color-rgb: 184, 53, 42;
   --bs-link-decoration: none;
   --bs-border-color: #eeeeee;
-  --bs-border-color-translucent: rgba(0, 0, 0, .07);
+  --bs-border-color-translucent: rgba(0, 0, 0, .08);
   --bs-border-radius: 6px;
   --bs-border-radius-sm: 5px;
   --bs-border-radius-lg: 10px;
-  --bs-focus-ring-color: rgba(200, 60, 45, .25);
-  --bs-heading-color: #202020;
+  --bs-focus-ring-color: rgba(209, 69, 59, .25);
   --bs-card-bg: #ffffff;
   color-scheme: light;
-}
+  accent-color: #d1453b;
+  caret-color: #d1453b;
 
-/* ---------- Page canvas & type ---------- */
-html[data-nm-theme="quiet-focus"] body {
-  background: #ffffff;
-  color: var(--nm-text);
-  font-family: var(--nm-font);
-  font-size: .875rem;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-html[data-nm-theme="quiet-focus"] #page,
-html[data-nm-theme="quiet-focus"] #page-wrapper,
-html[data-nm-theme="quiet-focus"] #topofscroll,
-html[data-nm-theme="quiet-focus"] #page-content,
-html[data-nm-theme="quiet-focus"] #region-main,
-html[data-nm-theme="quiet-focus"] #region-main-box { background: transparent; }
-html[data-nm-theme="quiet-focus"] :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
-  font-family: var(--nm-heading-font);
-  color: var(--nm-text);
-  letter-spacing: 0;
-}
-html[data-nm-theme="quiet-focus"] ::selection { background: var(--qf-active); color: var(--nm-text); }
+  /* ---- browser surfaces ---- */
+  scrollbar-width: thin;
+  scrollbar-color: #d6d1cc transparent;
 
-/* The agenda column: Todoist centres a narrow list in a lot of white. */
-html[data-nm-theme="quiet-focus"] #page .main-inner,
-html[data-nm-theme="quiet-focus"] #topofscroll {
-  max-inline-size: 60rem;
-  margin-inline: auto;
-  padding-inline: 2rem;
-  padding-block-start: 1.75rem;
-}
-
-/* ---------- Links ---------- */
-html[data-nm-theme="quiet-focus"] a {
-  color: var(--nm-accent);
-  text-decoration: none;
-  transition: color var(--qf-ease), background-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] a:hover { color: #a3291d; text-decoration: underline; text-underline-offset: 2px; }
-html[data-nm-theme="quiet-focus"] :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--nm-accent);
-  outline-offset: 2px;
-  box-shadow: none;
-}
-html[data-nm-theme="quiet-focus"] .text-primary { color: var(--nm-accent) !important; }
-html[data-nm-theme="quiet-focus"] :is(.text-muted, .muted, .text-secondary) { color: var(--nm-text-muted) !important; }
-
-/* ---------- Top bar = Todoist's warm sidebar, laid flat ---------- */
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top {
-  background: var(--qf-chrome) !important;
-  border-block-end: 1px solid #f0ece8;
-  box-shadow: none;
-  min-block-size: 60px;
-  font-family: var(--nm-font);
-}
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-brand {
-  color: var(--nm-text);
-  font-weight: 700;
-}
-/* Todoist's red logo square stands in for the (often missing) HUJI logo image. */
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-brand::before {
-  content: "";
-  inline-size: 26px; block-size: 26px; flex: none;
-  margin-inline-end: .5rem;
-  border-radius: 7px;
-  background:
-    linear-gradient(#fff, #fff) 6px 8px / 14px 2px no-repeat,
-    linear-gradient(#fff, #fff) 6px 12px / 14px 2px no-repeat,
-    linear-gradient(#fff, #fff) 6px 16px / 14px 2px no-repeat,
-    linear-gradient(160deg, #e44332, #c83c2d);
-}
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-brand img.logo[src="data:,"] { display: none; }
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top :is(.nav-link, .usertext, .userbutton) {
-  color: var(--nm-text);
-}
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .navbar-nav { gap: 2px; align-items: center; }
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link,
-html[data-nm-theme="quiet-focus"] .primary-navigation .navigation .nav-link {
-  display: flex;
-  align-items: center;
-  block-size: auto;
-  padding: .375rem .625rem !important;
-  border: 0 !important;
-  border-radius: 5px;
-  font-size: .875rem;
-  font-weight: 400;
-  color: var(--nm-text);
-  transition: background-color var(--qf-ease), color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link:hover,
-html[data-nm-theme="quiet-focus"] .primary-navigation .navigation .nav-link:hover {
-  background: var(--qf-hover);
-  text-decoration: none;
-  color: var(--nm-text);
-}
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link.active,
-html[data-nm-theme="quiet-focus"] .primary-navigation .navigation .nav-link.active,
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link[aria-current="true"] {
-  background: var(--qf-active);
-  color: var(--qf-active-text);
-  font-weight: 500;
-}
-html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .dropdown-toggle::after {
-  border: 0;
-  inline-size: .45em; block-size: .45em;
-  margin-inline-start: .45em;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-.15em) rotate(45deg);
-  opacity: .55;
-}
-html[data-nm-theme="quiet-focus"] .dropdown-menu {
-  border: 1px solid var(--nm-border);
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
-  padding: .25rem;
-  font-size: .8125rem;
-}
-html[data-nm-theme="quiet-focus"] .dropdown-item { border-radius: 5px; padding: .35rem .6rem; color: var(--nm-text); }
-html[data-nm-theme="quiet-focus"] .dropdown-item:is(:hover, :focus) { background: var(--qf-hover); color: var(--nm-text); }
-html[data-nm-theme="quiet-focus"] .dropdown-item:is(.active, :active) { background: var(--qf-active); color: var(--qf-active-text); }
-
-/* ---------- Page header: "Today"-style title ---------- */
-html[data-nm-theme="quiet-focus"] #page-header { margin-block-end: 2rem; }
-html[data-nm-theme="quiet-focus"] #page-header h1 {
-  font-size: 1.625rem;   /* 26px, Todoist view title */
-  font-weight: 700;
-  line-height: 1.25;
-  margin: 0;
-  color: var(--nm-text);
-}
-/* let the header slot (shortcuts + theme button) run to the end edge, like Todoist's "Display" */
-html[data-nm-theme="quiet-focus"] #page-header .me-auto:has(.nm-header-slot) { flex: 1 1 auto; min-inline-size: 0; }
-html[data-nm-theme="quiet-focus"] #page-header .page-context-header:has(.nm-header-slot) { align-items: flex-start; }
-/* the "✓ n tasks" line under Todoist's title */
-html[data-nm-theme="quiet-focus"] body.pagelayout-mydashboard #page-header .page-header-headings::after {
-  content: "Your courses, deadlines and notes";
-  display: flex;
-  align-items: center;
-  gap: .375rem;
-  margin-block-start: .375rem;
-  font-size: .8125rem;
-  color: var(--nm-text-muted);
-  padding-inline-start: 1.25rem;
-  background: no-repeat left center / 14px 14px
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.5' fill='none' stroke='%236f6f6f' stroke-width='1.2'/%3E%3Cpath d='M5.2 8.2l1.9 1.8 3.7-3.8' fill='none' stroke='%236f6f6f' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-html[data-nm-theme="quiet-focus"][dir="rtl"] body.pagelayout-mydashboard #page-header .page-header-headings::after { background-position: right center; }
-
-/* ---------- Blocks: borderless sections on white, hairline under the heading ---------- */
-html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  margin-block-end: 2.25rem !important;
-  color: var(--nm-text);
-}
-html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) > .card-body {
-  padding: 0 !important;
-}
-html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) .card-title,
-html[data-nm-theme="quiet-focus"] .nm-block-title {
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.4;
-  margin: 0;
-  padding-block-end: .5rem;
-  color: var(--nm-text);
-}
-html[data-nm-theme="quiet-focus"] .block.card > .card-body > .card-title,
-html[data-nm-theme="quiet-focus"] .block.card > .card-body > .d-flex:first-child,
-html[data-nm-theme="quiet-focus"] .nm-block-head {
-  border-block-end: 1px solid var(--nm-border);
-}
-html[data-nm-theme="quiet-focus"] .block.card > .card-body > .d-flex:first-child .card-title { border: 0; }
-html[data-nm-theme="quiet-focus"] .block.card .card-text.content { margin-block-start: .75rem !important; }
-html[data-nm-theme="quiet-focus"] .block.card .card-text .card-text.content { margin-block-start: 0 !important; }
-
-/* Block footers ("Go to calendar…", "Older topics…") read like Todoist's red "+ Add task" row. */
-html[data-nm-theme="quiet-focus"] .block.card .footer {
-  margin-block-start: .5rem;
-  padding: 0;
-  border: 0;
-}
-html[data-nm-theme="quiet-focus"] .block.card .footer a {
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  padding: .35rem .25rem;
-  color: var(--nm-text-muted);
-  font-size: .875rem;
-}
-html[data-nm-theme="quiet-focus"] .block.card .footer a::before {
-  content: "";
-  inline-size: 13px; block-size: 13px;
-  background:
-    linear-gradient(var(--nm-accent), var(--nm-accent)) center / 13px 1.5px no-repeat,
-    linear-gradient(var(--nm-accent), var(--nm-accent)) center / 1.5px 13px no-repeat;
-  transition: transform var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .block.card .footer a:hover { color: var(--nm-accent); text-decoration: none; }
-html[data-nm-theme="quiet-focus"] .block.card .footer a:hover::before {
-  background-color: var(--nm-accent);
-  border-radius: 50%;
-  background-image:
-    linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
-  background-size: 9px 1.5px, 1.5px 9px;
-}
-
-/* ---------- Buttons & forms ---------- */
-html[data-nm-theme="quiet-focus"] .btn {
-  --bs-btn-font-family: var(--nm-font);
-  font-family: var(--nm-font);
-  font-size: .8125rem;
-  font-weight: 600;
-  line-height: 1.3;
-  padding: .4375rem .75rem;
-  border-radius: 5px;
-  box-shadow: none;
-  transition: background-color var(--qf-ease), color var(--qf-ease), border-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .btn-sm { font-size: .75rem; padding: .3125rem .625rem; }
-html[data-nm-theme="quiet-focus"] .btn-primary {
-  --bs-btn-bg: #c83c2d; --bs-btn-border-color: #c83c2d;
-  --bs-btn-hover-bg: #b03224; --bs-btn-hover-border-color: #b03224;
-  --bs-btn-active-bg: #9c2b1f; --bs-btn-active-border-color: #9c2b1f;
-  background: #c83c2d;
-  border-color: #c83c2d;
-  color: #fff;
-}
-html[data-nm-theme="quiet-focus"] .btn-primary:is(:hover, :focus-visible) { background: #b03224; border-color: #b03224; color: #fff; }
-html[data-nm-theme="quiet-focus"] .btn-primary:active { background: #9c2b1f; border-color: #9c2b1f; }
-html[data-nm-theme="quiet-focus"] :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default) {
-  background: #f5f5f5;
-  border: 1px solid transparent;
-  color: #444444;
-}
-html[data-nm-theme="quiet-focus"] :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default):is(:hover, :focus-visible),
-html[data-nm-theme="quiet-focus"] :is(.btn-secondary, .btn-outline-secondary).show {
-  background: #ebebeb;
-  border-color: transparent;
-  color: #202020;
-}
-html[data-nm-theme="quiet-focus"] .btn-outline-primary { background: transparent; color: var(--nm-accent); border-color: var(--nm-accent); }
-html[data-nm-theme="quiet-focus"] .btn-outline-primary:hover { background: var(--qf-red-tint); color: #a3291d; }
-html[data-nm-theme="quiet-focus"] .btn-link { color: var(--nm-accent); font-weight: 600; }
-html[data-nm-theme="quiet-focus"] .btn.dropdown-toggle::after {
-  border: 0;
-  inline-size: .42em; block-size: .42em;
-  margin-inline-start: .55em;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-.2em) rotate(45deg);
-  vertical-align: middle;
-  opacity: .6;
-}
-html[data-nm-theme="quiet-focus"] .btn:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; box-shadow: none; }
-
-html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select) {
-  font-family: var(--nm-font);
-  font-size: .875rem;
-  color: var(--nm-text);
-  background-color: #fff;
-  border: 1px solid #dddddd;
-  border-radius: 5px;
-  padding: .4375rem .625rem;
-  box-shadow: none;
-  transition: border-color var(--qf-ease), box-shadow var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select)::placeholder { color: #8a8a8a; }
-html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select):hover { border-color: #c4c4c4; }
-html[data-nm-theme="quiet-focus"] :is(.form-control, .form-select, .custom-select):focus {
-  border-color: var(--nm-accent);
-  box-shadow: var(--qf-ring);
-  outline: 0;
-}
-/* Todoist's search field carries a magnifier */
-html[data-nm-theme="quiet-focus"] [data-region="filter"] input.form-control,
-html[data-nm-theme="quiet-focus"] input.form-control[placeholder="Search"] {
-  padding-inline-start: 2rem;
-  background: #fff no-repeat .625rem center / 14px
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='7' cy='7' r='5' fill='none' stroke='%23808080' stroke-width='1.3'/%3E%3Cpath d='M10.8 10.8L14 14' stroke='%23808080' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E");
-}
-html[data-nm-theme="quiet-focus"][dir="rtl"] [data-region="filter"] input.form-control,
-html[data-nm-theme="quiet-focus"][dir="rtl"] input.form-control[placeholder="Search"] { background-position: right .625rem center; }
-html[data-nm-theme="quiet-focus"] .form-check-input:checked { background-color: var(--nm-accent); border-color: var(--nm-accent); }
-html[data-nm-theme="quiet-focus"] .form-check-input:focus { border-color: var(--nm-accent); box-shadow: var(--qf-ring); }
-
-/* ---------- Course overview ---------- */
-html[data-nm-theme="quiet-focus"] [data-region="filter"] { gap: .5rem; margin-block-end: 1rem !important; }
-html[data-nm-theme="quiet-focus"] [data-region="filter"] > * { margin: 0 !important; }
-html[data-nm-theme="quiet-focus"] .card-grid { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; row-gap: 1rem; margin-inline: -.5rem !important; }
-html[data-nm-theme="quiet-focus"] .card-grid > .dashboard-card { padding-inline: .5rem; }
-html[data-nm-theme="quiet-focus"] .dashboard-card {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  margin-block-end: 0;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card > a,
-html[data-nm-theme="quiet-focus"] .dashboard-card .dashboard-card-img {
-  display: block;
-  border-radius: 10px;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .dashboard-card-img {
-  block-size: 6.5rem;
-  aspect-ratio: auto;
-  background-size: cover;
-  background-position: center;
-  border: 1px solid rgba(0, 0, 0, .05);
-  filter: saturate(.72) brightness(1.04);
-  transition: filter var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card:hover .dashboard-card-img { filter: saturate(.9) brightness(1); }
-html[data-nm-theme="quiet-focus"] .dashboard-card .course-info-container {
-  padding: .625rem .125rem .25rem !important;
-  background: transparent;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .coursename {
-  display: block;
-  color: var(--nm-text);
-  font-size: .875rem;
-  font-weight: 500;
-  line-height: 1.35;
-  white-space: normal;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .coursename:hover { color: var(--nm-text); text-decoration: underline; text-decoration-color: #c4c4c4; }
-html[data-nm-theme="quiet-focus"] .dashboard-card .categoryname {
-  font-size: .75rem;
-  color: var(--nm-text-muted);
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .categoryname::before {
-  content: "# ";
-  color: var(--qf-project);
-  font-weight: 600;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .dashboard-card-footer {
-  background: transparent !important;
-  border: 0 !important;
-  padding: .25rem .125rem 0 !important;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .progress-text {
-  font-size: .75rem;
-  color: var(--nm-text-muted);
-  margin-block-end: .3rem;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .progress-text strong { color: var(--nm-text); font-weight: 600; }
-html[data-nm-theme="quiet-focus"] .progress {
-  block-size: 4px;
-  background: #f0f0f0 !important;
-  border: 0 !important;
-  border-radius: 999px;
-  overflow: hidden;
-}
-html[data-nm-theme="quiet-focus"] .progress-bar {
-  background: var(--nm-accent);
-  border-radius: 999px;
-}
-html[data-nm-theme="quiet-focus"] .dashboard-card .coursemenubtn { background: transparent; color: var(--nm-text-muted); }
-
-/* list / summary views of course overview */
-html[data-nm-theme="quiet-focus"] .block_myoverview .list-group-item,
-html[data-nm-theme="quiet-focus"] .block_myoverview .course-listitem {
-  background: transparent;
-  border: 0;
-  border-block-end: 1px solid var(--qf-rule);
-  border-radius: 0;
-  padding-inline: 0;
-}
-
-/* ---------- Upcoming events = Todoist task rows ---------- */
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] {
-  display: flex;
-  align-items: flex-start;
-  gap: .625rem;
-  padding: .625rem 0 .75rem !important;
-  border-block-end: 1px solid var(--qf-rule) !important;
-  border-color: var(--qf-rule) !important;
-  background: transparent;
-  transition: background-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .activityiconcontainer {
-  inline-size: 18px !important; block-size: 18px !important;
-  min-inline-size: 18px; flex: none;
-  margin: 2px 0 0 !important;
-  padding: 0;
-  border-radius: 50%;
-  border: 1px solid var(--qf-check);
-  background: transparent !important;
-  box-shadow: none;
-  position: relative;
-  transition: background-color var(--qf-ease), border-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .activityiconcontainer img { display: none; }
-/* hover tick, exactly like Todoist's circle */
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .activityiconcontainer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: no-repeat center / 10px
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 6.3l2.4 2.3 5.2-5.2' fill='none' stroke='%238f8f8f' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  opacity: 0;
-  transition: opacity var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"]:hover .activityiconcontainer::after { opacity: 1; }
-/* an injected real checkbox replaces the decorative circle */
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"]:has(input[type="checkbox"], [class*="nm-up-check"]) .activityiconcontainer { display: none; }
-
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] > .overflow-auto {
-  flex: 1 1 auto;
-  min-inline-size: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "title title" "date course";
-  align-items: center;
-  column-gap: 1rem;
-  row-gap: .2rem;
-  overflow: visible !important;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h4 {
-  grid-area: title;
-  margin: 0 !important;
-  font-size: .875rem;
-  font-weight: 400;
-  line-height: 1.45;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h4 a {
-  color: var(--nm-text);
-  white-space: normal;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h4 a:hover { color: var(--nm-text); text-decoration: underline; text-decoration-color: #c4c4c4; }
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h6 {
-  grid-area: course;
-  margin: 0 !important;
-  font-size: .75rem;
-  font-weight: 400;
-  color: var(--nm-text-muted) !important;
-  justify-self: end;
-  max-inline-size: 16rem;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h6::after {
-  content: "#";
-  margin-inline-start: .4rem;
-  color: var(--qf-project);
-  font-weight: 600;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .date {
-  grid-area: date;
-  display: block;
-  font-size: .75rem;
-  color: var(--qf-date);
-  line-height: 1.3;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .date::before {
-  content: "";
-  display: inline-block;
-  vertical-align: -2px;
-  margin-inline-end: .3rem;
-  inline-size: 12px; block-size: 12px;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='1' y='1.5' width='10' height='9.5' rx='2' fill='none' stroke='black' stroke-width='1.1'/%3E%3Cpath d='M1.5 4.5h9' stroke='black' stroke-width='1.1'/%3E%3Crect x='3' y='6.3' width='3' height='2.5' rx='.5' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='1' y='1.5' width='10' height='9.5' rx='2' fill='none' stroke='black' stroke-width='1.1'/%3E%3Cpath d='M1.5 4.5h9' stroke='black' stroke-width='1.1'/%3E%3Crect x='3' y='6.3' width='3' height='2.5' rx='.5' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] .date a { color: inherit; }
-
-/* ---------- Timeline ---------- */
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] h5 {
-  font-size: .8125rem;
-  font-weight: 700 !important;
-  padding-block-end: .4rem;
-  margin-block-start: 1.25rem !important;
-  border-block-end: 1px solid var(--nm-border);
-}
-html[data-nm-theme="quiet-focus"] .list-group { --bs-list-group-bg: transparent; --bs-list-group-border-color: var(--qf-rule); }
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] .list-group-item {
-  background: transparent;
-  border-color: var(--qf-rule) !important;
-  border-width: 0 0 1px !important;
-  padding-block: .625rem !important;
-  align-items: center;
-  gap: .25rem;
-}
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] .activityiconcontainer {
-  inline-size: 18px !important; block-size: 18px !important;
-  min-inline-size: 18px;
-  border-radius: 50%;
-  border: 1px solid var(--qf-check);
-  background: transparent !important;
-  align-self: flex-start;
-  margin-block-start: 2px;
-}
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] .activityiconcontainer img { display: none; }
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] .event-name { color: var(--nm-text); font-size: .875rem; }
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] .event-name:hover { color: var(--nm-text); }
-html[data-nm-theme="quiet-focus"] [data-region="timeline"] small { font-size: .75rem; margin-block-start: .15rem; }
-
-/* ---------- Announcements ---------- */
-html[data-nm-theme="quiet-focus"] .block_news_items .post {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: .4rem;
-  padding-block: .625rem .7rem;
-  padding-inline: 1.75rem 0;
-  border-block-end: 1px solid var(--qf-rule);
-  position: relative;
-}
-html[data-nm-theme="quiet-focus"] .block_news_items .post::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: .8rem;
-  inline-size: 16px; block-size: 16px;
-  background: var(--nm-text-muted);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 3.5h11v7.5h-6.5l-3 2.5v-2.5h-1.5z' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 3.5h11v7.5h-6.5l-3 2.5v-2.5h-1.5z' fill='none' stroke='black' stroke-width='1.1' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-html[data-nm-theme="quiet-focus"] .block_news_items .post .info {
-  order: -1;
-  flex: 1 0 100%;
-  font-size: .875rem;
-  margin-block-end: .15rem;
-}
-html[data-nm-theme="quiet-focus"] .block_news_items .post .info a { color: var(--nm-text); }
-html[data-nm-theme="quiet-focus"] .block_news_items .post .info a:hover { color: var(--nm-text); text-decoration-color: #c4c4c4; }
-html[data-nm-theme="quiet-focus"] .block_news_items .post :is(.date, .name) { font-size: .75rem; color: var(--nm-text-muted); }
-html[data-nm-theme="quiet-focus"] .block_news_items .post .name::before { content: "·"; margin-inline-end: .4rem; }
-
-/* ---------- Mini calendar (Todoist scheduler grid) ---------- */
-html[data-nm-theme="quiet-focus"] .block_calendar_month .calendarwrapper { max-inline-size: 22rem; }
-html[data-nm-theme="quiet-focus"] .block_calendar_month .calendarwrapper .header {
-  align-items: center;
-  padding: 0 0 .5rem !important;
-  gap: .25rem;
-}
-html[data-nm-theme="quiet-focus"] .block_calendar_month .header .current {
-  order: -1;
-  flex: 1 1 auto;
-  text-align: start !important;
-  font-size: .875rem;
-  font-weight: 700;
-  margin: 0;
-}
-html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link {
-  display: inline-grid;
-  place-items: center;
-  inline-size: 28px; block-size: 28px;
-  border-radius: 5px;
-  color: transparent;
-  font-size: 0;
-  position: relative;
-}
-html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link::before {
-  content: "";
-  inline-size: 7px; block-size: 7px;
-  border-inline-start: 1.5px solid #666;
-  border-block-end: 1.5px solid #666;
-  transform: rotate(45deg);
-  margin-inline-start: 3px;
-}
-html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link.next::before { transform: rotate(-135deg); margin-inline: 0 3px; }
-html[data-nm-theme="quiet-focus"] .block_calendar_month .arrow_link:hover { background: var(--qf-hover); text-decoration: none; }
-html[data-nm-theme="quiet-focus"] table.minicalendar {
-  inline-size: 100%;
-  max-inline-size: 22rem;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0 2px;
-  font-size: .8125rem;
-}
-html[data-nm-theme="quiet-focus"] table.minicalendar th {
-  font-size: .6875rem;
-  font-weight: 500;
-  color: var(--nm-text-muted);
-  text-align: center;
-  padding-block: .25rem .4rem;
-  border: 0;
-}
-html[data-nm-theme="quiet-focus"] table.minicalendar td {
-  text-align: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  position: relative;
-  block-size: 32px;
-}
-html[data-nm-theme="quiet-focus"] table.minicalendar td.day > :is(.day-number, a) {
-  display: inline-grid;
-  place-items: center;
-  inline-size: 28px; block-size: 28px;
-  border-radius: 50%;
-  color: var(--nm-text);
-  transition: background-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] table.minicalendar td.day:hover > :is(.day-number, a) { background: var(--qf-hover); }
-html[data-nm-theme="quiet-focus"] table.minicalendar td.today > :is(.day-number, a),
-html[data-nm-theme="quiet-focus"] table.minicalendar td.today:hover > :is(.day-number, a) {
-  background: var(--nm-accent);
-  color: #fff;
-  font-weight: 700;
-}
-html[data-nm-theme="quiet-focus"] table.minicalendar td.hasevent > :is(.day-number, a) { font-weight: 600; }
-html[data-nm-theme="quiet-focus"] table.minicalendar td.hasevent::after {
-  content: "";
-  position: absolute;
-  inset-inline-start: 50%;
-  inset-block-end: 0;
-  inline-size: 4px; block-size: 4px;
-  margin-inline-start: -2px;
-  border-radius: 50%;
-  background: var(--nm-accent);
-}
-html[data-nm-theme="quiet-focus"] table.minicalendar td.weekend > :is(.day-number, a) { color: var(--nm-text-muted); }
-
-/* ---------- Recently accessed items ---------- */
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] { gap: .5rem; }
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] > .card {
-  margin: 0 !important;
-  background: #fff;
-  border: 1px solid var(--nm-border);
-  border-radius: 8px;
-  box-shadow: none;
-  transition: background-color var(--qf-ease), border-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] > .card:hover { background: var(--qf-chrome); border-color: #e4e0dc; text-decoration: none; }
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .card-body { padding: .625rem .75rem !important; align-items: center; }
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] h6 { font-size: .8125rem; font-weight: 500; color: var(--nm-text); }
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] small { font-size: .75rem; }
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer {
-  inline-size: 28px; block-size: 28px;
-  border-radius: 6px;
-  background: var(--qf-active) !important;
-  flex: none;
-}
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer:empty { display: grid; place-items: center; }
-html[data-nm-theme="quiet-focus"] [data-region="recentlyaccesseditems-view"] .activityiconcontainer:empty::before {
-  content: "";
-  inline-size: 14px; block-size: 14px;
-  background: var(--qf-active-text);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.5h5.5L13 5v9.5H4z M9.5 1.5V5H13' fill='none' stroke='black' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.5h5.5L13 5v9.5H4z M9.5 1.5V5H13' fill='none' stroke='black' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* ---------- Generic Bootstrap bits ---------- */
-html[data-nm-theme="quiet-focus"] .card { --bs-card-border-color: var(--nm-border); --bs-card-bg: #fff; }
-html[data-nm-theme="quiet-focus"] .border-bottom { border-color: var(--qf-rule) !important; }
-html[data-nm-theme="quiet-focus"] hr { border-color: var(--nm-border); opacity: 1; }
-html[data-nm-theme="quiet-focus"] :is(.badge.bg-primary, .badge-primary) { background: var(--qf-active) !important; color: var(--qf-active-text) !important; }
-html[data-nm-theme="quiet-focus"] .alert { border-radius: 8px; }
-html[data-nm-theme="quiet-focus"] .page-item.active .page-link { background: var(--nm-accent); border-color: var(--nm-accent); }
-html[data-nm-theme="quiet-focus"] .nav-tabs .nav-link.active { color: var(--nm-text); border-block-end: 2px solid var(--nm-accent); }
-
-/* ---------- Injected primitives ---------- */
-html[data-nm-theme="quiet-focus"] .nm-header-slot { gap: .375rem; }
-html[data-nm-theme="quiet-focus"] .nm-btn {
-  font-family: var(--nm-font);
-  font-size: .8125rem;
-  font-weight: 600;
-  line-height: 1.3;
-  padding: .4375rem .75rem;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: #f5f5f5;
-  color: #444;
-  transition: background-color var(--qf-ease), color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .nm-btn:hover { background: #ebebeb; color: #202020; }
-html[data-nm-theme="quiet-focus"] .nm-btn.nm-btn-primary,
-html[data-nm-theme="quiet-focus"] .nm-btn-primary {
-  background: var(--nm-accent);
-  border-color: var(--nm-accent);
-  color: #fff;
-}
-html[data-nm-theme="quiet-focus"] .nm-btn.nm-btn-primary:hover { background: #b03224; border-color: #b03224; color: #fff; }
-html[data-nm-theme="quiet-focus"] :is(.nm-btn, .nm-btn-primary):disabled { opacity: .5; cursor: not-allowed; }
-html[data-nm-theme="quiet-focus"] .nm-icon-btn {
-  inline-size: 2rem; block-size: 2rem;
-  border: 0;
-  border-radius: 5px;
-  background: transparent;
-  color: #666;
-  font-size: .95rem;
-  transition: background-color var(--qf-ease), color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .nm-icon-btn:hover { background: var(--qf-hover); color: var(--nm-text); }
-html[data-nm-theme="quiet-focus"] .nm-icon-btn[aria-expanded="true"] { background: var(--qf-hover); }
-html[data-nm-theme="quiet-focus"] :is(.nm-btn, .nm-icon-btn):focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
-
-/* Theme menu = Todoist popover */
-html[data-nm-theme="quiet-focus"] .nm-theme-menu {
-  min-inline-size: 15rem;
-  padding: .25rem;
-  background: #fff;
-  border: 1px solid var(--nm-border);
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .06), 0 10px 28px rgba(0, 0, 0, .12);
-  font-family: var(--nm-font);
-  font-size: .8125rem;
-  animation: qf-pop 120ms ease-out;
-}
-html[data-nm-theme="quiet-focus"] .nm-theme-menu::before {
-  content: "Theme";
-  display: block;
-  padding: .45rem .6rem .35rem;
-  font-size: .6875rem;
-  font-weight: 600;
-  color: var(--nm-text-muted);
-  border-block-end: 1px solid var(--qf-rule);
-  margin-block-end: .25rem;
-}
-html[data-nm-theme="quiet-focus"] .nm-theme-option {
-  gap: .625rem;
-  padding: .4rem .6rem;
-  border-radius: 5px;
-  color: var(--nm-text);
-  transition: background-color var(--qf-ease);
-}
-html[data-nm-theme="quiet-focus"] .nm-theme-option:hover { background: var(--qf-hover); }
-html[data-nm-theme="quiet-focus"] .nm-theme-option[aria-checked="true"] { background: var(--qf-active); color: var(--qf-active-text); font-weight: 500; }
-html[data-nm-theme="quiet-focus"] .nm-theme-option[aria-checked="true"]::after { color: var(--qf-active-text); font-weight: 700; }
-html[data-nm-theme="quiet-focus"] .nm-swatch { inline-size: 1rem; block-size: 1rem; border: 1px solid rgba(0, 0, 0, .12); }
-@keyframes qf-pop { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
-
-html[data-nm-theme="quiet-focus"] .nm-block-content { font-family: var(--nm-font); font-size: .875rem; }
-
-/* ---------- Light signature touches for feature widgets ---------- */
-/* Upcoming done-split: Todoist circle checkbox, grey fill when completed */
-html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-box {
-  border: 1px solid var(--qf-check);
-  border-radius: 50%;
-  background: transparent;
-}
-html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-box::after { border-color: var(--qf-check); border-width: 0 1.5px 1.5px 0; }
-html[data-nm-theme="quiet-focus"] .nm-up-check:hover .nm-up-box { border-color: var(--qf-check); }
-html[data-nm-theme="quiet-focus"] .nm-up-check:hover .nm-up-box::after { transform: rotate(45deg) scale(1); }
-html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-cb:checked + .nm-up-box { background: var(--qf-check); border-color: var(--qf-check); }
-html[data-nm-theme="quiet-focus"] .nm-up-check .nm-up-cb:checked + .nm-up-box::after { border-color: #fff; }
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-lead { margin-inline-end: .625rem; margin-block-start: .125rem; inline-size: 18px; block-size: 18px; }
-/* the lead (checkbox or spacer) takes the place of the decorative circle */
-html[data-nm-theme="quiet-focus"] .event[data-region="event-item"]:has(.nm-up-lead) .activityiconcontainer { display: none; }
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-row-done h4 a { color: var(--nm-text-muted); }
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-meta { grid-column: 1 / -1; margin-block-start: .15rem; }
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-row-info .activityiconcontainer { opacity: 1; }
-/* "Done" toggle = Todoist's red "Add section" divider */
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary {
-  background: transparent;
-  padding-inline: 0;
-  color: var(--nm-accent);
-  font-size: .8125rem;
-  font-weight: 600;
-}
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary:hover { background: transparent; color: #a3291d; }
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary::before { border-color: var(--nm-accent); }
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-summary::after {
-  content: "";
-  flex: 1 1 auto;
-  block-size: 1px;
-  margin-inline-start: .5rem;
-  background: var(--nm-accent);
-  opacity: .85;
-}
-html[data-nm-theme="quiet-focus"] .nm-up .nm-up-done-hint { font-weight: 400; }
-
-/* Todos: Todoist circle (todo.css already draws one; match its weight and colours) */
-html[data-nm-theme="quiet-focus"] .nm-todo-check { border-width: 1px; border-color: var(--qf-check); }
-html[data-nm-theme="quiet-focus"] .nm-todo-check:checked { background: var(--qf-check); border-color: var(--qf-check); }
-
-/* Shortcut chips: compact, softly tinted rectangles; favicon before plain text */
-html[data-nm-theme="quiet-focus"] .nm-sc-chip .nm-sc-link {
-  background: var(--nm-surface-2);
-  border: 1px solid var(--nm-border);
-  border-radius: 5px;
-  color: var(--nm-text);
-  font-size: .8125rem;
-  text-decoration: none;
-}
-html[data-nm-theme="quiet-focus"] .nm-sc-chip .nm-sc-link:hover { background: var(--qf-hover); border-color: #e6e1dc; color: var(--nm-text); text-decoration: none; }
-/* "+ Add" reads like Todoist's red-plus "Add task" row */
-html[data-nm-theme="quiet-focus"] .nm-sc-add,
-html[data-nm-theme="quiet-focus"] .nm-sc-edit-toggle {
-  background: transparent;
-  border: 0;
-  border-radius: 5px;
-  color: var(--nm-text-muted);
-  font-family: var(--nm-font);
-  font-size: .8125rem;
-}
-html[data-nm-theme="quiet-focus"] .nm-sc-add { color: var(--nm-text-muted); }
-html[data-nm-theme="quiet-focus"] .nm-sc-add :is(svg, .nm-sc-icon) { color: var(--nm-accent); }
-html[data-nm-theme="quiet-focus"] :is(.nm-sc-add, .nm-sc-edit-toggle):hover { background: var(--qf-hover); color: var(--nm-accent); }
-html[data-nm-theme="quiet-focus"] .nm-sc-letter { background: var(--qf-active); color: var(--qf-active-text); }
-/* Todoist's dark toast ("Date updated to … Undo") */
-html[data-nm-theme="quiet-focus"] :is(.nm-sc-toast, [class*="nm-todo-toast"]) {
-  background: #202020;
-  color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
-}
-html[data-nm-theme="quiet-focus"] :is(.nm-sc-toast, [class*="nm-todo-toast"]) :is(a, button) { color: #ff9a8a; }
-/* popovers/cards share the Todoist popover look */
-html[data-nm-theme="quiet-focus"] :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) {
-  background: #fff;
-  border: 1px solid var(--nm-border);
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .06), 0 10px 28px rgba(0, 0, 0, .12);
-}
-html[data-nm-theme="quiet-focus"] .nm-sc-input:focus { border-color: var(--nm-accent); box-shadow: var(--qf-ring); outline: 0; }
-
-/* ---------- Narrow screens ---------- */
-@media (max-width: 575.98px) {
-  html[data-nm-theme="quiet-focus"] #page .main-inner,
-  html[data-nm-theme="quiet-focus"] #topofscroll { padding-inline: 1rem; padding-block-start: 1.25rem; }
-  html[data-nm-theme="quiet-focus"] #page-header h1 { font-size: 1.5rem; }
-  html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] > .overflow-auto {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "title" "date" "course";
+  &::-webkit-scrollbar, & *::-webkit-scrollbar { inline-size: 10px; block-size: 10px; }
+  &::-webkit-scrollbar-track, & *::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb {
+    background: #d6d1cc padding-box; border: 3px solid transparent; border-radius: 999px;
   }
-  html[data-nm-theme="quiet-focus"] .event[data-region="event-item"] h6 { justify-self: start; max-inline-size: 100%; }
-  html[data-nm-theme="quiet-focus"] :is(.block.card, section.nm-block) { margin-block-end: 1.75rem !important; }
-  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .nav-link { padding-inline: .5rem !important; white-space: nowrap; }
-  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top > .container-fluid { flex-wrap: nowrap; gap: .5rem; }
-  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .primary-navigation { flex: 1 1 auto; min-inline-size: 0; overflow-x: auto; scrollbar-width: none; }
-  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .primary-navigation .navbar-nav { flex-wrap: nowrap; }
-  html[data-nm-theme="quiet-focus"] nav.navbar.fixed-top .usertext { white-space: nowrap; font-size: .8125rem; }
-}
+  &::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover { background-color: #b9b3ad; }
+  & ::selection { background: #fde2d9; color: #202020; }
+  & :is(input, textarea, [contenteditable]) { caret-color: var(--qf-red); }
+  & :is(a, button, input, select, textarea, summary, [tabindex], .btn):focus-visible {
+    outline: 2px solid var(--qf-red); outline-offset: 2px; box-shadow: none;
+  }
+  & .table-responsive, & .nm-sc-list, & .drawer, & .dropdown-menu { scrollbar-width: thin; scrollbar-color: #d6d1cc transparent; }
 
-/* ---------- Motion off ---------- */
-html[data-nm-theme="quiet-focus"][data-nm-motion="off"] *,
-html[data-nm-theme="quiet-focus"][data-nm-motion="off"] *::before,
-html[data-nm-theme="quiet-focus"][data-nm-motion="off"] *::after {
-  animation: none !important;
-  transition: none !important;
-}
-@media (prefers-reduced-motion: reduce) {
-  html[data-nm-theme="quiet-focus"] *,
-  html[data-nm-theme="quiet-focus"] *::before,
-  html[data-nm-theme="quiet-focus"] *::after {
-    animation: none !important;
-    transition: none !important;
+  /* ======================================================================
+     Canvas and type
+     ====================================================================== */
+  & body {
+    background-color: #ffffff !important;
+    color: var(--qf-ink);
+    font-family: var(--nm-font);
+    font-size: .875rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv11", "ss03";   /* Inter: single-storey a off, rounder 1/l, closer to SF */
+  }
+  & :is(#page, #page-wrapper, #topofscroll, #page-header, #page-content, #region-main, #region-main-box, .main-inner) {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  & #region-main { border: 0; padding-inline: 0; }
+  & :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+    font-family: var(--nm-heading-font);
+    color: var(--qf-ink);
+    letter-spacing: 0;
+  }
+  & :is(.text-muted, .muted, .text-secondary, .dimmed_text) { color: var(--qf-ink-2) !important; }
+  & .text-primary { color: var(--qf-red-text) !important; }
+  & .bg-white { background-color: transparent !important; }
+  & .border-bottom, & .border-top { border-color: var(--qf-rule) !important; }
+  & hr { border-color: var(--qf-rule); opacity: 1; }
+  & .badge { font-weight: 500; border-radius: 4px; }
+
+  /* Links: Todoist keeps links in ink and lets red mean action. Inside content, a calm red. */
+  & a { color: var(--qf-red-text); text-decoration: none; text-underline-offset: 2px; transition: color var(--qf-ease), background-color var(--qf-ease); }
+  & a:hover { color: var(--qf-red-hover); text-decoration: underline; text-decoration-thickness: 1px; }
+
+  /* The agenda column: a lot of white around a centred list */
+  & #topofscroll, & #page .main-inner {
+    max-inline-size: 58rem;
+    margin-inline: auto;
+    padding-inline: 2rem;
+    padding-block-start: 2.25rem;
+  }
+  & body.pagelayout-mydashboard :is(#topofscroll, #page .main-inner) { max-inline-size: 78rem; }
+  & body.path-calendar :is(#topofscroll, #page .main-inner) { max-inline-size: 70rem; }
+  & #page-header.header-maxwidth, & .secondary-navigation .navigation .nav-tabs { max-inline-size: none; }
+
+  /* ======================================================================
+     Top bar: Todoist's warm sidebar, laid flat
+     ====================================================================== */
+  & nav.navbar.fixed-top {
+    background: var(--qf-chrome) !important;
+    border-block-end: 1px solid #f0ece8;
+    box-shadow: none !important;
+    min-block-size: 56px;
+    font-family: var(--nm-font);
+    font-size: .875rem;
+  }
+  & nav.navbar.fixed-top .navbar-brand {
+    color: var(--qf-ink); font-size: .9375rem; font-weight: 700; gap: .375rem;
+  }
+  & nav.navbar.fixed-top .navbar-brand .logo { max-block-size: 30px; inline-size: auto; }
+  & nav.navbar.fixed-top .navbar-brand:hover { text-decoration: none; color: var(--qf-ink); }
+
+  /* the drawer toggle: Todoist's sidebar-panel icon, not a red tile */
+  & nav.navbar.fixed-top .navbar-toggler {
+    display: inline-grid; place-items: center;
+    inline-size: 32px; block-size: 32px; padding: 0 !important; margin-inline-end: .5rem;
+    border: 0 !important; border-radius: 5px; background: transparent !important; color: var(--qf-ink-2);
+  }
+  & nav.navbar.fixed-top .navbar-toggler:hover { background: var(--qf-hover) !important; color: var(--qf-ink); }
+  & nav.navbar.fixed-top .navbar-toggler-icon {
+    inline-size: 22px; block-size: 22px; background: currentColor !important;
+    -webkit-mask: var(--qf-i-sidebar) center / contain no-repeat; mask: var(--qf-i-sidebar) center / contain no-repeat;
+  }
+
+  & nav.navbar.fixed-top .navbar-nav { gap: 2px; align-items: center; }
+  & nav.navbar.fixed-top .nav-link,
+  & .primary-navigation .navigation .nav-link {
+    display: flex; align-items: center; block-size: auto;
+    padding: .375rem .625rem !important; border: 0 !important; border-radius: 5px;
+    color: var(--qf-ink); font-size: .875rem; font-weight: 400; background: transparent;
+    transition: background-color var(--qf-ease), color var(--qf-ease);
+  }
+  & nav.navbar.fixed-top .nav-link:hover,
+  & .primary-navigation .navigation .nav-link:hover { background: var(--qf-hover); color: var(--qf-ink); text-decoration: none; }
+  & nav.navbar.fixed-top .nav-link:is(.active, [aria-current="true"]),
+  & .primary-navigation .navigation .nav-link.active {
+    background: var(--qf-active); color: var(--qf-red-text); font-weight: 500;
+  }
+  & nav.navbar.fixed-top :is(.usertext, .userbutton, .popover-region-toggle, .nav-link i.icon) { color: var(--qf-ink-2); }
+  & nav.navbar.fixed-top .popover-region-toggle:hover { color: var(--qf-ink); background: var(--qf-hover); border-radius: 5px; }
+  & nav.navbar.fixed-top .divider { border-color: #ebe6e1 !important; }
+  & nav.navbar.fixed-top .count-container {
+    min-inline-size: 8px; block-size: 8px; padding: 0; border-radius: 50%;
+    background: var(--qf-red); color: transparent; font-size: 0; inset-block-start: 12px; inset-inline-end: 6px;
+    box-shadow: 0 0 0 2px var(--qf-chrome);
+  }
+  /* Avatar: round, warm, precise */
+  & .userinitials, & .usermenu .avatar .userinitials {
+    inline-size: 28px; block-size: 28px; margin-inline-end: 0;
+    background: #f1e7e1; color: #6b3f30; font-size: .6875rem; font-weight: 600; letter-spacing: .02em;
+  }
+  & .usermenu img.userpicture { border-radius: 50%; inline-size: 28px; block-size: 28px; }
+  & .usermenu .dropdown-toggle { padding: .25rem .375rem !important; border-radius: 6px; }
+  & .usermenu .dropdown-toggle:hover { background: var(--qf-hover); }
+  & .editmode-switch-form label { color: var(--qf-ink-2); font-size: .8125rem; }
+
+  /* Every caret is one clean chevron (osiris uses a Font Awesome glyph that breaks) */
+  & .dropdown-toggle:not(.form-select)::after {
+    content: "" !important;
+    font: inherit !important;
+    inline-size: 12px; block-size: 12px;
+    margin-inline-start: .3rem; margin-inline-end: 0;
+    border: 0 !important;
+    vertical-align: -2px;
+    background: currentColor;
+    -webkit-mask: var(--qf-i-chev) center / contain no-repeat; mask: var(--qf-i-chev) center / contain no-repeat;
+    opacity: .6;
+    transition: transform var(--qf-ease);
+  }
+  & .dropdown-toggle[aria-expanded="true"]:not(.form-select)::after { transform: rotate(180deg); }
+  & .dropup .dropdown-toggle::after { transform: rotate(180deg); }
+
+  /* Dropdowns and popovers: Todoist's white menu with a soft lift */
+  & .dropdown-menu {
+    --bs-dropdown-link-active-bg: var(--qf-active);
+    border: 1px solid #ebebeb; border-radius: 10px; box-shadow: var(--qf-pop-shadow);
+    padding: .25rem; font-size: .8125rem; min-inline-size: 12rem;
+  }
+  & .dropdown-item { border-radius: 5px; padding: .375rem .625rem; color: var(--qf-ink); }
+  & .dropdown-item:is(:hover, :focus) { background: var(--qf-hover); color: var(--qf-ink); text-decoration: none; }
+  & .dropdown-item:is(.active, :active) { background: var(--qf-active); color: var(--qf-red-text); }
+  & .dropdown-divider { border-color: var(--qf-rule); margin: .25rem .375rem; }
+  & .popover-region-container { border-radius: 10px; border-color: #ebebeb; box-shadow: var(--qf-pop-shadow); }
+
+  /* osiris paints drawer toggles plum: make them quiet warm ghosts */
+  & .drawer-toggles .drawer-toggler :is(button, .btn) {
+    background: var(--qf-chrome) !important; color: var(--qf-ink-2) !important;
+    border: 1px solid #ebe6e1 !important; border-radius: 8px !important; box-shadow: none !important;
+  }
+  & .drawer-toggles .drawer-toggler :is(button, .btn):hover { background: var(--qf-hover) !important; color: var(--qf-ink) !important; }
+  & .drawer-toggles .drawer-toggler :is(button, .btn) :is(i.icon, .icon) { color: inherit !important; filter: none; }
+  & .drawer { background: var(--qf-chrome); }
+  & .drawer .drawerheader { border-color: var(--qf-rule); }
+  & #courseindex .courseindex-item:hover { background: var(--qf-hover); }
+  & #courseindex .courseindex-item.pageitem { background: var(--qf-active); color: var(--qf-red-text); }
+  & #courseindex .courseindex-item.pageitem a { color: inherit; }
+
+  /* ======================================================================
+     Page header: the "Today" title
+     ====================================================================== */
+  & #page-header { margin-block-end: 1.75rem; padding: 0 !important; }
+  & #page-header h1 {
+    font-size: 1.625rem; font-weight: 700; line-height: 1.25; margin: 0; color: var(--qf-ink);
+  }
+  & #page-header .page-context-header { padding-block: 0; }
+  & #page-header #page-navbar .breadcrumb { background: none; padding: 0; margin-block-end: .5rem; font-size: .8125rem; }
+  & #page-header #page-navbar .breadcrumb-item, & #page-header #page-navbar .breadcrumb-item a { color: var(--qf-ink-2); }
+
+  /* teachers line under a course title = Todoist's quiet meta line under "Today" */
+  & #page-header ul.teachers {
+    display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem;
+    margin: .375rem 0 0; padding: 0; list-style: none; font-size: .8125rem; color: var(--qf-ink-2);
+  }
+  & #page-header ul.teachers > span { display: inline-flex; align-items: center; gap: .3rem; }
+  & #page-header ul.teachers > span::before {
+    content: ""; inline-size: 14px; block-size: 14px; flex: none; background: var(--qf-ink-2);
+    -webkit-mask: var(--qf-i-person) center / contain no-repeat; mask: var(--qf-i-person) center / contain no-repeat;
+  }
+  & #page-header ul.teachers a { color: var(--qf-ink-2); }
+  & #page-header ul.teachers a:hover { color: var(--qf-ink); }
+  & #page-header ul.teachers .separator { display: none; }
+
+  /* Header slot (shortcuts + theme): runs to the end edge like Todoist's "Display" */
+  & .nm-header-slot { gap: .25rem; }
+
+  /* ======================================================================
+     Blocks: borderless sections with a Todoist section header
+     ====================================================================== */
+  & :is(.block.card, section.nm-block) {
+    background: transparent; border: 0; border-radius: 0; box-shadow: none; color: var(--qf-ink);
+    margin-block-end: 2.5rem !important;
+  }
+  & #page :is(.block.card, section.nm-block) > .card-body { padding: 0 !important; overflow: visible !important; max-block-size: none !important; }
+  & :is(.block.card, section.nm-block) :is(h3, h5).card-title,
+  & .nm-block-title {
+    font-size: .9375rem !important;     /* 15px, never osiris's 28px */
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0;
+    margin: 0 !important;
+    color: var(--qf-ink) !important;
+  }
+  & .block.card > .card-body > :is(.d-flex:first-child, h5.card-title:first-child),
+  & .nm-block-head {
+    padding-block-end: .5rem;
+    border-block-end: 1px solid var(--qf-rule);
+    align-items: baseline !important;
+  }
+  & .block.card .card-text.content { margin-block-start: .75rem !important; }
+  & .block.card .card-text .card-text.content { margin-block-start: 0 !important; }
+  & .block .block-controls .btn { color: var(--qf-ink-2); background: transparent; border: 0; }
+  & #block-region-content { column-gap: 2.5rem !important; row-gap: .5rem !important; }
+
+  /* Block footers ("Go to calendar...", "Full calendar") = Todoist's "+ Add task" row */
+  & .block.card .footer { margin-block-start: .25rem; padding: 0; border: 0; background: none; }
+  & .block.card .footer a {
+    display: inline-flex; align-items: center; gap: .5rem; padding: .375rem 0; color: var(--qf-ink-2); font-size: .875rem;
+  }
+  & .block.card .footer a::before {
+    content: ""; inline-size: 18px; block-size: 18px; flex: none; border-radius: 50%;
+    background: var(--qf-red);
+    -webkit-mask: var(--qf-i-plus) center / 14px no-repeat; mask: var(--qf-i-plus) center / 14px no-repeat;
+    transition: background-color var(--qf-ease);
+  }
+  & .block.card .footer a:hover { color: var(--qf-red-text); text-decoration: none; }
+  & .block.card .footer a:hover::before {
+    -webkit-mask: none; mask: none;
+    background: var(--qf-red) var(--qf-plus-white) center / 12px no-repeat;
+  }
+  & .block.card .footer :is(.footer-link-separator, span:not([class])) { color: var(--qf-rule); }
+  & .block.card .footer .footer-link::after { color: #c4c4c4 !important; margin-inline: .5rem; }
+
+  /* ======================================================================
+     Buttons and forms
+     ====================================================================== */
+  & .btn {
+    --bs-btn-font-family: var(--nm-font);
+    font-family: var(--nm-font); font-size: .8125rem; font-weight: 600; line-height: 1.3;
+    padding: .4375rem .75rem; border-radius: 5px; box-shadow: none;
+    transition: background-color var(--qf-ease), color var(--qf-ease), border-color var(--qf-ease);
+  }
+  & .btn-sm { font-size: .75rem; padding: .3125rem .625rem; }
+  & .btn-primary {
+    --bs-btn-bg: var(--qf-red); --bs-btn-border-color: var(--qf-red);
+    --bs-btn-hover-bg: var(--qf-red-hover); --bs-btn-hover-border-color: var(--qf-red-hover);
+    --bs-btn-active-bg: #a3291d; --bs-btn-active-border-color: #a3291d;
+    --bs-btn-disabled-bg: var(--qf-red); --bs-btn-disabled-border-color: var(--qf-red);
+    background-color: var(--qf-red); border-color: var(--qf-red); color: #fff;
+  }
+  & .btn-primary:is(:hover, :focus-visible) { background-color: var(--qf-red-hover); border-color: var(--qf-red-hover); color: #fff; }
+  & .btn-primary:active { background-color: #a3291d; border-color: #a3291d; }
+  & :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default, .btn-outline-primary) {
+    --bs-btn-bg: #f5f5f5; --bs-btn-border-color: transparent; --bs-btn-color: #444;
+    --bs-btn-hover-bg: #ebebeb; --bs-btn-hover-border-color: transparent; --bs-btn-hover-color: var(--qf-ink);
+    --bs-btn-active-bg: #e5e5e5; --bs-btn-active-color: var(--qf-ink);
+    background-color: #f5f5f5; border: 1px solid transparent; color: #444;
+  }
+  & :is(.btn-secondary, .btn-outline-secondary, .btn-light, .btn-default, .btn-outline-primary):is(:hover, :focus-visible, .show, [aria-expanded="true"]) {
+    background-color: #ebebeb; border-color: transparent; color: var(--qf-ink);
+  }
+  & .btn-link { color: var(--qf-red-text); font-weight: 600; }
+  & .btn-icon { color: var(--qf-ink-2); border-radius: 5px; }
+  & .btn-icon:hover { background: var(--qf-hover); color: var(--qf-ink); }
+
+  & :is(.form-control, .form-select, .custom-select, select.select, textarea, input[type="text"], input[type="search"], input[type="email"], input[type="password"], input[type="number"], input[type="url"]):not(.nm-todo-add-input):not(.nm-todo-edit) {
+    font-family: var(--nm-font); font-size: .875rem; color: var(--qf-ink);
+    background-color: #fff; border: 1px solid #dddddd; border-radius: 5px;
+    box-shadow: none; transition: border-color var(--qf-ease);
+  }
+  & :is(.form-control, .form-select, .custom-select)::placeholder { color: #767676; opacity: 1; }
+  & :is(.form-control, .form-select, .custom-select):hover { border-color: #c8c8c8; }
+  & :is(.form-control, .form-select, .custom-select, textarea):focus {
+    border-color: #8f8f8f; box-shadow: 0 0 0 1px #8f8f8f; outline: 0;
+  }
+  & :is(.form-select, select.custom-select) {
+    padding-inline-end: 2rem;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.5 6.25 8 9.75l3.5-3.5' fill='none' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-size: 14px; background-repeat: no-repeat; background-position: right .625rem center;
+  }
+  &[dir="rtl"] :is(.form-select, select.custom-select) { background-position: left .625rem center; }
+  & .form-check-input { border-color: #b3b3b3; }
+  & .form-check-input:checked { background-color: var(--qf-red); border-color: var(--qf-red); }
+  & .form-check-input:focus { border-color: var(--qf-red); box-shadow: 0 0 0 3px rgba(209, 69, 59, .18); }
+  & .form-switch .form-check-input:not(:checked):focus {
+    --bs-form-switch-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23b3b3b3'/></svg>");
+  }
+  & .form-label, & .col-form-label, & label { color: var(--qf-ink); }
+
+  /* Todoist's search field: a magnifier and a soft well */
+  & :is([data-region="filter"], [data-region="timeline"] [data-region="search-input"], .simplesearchform) input:is(.form-control, [type="text"], [type="search"]),
+  & [data-region="filter"] input[placeholder="Search"] {
+    padding-inline-start: 2rem;
+    background: var(--qf-field) var(--qf-search-grey) no-repeat left .625rem center / 14px;
+    border-color: transparent;
+  }
+  &[dir="rtl"] :is([data-region="filter"], .simplesearchform) input:is(.form-control, [type="text"]) { background-position: right .625rem center; }
+  & :is([data-region="filter"], .simplesearchform) input:is(.form-control, [type="text"]):focus { background-color: #fff; }
+
+  /* ======================================================================
+     Course overview: filters as Todoist "Display" controls, cards as board cards
+     ====================================================================== */
+  & [data-region="filter"] { margin-block: .25rem 1rem !important; }
+  & [data-region="filter"] > .d-flex { gap: .5rem !important; }
+  & [data-region="filter"] :is(.dropdown, .me-1, .mb-1) { margin: 0 !important; }
+  & [data-region="filter"] .btn.dropdown-toggle {
+    background: transparent; border: 1px solid #e6e6e6; color: #444; font-weight: 500;
+  }
+  & [data-region="filter"] .btn.dropdown-toggle:is(:hover, [aria-expanded="true"]) { background: var(--qf-hover); border-color: #e0dbd6; color: var(--qf-ink); }
+
+  & .card-grid { margin-inline: -.5rem !important; row-gap: 1rem; }
+  & .card-grid > .col { padding-inline: .5rem !important; margin-block-end: 0 !important; }
+  & :is(.dashboard-card, .course-card) {
+    margin: 0 !important; inline-size: 100%;
+    background: #fff; border: 1px solid #ebebeb; border-radius: 10px; box-shadow: none; overflow: hidden;
+    transition: box-shadow var(--qf-ease), border-color var(--qf-ease);
+  }
+  & :is(.dashboard-card, .course-card):hover { border-color: #e2e2e2; box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 4px 12px rgba(0, 0, 0, .06); }
+  & :is(.dashboard-card, .course-card) :is(.dashboard-card-img, .card-img-top) {
+    block-size: 5.5rem; border-radius: 0; background-size: cover; background-position: center;
+    filter: saturate(.7) brightness(1.04);
+  }
+  & :is(.dashboard-card, .course-card) .course-info-container { padding: .75rem .875rem .25rem !important; background: transparent; }
+  & :is(.dashboard-card, .course-card) .course-info-container .text-muted { font-size: .75rem; color: var(--qf-ink-2) !important; margin-block-end: .125rem !important; }
+  & :is(.dashboard-card, .course-card) .coursename {
+    display: block; margin: 0 0 .25rem !important; color: var(--qf-ink); font-size: .875rem; font-weight: 500; line-height: 1.4; white-space: normal;
+  }
+  & :is(.dashboard-card, .course-card) .coursename:hover { color: var(--qf-ink); text-decoration: underline; text-decoration-color: #c4c4c4; }
+  & :is(.dashboard-card, .course-card) .categoryname {
+    display: inline-flex; align-items: center; gap: .25rem; font-size: .75rem; color: var(--qf-ink-2);
+  }
+  & :is(.dashboard-card, .course-card) .categoryname::before {
+    content: ""; inline-size: 12px; block-size: 12px; flex: none; background: var(--qf-project);
+    -webkit-mask: var(--qf-i-hash) center / contain no-repeat; mask: var(--qf-i-hash) center / contain no-repeat;
+  }
+  & :is(.dashboard-card, .course-card) :is(.card-footer, .dashboard-card-footer) {
+    background: transparent !important; border: 0 !important; padding: 0 .375rem .375rem !important;
+  }
+  & .coursemenubtn {
+    inline-size: 28px; block-size: 28px; padding: 0; display: inline-grid; place-items: center;
+    background: transparent; border: 0; border-radius: 5px; color: #808080;
+  }
+  & .coursemenubtn:hover, & .coursemenubtn[aria-expanded="true"] { background: var(--qf-hover); color: var(--qf-ink); }
+  & .progress { block-size: 4px; background: #f0f0f0 !important; border-radius: 999px; overflow: hidden; }
+  & .progress-bar { background: var(--qf-red); border-radius: 999px; }
+  & .block_myoverview :is(.list-group-item, .course-listitem, .course-summaryitem) {
+    background: transparent; border: 0; border-block-end: 1px solid var(--qf-rule); border-radius: 0; padding-inline: 0;
+  }
+  & .pagination { --bs-pagination-border-color: transparent; gap: 2px; }
+  & .page-link { border-radius: 5px !important; color: var(--qf-ink-2); background: transparent; }
+  & .page-item.active .page-link { background: var(--qf-active); color: var(--qf-red-text); border-color: transparent; }
+
+  /* ======================================================================
+     Upcoming events: Todoist task rows
+     ====================================================================== */
+  & .event[data-region="event-item"] {
+    display: flex; align-items: flex-start; gap: .625rem;
+    padding: .625rem 0 .6875rem !important;
+    border-block-end: 1px solid var(--qf-rule) !important;
+    background: transparent;
+  }
+  /* without our split: the activity icon becomes a bare Todoist circle */
+  & .event[data-region="event-item"] > .activityiconcontainer {
+    inline-size: 18px !important; block-size: 18px !important; min-inline-size: 18px; flex: none;
+    margin: 2px 0 0 !important; padding: 0; border-radius: 50%;
+    border: 1px solid var(--qf-p4); background: transparent !important; box-shadow: none;
+  }
+  & .event[data-region="event-item"] > .activityiconcontainer img { display: none; }
+  & .event[data-region="event-item"]:has(> .nm-up-lead) > .activityiconcontainer { display: none !important; }
+
+  & .event[data-region="event-item"] > .overflow-auto {
+    flex: 1 1 auto; min-inline-size: 0; overflow: visible !important;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "title title" "date course" "meta meta";
+    align-items: center; column-gap: 1rem; row-gap: .1875rem;
+  }
+  & .event[data-region="event-item"] h4 { grid-area: title; margin: 0 !important; font-size: .875rem; font-weight: 400; line-height: 1.45; }
+  & .event[data-region="event-item"] h4 a { color: var(--qf-ink); white-space: normal; font-size: inherit; font-weight: 400 !important; }
+  & .event[data-region="event-item"] h4 a:hover { color: var(--qf-ink); text-decoration: underline; text-decoration-color: #c4c4c4; }
+  & .event[data-region="event-item"] h6 {
+    grid-area: course; justify-self: end; max-inline-size: 15rem; margin: 0 !important;
+    display: inline-flex; align-items: center; gap: .25rem;
+    font-size: .75rem; font-weight: 400; color: var(--qf-ink-2) !important;
+  }
+  & .event[data-region="event-item"] h6::after {
+    content: ""; inline-size: 12px; block-size: 12px; flex: none; background: var(--qf-project);
+    -webkit-mask: var(--qf-i-hash) center / contain no-repeat; mask: var(--qf-i-hash) center / contain no-repeat;
+  }
+  /* the date: exactly one calendar icon, on the outer div only (the inner span.date is the same text) */
+  & .event[data-region="event-item"] div.date {
+    grid-area: date; display: inline-flex; align-items: center; gap: .25rem; min-inline-size: 0;
+    font-size: .75rem; line-height: 1.3; color: var(--qf-date);
+  }
+  & .event[data-region="event-item"] div.date::before {
+    content: ""; inline-size: 12px; block-size: 12px; flex: none; background: currentColor;
+    -webkit-mask: var(--qf-i-cal) center / contain no-repeat; mask: var(--qf-i-cal) center / contain no-repeat;
+  }
+  & .event[data-region="event-item"] div.date :is(a, span.date) { color: inherit; }
+  & .event[data-region="event-item"] span.date::before, & .event[data-region="event-item"] div.date a::before { content: none; }
+  & .event[data-region="event-item"] .nm-up-meta { grid-area: meta; margin-block-start: .25rem; }
+
+  /* our checkbox = Todoist's priority circle. Nearest deadlines get P1, P2, P3; the rest P4. */
+  & .nm-up .nm-up-lead { inline-size: 18px; block-size: 18px; margin: 2px 0 0; }
+  & .nm-up-check { --qf-pc: var(--qf-p4); --qf-pw: 1px; }
+  & .nm-up .nm-up-row-todo:nth-child(1 of .nm-up-row-todo) .nm-up-check { --qf-pc: var(--qf-p1); --qf-pw: 2px; }
+  & .nm-up .nm-up-row-todo:nth-child(2 of .nm-up-row-todo) .nm-up-check { --qf-pc: var(--qf-p2); --qf-pw: 2px; }
+  & .nm-up .nm-up-row-todo:nth-child(3 of .nm-up-row-todo) .nm-up-check { --qf-pc: var(--qf-p3); --qf-pw: 2px; }
+  & .nm-up-check .nm-up-box {
+    border: var(--qf-pw) solid var(--qf-pc); border-radius: 50%;
+    background: color-mix(in srgb, var(--qf-pc) 10%, transparent);
+    color: var(--qf-pc);
+    transition: background-color var(--qf-ease), border-color var(--qf-ease);
+  }
+  & .nm-up-check .nm-up-box::after {
+    inline-size: 12px; block-size: 12px; margin: 0; border: 0 !important;
+    background: currentColor;
+    -webkit-mask: var(--qf-i-check) center / contain no-repeat; mask: var(--qf-i-check) center / contain no-repeat;
+    transform: none !important; opacity: 0; transition: opacity var(--qf-ease);
+  }
+  & .nm-up-check:hover .nm-up-box { border-color: var(--qf-pc); }
+  & .nm-up-check:hover .nm-up-box::after { opacity: 1; }
+  & .nm-up-check .nm-up-cb:checked + .nm-up-box { background: #8f8f8f; border-color: #8f8f8f; color: #fff; }
+  & .nm-up-check .nm-up-cb:checked + .nm-up-box::after { opacity: 1; animation: qf-tick 220ms cubic-bezier(.2, .8, .2, 1); }
+  & .nm-up-check .nm-up-cb:active + .nm-up-box { transform: none; }
+
+  & .nm-up .nm-up-count { font-size: .75rem; font-weight: 400; color: var(--qf-ink-2); letter-spacing: 0; }
+  & .nm-up .nm-up-row-done h4 a[data-event-id] { color: var(--qf-ink-2); }
+  & .nm-up .nm-up-row-done div.date { color: var(--qf-ink-2) !important; opacity: 1; }
+  & .nm-up .nm-up-row-done h6 { opacity: 1; }
+  & .nm-up .nm-up-tag { border-radius: 4px; font-weight: 500; padding-inline: .375rem; }
+  & .nm-up .nm-up-tag-auto { color: var(--qf-today); background: #eaf5ec; }
+  & .nm-up .nm-up-tag-manual { background: var(--qf-field); border: 0; }
+  & .nm-up .nm-up-edit { color: var(--qf-red-text); font-weight: 500; }
+
+  /* info rows ("... opens") = Todoist's calendar-event strip: a soft bar with a small colour pill */
+  & .nm-up .event.nm-up-row-info {
+    margin-block: .5rem; padding: .4375rem .625rem !important; gap: .5rem;
+    border: 0 !important; border-radius: 6px; background: #f8f7f5;
+    align-items: flex-start;
+  }
+  & .nm-up .nm-up-row-info .nm-up-spacer {
+    inline-size: 3px; block-size: 14px; margin-block-start: 2px; border-radius: 3px; background: #4ab5b0;
+  }
+  & .nm-up .nm-up-row-info h4 a[data-event-id] { color: var(--qf-ink); font-size: .8125rem; }
+  & .nm-up .nm-up-row-info h6 { opacity: 1; }
+  & .nm-up .nm-up-row-info .nm-up-meta { display: none; }   /* the strip itself says "calendar event" */
+  & .nm-up .nm-up-row-info div.date { color: var(--qf-ink-2); }
+
+  /* "Done" = a Todoist collapsible section header */
+  & .nm-up details.nm-up-done { margin-block: 1.25rem .5rem; }
+  & .nm-up .nm-up-done-summary {
+    padding: 0 0 .5rem; border-radius: 0; background: transparent; color: var(--qf-ink);
+    font-size: .875rem; font-weight: 700; gap: .375rem;
+    border-block-end: 1px solid var(--qf-rule);
+  }
+  & .nm-up .nm-up-done-summary:hover { background: transparent; }
+  & .nm-up .nm-up-done-summary::before {
+    inline-size: 14px; block-size: 14px; margin: 0; border: 0;
+    background: var(--qf-ink-2);
+    -webkit-mask: var(--qf-i-chev) center / contain no-repeat; mask: var(--qf-i-chev) center / contain no-repeat;
+    transform: rotate(-90deg);
+  }
+  &[dir="rtl"] .nm-up .nm-up-done-summary::before { transform: rotate(90deg); }
+  & .nm-up details.nm-up-done[open] > .nm-up-done-summary::before { transform: none; }
+  & .nm-up .nm-up-done-hint { font-weight: 400; font-size: .75rem; color: var(--qf-ink-2); }
+  & .nm-up .nm-up-empty { color: var(--qf-ink-2); font-size: .8125rem; }
+
+  /* ======================================================================
+     Timeline
+     ====================================================================== */
+  & [data-region="timeline"] [data-region="day-filter"], & [data-region="timeline"] .dropdown { margin: 0 !important; }
+  & .block_timeline .btn.dropdown-toggle { background: transparent; border: 1px solid #e6e6e6; color: #444; font-weight: 500; }
+  & .block_timeline .btn.dropdown-toggle:is(:hover, [aria-expanded="true"]) { background: var(--qf-hover); color: var(--qf-ink); }
+  & [data-region="timeline"] h5 {
+    font-size: .8125rem; font-weight: 700 !important; margin-block: 1rem 0 !important; padding-block-end: .375rem;
+    border-block-end: 1px solid var(--qf-rule);
+  }
+  & .list-group { --bs-list-group-bg: transparent; --bs-list-group-border-color: var(--qf-rule); }
+  & [data-region="timeline"] .list-group-item {
+    background: transparent; border-width: 0 0 1px !important; border-color: var(--qf-rule) !important; padding-block: .625rem !important;
+  }
+  & [data-region="timeline"] .activityiconcontainer {
+    inline-size: 18px !important; block-size: 18px !important; min-inline-size: 18px; border-radius: 50%;
+    border: 1px solid var(--qf-p4); background: transparent !important; align-self: flex-start; margin-block-start: 2px;
+  }
+  & [data-region="timeline"] .activityiconcontainer img { display: none; }
+  & [data-region="timeline"] .event-name { color: var(--qf-ink); font-size: .875rem; font-weight: 400; }
+  & [data-region="timeline"] small { font-size: .75rem; }
+  & [data-region="empty-message"], & .block_timeline [data-region="no-events-empty-message"] { color: var(--qf-ink-2); font-size: .8125rem; }
+  & :is([data-region="empty-message"], [data-region="no-events-empty-message"]) img { opacity: .45; filter: grayscale(1); max-block-size: 56px; }
+
+  /* ======================================================================
+     Announcements
+     ====================================================================== */
+  & .block_news_items .card-text { color: var(--qf-ink-2); font-size: .8125rem; }
+  & .block_news_items .post {
+    display: flex; flex-wrap: wrap; align-items: baseline; column-gap: .375rem;
+    padding: .625rem 0 .6875rem 1.625rem; border-block-end: 1px solid var(--qf-rule); position: relative;
+  }
+  &[dir="rtl"] .block_news_items .post { padding: .625rem 1.625rem .6875rem 0; }
+  & .block_news_items .post::before {
+    content: ""; position: absolute; inset-inline-start: 0; inset-block-start: .75rem;
+    inline-size: 16px; block-size: 16px; background: var(--qf-ink-2);
+    -webkit-mask: var(--qf-i-chat) center / contain no-repeat; mask: var(--qf-i-chat) center / contain no-repeat;
+  }
+  & .block_news_items .post .info { order: -1; flex: 1 0 100%; font-size: .875rem; }
+  & .block_news_items .post .info a { color: var(--qf-ink); }
+  & .block_news_items .post :is(.date, .name) { font-size: .75rem; color: var(--qf-ink-2); }
+
+  /* ======================================================================
+     Calendar: Todoist's scheduler
+     ====================================================================== */
+  & .calendarwrapper .calendar-controls {
+    display: flex; align-items: center; gap: .25rem; margin-block-end: .5rem; padding: 0;
+  }
+  & .calendar-controls .current {
+    order: -1; flex: 1 1 auto; min-inline-size: 0; margin: 0 !important;
+    text-align: start !important; font-weight: 700; color: var(--qf-ink); white-space: nowrap;
+  }
+  & .calendar-controls .hide { display: none; }
+  & .calendar-controls .arrow_link {
+    display: inline-flex; align-items: center; justify-content: center; gap: .25rem; flex: none;
+    block-size: 28px; min-inline-size: 28px; inline-size: auto !important; margin: 0 !important; padding: 0 .375rem; border-radius: 5px;
+    color: var(--qf-ink-2); font-size: .8125rem; font-weight: 500; white-space: nowrap; text-decoration: none;
+  }
+  & .calendar-controls .arrow_link:hover { background: var(--qf-hover); color: var(--qf-ink); text-decoration: none; }
+  & .calendar-controls .arrow_link .arrow { display: none; }
+  & .calendar-controls .arrow_link::before, & .calendar-controls .arrow_link.next::after {
+    content: ""; inline-size: 16px; block-size: 16px; flex: none; background: currentColor;
+  }
+  & .calendar-controls .arrow_link.previous::before { -webkit-mask: var(--qf-i-chev-l) center / contain no-repeat; mask: var(--qf-i-chev-l) center / contain no-repeat; }
+  & .calendar-controls .arrow_link.next::before { content: none; }
+  & .calendar-controls .arrow_link.next::after { -webkit-mask: var(--qf-i-chev-r) center / contain no-repeat; mask: var(--qf-i-chev-r) center / contain no-repeat; }
+  &[dir="rtl"] .calendar-controls .arrow_link::before, &[dir="rtl"] .calendar-controls .arrow_link::after { transform: scaleX(-1); }
+
+  /* the dashboard block: icon-only arrows, a compact grid of day circles with event dots */
+  & .block_calendar_month .calendar-controls .current { font-size: .875rem; }
+  & .block_calendar_month .calendar-controls .arrow_link { inline-size: 28px !important; padding: 0; }
+  & .block_calendar_month .calendar-controls .arrow_text {
+    position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  & .block_calendar_month :is(.calendar_filters, [data-region="view-selector"]) { font-size: .75rem; }
+  & .block_calendar_month .form-select { font-size: .8125rem; padding-block: .3125rem; }
+  & .block_calendar_month .btn[data-action="new-event-button"] { font-size: .75rem; padding: .3125rem .625rem; }
+  & .block_calendar_month table.calendarmonth { inline-size: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; margin: 0; }
+  & .block_calendar_month table.calendarmonth :is(th, td) { border: 0 !important; background: transparent !important; }
+  & .block_calendar_month table.calendarmonth th {
+    padding: .25rem 0 .375rem; text-align: center; font-size: .6875rem; font-weight: 500; color: var(--qf-ink-2);
+  }
+  & .block_calendar_month table.calendarmonth td {
+    block-size: 2.25rem !important; padding: 2px 0 6px !important; text-align: center !important; vertical-align: top; position: relative;
+  }
+  & .block_calendar_month table.calendarmonth td [data-region="day-content"] { display: none !important; }
+  & .block_calendar_month table.calendarmonth td :is(.d-md-none, .d-md-block) { display: block !important; }
+  & .block_calendar_month table.calendarmonth td .d-md-none { display: none !important; }
+  & .block_calendar_month table.calendarmonth td a.day, & .block_calendar_month table.calendarmonth td > div > span.day-number-circle {
+    color: var(--qf-ink); text-decoration: none;
+  }
+  & table.calendarmonth td .day-number-circle {
+    display: inline-grid !important; place-items: center; inline-size: 28px; block-size: 28px; line-height: 1;
+    border-radius: 50%; font-size: .8125rem; font-variant-numeric: tabular-nums; color: var(--qf-ink);
+    background: transparent !important; transition: background-color var(--qf-ease);
+  }
+  & table.calendarmonth td .day-number-circle .day-number { padding: 0 !important; inline-size: auto !important; }
+  & table.calendarmonth td.clickable:hover .day-number-circle { background: var(--qf-hover) !important; }
+  & table.calendarmonth td.today .day-number-circle,
+  & table.calendarmonth td.today:hover .day-number-circle { background: var(--qf-red) !important; color: #fff !important; font-weight: 600; }
+  & .block_calendar_month table.calendarmonth td.hasevent::after {
+    content: ""; position: absolute; inset-inline-start: 50%; inset-block-end: 2px; inline-size: 4px; block-size: 4px;
+    margin-inline-start: -2px; border-radius: 50%; background: var(--qf-ink-2);
+  }
+  & .block_calendar_month table.calendarmonth td.hasevent:has(.calendar_event_course)::after { background: var(--qf-red); }
+  & .block_calendar_month table.calendarmonth td.weekend .day-number-circle { color: var(--qf-ink-2); }
+  & .block_calendar_month table.calendarmonth td.today .day-number-circle { color: #fff; }
+  & .block_calendar_month .calendarwrapper { max-inline-size: 22rem; }
+
+  /* the full month page: hairline grid, event chips */
+  & body.path-calendar .maincalendar .calendar-controls .current { font-size: 1.25rem; }
+  & body.path-calendar .maincalendar table.calendarmonth { border-collapse: collapse; }
+  & body.path-calendar .maincalendar table.calendarmonth th {
+    border: 0 !important; border-block-end: 1px solid var(--qf-rule) !important;
+    padding: .375rem .5rem; text-align: start; font-size: .75rem; font-weight: 600; color: var(--qf-ink-2);
+  }
+  & body.path-calendar .maincalendar table.calendarmonth td {
+    border: 1px solid #f0f0f0 !important; background: #fff; padding: .375rem !important; vertical-align: top;
+  }
+  & body.path-calendar .maincalendar table.calendarmonth td.dayblank { background: #fcfbfa; }
+  & body.path-calendar .maincalendar table.calendarmonth td.weekend:not(.dayblank) { background: #fdfcfb; }
+  & body.path-calendar .maincalendar table.calendarmonth td [data-region="day-content"] ul { margin: .25rem 0 0; padding: 0; list-style: none; }
+  & body.path-calendar .maincalendar table.calendarmonth td [data-region="event-item"] { margin-block-end: 2px; }
+  & body.path-calendar .maincalendar table.calendarmonth td [data-region="event-item"] a {
+    display: flex; align-items: center; gap: .3125rem; padding: .125rem .3125rem; border-radius: 4px;
+    font-size: .75rem; line-height: 1.35; color: var(--qf-ink); text-decoration: none;
+  }
+  & body.path-calendar .maincalendar table.calendarmonth td [data-region="event-item"] a:hover { background: var(--qf-hover); }
+  & body.path-calendar .maincalendar table.calendarmonth td .eventname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  & .calendar-circle {
+    inline-size: 8px !important; block-size: 8px !important; min-inline-size: 8px; flex: none;
+    border-radius: 50% !important; border: 0 !important; background: var(--qf-p4) !important; margin: 0 !important;
+    font-size: 0; line-height: 0; overflow: hidden;
+  }
+  & .calendar-circle.calendar_event_course { background: var(--qf-red) !important; }
+  & .calendar-circle.calendar_event_site { background: var(--qf-today) !important; }
+  & .calendar-circle.calendar_event_user { background: var(--qf-p3) !important; }
+  & .calendar-circle.calendar_event_group { background: var(--qf-p2) !important; }
+  & .calendar-circle.calendar_event_category { background: var(--qf-date) !important; }
+
+  /* ======================================================================
+     Recently accessed: a Todoist sidebar list
+     ====================================================================== */
+  & [data-region="recentlyaccesseditems-view"] [data-region="items-list"] { display: flex; flex-direction: column; gap: 0; }
+  & [data-region="recentlyaccesseditems-view"] [data-region="items-list"] > .card {
+    margin: 0 !important; inline-size: 100%; background: transparent; border: 0; border-radius: 6px; box-shadow: none;
+    transition: background-color var(--qf-ease);
+  }
+  & [data-region="recentlyaccesseditems-view"] [data-region="items-list"] > .card:hover { background: var(--qf-hover); text-decoration: none; }
+  & [data-region="recentlyaccesseditems-view"] .card-body { padding: .4375rem .5rem !important; align-items: center; gap: .625rem; }
+  & [data-region="recentlyaccesseditems-view"] h6, & [data-region="recentlyaccesseditems-view"] h4 {
+    font-size: .875rem; font-weight: 400 !important; color: var(--qf-ink); margin: 0;
+  }
+  & [data-region="recentlyaccesseditems-view"] small, & [data-region="recentlyaccesseditems-view"] .text-truncate.small {
+    font-size: .75rem; color: var(--qf-ink-2) !important;
+  }
+  & [data-region="recentlyaccesseditems-view"] small a, & [data-region="recentlyaccesseditems-view"] .text-primary { color: var(--qf-ink-2) !important; }
+  & [data-region="recentlyaccesseditems-view"] .activityiconcontainer {
+    inline-size: 20px !important; block-size: 20px !important; min-inline-size: 20px; padding: 0; margin: 0 !important;
+    background: transparent !important; border-radius: 0; flex: none;
+  }
+  & [data-region="recentlyaccesseditems-view"] .activityiconcontainer img { inline-size: 18px; block-size: 18px; }
+  & [data-region="recentlyaccesseditems-view"] .activityiconcontainer img[src*="monologo"] { filter: brightness(0) opacity(.55) !important; }
+  & [data-region="recentlyaccesseditems-view"] .activityiconcontainer .activityiconcontainer { inline-size: 18px !important; block-size: 18px !important; min-inline-size: 18px; }
+
+  /* ======================================================================
+     Course page
+     ====================================================================== */
+  /* tabs = Todoist's List / Board segmented control */
+  & .secondary-navigation { margin-block-end: 1.75rem; padding: 0; background: none; border: 0; }
+  & .secondary-navigation .navigation { border: 0; background: none; }
+  & .secondary-navigation .nav-tabs {
+    display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; border: 0;
+    background: var(--qf-field); border-radius: 8px;
+  }
+  & .secondary-navigation .nav-tabs :is(.nav-item, .nav-link) { block-size: auto !important; min-block-size: 0 !important; }
+  & .secondary-navigation .nav-tabs .nav-link {
+    margin: 0; line-height: 1.4; padding: .3125rem .75rem; border: 0 !important; border-radius: 6px;
+    color: var(--qf-ink-2); font-size: .8125rem; font-weight: 500; background: transparent;
+    transition: background-color var(--qf-ease), color var(--qf-ease);
+  }
+  & .secondary-navigation .nav-tabs .nav-link:hover { color: var(--qf-ink); background: rgba(0, 0, 0, .04); text-decoration: none; }
+  & .secondary-navigation .nav-tabs .nav-link.active {
+    background: #fff; color: var(--qf-ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 0 0 1px rgba(0, 0, 0, .03);
+  }
+  & .nav-tabs:not(.secondary-navigation .nav-tabs) { border-color: var(--qf-rule); }
+  & .nav-tabs:not(.secondary-navigation .nav-tabs) .nav-link { color: var(--qf-ink-2); border: 0; border-block-end: 2px solid transparent; }
+  & .nav-tabs:not(.secondary-navigation .nav-tabs) .nav-link.active { color: var(--qf-ink); border-block-end-color: var(--qf-red); background: transparent; }
+
+  & .course-content .section, & li.course-section {
+    background: transparent !important; border: 0 !important; box-shadow: none !important; padding-inline: 0 !important;
+    margin-block-end: 1.75rem;
+  }
+  & .course-section .section-item { border: 0 !important; border-radius: 0 !important; padding: 0 !important; background: transparent !important; box-shadow: none !important; }
+  & .course-section-header { padding-block-end: .375rem; border-block-end: 1px solid var(--qf-rule); align-items: center !important; }
+  & .course-section-header .sectionname, & .course-section-header .sectionname a {
+    font-size: .9375rem !important; font-weight: 700 !important; color: var(--qf-ink) !important; margin: 0 !important; padding: 0 !important;
+  }
+  & .course-section-header .icons-collapse-expand {
+    inline-size: 24px; block-size: 24px; padding: 0; margin-inline-end: .25rem !important; display: inline-grid; place-items: center;
+    color: var(--qf-ink-2) !important; background: transparent; border-radius: 5px;
+  }
+  & .course-section-header .icons-collapse-expand :is(i, .icon, span) { color: inherit !important; padding: 0 !important; font-size: .75rem; }
+  & .course-section-header .icons-collapse-expand:hover { background: var(--qf-hover); }
+  & .section-collapsemenu { font-size: .8125rem; color: var(--qf-ink-2); }
+  & .course-section .summarytext, & .course-section .summary { color: var(--qf-ink-2); font-size: .875rem; }
+
+  & li.activity { margin: 0 !important; padding: 0 !important; border: 0 !important; background: transparent !important; }
+  & li.activity .activity-item {
+    padding: .625rem 0 !important; border: 0 !important; border-block-end: 1px solid var(--qf-rule) !important;
+    border-radius: 0 !important; background: transparent !important; box-shadow: none !important;
+  }
+  & li.activity .activity-item:hover { background: transparent !important; }
+  & li.activity .activityiconcontainer {
+    inline-size: 20px !important; block-size: 20px !important; min-inline-size: 20px; padding: 0 !important;
+    margin-block-start: 1px; background: transparent !important; border-radius: 0 !important; box-shadow: none !important;
+  }
+  & li.activity .activityiconcontainer img.activityicon { inline-size: 18px; block-size: 18px; }
+  & li.activity .activityiconcontainer img.activityicon[src*="monologo"] { filter: brightness(0) opacity(.55); }
+  & li.activity .activityname, & li.activity .activityname a, & li.activity .instancename {
+    color: var(--qf-ink) !important; font-size: .875rem; font-weight: 400;
+  }
+  & li.activity .activityname a:hover .instancename { text-decoration: underline; text-decoration-color: #c4c4c4; }
+  & li.activity .activity-altcontent, & li.activity .description { color: var(--qf-ink-2); font-size: .8125rem; }
+  & li.activity :is(.activity-dates, .activity-information) { font-size: .75rem; color: var(--qf-ink-2); }
+  & .completion-info .btn, & [data-region="completion-info"] .btn, & .activity-completion .btn {
+    font-size: .75rem; font-weight: 500; padding: .1875rem .5rem; border-radius: 4px;
+  }
+  & .badge.rounded-pill.alert-success, & .completion-info .badge.bg-success { background: #eaf5ec !important; color: var(--qf-today) !important; }
+
+  /* ======================================================================
+     Activity pages: assignment and quiz (Todoist's task detail)
+     ====================================================================== */
+  & #region-main h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-block: 0 .5rem; }
+  & #region-main h3 { font-size: .9375rem; font-weight: 700; line-height: 1.4; margin-block: 1.75rem .5rem; }
+  & #region-main h4 { font-size: .875rem; font-weight: 700; }
+  & .activity-header { margin-block-end: 1rem; margin-inline: 0 !important; max-inline-size: none !important; color: var(--qf-ink); background: transparent !important; }
+  & .activity-header .activity-details { background: transparent !important; padding: 0 !important; border: 0 !important; }
+  & .activity-description .box, & .activity-description .generalbox { margin-inline: 0 !important; padding: 0 !important; background: transparent !important; border: 0 !important; max-inline-size: none; }
+  & .page-header-image .activityiconcontainer, & .activity-header-icon .activityiconcontainer { background: transparent !important; inline-size: 36px; block-size: 36px; padding: 0 !important; }
+  & #page-header .activityiconcontainer img[src*="monologo"] { filter: brightness(0) opacity(.6); inline-size: 28px; block-size: 28px; }
+  & .activity-description, & .activity-header .no-overflow { font-size: .875rem; line-height: 1.6; max-inline-size: 70ch; }
+  & .activity-dates {
+    display: flex; flex-wrap: wrap; gap: .375rem .5rem; margin-block: .25rem 1rem; font-size: .8125rem; color: var(--qf-ink);
+  }
+  & .activity-dates .date-item {
+    display: inline-flex; align-items: center; gap: .3125rem; padding: .1875rem .5rem;
+    border: 1px solid #ebebeb; border-radius: 5px; background: #fff;
+  }
+  & .activity-dates .date-item::before {
+    content: ""; inline-size: 12px; block-size: 12px; flex: none; background: var(--qf-date);
+    -webkit-mask: var(--qf-i-cal) center / contain no-repeat; mask: var(--qf-i-cal) center / contain no-repeat;
+  }
+  & .activity-dates .date-item-label, & .activity-dates strong { font-weight: 600; color: var(--qf-ink-2); }
+
+  & .generaltable, & .submissionstatustable table, & .quizattemptsummary, & .quizreviewsummary {
+    --bs-table-bg: transparent; --bs-table-striped-bg: transparent; --bs-table-hover-bg: var(--qf-chrome);
+    --bs-table-border-color: var(--qf-rule);
+    border-collapse: collapse; border: 0 !important; font-size: .875rem; color: var(--qf-ink); margin-block-end: 1rem;
+  }
+  & :is(.generaltable, .submissionstatustable table, .quizattemptsummary, .quizreviewsummary) :is(th, td) {
+    border: 0 !important; border-block-end: 1px solid var(--qf-rule) !important;
+    background: transparent !important; box-shadow: none !important; padding: .625rem .75rem .625rem 0; vertical-align: top;
+  }
+  &[dir="rtl"] :is(.generaltable, .submissionstatustable table, .quizattemptsummary, .quizreviewsummary) :is(th, td) { padding: .625rem 0 .625rem .75rem; }
+  & :is(.generaltable, .submissionstatustable table, .quizattemptsummary, .quizreviewsummary) :is(thead, tbody, tfoot, tr) { border: 0 !important; }
+  & :is(.generaltable, .submissionstatustable table, .quizattemptsummary, .quizreviewsummary) th { text-align: start !important; }
+  & :is(.generaltable, .quizattemptsummary) thead th { font-size: .75rem; font-weight: 600; color: var(--qf-ink-2); }
+  & :is(.submissionstatustable, .quizreviewsummary) tbody th { inline-size: 32%; font-weight: 500; color: var(--qf-ink-2); }
+  & .submissionstatustable .box { padding-block: .5rem !important; }
+  & :is(.submissionstatussubmitted, .submissiongraded, .earlysubmission) { color: var(--qf-today) !important; }
+  & :is(.submissionstatussubmitted, .submissiongraded, .earlysubmission)::before {
+    content: ""; display: inline-block; vertical-align: -2px; inline-size: 14px; block-size: 14px; margin-inline-end: .375rem;
+    border-radius: 50%; background: var(--qf-today) var(--qf-check-white) center / 10px no-repeat;
+  }
+  & :is(.overdue, .latesubmission) { color: var(--qf-red-text) !important; font-weight: 500; }
+  & .timeremaining { color: var(--qf-ink); }
+  & .comment-link { color: var(--qf-ink-2); }
+  & .commentscontainer textarea { border-radius: 5px; }
+
+  & body.path-mod #region-main .card:not(.block) {
+    border: 1px solid #ebebeb; border-radius: 10px; box-shadow: none; overflow: hidden; background: #fff;
+  }
+  & #region-main .card .card-header { background: transparent; border: 0; padding: .875rem 1rem .25rem !important; }
+  & #region-main .card .card-header .card-title { font-size: .875rem; font-weight: 700; margin: 0; }
+  & #region-main .card :is(.quizreviewsummary, .quizattemptsummary) { margin: 0 1rem; inline-size: calc(100% - 2rem); }
+  & #region-main .card :is(.quizreviewsummary, .quizattemptsummary) tr:last-child :is(th, td) { border-block-end: 0 !important; }
+  & #region-main .card .card-body { padding: .5rem 1rem .875rem !important; }
+  & .quizinfo { color: var(--qf-ink-2); font-size: .8125rem; padding-block: 0 !important; }
+  & .quizinfo p { margin-block-end: .125rem; }
+  & #feedback h3 { margin-block-start: .5rem; }
+  & .quizattempt { padding-block: .75rem !important; color: var(--qf-ink-2); }
+  & .box.generalbox { padding-block: .5rem !important; }
+
+  & .alert { border-radius: 8px; border: 0; font-size: .875rem; }
+  & .alert-info { background: #eef4fd; color: #1b4f9e; }
+  & .alert-success { background: #eaf5ec; color: #04661e; }
+  & .alert-warning { background: #fdf3e5; color: #7a4600; }
+  & .alert-danger { background: #fcecea; color: #a3291d; }
+
+  /* Modals: Todoist dialog */
+  & .modal-content { border: 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, .08), 0 20px 48px rgba(0, 0, 0, .16); }
+  & .modal-header { border: 0; padding: 1rem 1.25rem .5rem; }
+  & .modal-title { font-size: 1rem; font-weight: 700; }
+  & .modal-body { padding: .5rem 1.25rem 1rem; }
+  & .modal-footer { border: 0; padding: .75rem 1.25rem 1rem; gap: .5rem; }
+  & .modal-backdrop.show { opacity: .35; }
+
+  /* Footer: quiet, like Todoist's "Help & resources" corner */
+  & #page-footer { background: transparent !important; border: 0; color: var(--qf-ink-2); font-size: .8125rem; }
+  & #page-footer .footer-content-popover { background: transparent !important; border: 0 !important; border-block-start: 1px solid #f0ece8 !important; border-radius: 0 !important; box-shadow: none !important; }
+  & #page-footer a { color: var(--qf-ink-2); }
+  & #page-footer a:hover { color: var(--qf-red-text); }
+  & #page-footer .footer-section { border-color: #f0ece8 !important; }
+  & .btn-footer-popover { background: #fff !important; color: var(--qf-ink-2) !important; border: 1px solid #ebebeb !important; box-shadow: var(--qf-pop-shadow); }
+
+  /* ======================================================================
+     Our widgets
+     ====================================================================== */
+  & .nm-block-content { font-family: var(--nm-font); font-size: .875rem; }
+  & .nm-top-row { gap: 2.5rem; margin-block-end: .5rem; }
+
+  & .nm-btn {
+    font-family: var(--nm-font); font-size: .8125rem; font-weight: 600; line-height: 1.3;
+    padding: .4375rem .75rem; border: 1px solid transparent; border-radius: 5px;
+    background: #f5f5f5; color: #444; transition: background-color var(--qf-ease), color var(--qf-ease);
+  }
+  & .nm-btn:hover { background: #ebebeb; color: var(--qf-ink); }
+  & .nm-btn.nm-btn-primary, & .nm-btn-primary { background: var(--qf-red); border-color: var(--qf-red); color: #fff; }
+  & .nm-btn.nm-btn-primary:hover { background: var(--qf-red-hover); border-color: var(--qf-red-hover); color: #fff; }
+  & :is(.nm-btn, .nm-btn-primary):disabled { opacity: .5; cursor: not-allowed; }
+  & .nm-icon-btn {
+    inline-size: 2rem; block-size: 2rem; border: 0; border-radius: 5px; background: transparent; color: var(--qf-ink-2);
+    font-size: 1.05rem; transition: background-color var(--qf-ease), color var(--qf-ease);
+  }
+  & .nm-icon-btn:hover, & .nm-icon-btn[aria-expanded="true"] { background: var(--qf-hover); color: var(--qf-ink); }
+  & .nm-game-btn:hover { transform: none; }
+
+  /* Theme menu = Todoist popover; the checked row gets a drawn tick, not a glyph */
+  & .nm-theme-menu {
+    min-inline-size: 15rem; padding: .25rem; background: #fff; border: 1px solid #ebebeb; border-radius: 10px;
+    box-shadow: var(--qf-pop-shadow); font-family: var(--nm-font); font-size: .8125rem;
+    animation: qf-pop 140ms cubic-bezier(.2, .8, .2, 1);
+  }
+  & .nm-theme-option { gap: .625rem; padding: .4375rem .625rem; border-radius: 5px; color: var(--qf-ink); }
+  & .nm-theme-option:hover { background: var(--qf-hover); }
+  & .nm-theme-option[aria-checked="true"] { background: var(--qf-active); color: var(--qf-red-text); font-weight: 500; }
+  & .nm-theme-option[aria-checked="true"]::after {
+    content: ""; inline-size: 14px; block-size: 14px; background: var(--qf-red-text);
+    -webkit-mask: var(--qf-i-check) center / contain no-repeat; mask: var(--qf-i-check) center / contain no-repeat;
+  }
+  & .nm-swatch { inline-size: 1rem; block-size: 1rem; border: 1px solid rgba(0, 0, 0, .12); }
+
+  /* To-dos: Todoist list, priority circles by urgency */
+  & .nm-todo-head-count { font-size: .75rem; color: var(--qf-ink-2); margin-inline-start: .5rem; }
+  & .nm-todo-add { padding: .3125rem 0; margin-block-end: 0; border: 0; border-radius: 0; border-block-end: 1px solid var(--qf-rule); }
+  & .nm-todo-add:hover { background: transparent; }
+  & .nm-todo-add:focus-within { background: transparent; border-color: var(--qf-rule); box-shadow: none; }
+  & .nm-todo-add-plus { inline-size: 18px; block-size: 18px; color: var(--qf-red); font-size: .875rem; }
+  & .nm-todo-add:is(:hover, :focus-within) .nm-todo-add-plus { background: var(--qf-red); color: #fff; font-size: .75rem; }
+  & .nm-todo-add:hover .nm-todo-add-input::placeholder { color: var(--qf-red-text); }
+  & .nm-todo-add-input::placeholder { color: var(--qf-ink-2); }
+  & .nm-todo-add-submit { border-radius: 5px; font-size: .8125rem !important; background: var(--qf-red); border-color: var(--qf-red); }
+  & .nm-todo-add-date { border-radius: 5px; background: var(--qf-field); border-color: transparent; }
+  & .nm-todo-item { padding: .625rem 0 .6875rem; gap: .625rem; border-block-end-color: var(--qf-rule); }
+  & .nm-todo-item:hover { background: transparent; }
+  & .nm-todo-grip { inset-inline-start: -1rem; }
+  & .nm-todo-check {
+    --qf-pc: var(--qf-p4); --qf-pw: 1px;
+    inline-size: 18px; block-size: 18px; margin-block-start: 1px;
+    border: var(--qf-pw) solid var(--qf-pc); background: color-mix(in srgb, var(--qf-pc) 9%, transparent);
+  }
+  & .nm-todo-item:has(.nm-todo-due:not(.is-today):not(.is-tomorrow):not(.is-overdue)) .nm-todo-check { --qf-pc: var(--qf-p3); --qf-pw: 2px; }
+  & .nm-todo-item:has(.nm-todo-due.is-tomorrow) .nm-todo-check { --qf-pc: var(--qf-p2); --qf-pw: 2px; }
+  & .nm-todo-item:has(.nm-todo-due:is(.is-today, .is-overdue)) .nm-todo-check { --qf-pc: var(--qf-p1); --qf-pw: 2px; }
+  & .nm-todo-check::after {
+    inline-size: 12px; block-size: 12px; margin: 0; border: 0; color: var(--qf-pc); background: currentColor;
+    -webkit-mask: var(--qf-i-check) center / contain no-repeat; mask: var(--qf-i-check) center / contain no-repeat;
+    transform: none; transition: opacity var(--qf-ease);
+  }
+  & .nm-todo-check:hover { border-color: var(--qf-pc); background: color-mix(in srgb, var(--qf-pc) 14%, transparent); }
+  & .nm-todo-check:hover::after { opacity: 1; transform: none; }
+  & .nm-todo-check:checked { background: var(--qf-pc); border-color: var(--qf-pc); }
+  & .nm-todo-check:checked::after { color: #fff; transform: none; }
+  & .nm-todo-item.is-done .nm-todo-check:checked { background: #8f8f8f; border-color: #8f8f8f; }
+  /* the one authored moment: the circle fills and the tick draws in */
+  & .nm-todo-item.is-completing .nm-todo-check { animation: qf-fill 260ms cubic-bezier(.2, .8, .2, 1); }
+  & .nm-todo-item.is-completing .nm-todo-check::after { animation: qf-tick 260ms cubic-bezier(.2, .8, .2, 1); }
+  & .nm-todo-text { line-height: 1.45; }
+  & .nm-todo-due { font-size: .75rem; color: var(--qf-date); gap: .25rem; }
+  & .nm-todo-due.is-today { color: var(--qf-today); }
+  & .nm-todo-due.is-tomorrow { color: var(--qf-tomorrow); }
+  & .nm-todo-due.is-overdue { color: var(--qf-red-text); font-weight: 400; }
+  & .nm-todo-done-toggle { font-size: .875rem; font-weight: 700; padding-inline-start: 0; margin-inline-start: 0; }
+  & .nm-todo-done-toggle:hover { background: transparent; }
+  & .nm-todo-done-count { background: transparent; color: var(--qf-ink-2); font-weight: 400; min-inline-size: 0; padding: 0; }
+  & .nm-todo-done-count.is-bump { animation: none; }
+  & .nm-todo-clear { font-size: .75rem !important; }
+  & .nm-todo-msg { background: #282828; color: #fff; border-radius: 8px; font-size: .8125rem; }
+  & .nm-todo-msg .nm-todo-msg-action { color: #ff8f80 !important; }
+  & .nm-todo-msg .nm-todo-msg-action:hover { background: rgba(255, 255, 255, .08); }
+  & .nm-todo-msg .nm-todo-msg-close { color: #bdbdbd; }
+  & .nm-todo-msg .nm-todo-msg-close:hover { background: rgba(255, 255, 255, .08); color: #fff; }
+  & .nm-todo-msg.is-error { background: #fcecea; color: #a3291d; }
+  & .nm-todo-empty-art { background: var(--qf-chrome); box-shadow: none; color: var(--qf-ink-2); }
+
+  /* Arcade: a quiet block. The falling chips only move while you hover the art. */
+  & .nm-game-teaser { gap: .75rem 1.25rem; }
+  & .nm-game-teaser-art {
+    block-size: 6.5rem; border: 1px solid #ebebeb; border-radius: 10px;
+    background: repeating-linear-gradient(to bottom, transparent 0 21px, #f3f1ef 21px 22px), var(--qf-chrome);
+  }
+  & .nm-game-drop { box-shadow: 0 1px 2px rgba(0, 0, 0, .08); border-color: #ebebeb; font-weight: 500; border-radius: 4px; animation-play-state: paused; }
+  & .nm-game-teaser-art:hover .nm-game-drop { animation-play-state: running; }
+  & .nm-game-teaser-line { border-block-start: 1px dashed var(--qf-red); }
+  & .nm-game-teaser-line span { background: var(--qf-red); font-weight: 600; letter-spacing: .04em; border-radius: 4px; }
+  & .nm-game-stat-label { font-size: .75rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--qf-ink-2); display: inline-flex; align-items: center; gap: .25rem; }
+  & .nm-game-stat-value { font-size: 1.75rem; font-weight: 700; color: var(--qf-ink); letter-spacing: -.01em; }
+  & .nm-game-stat-sub { font-size: .75rem; }
+  & .nm-game-play { padding: .5rem .75rem; font-size: .8125rem; font-weight: 600; letter-spacing: 0; }
+  & .nm-game-play:hover { transform: none; filter: none; }
+  & .nm-game-play:active { transform: none; }
+  & .nm-game-play-icon { display: none; }
+  & .nm-game-card { border-width: 1px; border-color: #ebebeb; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, .08), 0 20px 48px rgba(0, 0, 0, .16); }
+  & .nm-game-card-emoji { display: none; }
+  & .nm-game-card-title { font-size: 1.25rem; font-weight: 700; }
+  & .nm-game-final { font-weight: 700; color: var(--qf-ink); }
+  & .nm-game-badge { border: 0; box-shadow: none; border-radius: 5px; background: var(--qf-red); color: #fff; font-weight: 600; font-size: .8125rem; transform: rotate(4deg); }
+  & :is(.nm-game-scorebox, .nm-game-best, .nm-game-combo, .nm-game-buff, .nm-game-lives) { border-radius: 8px; border-color: #ebebeb; }
+  & :is(.nm-game-score, .nm-game-best-value, .nm-game-combo-value, .nm-game-logo) { font-weight: 700; }
+  & .nm-game-label { font-weight: 600; letter-spacing: .04em; }
+
+  /* Shortcut chips: soft tinted rectangles, favicon then plain text */
+  & .nm-sc-chip { background: #f7f5f3; border-color: transparent; }
+  & .nm-sc-chip:hover { background: var(--qf-hover); border-color: transparent; }
+  & .nm-sc-link { font-size: .8125rem; font-weight: 400; color: var(--qf-ink) !important; padding-inline: 8px 10px; gap: 6px; }
+  & .nm-sc-letter { background: var(--qf-active); color: var(--qf-red-text); border-radius: 4px; }
+  & .nm-sc-add { border: 0; color: var(--qf-ink-2); padding-inline: 6px 10px; }
+  & .nm-sc-add .nm-sc-svg { color: var(--qf-red); }
+  & .nm-sc-add:is(:hover, [aria-expanded="true"]) { color: var(--qf-red-text); background: transparent; border: 0; }
+  & .nm-sc-edit-toggle { color: #808080; }
+  & .nm-sc-edit-toggle:hover { background: var(--qf-hover); color: var(--qf-ink); }
+  & .nm-sc-edit-toggle[aria-pressed="true"] { background: var(--qf-red); border-color: var(--qf-red); }
+  & :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) { border-color: #ebebeb; border-radius: 10px; }
+  & .nm-sc-pop-title { font-size: .9375rem; font-weight: 700; }
+  & .nm-sc-input { border-color: #dddddd; border-radius: 5px; }
+  & .nm-sc-input:focus { border-color: #8f8f8f; box-shadow: 0 0 0 1px #8f8f8f; }
+  & .nm-sc-suggest-label { text-transform: none; letter-spacing: 0; font-size: .75rem; }
+  & .nm-sc-menu-item:hover:not(:disabled) { background: var(--qf-hover); }
+
+  /* Toasts: Todoist's dark bar with a red "Undo" */
+  & :is(.nm-sc-toast, .nm-toast) {
+    background: #282828 !important; color: #fff !important; border: 0 !important;
+    border-radius: 8px !important; box-shadow: 0 4px 16px rgba(0, 0, 0, .22) !important;
+    font: 400 13px/1.4 var(--nm-font) !important; padding: .75rem 1rem !important;
+  }
+  & .nm-sc-toast-undo { background: transparent; color: #ff8f80; font-weight: 600; }
+  & .nm-sc-toast-undo:hover { background: rgba(255, 255, 255, .08); }
+
+  /* ======================================================================
+     Phones
+     ====================================================================== */
+  @media (max-width: 767.98px) {
+    & #topofscroll, & #page .main-inner { padding-inline: 1rem; padding-block-start: 1.25rem; }
+    & #page-header h1 { font-size: 1.5rem; }
+    & nav.navbar.fixed-top .usertext { display: none; }
+    & #block-region-content { column-gap: 0 !important; }
+    & .nm-top-row { gap: 1.75rem; }
+    & :is(.block.card, section.nm-block) { margin-block-end: 2rem !important; }
+    & .event[data-region="event-item"] > .overflow-auto { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "date" "course" "meta"; }
+    & .event[data-region="event-item"] h6 { justify-self: start; max-inline-size: 100%; }
+    & .calendar-controls .arrow_link .arrow_text {
+      position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    & body.path-calendar .maincalendar table.calendarmonth td { padding: .25rem !important; position: relative; }
+    & body.path-calendar .maincalendar table.calendarmonth td.hasevent::after {
+      content: ""; position: absolute; inset-inline-start: 50%; inset-block-end: 8px; inline-size: 5px; block-size: 5px;
+      margin-inline-start: -2.5px; border-radius: 50%; background: var(--qf-red);
+    }
+    & :is(.submissionstatustable, .quizreviewsummary) tbody th { inline-size: 40%; }
+    & .secondary-navigation .nav-tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    & .secondary-navigation .nav-tabs .nav-link { white-space: nowrap; }
+  }
+
+  /* ======================================================================
+     HUJI login page (Bootstrap 4 IdP)
+     ====================================================================== */
+  &[data-nm-site="login"] {
+    & body { background: #fff !important; color: var(--qf-ink); font-family: var(--nm-font) !important; }
+    & body * { font-family: var(--nm-font) !important; }
+    & header .navbar { background: var(--qf-chrome) !important; border-block-end: 1px solid #f0ece8; box-shadow: none; }
+    & header .navbar .selectpicker, & header .navbar select {
+      color: var(--qf-ink-2) !important; background-color: transparent; border: 1px solid #e6e1dc; border-radius: 5px; font-size: .8125rem; padding: .25rem .5rem;
+    }
+    & .col-lg-7 img { border-radius: 12px; filter: saturate(.85); }
+    & h1 { font-size: 1.625rem !important; font-weight: 700 !important; color: var(--qf-ink) !important; letter-spacing: 0; }
+    & .col-lg-5 > p { color: var(--qf-ink-2); }
+    & .nav-pills { display: flex; flex-wrap: wrap; gap: 2px; padding: 3px; background: var(--qf-field); border-radius: 8px; }
+    & .nav-pills .nav-link {
+      padding: .3125rem .625rem; border-radius: 6px; font-size: .8125rem; font-weight: 500; color: var(--qf-ink-2) !important; background: transparent !important;
+      text-align: center; line-height: 1.3; block-size: 100%; display: grid; place-items: center;
+    }
+    & .nav-pills .nav-item { flex: 1 1 0; min-inline-size: 0; }
+    & header .navbar select { padding-inline: .5rem 1.75rem !important; }
+    & .nav-pills .nav-link:hover { color: var(--qf-ink) !important; text-decoration: none; }
+    & .nav-pills .nav-link.active { background: #fff !important; color: var(--qf-ink) !important; box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 0 0 1px rgba(0, 0, 0, .03); }
+    & label { color: var(--qf-ink) !important; font-size: .8125rem; font-weight: 600; margin-block-end: .25rem; }
+    & .form-control {
+      block-size: 40px; border: 1px solid #dddddd !important; border-radius: 8px !important; background: #fff !important;
+      color: var(--qf-ink) !important; font-size: .875rem; box-shadow: none !important;
+    }
+    & .form-control:focus { border-color: #8f8f8f !important; box-shadow: 0 0 0 1px #8f8f8f !important; }
+    & .btn-primary, & button.btn {
+      background: var(--qf-red) !important; border: 1px solid var(--qf-red) !important; color: #fff !important;
+      border-radius: 8px !important; font-weight: 600; font-size: .875rem; padding: .5625rem 1.25rem; box-shadow: none !important;
+    }
+    & .btn-primary:hover, & button.btn:hover { background: var(--qf-red-hover) !important; border-color: var(--qf-red-hover) !important; }
+    & .tab-content p, & .tab-content .ltr { color: var(--qf-ink-2); font-size: .8125rem; }
+    & .tab-content a.nav-link { color: var(--qf-red-text) !important; font-size: .8125rem; }
+    & footer, & footer.bg-gray { background: var(--qf-chrome) !important; border-block-start: 1px solid #f0ece8; color: var(--qf-ink-2) !important; }
+    & footer :is(.footer, .footer-h1, .footer-email, .footer-phone, .footer-copy) { color: var(--qf-ink-2) !important; font-size: .8125rem; }
+    & footer .footer-h1 { color: var(--qf-ink) !important; font-weight: 700; }
+    & footer hr { border-color: #ebe6e1; }
+  }
+
+  /* ======================================================================
+     Motion off
+     ====================================================================== */
+  &[data-nm-motion="off"] *, &[data-nm-motion="off"] *::before, &[data-nm-motion="off"] *::after {
+    animation: none !important; transition: none !important;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    & *, & *::before, & *::after { animation: none !important; transition: none !important; }
   }
 }
+
+@keyframes qf-pop { from { opacity: 0; transform: translateY(-4px); } }
+@keyframes qf-fill { 0% { transform: scale(1); } 40% { transform: scale(.86); } 100% { transform: scale(1); } }
+@keyframes qf-tick { from { clip-path: inset(0 100% 0 0); opacity: 1; } to { clip-path: inset(0 0 0 0); opacity: 1; } }

@@ -1,1 +1,250 @@
-/* placeholder: login page reskin (html[data-nm-site="login"]) */
+/* HUJI's IdP login page (idp.cc.huji.ac.il, a Bootstrap 4 page), rebuilt with CSS only.
+   Applies to every theme except "off" (no data-nm-theme), and is built only from the --nm-* tokens,
+   so each theme gets its own login page for free. The extension injects no script on this host.
+
+   Layout: slim header (logo + language pill), one focused form card beside a large rounded photo panel
+   (stacked on phones), a segmented control for the three login methods, and a quiet footer.
+   Nothing the form needs is hidden or moved: the tab panes keep Bootstrap's show/hide by .active, the hidden
+   inputs and reCAPTCHA textareas stay where they are, and the reCAPTCHA badge is never touched.
+
+   Optional knobs a theme can set under html[data-nm-theme="<id>"]:
+     --nm-login-logo-filter   filter on the HUJI logo. Its wordmark is black, so a DARK theme must set
+                              invert(1) hue-rotate(180deg) brightness(1.15) (white wordmark, emblem keeps its hues)
+     --nm-login-shadow        shadow of the form card (default: --nm-shadow)
+     --nm-login-photo-radius  corner radius of the photo panel (default: 2 x --nm-radius)
+   This file loads AFTER the theme files, so a theme's own login touches need more specificity than
+   html[data-nm-site="login"][data-nm-theme] (0,2,1). Start them with :root[data-nm-theme="<id>"][data-nm-site="login"]. */
+
+/* The dark themes in NM.THEMES (by swatch). A theme can also set the knob itself. */
+html[data-nm-theme="night-operator"], html[data-nm-theme="giga"] {
+  --nm-login-logo-filter: invert(1) hue-rotate(180deg) brightness(1.15);
+}
+
+html[data-nm-site="login"][data-nm-theme] {
+  --nml-radius-lg: calc(var(--nm-radius) * 1.5);
+  --nml-ring: 0 0 0 3px color-mix(in srgb, var(--nm-accent) 28%, transparent);
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans Hebrew", sans-serif; /* body inherits this if a theme's --nm-font is "inherit" */
+  background: var(--nm-bg);
+
+  & body {
+    min-block-size: 100vh;
+    display: flex; flex-direction: column;
+    margin: 0;
+    background: var(--nm-bg);
+    color: var(--nm-text);
+    font-family: var(--nm-font);
+    font-size: 15px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- header: logo at the start, language pill at the end ---------- */
+  & body > header { background: transparent; flex: none; }
+  & header .navbar { padding: 0; background: transparent; border: 0; }
+  & header .navbar > .container {
+    max-inline-size: 1120px; padding-block: 20px 4px; padding-inline: 24px;
+    display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  & header .navbar > .container > a { order: -1; display: inline-flex; line-height: 0; border-radius: var(--nm-radius); }
+  & header .navbar > .container > a:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 4px; }
+  /* HUJI's logo has a black wordmark; dark themes set --nm-login-logo-filter (see the top of this file). */
+  & .brand-logo { display: block; block-size: 52px; inline-size: auto; filter: var(--nm-login-logo-filter, none); }
+
+  & header select.selectpicker {
+    appearance: none; -webkit-appearance: none;
+    block-size: 34px; padding-block: 0; padding-inline: 14px 32px;
+    border: var(--nm-border-width) solid var(--nm-border); border-radius: 999px;
+    /* a token-colored chevron drawn with two gradients (no image, follows the theme) */
+    background:
+      linear-gradient(45deg, transparent 50%, var(--nm-text-muted) 50%) calc(100% - 17px) 52% / 5px 5px no-repeat,
+      linear-gradient(135deg, var(--nm-text-muted) 50%, transparent 50%) calc(100% - 12px) 52% / 5px 5px no-repeat,
+      var(--nm-surface);
+    color: var(--nm-text);
+    font-family: inherit; font-size: 13px; font-weight: 500; line-height: normal; letter-spacing: 0; text-align: start;
+    cursor: pointer;
+  }
+  & header select.selectpicker:dir(rtl) { padding-inline: 32px 14px; background-position: 12px 52%, 17px 52%, 0 0; }
+  & header select.selectpicker:hover { border-color: var(--nm-text-muted); }
+  & header select.selectpicker:focus-visible { outline: none; border-color: var(--nm-accent); box-shadow: var(--nml-ring); }
+  & header select.selectpicker option { background: var(--nm-surface); color: var(--nm-text); }
+
+  /* ---------- main: photo panel + form card ---------- */
+  & body > .container {
+    flex: 1 0 auto;
+    display: flex; align-items: center;
+    max-inline-size: 1120px; inline-size: 100%;
+    padding-block: 24px 40px; padding-inline: 24px;
+  }
+  & body > .container > .row {
+    flex: 1; margin: 0;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 440px); column-gap: 24px; row-gap: 0;
+    grid-template-rows: auto 1fr; align-items: start !important; min-block-size: 520px; /* the photo itself adds no height, so the card row never stretches */
+  }
+  & body > .container > .row > :is(.col-lg-7, .col-lg-5) {
+    max-inline-size: none; inline-size: auto; flex: none; padding: 0; min-inline-size: 0;
+  }
+
+  /* HUJI's markup is unbalanced, so only the first pane sits in .tab-content: the e-mail pane lands in the card
+     and the OTP pane lands in .row itself. Bootstrap's JS still toggles .active/.show on all three, so hide by
+     .active (Bootstrap's own rule, minus the parent), and give the stray OTP pane the card's column. */
+  & .tab-pane:not(.active) { display: none; }
+
+  /* The photo has HUJI's logo baked into a white, slanted strip at its bottom quarter. The image box is taller
+     than the panel (top-anchored, cover), so only the photo itself ever shows. */
+  & body > .container > .row > .col-lg-7 {
+    grid-column: 1; grid-row: 1 / span 2; align-self: stretch;
+    position: relative; overflow: hidden; min-block-size: 0;
+    border-radius: var(--nm-login-photo-radius, calc(var(--nm-radius) * 2));
+    background: var(--nm-surface-2);
+  }
+  & .col-lg-7 > img.img-fluid {
+    display: block; position: absolute; inset-block-start: 0; inset-inline: 0;
+    inline-size: 100%; block-size: 136%; max-inline-size: none;
+    object-fit: cover; object-position: 50% 0;
+  }
+
+  & body > .container > .row > .col-lg-5 {
+    grid-column: 2; grid-row: 1; align-self: start;
+    background: var(--nm-surface); color: var(--nm-text);
+    border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nml-radius-lg);
+    box-shadow: var(--nm-login-shadow, var(--nm-shadow));
+    padding: 36px 36px 28px;
+  }
+  & body > .container > .row > .tab-pane {
+    grid-column: 2; grid-row: 2; align-self: start;
+    background: var(--nm-surface); color: var(--nm-text);
+    border: var(--nm-border-width) solid var(--nm-border); border-block-start: 0;
+    border-end-start-radius: var(--nml-radius-lg); border-end-end-radius: var(--nml-radius-lg);
+    box-shadow: var(--nm-login-shadow, var(--nm-shadow));
+    padding: 0 36px 28px;
+  }
+  /* while the stray OTP pane is shown, card + pane read as one card */
+  & body > .container > .row:has(> .tab-pane.active) > .col-lg-5 {
+    border-block-end: 0; border-end-start-radius: 0; border-end-end-radius: 0; padding-block-end: 0; box-shadow: none;
+  }
+
+  & h1 {
+    margin: 0; padding: 0;
+    font-family: var(--nm-heading-font); font-size: 26px; font-weight: 650; line-height: 1.2; letter-spacing: -0.01em;
+    text-align: start; color: var(--nm-text);
+  }
+  /* The line under the heading (blank, or a server message) */
+  & .col-lg-5 > h1 + p { margin: 4px 0 16px; font-size: 14px; line-height: 1.45; color: var(--nm-text-muted); }
+
+  /* ---------- the three login methods: a segmented control ---------- */
+  & .nav-pills {
+    display: flex; flex-wrap: nowrap; gap: 4px;
+    margin: 0 0 24px !important; padding: 4px; list-style: none;
+    background: var(--nm-surface-2);
+    border: var(--nm-border-width) solid var(--nm-border); border-radius: calc(var(--nm-radius) + 4px);
+  }
+  & .nav-pills .nav-item {
+    flex: 1 1 0; min-inline-size: 0; inline-size: auto; block-size: auto; margin: 0;
+    background: none; display: flex;
+  }
+  & .nav-pills .nav-item a.nav-link {
+    flex: 1; inline-size: auto; block-size: auto; min-block-size: 40px; margin: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6px 8px;
+    border: 0; border-radius: var(--nm-radius);
+    background: transparent; color: var(--nm-text-muted);
+    font-family: inherit; font-size: 13px; font-weight: 500; line-height: 1.25; text-align: center; text-decoration: none;
+    transition: background-color .15s, color .15s, box-shadow .15s;
+  }
+  & .nav-pills .nav-item a.nav-link:hover { color: var(--nm-text); background: color-mix(in srgb, var(--nm-surface) 55%, transparent); }
+  & .nav-pills .nav-item a.nav-link.active {
+    background: var(--nm-surface); color: var(--nm-text); font-weight: 600;
+    box-shadow: 0 0 0 var(--nm-border-width) var(--nm-border), 0 1px 2px rgb(0 0 0 / .08);
+  }
+  & .nav-pills .nav-item a.nav-link:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 1px; }
+
+  /* ---------- fields (selectors use .tab-pane, not .tab-content: two of the panes sit outside it) ---------- */
+  & .tab-pane .form-group { margin: 0 0 16px; }
+  & .tab-pane .form-group:not(:has(label)) { margin: 0; } /* the group that only holds hidden inputs */
+  & .tab-pane label {
+    display: block; margin: 0 0 6px; text-align: start;
+    font-size: 13px; font-weight: 500; line-height: 1.3; letter-spacing: 0;
+    color: var(--nm-text);
+  }
+  & .tab-pane .form-control {
+    display: block; inline-size: 100%; block-size: 44px;
+    padding-block: 0; padding-inline: 12px;
+    background: var(--nm-bg); color: var(--nm-text);
+    border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nm-radius);
+    font-family: inherit; font-size: 15px; line-height: normal;
+    box-shadow: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  & .tab-pane .form-control:hover { border-color: color-mix(in srgb, var(--nm-border), var(--nm-text-muted) 45%); }
+  & .tab-pane .form-control:focus { outline: none; border-color: var(--nm-accent); box-shadow: var(--nml-ring); }
+  & .tab-pane .form-control:user-invalid:not(:focus) { border-color: var(--nm-danger); }
+
+  /* ---------- submit ---------- */
+  & .tab-pane .btn-primary, & .tab-pane .btn-primary:hover {
+    display: block; inline-size: 100%; block-size: 46px; margin: 8px 0 0; padding: 0 16px;
+    background: var(--nm-accent); color: var(--nm-accent-contrast);
+    border: var(--nm-border-width) solid var(--nm-accent); border-radius: var(--nm-radius);
+    font-family: inherit; font-size: 15px; font-weight: 600; line-height: 1; letter-spacing: 0;
+    box-shadow: none; cursor: pointer;
+    transition: filter .15s, transform .15s;
+  }
+  & .tab-pane .btn-primary:hover { filter: brightness(.94) saturate(1.05); }
+  & .tab-pane .btn-primary:active { transform: translateY(1px); }
+  & .tab-pane .btn-primary:focus-visible { outline: none; box-shadow: var(--nml-ring); }
+
+  /* helper text and links under the button */
+  & .tab-pane form p { margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; text-align: start; color: var(--nm-text-muted); }
+  & .tab-pane form p:empty { display: none; }
+  & .tab-pane form p[style] { margin: 6px 0 0 !important; } /* HUJI pulls this one up with an inline negative margin */
+  & .tab-pane a.nav-link {
+    display: inline-block; inline-size: auto; block-size: auto; margin: 10px 0 0; padding: 0;
+    background: none; color: var(--nm-accent-text);
+    font-size: 13px; font-weight: 500; line-height: 1.4;
+    text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 3px;
+  }
+  & .tab-pane p > a.nav-link { margin: 0; }
+  & .tab-pane a.nav-link:hover { text-decoration-color: currentColor; }
+  & .tab-pane a.nav-link:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; border-radius: 2px; }
+  & .err { color: var(--nm-danger); line-height: 1.4; font-size: 13px; }
+
+  /* ---------- footer: quiet, centered ---------- */
+  & footer.bg-gray {
+    flex: none; padding: 20px 0 28px !important; direction: inherit;
+    background: transparent; border-block-start: var(--nm-border-width) solid var(--nm-border);
+  }
+  & footer .footer {
+    max-inline-size: 1120px; padding-inline: 24px;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 4px 18px;
+    font-family: inherit; font-size: 13px; line-height: 1.5; text-align: center; color: var(--nm-text-muted);
+  }
+  & footer :is(.footer-h1, .footer-email, .footer-phone) { padding: 0; font-family: inherit; font-size: 13px; text-align: center; letter-spacing: 0; }
+  & footer :is(.footer-h1, .footer-email, .footer-phone, .footer-copy) { unicode-bidi: plaintext; }
+  & footer .footer-h1 { font-weight: 600; color: var(--nm-text); }
+  & footer .footer-email, & footer .footer-phone { color: var(--nm-text-muted); }
+  & footer hr { display: none; }
+  & footer .footer-copy { flex-basis: 100%; font-family: inherit; font-size: 12px; text-align: center; color: var(--nm-text-muted); }
+
+  & ::selection { background: color-mix(in srgb, var(--nm-accent) 30%, transparent); color: inherit; }
+
+  /* ---------- narrower screens: the photo becomes a banner above the card ---------- */
+  @media (max-width: 991.98px) {
+    & body > .container { align-items: flex-start; max-inline-size: 560px; padding-block: 16px 32px; }
+    & body > .container > .row { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; column-gap: 0; min-block-size: 0; }
+    & body > .container > .row > :is(.col-lg-7, .col-lg-5, .tab-pane) { grid-column: 1; grid-row: auto; }
+    & body > .container > .row > .col-lg-7 { margin-block-end: 16px; min-block-size: 0; block-size: clamp(128px, 30vw, 200px); }
+    & .col-lg-7 > img.img-fluid { block-size: auto; aspect-ratio: 604 / 635; inset-block-start: -14%; }
+  }
+  @media (max-width: 575.98px) {
+    & header .navbar > .container { padding-block: 14px 0; padding-inline: 16px; }
+    & .brand-logo { block-size: 40px; }
+    & body > .container { padding-inline: 16px; }
+    & body > .container > .row > .col-lg-5 { padding: 24px 20px 20px; }
+    & body > .container > .row > .tab-pane { padding: 0 20px 20px; }
+    & h1 { font-size: 22px; }
+    & .nav-pills .nav-item a.nav-link { font-size: 12px; padding: 6px 4px; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-nm-site="login"][data-nm-theme] * { transition: none !important; }
+}
+html[data-nm-site="login"][data-nm-theme][data-nm-motion="off"] * { transition: none !important; }

@@ -1,6 +1,6 @@
-# Nicer Moodle
+# Re-Moodle
 
-A Chrome extension that makes HUJI's Moodle (`moodle.huji.ac.il`, every year site) nicer and more helpful:
+Remodel the Moodle. A Chrome extension that makes HUJI's Moodle (`moodle.huji.ac.il`, every year site) nicer and more helpful:
 
 - **4 themes + Moodle default.** Each theme follows one design reference: **Quiet Focus** (Todoist), **Night Operator** (Linear dark), **Daily Quest** (Duolingo) and **Campus Pop** (Gumroad neo-brutalist, the crazy one). Switch from the 🎨 button next to "Dashboard" or from the toolbar popup.
 - **Upcoming events, split.** Things you already submitted or finished move into a collapsible **Done / submitted, still editable** section, auto-ticked, with an "Edit submission" / "Review" link. You can also tick or untick by hand.

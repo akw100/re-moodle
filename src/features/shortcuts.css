@@ -36,6 +36,15 @@
 .nm-sc-list:dir(rtl).nm-sc-more-end { mask-image: linear-gradient(to left, #000 calc(100% - 36px), transparent); }
 .nm-sc-list:dir(rtl).nm-sc-more-start { mask-image: linear-gradient(to left, transparent, #000 36px); }
 .nm-sc-list:dir(rtl).nm-sc-more-start.nm-sc-more-end { mask-image: linear-gradient(to left, transparent, #000 36px, #000 calc(100% - 36px), transparent); }
+/* Phones: the header slot has its own full-width line, so chips wrap onto as many lines as they need instead of
+   hiding behind a sideways scroll. The list box dissolves (display: contents) so "+ Add" and Edit flow right after
+   the last chip; the scroll/fade code above simply never triggers. */
+@media (max-width: 575.98px) {
+  .nm-sc-bar { flex-wrap: wrap; row-gap: 8px; }
+  .nm-header-slot:has(> .nm-sc-bar) { align-items: flex-start; } /* game + theme buttons stay on the first chip line */
+  .nm-sc-list { display: contents; }
+  .nm-sc-title { max-inline-size: 9rem; }
+}
 
 /* ---------- chips ---------- */
 .nm-sc-chip {

@@ -39,8 +39,10 @@ async function isolated(page) {
   const ctxs = [];
   cdp.on('Runtime.executionContextCreated', e => ctxs.push(e.context));
   await cdp.send('Runtime.enable');
-  const ctx = ctxs.find(c => c.auxData?.type === 'isolated' && c.name === 'Nicer Moodle' && c.auxData?.frameId === ctxs.find(m => m.auxData?.isDefault)?.auxData?.frameId)
-    || ctxs.find(c => c.name === 'Nicer Moodle');
+  // Named after the manifest "name" (renamed Nicer Moodle -> Re-Moodle), so read it instead of hard-coding it.
+  const name = JSON.parse(readFileSync(join(ROOT, 'manifest.json'), 'utf8')).name;
+  const ctx = ctxs.find(c => c.auxData?.type === 'isolated' && c.name === name && c.auxData?.frameId === ctxs.find(m => m.auxData?.isDefault)?.auxData?.frameId)
+    || ctxs.find(c => c.name === name);
   if (!ctx) return null;
   return async expr => (await cdp.send('Runtime.evaluate', {expression: expr, contextId: ctx.id, returnByValue: true, awaitPromise: true})).result.value;
 }

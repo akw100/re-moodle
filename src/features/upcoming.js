@@ -47,7 +47,7 @@ NM.feature('upcoming', () => {
       O = (await NM.get('overrides', {})) || {};
     } catch (e) {
       if (my !== gen) return;
-      console.warn('[Nicer Moodle] upcoming:', e.message);
+      console.warn('[Re-Moodle] upcoming:', e.message);
       failed = e.session ? 'session' : true; data = null;
       render();
       return;

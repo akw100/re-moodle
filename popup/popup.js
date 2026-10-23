@@ -1,32 +1,48 @@
-// ponytail: theme list duplicated from core.js NM.THEMES; the popup can't load content scripts.
-const THEMES = [
-  ['off', 'Moodle default', '#ffffff', '#0f6cbf'],
-  ['quiet-focus', 'Quiet Focus', '#ffffff', '#c83c2d'],
-  ['night-operator', 'Night Operator', '#080808', '#7772d8'],
-  ['daily-quest', 'Daily Quest', '#ffffff', '#58cc02'],
-  ['campus-pop', 'Campus Pop', '#ed9de3', '#f8d047'],
-  ['ahead', 'Ahead', '#f6f1e9', '#e2704a'],
-  ['fal', 'Fal', '#0b0b0f', '#a78bfa'],
-  ['giga', 'Giga', '#0e1a12', '#c6f432'],
-  ['cloudstudio', 'Cloudstudio', '#eef3f8', '#2f6bff'],
-  ['butter', 'Butter', '#fff7e0', '#ffcf33'],
-  ['clay', 'Clay', '#ffffff', '#5b4bff'],
-];
+// Toolbar popup: the same theme tiles as the in-page picker (NM.THEMES and NM.el come from src/core.js), plus the motion switch.
 const box = document.getElementById('themes');
 const motion = document.getElementById('motion');
+document.getElementById('mark').append(NM.icon('palette'));
+
+const tiles = NM.THEMES.map(t => NM.el('button', {
+  type: 'button', class: 'nm-theme-tile', role: 'radio', 'aria-checked': 'false', tabindex: '-1', title: t.name,
+  dataset: {theme: t.id}, style: `--t-bg:${t.swatch[0]};--t-accent:${t.swatch[1]}`,
+},
+NM.el('span', {class: 'nm-theme-prev', 'aria-hidden': 'true'},
+  NM.el('span', {class: 'nm-theme-prev-card'},
+    NM.el('span', {class: 'nm-theme-prev-bar'}), NM.el('span', {class: 'nm-theme-prev-line'}), NM.el('span', {class: 'nm-theme-prev-line'}))),
+NM.el('span', {class: 'nm-theme-name'}, t.name)));
+box.append(...tiles);
+
+const mark = id => tiles.forEach(t => {
+  const on = t.dataset.theme === id;
+  t.setAttribute('aria-checked', String(on));
+  t.tabIndex = on ? 0 : -1;
+});
+
+box.addEventListener('click', e => {
+  const t = e.target.closest('.nm-theme-tile');
+  if (!t) return;
+  mark(t.dataset.theme);
+  chrome.storage.sync.set({theme: t.dataset.theme});
+});
+// Arrows move focus across the 3-column grid, Home/End jump; Enter/Space select (native button click).
+box.addEventListener('keydown', e => {
+  const i = tiles.indexOf(document.activeElement);
+  if (i < 0) return;
+  const cols = tiles.filter(t => t.offsetTop === tiles[0].offsetTop).length || 1;
+  const step = {ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols}[e.key];
+  let j = step !== undefined ? i + step : e.key === 'Home' ? 0 : e.key === 'End' ? tiles.length - 1 : null;
+  if (j === null) return;
+  if (Math.abs(step) === cols && (j < 0 || j >= tiles.length)) j = i;
+  j = Math.max(0, Math.min(tiles.length - 1, j));
+  e.preventDefault();
+  tiles.forEach(t => { t.tabIndex = t === tiles[j] ? 0 : -1; });
+  tiles[j].focus();
+});
 
 chrome.storage.sync.get({theme: 'off', motion: 'on'}).then(s => {
-  for (const [id, name, a, b] of THEMES) {
-    const input = Object.assign(document.createElement('input'), {type: 'radio', name: 'theme', value: id, checked: s.theme === id});
-    input.onchange = () => chrome.storage.sync.set({theme: id});
-    const label = document.createElement('label');
-    label.className = 'theme';
-    const sw = document.createElement('span');
-    sw.className = 'sw';
-    sw.style.background = `linear-gradient(135deg, ${a} 50%, ${b} 50%)`;
-    label.append(input, sw, name);
-    box.append(label);
-  }
+  mark(s.theme);
   motion.checked = s.motion !== 'off';
-  motion.onchange = () => chrome.storage.sync.set({motion: motion.checked ? 'on' : 'off'});
 });
+motion.addEventListener('change', () => chrome.storage.sync.set({motion: motion.checked ? 'on' : 'off'}));
+chrome.storage.onChanged.addListener(ch => { if (ch.theme) mark(ch.theme.newValue); });

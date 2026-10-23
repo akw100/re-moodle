@@ -1,1 +1,1545 @@
-/* placeholder: Cloudstudio theme */
+/* ==========================================================================
+   Cloudstudio, follows ONE reference: Cloudstudio's website (cloudstudio.es).
+   Pale sky canvas with cloudy tonal drift, ice-blue panels, heavy tightly
+   tracked grotesk headlines, small spaced monospace data labels, black pills
+   with blue text and trailing arrows, a black ticker band split by four-point
+   stars, a hand-drawn underline, dotted orbit rings around the arcade.
+   Every rule is scoped under html[data-nm-theme="cloudstudio"].
+   ========================================================================== */
+
+/* ---------- Fonts (Chrome ignores @import in extension CSS) ---------- */
+/* Onest: heavy grotesk with the curled "y" of Cloudstudio's display face. */
+@font-face {
+  font-family: "CS Grotesk"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url(https://fonts.gstatic.com/s/onest/v11/gNMKW3F-SZuj7xmR-HYoEoeyxMI.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "CS Grotesk"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url(https://fonts.gstatic.com/s/onest/v11/gNMKW3F-SZuj7xmf-HYoEoey.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* IBM Plex Mono: the tiny tracked labels ("NEW PROJECTS", "AGENTS & APPLIED AI"). */
+@font-face {
+  font-family: "CS Mono"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "CS Mono"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "CS Mono"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Hebrew course names */
+@font-face {
+  font-family: "CS Hebrew"; font-style: normal; font-weight: 400 800; font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosanshebrew/v50/or30Q7v33eiDljA1IufXTtVf7V6RvEEdhQlk0LlGxCyaePiWTNzWNf72cWk.woff2) format("woff2");
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] {
+  --nm-bg: #c7e9f2;
+  --nm-surface: #eff9fc;
+  --nm-surface-2: #dcf0f6;
+  --nm-text: #080d0d;
+  --nm-text-muted: #3d555b;
+  --nm-border: #a7cbd5;
+  --nm-accent: #080d0d;
+  --nm-accent-contrast: #8fd3ef;
+  --nm-accent-text: #1c5568;
+  --nm-success: #246c50;
+  --nm-success-text: #1d5c44;
+  --nm-warning: #885c09;
+  --nm-danger: #a83146;
+  --nm-radius: 14px;
+  --nm-shadow: none;
+  --nm-font: "CS Grotesk", "CS Hebrew", "Noto Sans Hebrew", system-ui, sans-serif;
+  --nm-heading-font: "CS Grotesk", "CS Hebrew", "Noto Sans Hebrew", system-ui, sans-serif;
+  --nm-border-width: 1px;
+  --nm-confetti: #8fd3ef, #080d0d, #e5f4fa, #e5e85e, #4fb3dc;
+
+  /* theme-private */
+  --cs-sky: #c7e9f2;
+  --cs-ice: #eff9fc;
+  --cs-well: #f7fcfe;
+  --cs-ink: #080d0d;
+  --cs-ink-2: #1a2526;
+  --cs-blue: #8fd3ef;           /* the blue that sits on black ("Book a call", the ticker) */
+  --cs-blue-hi: #bfe8f8;
+  --cs-blue-mid: #4fb3dc;       /* markers on pale surfaces */
+  --cs-rule: #c4e0e8;           /* row hairlines inside ice panels */
+  --cs-mono: "CS Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --cs-pill: 999px;
+  --cs-press: 120ms cubic-bezier(.2, .8, .2, 1);
+  --cs-ease: 160ms cubic-bezier(.2, .8, .2, 1);
+  --cs-lift: 0 18px 40px -16px rgba(8, 13, 13, .32), 0 2px 6px rgba(8, 13, 13, .08);
+
+  --cs-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z'/%3E%3C/svg%3E");
+  --cs-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11.5M9 3.5 13.5 8 9 12.5' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --cs-chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 6 8 10.5 12.5 6' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --cs-prev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M10 3.5 5.5 8l4.5 4.5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --cs-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3.5l4.5 4.5L6 12.5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --cs-underline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C48 5.5 118 3.5 197 7.5' fill='none' stroke='%23080d0d' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  --cs-underline-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C48 5.5 118 3.5 197 7.5' fill='none' stroke='%238fd3ef' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  --cs-orbit-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%238fd3ef' stroke-width='2.2' stroke-linecap='round' stroke-dasharray='0 7'%3E%3Ccircle cx='80' cy='80' r='22'/%3E%3Ccircle cx='80' cy='80' r='38' opacity='.8'/%3E%3Ccircle cx='80' cy='80' r='54' opacity='.6'/%3E%3Ccircle cx='80' cy='80' r='70' opacity='.4'/%3E%3C/g%3E%3C/svg%3E");
+  --cs-orbit-ink: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23080d0d' stroke-width='2.4' stroke-linecap='round' stroke-dasharray='0 7'%3E%3Ccircle cx='80' cy='80' r='26'/%3E%3Ccircle cx='80' cy='80' r='42' opacity='.7'/%3E%3Ccircle cx='80' cy='80' r='58' opacity='.45'/%3E%3Ccircle cx='80' cy='80' r='74' opacity='.25'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Bootstrap 5 / Boost */
+  --bs-body-bg: #c7e9f2;
+  --bs-body-bg-rgb: 199, 233, 242;
+  --bs-body-color: #080d0d;
+  --bs-body-color-rgb: 8, 13, 13;
+  --bs-body-font-family: var(--nm-font);
+  --bs-body-font-size: .9375rem;
+  --bs-emphasis-color: #080d0d;
+  --bs-emphasis-color-rgb: 8, 13, 13;
+  --bs-secondary-color: #3d555b;
+  --bs-secondary-color-rgb: 61, 85, 91;
+  --bs-tertiary-color: #3d555b;
+  --bs-secondary-bg: #dcf0f6;
+  --bs-tertiary-bg: #dcf0f6;
+  --bs-primary: #080d0d;
+  --bs-primary-rgb: 8, 13, 13;
+  --bs-primary-text-emphasis: #080d0d;
+  --bs-primary-bg-subtle: #dcf0f6;
+  --bs-primary-border-subtle: #a7cbd5;
+  --bs-secondary: #3d555b;
+  --bs-secondary-rgb: 61, 85, 91;
+  --bs-success: #246c50;
+  --bs-success-rgb: 36, 108, 80;
+  --bs-warning: #885c09;
+  --bs-warning-rgb: 136, 92, 9;
+  --bs-danger: #a83146;
+  --bs-danger-rgb: 168, 49, 70;
+  --bs-info: #1c5568;
+  --bs-info-rgb: 28, 85, 104;
+  --bs-link-color: #080d0d;
+  --bs-link-color-rgb: 8, 13, 13;
+  --bs-link-hover-color: #1c5568;
+  --bs-link-hover-color-rgb: 28, 85, 104;
+  --bs-link-decoration: none;
+  --bs-border-color: #a7cbd5;
+  --bs-border-color-translucent: rgba(8, 13, 13, .14);
+  --bs-border-radius: 10px;
+  --bs-border-radius-sm: 8px;
+  --bs-border-radius-lg: 16px;
+  --bs-focus-ring-color: rgba(8, 13, 13, .35);
+  --bs-heading-color: #080d0d;
+  --bs-card-bg: #eff9fc;
+  --bs-card-cap-bg: #dcf0f6;
+  color-scheme: light;
+  caret-color: #080d0d;
+  accent-color: #080d0d;
+
+  /* Browser scrollbars: a thin black pill on the sky */
+  scrollbar-color: #080d0d transparent;
+  scrollbar-width: thin;
+}
+
+/* ==========================================================================
+   Browser surfaces
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] ::selection { background: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] :is(input, textarea, [contenteditable]) { caret-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] :is(.table-responsive, .drawer, .dropdown-menu, .modal-body, pre, .nm-todo-list, [data-region="day-content"], .calendarwrapper, .course-content) {
+  scrollbar-color: var(--cs-ink) transparent;
+  scrollbar-width: thin;
+}
+html[data-nm-theme="cloudstudio"] ::-webkit-scrollbar { inline-size: 12px; block-size: 12px; }
+html[data-nm-theme="cloudstudio"] ::-webkit-scrollbar-track { background: transparent; }
+html[data-nm-theme="cloudstudio"] ::-webkit-scrollbar-thumb {
+  background: var(--cs-ink); border: 3px solid transparent; border-radius: 999px; background-clip: padding-box;
+}
+html[data-nm-theme="cloudstudio"] ::-webkit-scrollbar-corner { background: transparent; }
+html[data-nm-theme="cloudstudio"] :is(a, button, input, select, textarea, summary, [tabindex], .btn):focus-visible {
+  outline: 2px solid var(--cs-ink) !important;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+/* osiris paints a cyan focus band on links; the black ring replaces it */
+html[data-nm-theme="cloudstudio"] :is(.aalink, a.autolink, .arrow_link, a:not([class]), #page-footer a:not([class])):is(:focus, .focus) {
+  background-color: transparent; box-shadow: none; color: inherit;
+}
+
+/* ==========================================================================
+   Canvas & type
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] body {
+  background-color: var(--cs-sky) !important;
+  /* "subtle cloudy tonal variation": soft light and deep patches, fixed like a sky */
+  background-image:
+    radial-gradient(60rem 34rem at 82% 8%, rgba(255, 255, 255, .42), transparent 70%),
+    radial-gradient(48rem 30rem at 8% 92%, rgba(255, 255, 255, .3), transparent 70%),
+    radial-gradient(50rem 40rem at 100% 100%, rgba(150, 205, 222, .35), transparent 70%) !important;
+  background-attachment: fixed !important;
+  color: var(--nm-text);
+  font-family: var(--nm-font);
+  font-size: .9375rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html[data-nm-theme="cloudstudio"] :is(#page, #page-wrapper, #topofscroll, #page-content, #region-main, #region-main-box, .main-inner, #page-header, #page-header .w-100, .course-content-header) {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0;
+}
+html[data-nm-theme="cloudstudio"] #region-main { padding: 0; }
+html[data-nm-theme="cloudstudio"] :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+  font-family: var(--nm-heading-font);
+  color: var(--nm-text);
+}
+html[data-nm-theme="cloudstudio"] :is(h1, h2, h3, .h1, .h2, .h3) { font-weight: 800; letter-spacing: -.03em; }
+html[data-nm-theme="cloudstudio"] :is(td, th, .date, time, .timeremaining, .nm-game-stat-value, .day-number) { font-variant-numeric: tabular-nums; }
+
+/* Links: black text, underline on hover (the "FAQ" link) */
+html[data-nm-theme="cloudstudio"] a {
+  color: var(--cs-ink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: .22em;
+}
+html[data-nm-theme="cloudstudio"] a:hover { color: var(--cs-ink); text-decoration: underline; }
+html[data-nm-theme="cloudstudio"] .text-primary { color: var(--nm-accent-text) !important; }
+html[data-nm-theme="cloudstudio"] :is(.text-muted, .muted, .text-secondary, .dimmed_text) { color: var(--nm-text-muted) !important; }
+html[data-nm-theme="cloudstudio"] :is(.bg-white, .bg-light) { background-color: transparent !important; }
+
+/* ==========================================================================
+   Top bar: same sky, a thin divider, compact links, a black pill at the end
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top {
+  background: rgba(199, 233, 242, .92) !important;
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  backdrop-filter: saturate(1.2) blur(10px);   /* sticky bar over scrolling content: a functional blur */
+  border-block-end: 1px solid rgba(8, 13, 13, .14) !important;
+  box-shadow: none !important;
+  min-block-size: 64px;
+  font-family: var(--nm-font);
+}
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .navbar-brand {
+  color: var(--cs-ink) !important;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -.04em;
+}
+/* the asterisk of "cloudstudio*" */
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .navbar-brand::after {
+  content: "*";
+  margin-inline-start: .04em;
+  font-weight: 800;
+  transform: translateY(-.12em);
+}
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .navbar-brand img.logo { max-block-size: 32px; mix-blend-mode: multiply; }
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .navbar-brand img.logo[src="data:,"] { display: none; }
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top :is(.nav-link, .usertext, .userbutton, .btn, a) { color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navigation .nav-link {
+  display: flex; align-items: center;
+  block-size: auto;
+  padding: .4rem .7rem !important;
+  border: 0 !important;
+  border-radius: var(--cs-pill);
+  background: transparent !important;
+  font-size: .9375rem;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--cs-ink) !important;
+  text-decoration: none;
+  transition: background-color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navigation .nav-link:hover { background: rgba(8, 13, 13, .06) !important; }
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navigation .nav-link:is(.active, [aria-current="true"]) {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .32em;
+  border-block-end: 0 !important;
+}
+html[data-nm-theme="cloudstudio"] .primary-navigation .navigation .nav-link.active::before { display: none !important; }
+/* clean drawn chevrons on every dropdown toggle (no odd glyphs) */
+html[data-nm-theme="cloudstudio"] .dropdown-toggle::after {
+  content: "" !important;
+  display: inline-block;
+  inline-size: .8em; block-size: .8em;
+  margin-inline-start: .3em;
+  border: 0 !important;
+  vertical-align: -.1em;
+  background: currentColor;
+  -webkit-mask: var(--cs-chev) center / contain no-repeat;
+          mask: var(--cs-chev) center / contain no-repeat;
+  font-family: inherit !important;
+}
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top :is(.popover-region-toggle, .nav-link.icon-no-margin) {
+  inline-size: 38px; block-size: 38px; justify-content: center; display: inline-flex; align-items: center;
+  border-radius: 50%;
+  color: var(--cs-ink) !important;
+}
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top :is(.popover-region-toggle, .nav-link.icon-no-margin):hover { background: rgba(8, 13, 13, .07) !important; }
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .divider { border-color: rgba(8, 13, 13, .14) !important; background: rgba(8, 13, 13, .14) !important; }
+html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .count-container {
+  background: var(--cs-ink) !important; color: var(--cs-blue) !important; font-family: var(--cs-mono); font-weight: 600;
+}
+/* user menu: the black "Book a call" pill, avatar inside */
+html[data-nm-theme="cloudstudio"] #user-menu-toggle {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: 3px .7rem 3px 3px !important;
+  border-radius: var(--cs-pill);
+  background: var(--cs-ink) !important;
+  color: var(--cs-blue) !important;
+  inline-size: auto !important; block-size: auto !important;
+  text-decoration: none;
+  transition: transform var(--cs-press), background-color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] #user-menu-toggle:hover { background: var(--cs-ink-2) !important; }
+html[data-nm-theme="cloudstudio"] #user-menu-toggle:active { transform: scale(.96); }
+html[data-nm-theme="cloudstudio"] #user-menu-toggle::after { background: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .userinitials {
+  inline-size: 32px !important; block-size: 32px !important;
+  background: var(--cs-blue) !important;
+  color: var(--cs-ink) !important;
+  border: 0 !important;
+  font-family: var(--nm-font); font-weight: 800; font-size: .78rem; letter-spacing: -.02em;
+}
+html[data-nm-theme="cloudstudio"] .usermenu .avatar img { border-radius: 50%; }
+/* edit-mode switch */
+html[data-nm-theme="cloudstudio"] .editmode-switch-form .form-check-label { font-size: .875rem; font-weight: 500; color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .form-switch .form-check-input {
+  background-color: var(--cs-well); border-color: var(--cs-ink);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23080d0d'/%3e%3c/svg%3e");
+}
+html[data-nm-theme="cloudstudio"] .form-switch .form-check-input:checked {
+  background-color: var(--cs-ink); border-color: var(--cs-ink);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%238fd3ef'/%3e%3c/svg%3e");
+}
+/* drawer togglers (osiris purple squares) */
+html[data-nm-theme="cloudstudio"] .drawer-toggles .btn,
+html[data-nm-theme="cloudstudio"] .drawer-toggler .btn {
+  inline-size: 40px; block-size: 40px; padding: 0;
+  border-radius: 50% !important;
+  background: var(--cs-ink) !important; color: var(--cs-blue) !important; border: 0 !important;
+  box-shadow: none !important;
+}
+html[data-nm-theme="cloudstudio"] .drawer-toggles .btn .icon { color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"] .drawer { background: var(--cs-ice) !important; border-color: rgba(8, 13, 13, .14) !important; }
+
+/* ==========================================================================
+   Page header: the big tight headline with a hand-drawn underline
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] #page-header { padding-block: 1.25rem .5rem; margin-block-end: 1rem; }
+html[data-nm-theme="cloudstudio"] #page-header :is(h1, .h1, .h2) {
+  display: inline-block;
+  margin: 0;
+  padding-block-end: .2em;
+  font-family: var(--nm-heading-font);
+  font-size: clamp(1.9rem, 1.2rem + 1.8vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.04em;
+  color: var(--cs-ink) !important;
+  text-wrap: balance;
+  background: var(--cs-underline) left bottom / 100% .32em no-repeat;
+  animation: cs-draw 900ms cubic-bezier(.16, 1, .3, 1) 150ms both;   /* the one authored moment */
+}
+html[data-nm-theme="cloudstudio"][dir="rtl"] #page-header :is(h1, .h1, .h2) { background-position: right bottom; }
+@keyframes cs-draw { from { background-size: 0% .32em; } to { background-size: 100% .32em; } }
+html[data-nm-theme="cloudstudio"] #page-header .page-context-header { align-items: center; }
+html[data-nm-theme="cloudstudio"] #page-header .page-header-headings { flex: 0 1 auto; }
+html[data-nm-theme="cloudstudio"] #page-header .me-auto:has(.nm-header-slot) { flex: 1 1 auto; min-inline-size: 0; }
+/* course header lecturers: a quiet line under the headline */
+html[data-nm-theme="cloudstudio"] ul.teachers {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem;
+  margin: .65rem 0 0; padding: 0;
+  font-size: .9375rem;
+}
+html[data-nm-theme="cloudstudio"] ul.teachers a { color: var(--cs-ink); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(8, 13, 13, .3); }
+html[data-nm-theme="cloudstudio"] ul.teachers a:hover { text-decoration-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] ul.teachers .separator { display: none; }
+html[data-nm-theme="cloudstudio"] #page-navbar .breadcrumb {
+  font-family: var(--cs-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  background: transparent; padding: 0; margin-block-end: .5rem;
+}
+html[data-nm-theme="cloudstudio"] #page-navbar .breadcrumb a { color: var(--nm-text-muted); }
+
+/* ==========================================================================
+   Blocks: ice panels, a black rule under each heavy title
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] :is(.block.card, section.nm-block) {
+  background: var(--cs-ice) !important;
+  border: 0 !important;
+  border-radius: var(--nm-radius) !important;
+  box-shadow: none !important;
+  color: var(--nm-text);
+}
+html[data-nm-theme="cloudstudio"] :is(.block.card, section.nm-block) > .card-body { padding: 1.15rem 1.25rem 1.2rem !important; }
+html[data-nm-theme="cloudstudio"] :is(.block.card, section.nm-block) .card-title,
+html[data-nm-theme="cloudstudio"] .nm-block-title {
+  margin: 0 !important;
+  font-family: var(--nm-heading-font);
+  font-size: 1.1875rem !important;   /* 19px */
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.035em;
+  color: var(--cs-ink) !important;
+}
+html[data-nm-theme="cloudstudio"] .block.card > .card-body > .d-flex:first-child:has(.card-title),
+html[data-nm-theme="cloudstudio"] .block.card > .card-body > .card-title,
+html[data-nm-theme="cloudstudio"] .nm-block-head {
+  align-items: center;
+  padding-block-end: .7rem;
+  border-block-end: 1.5px solid var(--cs-ink);
+}
+html[data-nm-theme="cloudstudio"] .block.card .card-text.content { margin-block-start: .9rem !important; }
+html[data-nm-theme="cloudstudio"] .block.card .card-text .card-text.content { margin-block-start: 0 !important; }
+
+/* block footers ("Go to calendar...") read like a text CTA with a trailing arrow */
+html[data-nm-theme="cloudstudio"] .block.card .footer { margin-block-start: .6rem; padding: 0; border: 0; background: transparent; }
+html[data-nm-theme="cloudstudio"] .block.card .footer:empty { display: none; }
+html[data-nm-theme="cloudstudio"] .block.card :is(.footer, .bottom) a {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .875rem; font-weight: 600;
+  color: var(--cs-ink);
+  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .25em;
+}
+html[data-nm-theme="cloudstudio"] .block.card .gotocal a::after {
+  content: ""; inline-size: 14px; block-size: 14px; flex: none;
+  background: currentColor;
+  -webkit-mask: var(--cs-arrow) center / contain no-repeat;
+          mask: var(--cs-arrow) center / contain no-repeat;
+  transition: transform var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] .block.card .gotocal a:hover::after { transform: translateX(3px); }
+html[data-nm-theme="cloudstudio"][dir="rtl"] .block.card .gotocal a::after { transform: scaleX(-1); }
+
+/* ==========================================================================
+   Buttons: black pills with blue text; outlined pills for the rest
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .btn {
+  --bs-btn-font-family: var(--nm-font);
+  font-family: var(--nm-font);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  padding: .5rem 1.05rem;
+  border-radius: var(--cs-pill);
+  box-shadow: none !important;
+  transition: background-color var(--cs-ease), color var(--cs-ease), border-color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .btn:active { transform: scale(.97); }
+html[data-nm-theme="cloudstudio"] .btn-sm { font-size: .8125rem; padding: .35rem .8rem; }
+html[data-nm-theme="cloudstudio"] .btn-lg { font-size: 1rem; padding: .75rem 1.5rem; }
+html[data-nm-theme="cloudstudio"] .btn-primary {
+  --bs-btn-bg: #080d0d; --bs-btn-border-color: #080d0d; --bs-btn-color: #8fd3ef;
+  --bs-btn-hover-bg: #1a2526; --bs-btn-hover-border-color: #1a2526; --bs-btn-hover-color: #bfe8f8;
+  --bs-btn-active-bg: #000; --bs-btn-active-border-color: #000; --bs-btn-active-color: #bfe8f8;
+  background: var(--cs-ink) !important;
+  border: 1px solid var(--cs-ink) !important;
+  color: var(--cs-blue) !important;
+}
+html[data-nm-theme="cloudstudio"] .btn-primary:is(:hover, :focus-visible) { background: var(--cs-ink-2) !important; color: var(--cs-blue-hi) !important; }
+/* the trailing arrow on a page's main call to action */
+html[data-nm-theme="cloudstudio"] #region-main :is(.quizstartbuttondiv, .singlebutton, .continuebutton, .submissionaction) :is(button, a).btn-primary::after,
+html[data-nm-theme="cloudstudio"] #region-main [role="main"] > .container-fluid :is(button, a).btn-primary::after {
+  content: "";
+  display: inline-block;
+  inline-size: 1em; block-size: 1em;
+  margin-inline-start: .45em;
+  vertical-align: -.15em;
+  background: currentColor;
+  -webkit-mask: var(--cs-arrow) center / contain no-repeat;
+          mask: var(--cs-arrow) center / contain no-repeat;
+  transition: transform var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] #region-main :is(button, a).btn-primary:hover::after { transform: translateX(3px); }
+html[data-nm-theme="cloudstudio"][dir="rtl"] #region-main :is(button, a).btn-primary::after { transform: scaleX(-1); }
+html[data-nm-theme="cloudstudio"] :is(.btn-secondary, .btn-outline-secondary, .btn-outline-primary, .btn-light, .btn-default, .btn-outline-info) {
+  --bs-btn-bg: transparent; --bs-btn-color: #080d0d; --bs-btn-border-color: #080d0d;
+  --bs-btn-hover-bg: #080d0d; --bs-btn-hover-color: #8fd3ef; --bs-btn-hover-border-color: #080d0d;
+  --bs-btn-active-bg: #080d0d; --bs-btn-active-color: #8fd3ef;
+  background: transparent !important;
+  border: 1px solid var(--cs-ink) !important;
+  color: var(--cs-ink) !important;
+}
+html[data-nm-theme="cloudstudio"] :is(.btn-secondary, .btn-outline-secondary, .btn-outline-primary, .btn-light, .btn-default, .btn-outline-info):is(:hover, :focus-visible, .show, [aria-expanded="true"]) {
+  background: var(--cs-ink) !important;
+  color: var(--cs-blue) !important;
+}
+html[data-nm-theme="cloudstudio"] .btn-danger { background: var(--nm-danger) !important; border-color: var(--nm-danger) !important; color: #fff !important; }
+html[data-nm-theme="cloudstudio"] .btn-link { color: var(--cs-ink); font-weight: 600; text-decoration: underline; text-underline-offset: .22em; }
+html[data-nm-theme="cloudstudio"] :is(.btn-icon, .coursemenubtn) {
+  inline-size: 34px; block-size: 34px; padding: 0 !important;
+  display: inline-grid; place-items: center;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--cs-ink) !important;
+}
+html[data-nm-theme="cloudstudio"] :is(.btn-icon, .coursemenubtn):hover { background: rgba(8, 13, 13, .08) !important; }
+
+/* ==========================================================================
+   Forms: pale wells, black focus outline
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] :is(.form-control, .form-select, .custom-select, select, textarea, input[type="text"], input[type="search"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], input[type="date"]):not(.nm-todo-add-input, .nm-todo-edit, .form-check-input, .nm-sc-input) {
+  font-family: var(--nm-font);
+  font-size: .9375rem;
+  color: var(--cs-ink);
+  background-color: var(--cs-well);
+  border: 1px solid #93bcc8;
+  border-radius: 10px;
+  box-shadow: none;
+  transition: border-color var(--cs-ease), background-color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] :is(.form-control, .form-select, .custom-select) { min-block-size: 40px; padding-block: .45rem; padding-inline: .8rem; }
+html[data-nm-theme="cloudstudio"] :is(.form-select, select.custom-select) { padding-inline-end: 2.2rem; }
+html[data-nm-theme="cloudstudio"] :is(.form-control, .form-select, .custom-select, textarea):hover:not(:focus) { border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] :is(.form-control, .form-select, .custom-select, textarea, input[type="text"], input[type="email"], input[type="password"], input[type="search"]):focus:not(.nm-todo-add-input, .nm-todo-edit, .nm-sc-input) {
+  outline: 2px solid var(--cs-ink) !important;
+  outline-offset: 0;
+  border-color: var(--cs-ink);
+  background-color: #fff;
+  box-shadow: none !important;
+}
+html[data-nm-theme="cloudstudio"] ::placeholder { color: #557078; opacity: 1; }
+html[data-nm-theme="cloudstudio"] :is(.form-select, select.custom-select) {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 6 8 10.5 12.5 6' fill='none' stroke='%23080d0d' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 14px 14px;
+}
+/* checkboxes: black outlined squares, blue-backed checks */
+html[data-nm-theme="cloudstudio"] .form-check-input[type="checkbox"]:not([role="switch"]) {
+  border: 1.5px solid var(--cs-ink); border-radius: 4px;
+  background-color: var(--cs-well);
+}
+html[data-nm-theme="cloudstudio"] .form-check-input[type="checkbox"]:not([role="switch"]):checked {
+  background-color: var(--cs-blue); border-color: var(--cs-ink);
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 8.6 6.6 12 12.8 4.6' fill='none' stroke='%23080d0d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+html[data-nm-theme="cloudstudio"] .form-check-input[type="radio"]:checked { background-color: var(--cs-ink); border-color: var(--cs-ink); }
+
+/* ==========================================================================
+   Dropdowns, tooltips, popovers, modals
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .dropdown-menu {
+  --bs-dropdown-bg: #eff9fc;
+  --bs-dropdown-link-color: #080d0d;
+  --bs-dropdown-link-hover-bg: #c7e9f2;
+  --bs-dropdown-link-active-bg: #080d0d;
+  --bs-dropdown-link-active-color: #8fd3ef;
+  background: var(--cs-ice) !important;
+  border: 1px solid var(--cs-ink) !important;
+  border-radius: 14px !important;
+  padding: .35rem !important;
+  box-shadow: var(--cs-lift) !important;
+  font-family: var(--nm-font);
+  font-size: .875rem;
+}
+html[data-nm-theme="cloudstudio"] .dropdown-item {
+  border-radius: 9px;
+  padding: .45rem .7rem;
+  color: var(--cs-ink) !important;
+  font-weight: 500;
+  background: transparent;
+}
+html[data-nm-theme="cloudstudio"] .dropdown-item:is(:hover, :focus) { background: var(--cs-sky) !important; color: var(--cs-ink) !important; text-decoration: none; }
+html[data-nm-theme="cloudstudio"] .dropdown-item:is(.active, :active, [aria-current="true"], .dropdown-item-active) { background: var(--cs-ink) !important; color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"] .dropdown-divider { border-color: var(--cs-rule); margin: .3rem .2rem; }
+html[data-nm-theme="cloudstudio"] .dropdown-header { font-family: var(--cs-mono); font-size: .68rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--nm-text-muted); }
+/* the black speech-bubble tooltip ("That bar is the menu: ...") */
+html[data-nm-theme="cloudstudio"] .tooltip { --bs-tooltip-bg: #080d0d; --bs-tooltip-color: #fff; --bs-tooltip-opacity: 1; font-family: var(--nm-font); }
+html[data-nm-theme="cloudstudio"] .tooltip-inner {
+  background: var(--cs-ink); color: #fff;
+  border-radius: 10px; padding: .55rem .8rem;
+  font-weight: 700; font-size: .8125rem; line-height: 1.3;
+  box-shadow: var(--cs-lift);
+}
+html[data-nm-theme="cloudstudio"] .popover {
+  --bs-popover-bg: #eff9fc; --bs-popover-border-color: #080d0d;
+  border-radius: 14px; box-shadow: var(--cs-lift); font-family: var(--nm-font);
+}
+html[data-nm-theme="cloudstudio"] .modal-content {
+  background: var(--cs-ice);
+  border: 1px solid var(--cs-ink);
+  border-radius: 20px;
+  box-shadow: 0 30px 70px -20px rgba(8, 13, 13, .45);
+}
+html[data-nm-theme="cloudstudio"] :is(.modal-header, .modal-footer) { border-color: var(--cs-rule); }
+html[data-nm-theme="cloudstudio"] .modal-title { font-weight: 800; letter-spacing: -.03em; font-size: 1.25rem; }
+html[data-nm-theme="cloudstudio"] .modal-backdrop { --bs-backdrop-bg: #0b2b36; --bs-backdrop-opacity: .45; }
+
+/* ==========================================================================
+   Generic Bootstrap bits
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .card { --bs-card-bg: #eff9fc; --bs-card-border-color: #a7cbd5; }
+html[data-nm-theme="cloudstudio"] hr { border-color: var(--cs-ink); opacity: .2; }
+html[data-nm-theme="cloudstudio"] .border-bottom { border-color: var(--cs-rule) !important; }
+html[data-nm-theme="cloudstudio"] .badge {
+  font-family: var(--cs-mono); font-weight: 500; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
+  border-radius: var(--cs-pill); padding: .3em .7em;
+}
+html[data-nm-theme="cloudstudio"] :is(.badge.bg-primary, .badge-primary, .badge.bg-info) { background: var(--cs-ink) !important; color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"] :is(.badge.bg-secondary, .badge.bg-light) { background: var(--cs-sky) !important; color: var(--cs-ink) !important; }
+html[data-nm-theme="cloudstudio"] .alert { border-radius: 14px; border-width: 1px; font-size: .9375rem; }
+html[data-nm-theme="cloudstudio"] .alert-info { background: var(--nm-surface-2); border-color: var(--nm-border); color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .alert-success { background: #d7efe3; border-color: #9ccdb6; color: #1d5c44; }
+html[data-nm-theme="cloudstudio"] .alert-warning { background: #f6ecd2; border-color: #dcc28a; color: #6e4a06; }
+html[data-nm-theme="cloudstudio"] .alert-danger { background: #f7dde2; border-color: #e0a3ae; color: #8a2639; }
+html[data-nm-theme="cloudstudio"] .progress { block-size: 6px; background: var(--cs-sky) !important; border-radius: var(--cs-pill); overflow: hidden; }
+html[data-nm-theme="cloudstudio"] .progress-bar { background: var(--cs-ink) !important; border-radius: var(--cs-pill); }
+html[data-nm-theme="cloudstudio"] .page-link { color: var(--cs-ink); background: transparent; border-color: var(--nm-border); }
+html[data-nm-theme="cloudstudio"] .page-item.active .page-link { background: var(--cs-ink); border-color: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .list-group { --bs-list-group-bg: transparent; --bs-list-group-border-color: #c4e0e8; --bs-list-group-color: #080d0d; }
+/* nav-pills / non-menu tabs (osiris paints them teal) */
+html[data-nm-theme="cloudstudio"] :is(.nav-tabs:not(.more-nav), .nav-pills) {
+  --bs-nav-tabs-link-active-bg: #080d0d; --bs-nav-tabs-link-active-color: #8fd3ef;
+  --bs-nav-pills-link-active-bg: #080d0d; --bs-nav-pills-link-active-color: #8fd3ef;
+  background: var(--cs-sky); border-radius: var(--cs-pill); padding: 3px;
+}
+html[data-nm-theme="cloudstudio"] :is(.nav-tabs:not(.more-nav), .nav-pills) .nav-link { border-radius: var(--cs-pill); color: var(--cs-ink); font-weight: 600; }
+html[data-nm-theme="cloudstudio"] :is(.nav-tabs:not(.more-nav), .nav-pills) .nav-link:not(.active) { background: transparent !important; }
+html[data-nm-theme="cloudstudio"] :is(.nav-tabs:not(.more-nav), .nav-pills) .nav-link.active { background: var(--cs-ink) !important; color: var(--cs-blue) !important; }
+
+/* ==========================================================================
+   Course overview
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] [data-region="filter"] { margin-block: 0 1rem !important; }
+html[data-nm-theme="cloudstudio"] [data-region="filter"] > .d-flex { gap: .5rem !important; }
+html[data-nm-theme="cloudstudio"] [data-region="filter"] :is(.dropdown, .btn-group) { margin: 0 !important; }
+html[data-nm-theme="cloudstudio"] .block_myoverview .whitebutton .btn-secondary { background: transparent !important; border-color: var(--cs-ink) !important; color: var(--cs-ink) !important; }
+html[data-nm-theme="cloudstudio"] [data-region="filter"] input.form-control { border-radius: var(--cs-pill) !important; padding-inline: 1rem; }
+html[data-nm-theme="cloudstudio"] .block_myoverview :is(.course-card, .dashboard-card) {
+  background: var(--cs-well) !important;
+  border: 1px solid #b9dae3 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  overflow: hidden;
+  transition: border-color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] .block_myoverview :is(.course-card, .dashboard-card):hover { border-color: var(--cs-ink) !important; }
+html[data-nm-theme="cloudstudio"] .block_myoverview :is(.card-img-top, .dashboard-card-img) {
+  block-size: 6.25rem !important;
+  border-radius: 0 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  filter: saturate(.85);
+}
+html[data-nm-theme="cloudstudio"] .block_myoverview .course-info-container { padding: .75rem .85rem .35rem !important; background: transparent !important; }
+html[data-nm-theme="cloudstudio"] .block_myoverview .course-info-container .w-100 > .text-muted:first-child {
+  font-size: .8125rem; color: var(--nm-text-muted) !important; margin-block-end: .2rem !important;
+}
+html[data-nm-theme="cloudstudio"] .block_myoverview .coursename {
+  display: block;
+  margin: 0 0 .4rem !important;
+  color: var(--cs-ink) !important;
+  font-size: .9688rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  white-space: normal;
+  text-decoration: none;
+}
+html[data-nm-theme="cloudstudio"] .block_myoverview .coursename:hover { text-decoration: underline; }
+/* category: a small monospace label with a diamond bullet ("◆ AGENTS & APPLIED AI") */
+html[data-nm-theme="cloudstudio"] .block_myoverview .categoryname {
+  display: inline-flex; align-items: center; gap: .45em;
+  font-family: var(--cs-mono);
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #2c444a !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  line-height: 1.35;
+}
+html[data-nm-theme="cloudstudio"] .block_myoverview .categoryname::before {
+  content: ""; inline-size: 5px; block-size: 5px; flex: none; background: currentColor; transform: rotate(45deg); align-self: flex-start; margin-block-start: .4em;
+}
+html[data-nm-theme="cloudstudio"] .block_myoverview .card-footer { background: transparent !important; border: 0 !important; padding: .2rem .4rem .4rem !important; }
+html[data-nm-theme="cloudstudio"] .block_myoverview .progress-text { font-family: var(--cs-mono); font-size: .7rem; color: var(--nm-text-muted); }
+html[data-nm-theme="cloudstudio"] .block_myoverview :is(.list-group-item, .course-listitem, .course-summaryitem) {
+  background: transparent; border: 0; border-block-end: 1px solid var(--cs-rule); border-radius: 0;
+}
+
+/* ==========================================================================
+   Activity icons everywhere: black glyph on a blue tile
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .activityiconcontainer:not(.isbranded) :is(.activityicon, .icon):not(.nofilter) { filter: brightness(0) !important; }
+html[data-nm-theme="cloudstudio"] :is(.activityiconcontainer, .activity-icon):not(.isbranded):not(.d-flex) {
+  background: var(--cs-blue) !important;
+  border-radius: 10px !important;
+}
+html[data-nm-theme="cloudstudio"] .activityiconcontainer.isbranded { background: #fff !important; border-radius: 10px !important; }
+html[data-nm-theme="cloudstudio"] .activityiconcontainer:not(.d-flex) { box-sizing: border-box; display: inline-grid; place-items: center; }
+html[data-nm-theme="cloudstudio"] .activityiconcontainer:not(.d-flex) > :is(img, .activityicon, .icon) {
+  inline-size: 100% !important; block-size: 100% !important; max-inline-size: 100% !important; max-block-size: 100% !important; object-fit: contain;
+}
+
+/* ==========================================================================
+   Upcoming events
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] {
+  display: flex;
+  align-items: flex-start;
+  padding: .8rem 0 .85rem !important;
+  border-block-end: 1px solid var(--cs-rule) !important;
+  background: transparent;
+}
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] .activityiconcontainer {
+  inline-size: 34px !important; block-size: 34px !important;
+  min-inline-size: 34px; max-inline-size: 34px; max-block-size: 34px;
+  padding: 6px; flex: none;
+  margin-inline-end: .75rem !important;
+}
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] > .overflow-auto { flex: 1 1 auto; min-inline-size: 0; overflow: visible !important; }
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] h4 { margin: 0 0 .15rem !important; font-size: .9375rem !important; font-weight: 700; line-height: 1.3; letter-spacing: -.015em; }
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] h4 a { color: var(--cs-ink); white-space: normal; }
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] h6 {
+  margin: 0 0 .3rem !important;
+  font-size: .8125rem !important; font-weight: 500;
+  color: var(--nm-text-muted) !important;
+}
+/* the date: tracked monospace with a drawn diamond (and no extra calendar icon) */
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date {
+  display: flex; align-items: center; gap: .45rem;
+  font-family: var(--cs-mono);
+  font-size: .6875rem !important;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+}
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date::before {
+  content: ""; inline-size: 5px; block-size: 5px; flex: none; background: currentColor; transform: rotate(45deg);
+}
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date :is(a, span) { color: inherit; text-decoration: none; }
+html[data-nm-theme="cloudstudio"] .event[data-region="event-item"] div.date a:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   Timeline
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] > .p-0 { padding: 0 !important; }
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] h5 {
+  font-family: var(--cs-mono); font-size: .7rem !important; font-weight: 500 !important; letter-spacing: .1em; text-transform: uppercase;
+  padding-block-end: .4rem; margin-block-start: 1rem !important; border-block-end: 1px solid var(--cs-rule);
+}
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] .list-group-item {
+  background: transparent; border-color: var(--cs-rule) !important; border-width: 0 0 1px !important; padding-block: .7rem !important; padding-inline: 0 !important;
+}
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] .activityiconcontainer { inline-size: 34px !important; block-size: 34px !important; padding: 6px; }
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] .event-name { color: var(--cs-ink); font-weight: 700; font-size: .9375rem; }
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] small { font-family: var(--cs-mono); font-size: .6875rem; letter-spacing: .04em; }
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] [data-region="empty-message"] { padding-block: 1rem .25rem; font-weight: 600; color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] :is([data-region="timeline"], .block_myoverview, .block_recentlyaccesseditems) img:is(.empty-placeholder-image-lg, .empty-placeholder-image-sm),
+html[data-nm-theme="cloudstudio"] [data-region="timeline"] [data-region="empty-message"] img {
+  filter: grayscale(1) brightness(.35); opacity: .5; max-block-size: 3.5rem;
+}
+
+/* ==========================================================================
+   Announcements
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .block_news_items .card-text { color: var(--nm-text-muted); }
+html[data-nm-theme="cloudstudio"] .block_news_items .post { padding-block: .7rem; border-block-end: 1px solid var(--cs-rule); }
+html[data-nm-theme="cloudstudio"] .block_news_items .post .info a { color: var(--cs-ink); font-weight: 700; }
+html[data-nm-theme="cloudstudio"] .block_news_items .post :is(.date, .name) {
+  font-family: var(--cs-mono); font-size: .6875rem; letter-spacing: .05em; text-transform: uppercase; color: var(--nm-text-muted);
+}
+
+/* ==========================================================================
+   Recently accessed
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .card {
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-block-end: 1px solid var(--cs-rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .card:last-child { border-block-end: 0 !important; }
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .card > a {
+  display: block; border-radius: 10px; color: var(--cs-ink); text-decoration: none;
+  transition: background-color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .card > a:hover { background: var(--nm-surface-2); }
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .card-body { padding: .55rem .35rem !important; margin: 0 !important; }
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .d-flex.activityiconcontainer {
+  background: transparent !important; inline-size: auto !important; block-size: auto !important; max-inline-size: none; max-block-size: none;
+}
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] .activity-icon.activityiconcontainer { inline-size: 34px !important; block-size: 34px !important; padding: 6px; }
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] h4 { font-size: .9063rem !important; font-weight: 700; letter-spacing: -.015em; color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] [data-region="recentlyaccesseditems-view"] small { font-size: .78rem; color: var(--nm-text-muted); }
+
+/* ==========================================================================
+   Calendar (dashboard block + full month page)
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .calendarwrapper .controls { margin-block: .25rem .75rem; }
+/* month nav: prev | current | next on one clean grid row, never overlapping */
+html[data-nm-theme="cloudstudio"] .calendar-controls {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: .5rem;
+  margin: 0 !important;
+}
+html[data-nm-theme="cloudstudio"] .calendar-controls > .hide { display: none !important; }
+html[data-nm-theme="cloudstudio"] .calendar-controls .current {
+  grid-column: 2; grid-row: 1;
+  inline-size: auto !important; float: none !important;
+  margin: 0 !important;
+  font-family: var(--nm-heading-font);
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_link {
+  grid-row: 1;
+  display: inline-flex; align-items: center; gap: .4rem;
+  min-inline-size: 0; max-inline-size: 100%;
+  block-size: 34px;
+  padding-inline: .75rem;
+  border: 1px solid var(--cs-ink);
+  border-radius: var(--cs-pill);
+  color: var(--cs-ink) !important;
+  font-size: .8125rem; font-weight: 600;
+  text-decoration: none !important;
+  white-space: nowrap;
+  float: none !important;
+  inline-size: auto !important;
+  transition: background-color var(--cs-ease), color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_link.previous { grid-column: 1; justify-self: start; }
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_link.next { grid-column: 3; justify-self: end; }
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_link:hover { background: var(--cs-ink); color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_link:active { transform: scale(.96); }
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_text { overflow: hidden; text-overflow: ellipsis; min-inline-size: 0; }
+/* the text glyph arrows (U+25C0 / U+25B6) become drawn chevrons */
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow {
+  font-size: 0 !important; color: transparent !important;
+  inline-size: 14px; block-size: 14px; flex: none;
+  background-color: var(--cs-ink);
+  -webkit-mask: var(--cs-prev) center / contain no-repeat;
+          mask: var(--cs-prev) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"] .calendar-controls .arrow_link:hover .arrow { background-color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .calendar-controls .next .arrow { -webkit-mask-image: var(--cs-next); mask-image: var(--cs-next); }
+html[data-nm-theme="cloudstudio"][dir="rtl"] .calendar-controls .arrow { transform: scaleX(-1); }
+/* in the narrow dashboard block: round arrow buttons only; month names stay in the aria-labels */
+html[data-nm-theme="cloudstudio"] .block_calendar_month .calendar-controls .arrow_link { inline-size: 34px !important; padding: 0; justify-content: center; background: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .block_calendar_month .calendar-controls .arrow_link:hover { background: var(--cs-ink-2); }
+html[data-nm-theme="cloudstudio"] .block_calendar_month .calendar-controls .arrow_text {
+  position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+html[data-nm-theme="cloudstudio"] .block_calendar_month .calendar-controls .arrow { background-color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .block_calendar_month .calendar-controls .current { font-size: 1.125rem !important; }
+
+/* filter row above the month (course select + New event) */
+html[data-nm-theme="cloudstudio"] .maincalendar .header { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-block-end: .75rem; }
+html[data-nm-theme="cloudstudio"] .maincalendar .header :is(.btn, select) { float: none !important; margin: 0 !important; }
+html[data-nm-theme="cloudstudio"] .maincalendar .header select { flex: 1 1 12rem; min-inline-size: 0; }
+
+/* the month grid: pale cells, black today, blue event markers */
+html[data-nm-theme="cloudstudio"] table.calendarmonth {
+  table-layout: fixed;
+  border-collapse: separate !important;
+  border-spacing: 3px !important;
+  margin-inline: -3px;
+  inline-size: calc(100% + 6px);
+  background: transparent;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth th {
+  display: table-cell !important;
+  padding: .25rem 0 .4rem !important;
+  border: 0 !important;
+  font-family: var(--cs-mono);
+  font-size: .6563rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--nm-text-muted);
+  text-align: center;
+  background: transparent !important;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth td {
+  border: 0 !important;
+  border-radius: 8px;
+  background: var(--cs-well) !important;
+  padding: 4px !important;
+  vertical-align: top;
+  block-size: 3.3rem;
+  overflow: hidden;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.dayblank { background: transparent !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.weekend { background: #e3f3f8 !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.day:hover { background: #fff !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td .day-number-circle {
+  display: inline-grid !important; place-items: center;
+  inline-size: 24px !important; block-size: 24px !important;
+  border-radius: 50%;
+  background: transparent;
+  line-height: 1 !important;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth td .day-number {
+  display: inline !important; padding: 0 !important; inline-size: auto !important; block-size: auto !important; position: static !important;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth td .day-number::before { content: none !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.clickable:not(.today):hover .day-number-circle { background: var(--cs-sky) !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td :is(.day-number-circle, .day-number) { font-size: .78rem; font-weight: 600; color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td a.day { color: var(--cs-ink); text-decoration: none; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.today .day-number-circle { background: var(--cs-ink) !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.today :is(.day-number-circle, .day-number) { color: var(--cs-blue) !important; font-weight: 800; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.today .day-number { background: transparent !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth td.today { box-shadow: inset 0 0 0 1.5px var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] table.calendarmonth ul { margin: 2px 0 0; padding: 0; list-style: none; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth li { margin: 0; line-height: 1.25; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth li a {
+  display: flex; align-items: center; gap: 3px;
+  font-size: .6875rem; font-weight: 500;
+  color: var(--cs-ink) !important;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  text-decoration: none;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth .eventname { overflow: hidden; text-overflow: ellipsis; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth .calendar-circle {
+  flex: none;
+  display: inline-block;
+  inline-size: 7px !important; block-size: 7px !important;
+  margin: 0 !important; padding: 0 !important;
+  font-size: 0 !important; line-height: 0;
+  border-radius: 50%;
+  border: 1px solid var(--cs-ink) !important;
+  background: var(--cs-blue-mid) !important;
+}
+html[data-nm-theme="cloudstudio"] table.calendarmonth .calendar-circle.calendar_event_user { background: var(--cs-ink) !important; }
+html[data-nm-theme="cloudstudio"] table.calendarmonth .calendar-circle.calendar_event_site { background: #e5e85e !important; }
+/* the narrow block: dots only, under the number */
+html[data-nm-theme="cloudstudio"] .block_calendar_month table.calendarmonth td { block-size: 2.7rem; padding: 3px 2px !important; text-align: center; }
+html[data-nm-theme="cloudstudio"] .block_calendar_month table.calendarmonth td > div { text-align: center !important; }
+html[data-nm-theme="cloudstudio"] .block_calendar_month table.calendarmonth ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; }
+html[data-nm-theme="cloudstudio"] .block_calendar_month table.calendarmonth li a { justify-content: center; }
+html[data-nm-theme="cloudstudio"] .block_calendar_month table.calendarmonth .eventname,
+html[data-nm-theme="cloudstudio"] .block_calendar_month table.calendarmonth li[data-action="view-more-events"] { display: none !important; }
+html[data-nm-theme="cloudstudio"] .block_calendar_month .bottom { margin-block-start: .75rem; font-size: .8125rem; }
+/* full-page cells: room for event names */
+html[data-nm-theme="cloudstudio"] #page-calendar-view table.calendarmonth td { block-size: 6.25rem; padding: 6px !important; }
+html[data-nm-theme="cloudstudio"] #page-calendar-view table.calendarmonth li a { font-size: .75rem; padding-block: 1px; }
+html[data-nm-theme="cloudstudio"] #page-calendar-view .calendarwrapper { background: var(--cs-ice); border-radius: var(--nm-radius); padding: 1rem 1.15rem 1.2rem; }
+html[data-nm-theme="cloudstudio"] #page-calendar-view .calendar-controls .current { font-size: 1.75rem !important; letter-spacing: -.04em; }
+/* the minicalendar variant, if HUJI ever switches to it */
+html[data-nm-theme="cloudstudio"] table.minicalendar td.today :is(a, .day-number) { background: var(--cs-ink); color: var(--cs-blue) !important; border-radius: 50%; }
+
+/* ==========================================================================
+   Course page
+   ========================================================================== */
+/* course tabs = the black ticker band, links split by four-point stars */
+html[data-nm-theme="cloudstudio"] .secondary-navigation {
+  position: relative;
+  margin-block: .5rem 1.5rem;
+  padding: 0;
+  background: var(--cs-ink);
+  box-shadow: 0 0 0 100vmax var(--cs-ink);
+  clip-path: inset(0 -100vmax);
+  border: 0 !important;
+}
+html[data-nm-theme="cloudstudio"] .secondary-navigation .navigation { border: 0 !important; background: transparent; }
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-tabs {
+  display: flex; flex-wrap: nowrap; align-items: center;
+  gap: 0;
+  border: 0 !important;
+  background: transparent !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: .6rem;
+}
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-tabs::-webkit-scrollbar { display: none; }
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-item { display: flex; align-items: center; flex: none; }
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-item + .nav-item::before {
+  content: "";
+  inline-size: 15px; block-size: 15px; flex: none;
+  margin-inline: .6rem;
+  background: var(--cs-blue);
+  -webkit-mask: var(--cs-star) center / contain no-repeat;
+          mask: var(--cs-star) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link {
+  padding: .3rem .3rem .4rem !important;
+  border: 0 !important;
+  border-radius: 6px;
+  background: transparent !important;
+  color: var(--cs-blue) !important;
+  font-family: var(--nm-heading-font);
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.15;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link:hover { color: var(--cs-blue-hi) !important; }
+/* the active tab: white, with the hand-drawn underline re-inked in blue */
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link:is(.active, [aria-current="true"]) {
+  color: #fff !important;
+  background: var(--cs-underline-blue) left bottom / 100% .3em no-repeat !important;
+}
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link:not(.dropdown-toggle)::after,
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link::before { display: none !important; }
+html[data-nm-theme="cloudstudio"] .secondary-navigation .dropdown-toggle::after { background: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link:focus-visible { outline-color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"] .tertiary-navigation { margin-block-end: 1rem; }
+
+/* sections: ice panels with a heavy section title */
+html[data-nm-theme="cloudstudio"] .course-content :is(ul.topics, ul.weeks, ul.sections) { padding: 0; margin: 0; }
+html[data-nm-theme="cloudstudio"] .course-content li.section {
+  background: var(--cs-ice) !important;
+  border: 0 !important;
+  border-radius: var(--nm-radius) !important;
+  box-shadow: none !important;
+  padding: 1rem 1.25rem 1.1rem !important;
+  margin-block-end: 1rem !important;
+}
+html[data-nm-theme="cloudstudio"] .course-content .section-item { padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; }
+html[data-nm-theme="cloudstudio"] .course-section.current > .section-item::before { content: none !important; display: none !important; }
+html[data-nm-theme="cloudstudio"] .course-content .course-section-header {
+  align-items: center;
+  padding-block-end: .7rem;
+  border-block-end: 1.5px solid var(--cs-ink);
+  margin-block-end: .25rem;
+}
+html[data-nm-theme="cloudstudio"] .course-content .sectionname {
+  margin: 0 !important;
+  font-family: var(--nm-heading-font);
+  font-size: 1.5rem !important;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.15;
+}
+html[data-nm-theme="cloudstudio"] .course-content .sectionname a { color: var(--cs-ink); text-decoration: none; }
+html[data-nm-theme="cloudstudio"] .course-content .icons-collapse-expand {
+  display: inline-grid; place-items: center;
+  inline-size: 32px; block-size: 32px; padding: 0 !important;
+  margin-inline-end: .75rem !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--cs-ink) !important;
+  color: var(--cs-blue) !important;
+  transition: transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .course-content .icons-collapse-expand :is(.icon, span) { color: var(--cs-blue) !important; background: transparent !important; padding: 0 !important; }
+html[data-nm-theme="cloudstudio"] .course-content .icons-collapse-expand:active { transform: scale(.92); }
+html[data-nm-theme="cloudstudio"] :is(.collapseexpand, #collapsesections, .section-collapsemenu) {
+  font-family: var(--cs-mono); font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--cs-ink) !important; text-decoration: underline; text-underline-offset: .3em;
+}
+html[data-nm-theme="cloudstudio"] .course-content :is(.summary, .summarytext) { font-size: .9375rem; color: var(--cs-ink); }
+
+/* activity rows */
+html[data-nm-theme="cloudstudio"] .course-content li.activity {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-block-end: 1px solid var(--cs-rule) !important;
+  background: transparent !important;
+}
+html[data-nm-theme="cloudstudio"] .course-content li.activity:last-child { border-block-end: 0 !important; }
+html[data-nm-theme="cloudstudio"] .course-content .activity-item {
+  padding: .65rem .5rem !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  transition: background-color var(--cs-ease);
+}
+html[data-nm-theme="cloudstudio"] .course-content .activity-item:hover { background: var(--nm-surface-2) !important; }
+html[data-nm-theme="cloudstudio"] .course-content .activity-item .activityiconcontainer {
+  inline-size: 36px !important; block-size: 36px !important; max-inline-size: 36px !important; max-block-size: 36px !important;
+  padding: 6px;
+  margin-inline-end: .85rem !important;
+}
+html[data-nm-theme="cloudstudio"] .course-content .activityname { font-size: .9688rem; font-weight: 700; letter-spacing: -.015em; }
+html[data-nm-theme="cloudstudio"] .course-content .activityname a { color: var(--cs-ink) !important; text-decoration: none; }
+html[data-nm-theme="cloudstudio"] .course-content .activity-item:hover .activityname a { text-decoration: underline; text-underline-offset: .22em; }
+html[data-nm-theme="cloudstudio"] .course-content :is(.activity-dates, .activity-information, .activity-altcontent) { font-size: .8125rem; color: var(--nm-text-muted); }
+html[data-nm-theme="cloudstudio"] .course-content .activity-dates { font-family: var(--cs-mono); font-size: .72rem; letter-spacing: .03em; }
+html[data-nm-theme="cloudstudio"] :is([data-region="completionrequirements"], .completion-info) .badge { background: var(--cs-sky) !important; color: var(--cs-ink) !important; border: 1px solid var(--nm-border); }
+html[data-nm-theme="cloudstudio"] :is([data-region="completionrequirements"], .completion-info) .badge.alert-success { background: #d7efe3 !important; color: #1d5c44 !important; border-color: #9ccdb6; }
+
+/* ==========================================================================
+   Assignment & quiz pages
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .activity-header {
+  background: var(--cs-ice) !important; border-radius: var(--nm-radius) !important; padding: .35rem 1.25rem !important; margin-block-end: 1.25rem;
+  inline-size: auto !important; max-inline-size: none !important; margin-inline: 0 !important; box-shadow: none !important;
+}
+html[data-nm-theme="cloudstudio"] .activity-header :is(.activity-details, .activity-information, .activity-description, .generalbox) { background: transparent !important; padding-inline: 0 !important; box-shadow: none !important; }
+html[data-nm-theme="cloudstudio"] .activity-header .activity-description { font-size: .9375rem; line-height: 1.6; max-inline-size: 72ch; }
+html[data-nm-theme="cloudstudio"] .activity-header .activity-dates { font-family: var(--cs-mono); font-size: .75rem; letter-spacing: .03em; }
+html[data-nm-theme="cloudstudio"] #region-main :is(h2, h3) { font-weight: 800; letter-spacing: -.035em; }
+html[data-nm-theme="cloudstudio"] #region-main h3 { font-size: 1.375rem; margin-block: 1.25rem .75rem; }
+
+/* key/value tables read like the contact strip: mono labels, plain values */
+html[data-nm-theme="cloudstudio"] :is(.generaltable, .table) {
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: transparent;
+  --bs-table-hover-bg: #dcf0f6;
+  --bs-table-color: #080d0d;
+  --bs-table-border-color: #c4e0e8;
+  --bs-table-striped-color: #080d0d;
+  --bs-table-hover-color: #080d0d;
+  --bs-table-accent-bg: transparent;
+  background: var(--cs-ice);
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border: 0 !important;
+  border-radius: var(--nm-radius);
+  overflow: hidden;
+  color: var(--cs-ink);
+  font-size: .9375rem;
+}
+html[data-nm-theme="cloudstudio"] .generaltable > :not(caption) > * > * {
+  border-width: 0 0 1px !important; border-color: var(--cs-rule) !important;
+  padding: .8rem 1rem !important; background: transparent; box-shadow: none !important;
+}
+html[data-nm-theme="cloudstudio"] .generaltable > tbody > tr:last-child > * { border-block-end: 0 !important; }
+html[data-nm-theme="cloudstudio"] .generaltable :is(thead th, tbody th, th.header) {
+  font-family: var(--cs-mono);
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--nm-text-muted) !important;
+  vertical-align: middle;
+}
+html[data-nm-theme="cloudstudio"] .generaltable tbody th { inline-size: 32%; text-align: start !important; background: transparent !important; }
+html[data-nm-theme="cloudstudio"] .generaltable thead th { background: var(--nm-surface-2) !important; border-block-end: 1.5px solid var(--cs-ink) !important; }
+html[data-nm-theme="cloudstudio"] .generaltable tbody td { font-weight: 500; }
+html[data-nm-theme="cloudstudio"] :is(.submissionstatustable .box, .submissionsummarytable) { padding-block: 0 !important; }
+html[data-nm-theme="cloudstudio"] .generaltable td:is(.submissionstatussubmitted, .submissiongraded, .earlysubmission) {
+  background: #d7efe3 !important; color: #1d5c44 !important; font-weight: 700;
+}
+html[data-nm-theme="cloudstudio"] .generaltable td:is(.overdue, .latesubmission) { background: #f7dde2 !important; color: #8a2639 !important; font-weight: 700; }
+html[data-nm-theme="cloudstudio"] .generaltable td.timeremaining { font-family: var(--cs-mono); font-size: .8125rem; letter-spacing: .02em; }
+html[data-nm-theme="cloudstudio"] .commentscontainer a { font-weight: 600; }
+/* quiz: info lines, final grade, attempt cards */
+html[data-nm-theme="cloudstudio"] .quizinfo { display: flex; flex-wrap: wrap; gap: .25rem 2.5rem; margin-block: .5rem 1rem; }
+html[data-nm-theme="cloudstudio"] .quizinfo p { margin: 0; font-weight: 600; }
+html[data-nm-theme="cloudstudio"] #feedback {
+  background: var(--cs-ink); color: var(--cs-blue); border-radius: var(--nm-radius); padding: 1rem 1.25rem !important; margin-block: 1rem;
+}
+html[data-nm-theme="cloudstudio"] #feedback :is(h3, p) { color: var(--cs-blue); margin: 0; font-size: 1.25rem; }
+html[data-nm-theme="cloudstudio"] #region-main .card:has(.quizreviewsummary) {
+  background: var(--cs-ice) !important; border: 0 !important; border-radius: var(--nm-radius) !important; overflow: hidden;
+}
+html[data-nm-theme="cloudstudio"] #region-main .card:has(.quizreviewsummary) .card-header {
+  background: transparent !important; padding: .9rem 1rem .6rem !important; border-block-end: 1.5px solid var(--cs-ink) !important;
+}
+html[data-nm-theme="cloudstudio"] #region-main .card:has(.quizreviewsummary) .card-title { font-size: 1.125rem; font-weight: 800; letter-spacing: -.03em; }
+html[data-nm-theme="cloudstudio"] .quizreviewsummary { border-radius: 0 !important; background: transparent !important; }
+html[data-nm-theme="cloudstudio"] .quizreviewsummary th { inline-size: 40% !important; }
+html[data-nm-theme="cloudstudio"] :is(.quizstartbuttondiv, .continuebutton) { margin-block: 1.25rem; }
+
+/* footer */
+html[data-nm-theme="cloudstudio"] #page-footer,
+html[data-nm-theme="cloudstudio"] #page-footer :is(.container, .footer-section, .bg-white, .footer-content-popover) {
+  background: transparent !important; box-shadow: none !important; color: var(--nm-text-muted);
+}
+html[data-nm-theme="cloudstudio"] #page-footer .footer-section { border-color: rgba(8, 13, 13, .14) !important; }
+html[data-nm-theme="cloudstudio"] #page-footer a { color: var(--cs-ink) !important; text-decoration: underline; text-decoration-color: rgba(8, 13, 13, .3); }
+html[data-nm-theme="cloudstudio"] .btn-footer-popover { background: var(--cs-ink) !important; color: var(--cs-blue) !important; border-radius: 50% !important; border: 0 !important; }
+
+/* ==========================================================================
+   Our widgets
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"] .nm-block-content { font-family: var(--nm-font); font-size: .9375rem; }
+
+/* ---------- primitives ---------- */
+html[data-nm-theme="cloudstudio"] .nm-btn {
+  font-family: var(--nm-font);
+  font-size: .875rem;
+  font-weight: 600;
+  padding: .45rem 1rem;
+  border: 1px solid var(--cs-ink);
+  border-radius: var(--cs-pill);
+  background: transparent;
+  color: var(--cs-ink);
+  transition: background-color var(--cs-ease), color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .nm-btn:hover { background: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-btn:active { transform: scale(.97); }
+html[data-nm-theme="cloudstudio"] .nm-btn.nm-btn-primary { background: var(--cs-ink); border-color: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-btn.nm-btn-primary:hover { background: var(--cs-ink-2); color: var(--cs-blue-hi); }
+html[data-nm-theme="cloudstudio"] .nm-btn:disabled { opacity: .45; cursor: not-allowed; }
+html[data-nm-theme="cloudstudio"] .nm-icon-btn {
+  inline-size: 36px; block-size: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cs-ink);
+  color: var(--cs-blue);
+  font-size: 1rem;
+  transition: background-color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .nm-icon-btn:hover { background: var(--cs-ink-2); color: var(--cs-blue-hi); }
+html[data-nm-theme="cloudstudio"] .nm-icon-btn:active { transform: scale(.92); }
+html[data-nm-theme="cloudstudio"] .nm-icon-btn[aria-expanded="true"] { background: var(--cs-blue); color: var(--cs-ink); }
+
+/* theme menu */
+html[data-nm-theme="cloudstudio"] .nm-theme-menu {
+  min-inline-size: 15rem;
+  padding: .35rem;
+  background: var(--cs-ice);
+  border: 1px solid var(--cs-ink);
+  border-radius: 16px;
+  box-shadow: var(--cs-lift);
+  font-family: var(--nm-font);
+  font-size: .875rem;
+}
+html[data-nm-theme="cloudstudio"] .nm-theme-option { border-radius: 10px; padding: .45rem .6rem; color: var(--cs-ink); font-weight: 500; }
+html[data-nm-theme="cloudstudio"] .nm-theme-option:hover { background: var(--cs-sky); }
+html[data-nm-theme="cloudstudio"] .nm-theme-option[aria-checked="true"] { background: var(--cs-ink); color: var(--cs-blue); font-weight: 700; }
+/* the selected mark is a drawn four-point star, not a text glyph */
+html[data-nm-theme="cloudstudio"] .nm-theme-option[aria-checked="true"]::after {
+  content: "";
+  inline-size: 13px; block-size: 13px; flex: none;
+  background: var(--cs-blue);
+  -webkit-mask: var(--cs-star) center / contain no-repeat;
+          mask: var(--cs-star) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"] .nm-swatch { border: 1px solid rgba(8, 13, 13, .35); }
+
+/* ---------- header slot + shortcut chips: black capsules beside "Dashboard" ---------- */
+html[data-nm-theme="cloudstudio"] .nm-header-slot { gap: .5rem; }
+html[data-nm-theme="cloudstudio"] .nm-sc-bar { --nm-sc-chip-height: 34px; --nm-sc-chip-radius: 999px; --nm-sc-elev: var(--cs-lift); font-size: .875rem; }
+html[data-nm-theme="cloudstudio"] .nm-sc-chip {
+  background: var(--cs-ink);
+  border-color: var(--cs-ink);
+  color: var(--cs-blue);
+  transition: background-color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .nm-sc-chip:hover { background: var(--cs-ink-2); border-color: var(--cs-ink-2); }
+html[data-nm-theme="cloudstudio"] .nm-sc-chip:active { transform: scale(.96); }
+html[data-nm-theme="cloudstudio"] .nm-sc-chip:has(.nm-sc-link:focus-visible) { outline-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-sc-link { padding-inline: 4px 14px; font-weight: 600; font-size: .875rem; letter-spacing: -.01em; }
+html[data-nm-theme="cloudstudio"] .nm-sc-chip .nm-sc-icon { inline-size: 26px; block-size: 26px; border-radius: 50%; background: var(--cs-ice); }
+html[data-nm-theme="cloudstudio"] .nm-sc-chip .nm-sc-favicon { inline-size: 15px; block-size: 15px; }
+html[data-nm-theme="cloudstudio"] .nm-sc-letter { inline-size: 26px; block-size: 26px; border-radius: 50%; background: var(--cs-blue); color: var(--cs-ink); font-size: 12px; font-weight: 800; }
+html[data-nm-theme="cloudstudio"] .nm-sc-chip .nm-sc-icon:has(.nm-sc-letter) { background: transparent; }
+html[data-nm-theme="cloudstudio"] :is(.nm-sc-add, .nm-sc-edit-toggle) {
+  border: 1px dashed var(--cs-ink);
+  color: var(--cs-ink);
+  font-weight: 600;
+  font-size: .875rem;
+  background: transparent;
+}
+html[data-nm-theme="cloudstudio"] .nm-sc-edit-toggle { border-color: transparent; }
+html[data-nm-theme="cloudstudio"] :is(.nm-sc-add, .nm-sc-edit-toggle):hover,
+html[data-nm-theme="cloudstudio"] .nm-sc-add[aria-expanded="true"] { border-style: solid; border-color: var(--cs-ink); background: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-sc-edit-toggle[aria-pressed="true"] { background: var(--cs-blue); border-color: var(--cs-ink); color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-sc-editing .nm-sc-chip { border-style: dashed; border-color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-sc-editing .nm-sc-act { color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] :is(.nm-sc-pop, .nm-sc-card, .nm-sc-menu) {
+  background: var(--cs-ice);
+  border: 1px solid var(--cs-ink);
+  border-radius: 16px;
+}
+html[data-nm-theme="cloudstudio"] .nm-sc-pop-title { font-weight: 800; letter-spacing: -.03em; font-size: 1.125rem; }
+html[data-nm-theme="cloudstudio"] :is(.nm-sc-label, .nm-sc-suggest-label) {
+  font-family: var(--cs-mono); font-size: .66rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--nm-text-muted);
+}
+html[data-nm-theme="cloudstudio"] .nm-sc-input { background: var(--cs-well); border-color: #93bcc8; border-radius: 10px; }
+html[data-nm-theme="cloudstudio"] .nm-sc-input:focus { outline: 2px solid var(--cs-ink); outline-offset: 0; border-color: var(--cs-ink); box-shadow: none; }
+html[data-nm-theme="cloudstudio"] .nm-sc-preview { background: var(--cs-sky); border-radius: 12px; }
+html[data-nm-theme="cloudstudio"] .nm-sc-suggestion { border-radius: 999px; }
+
+/* ---------- toasts: the black "ESC 1:44" pill ---------- */
+html[data-nm-theme="cloudstudio"] .nm-toast {
+  background: var(--cs-ink) !important;
+  color: var(--cs-blue) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  padding: .7rem 1.35rem !important;
+  font-family: var(--nm-font) !important;
+  font-weight: 700 !important;
+  box-shadow: var(--cs-lift) !important;
+}
+html[data-nm-theme="cloudstudio"] .nm-sc-toast {
+  background: var(--cs-ink);
+  color: var(--cs-blue);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: var(--cs-lift);
+  font-weight: 600;
+}
+html[data-nm-theme="cloudstudio"] .nm-sc-toast :is(button, a) { color: var(--cs-ink); background: var(--cs-blue); border-radius: 999px; border: 0; font-weight: 700; }
+
+/* ---------- to-dos ---------- */
+html[data-nm-theme="cloudstudio"] .nm-todo { --nm-todo-check: 1.125rem; --nm-todo-hair: #c4e0e8; }
+html[data-nm-theme="cloudstudio"] :is(.nm-todo-head-count, .nm-up .nm-up-count) {
+  font-family: var(--cs-mono);
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--nm-text-muted);
+}
+html[data-nm-theme="cloudstudio"] .nm-todo-add {
+  background: var(--cs-well);
+  border: 1px solid #b4d6df;
+  border-radius: 10px;
+  padding: .3rem .4rem .3rem .55rem;
+  margin-block-end: .4rem;
+}
+html[data-nm-theme="cloudstudio"] .nm-todo-add:hover { background: #fff; border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-todo-add:focus-within { background: #fff; border-color: var(--cs-ink); box-shadow: 0 0 0 1px var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-todo-add-plus { color: var(--cs-ink); border-radius: 5px; }
+html[data-nm-theme="cloudstudio"] .nm-todo-add:is(:hover, :focus-within) .nm-todo-add-plus { background: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-todo-add:hover .nm-todo-add-input::placeholder { color: var(--nm-text-muted); }
+html[data-nm-theme="cloudstudio"] .nm-todo-add-submit { border-radius: 999px; background: var(--cs-ink); border-color: var(--cs-ink); color: var(--cs-blue) !important; padding-inline: .9rem; }
+html[data-nm-theme="cloudstudio"] .nm-todo-add-date { background: var(--cs-ice); border-color: var(--nm-border); border-radius: 8px; font-family: var(--cs-mono); }
+html[data-nm-theme="cloudstudio"] :is(.nm-todo-date-btn, .nm-todo-del, .nm-todo-msg-close) { border-radius: 50%; }
+html[data-nm-theme="cloudstudio"] .nm-todo-item { padding: .7rem .35rem; }
+html[data-nm-theme="cloudstudio"] .nm-todo-item:hover { background: rgba(199, 233, 242, .45); }
+html[data-nm-theme="cloudstudio"] .nm-todo-text { font-weight: 600; letter-spacing: -.01em; }
+/* square black-outlined checkboxes, blue-backed checks */
+html[data-nm-theme="cloudstudio"] .nm-todo-check { border: 1.5px solid var(--cs-ink); border-radius: 4px; background: var(--cs-well); }
+html[data-nm-theme="cloudstudio"] .nm-todo-check::after { color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-todo-check:hover { border-color: var(--cs-ink); background: #e2f4fa; }
+html[data-nm-theme="cloudstudio"] .nm-todo-check:checked { background: var(--cs-blue); border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-todo-check:checked::after { color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-todo-item.is-done .nm-todo-check:checked { background: var(--cs-blue); border-color: var(--cs-ink); opacity: .7; }
+html[data-nm-theme="cloudstudio"] .nm-todo-due { font-family: var(--cs-mono); font-size: .6875rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+html[data-nm-theme="cloudstudio"] .nm-todo-done-toggle { font-weight: 700; letter-spacing: -.01em; }
+html[data-nm-theme="cloudstudio"] .nm-todo-done-count { background: var(--cs-ink); color: var(--cs-blue); font-family: var(--cs-mono); font-weight: 600; }
+html[data-nm-theme="cloudstudio"] .nm-todo-clear { font-family: var(--cs-mono); font-size: .68rem !important; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; }
+html[data-nm-theme="cloudstudio"] .nm-todo-msg { background: var(--cs-ink); color: var(--cs-blue); border-radius: 999px; }
+html[data-nm-theme="cloudstudio"] .nm-todo-msg-action { color: var(--cs-ink) !important; background: var(--cs-blue); border-radius: 999px; padding-inline: .7rem; }
+html[data-nm-theme="cloudstudio"] .nm-todo-msg-close { color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-todo-msg.is-error { background: #f7dde2; color: #8a2639; }
+html[data-nm-theme="cloudstudio"] .nm-todo-empty-art {
+  inline-size: 4.25rem; block-size: 4.25rem; border-radius: 0; box-shadow: none;
+  background: var(--cs-orbit-ink) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"] .nm-todo-empty-title { font-weight: 800; letter-spacing: -.03em; }
+
+/* ---------- Upcoming done-split ---------- */
+html[data-nm-theme="cloudstudio"] .nm-up .nm-up-lead { inline-size: 18px; block-size: 18px; margin-inline-end: .6rem; margin-block-start: .5rem; }
+html[data-nm-theme="cloudstudio"] .nm-up-check .nm-up-box { border: 1.5px solid var(--cs-ink); border-radius: 4px; background: var(--cs-well); }
+html[data-nm-theme="cloudstudio"] .nm-up-check .nm-up-box::after { border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-up-check:hover .nm-up-box { border-color: var(--cs-ink); background: #e2f4fa; }
+html[data-nm-theme="cloudstudio"] .nm-up-check .nm-up-cb:checked + .nm-up-box { background: var(--cs-blue); border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-up-check .nm-up-cb:checked + .nm-up-box::after { border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-up-tag { font-family: var(--cs-mono); font-size: .66rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding-inline: .6rem; }
+html[data-nm-theme="cloudstudio"] .nm-up-tag-auto { background: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-up-tag-manual { background: transparent; border-color: var(--cs-ink); color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-up .nm-up-edit { color: var(--cs-ink); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .22em; }
+html[data-nm-theme="cloudstudio"] .nm-up-opens { font-family: var(--cs-mono); font-weight: 500; letter-spacing: .1em; color: var(--nm-text-muted); }
+html[data-nm-theme="cloudstudio"] .nm-up .nm-up-done-summary {
+  background: transparent;
+  border: 1px solid var(--cs-ink);
+  border-radius: 999px;
+  padding-block: .4rem;
+  padding-inline: .8rem;
+  font-size: .8125rem;
+  font-weight: 700;
+}
+html[data-nm-theme="cloudstudio"] .nm-up .nm-up-done-summary::before { border-color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-up :is(.nm-up-done-summary:hover, details.nm-up-done[open] > .nm-up-done-summary) { background: var(--cs-ink); color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-up :is(.nm-up-done-summary:hover, details.nm-up-done[open] > .nm-up-done-summary)::before { border-color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-up :is(.nm-up-done-summary:hover, details.nm-up-done[open] > .nm-up-done-summary) .nm-up-done-hint { color: var(--cs-blue-hi); }
+html[data-nm-theme="cloudstudio"] .nm-up .nm-up-row-done .activityiconcontainer { background: var(--cs-rule) !important; }
+
+/* ---------- Arcade: the black slab with blue type and dotted orbits ---------- */
+html[data-nm-theme="cloudstudio"] .block.card.nm-block-game { background: var(--cs-ink) !important; color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .block.card.nm-block-game .nm-block-head { border-block-end-color: rgba(143, 211, 239, .35); }
+html[data-nm-theme="cloudstudio"] .block.card.nm-block-game .nm-block-title { color: var(--cs-ice) !important; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-teaser { color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-teaser-art {
+  border: 1px solid rgba(143, 211, 239, .28);
+  border-radius: 12px;
+  background: var(--cs-orbit-blue) right -1.5rem center / 9rem 9rem no-repeat, #111a1b;
+}
+html[data-nm-theme="cloudstudio"][dir="rtl"] .nm-block-game .nm-game-teaser-art { background-position: left -1.5rem center, 0 0; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-drop {
+  background: var(--cs-ice); color: var(--cs-ink); border: 0; border-radius: 999px;
+  font-family: var(--nm-font); font-weight: 700; padding: .2rem .55rem;
+  box-shadow: 0 6px 14px -6px rgba(0, 0, 0, .6);
+}
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-teaser-line { border-block-start-color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-teaser-line span { background: var(--cs-blue); color: var(--cs-ink); font-family: var(--cs-mono); font-weight: 600; letter-spacing: .1em; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-label { font-family: var(--cs-mono); font-weight: 500; font-size: .66rem; letter-spacing: .12em; color: #9fbcc5; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-value { color: var(--cs-blue); font-weight: 900; letter-spacing: -.04em; font-size: 2.6rem; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-sub { color: #9fbcc5; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-stat-sub b { color: var(--cs-ice); }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play {
+  background: var(--cs-blue) !important;
+  border: 0 !important;
+  color: var(--cs-ink) !important;
+  border-radius: 999px;
+  font-family: var(--nm-font);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  padding: .7rem 1rem;
+  filter: none !important;
+  transition: background-color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play:hover { background: var(--cs-blue-hi) !important; transform: none; }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play:active { transform: scale(.97); }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play::after {
+  content: ""; inline-size: 1.05em; block-size: 1.05em; flex: none;
+  background: currentColor;
+  -webkit-mask: var(--cs-arrow) center / contain no-repeat;
+          mask: var(--cs-arrow) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"][dir="rtl"] .nm-block-game .nm-game-play::after { transform: scaleX(-1); }
+html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-play:focus-visible { outline-color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"] .nm-game-btn:hover { transform: none; }
+
+/* the full-screen game */
+html[data-nm-theme="cloudstudio"] .nm-game-overlay { background: var(--cs-sky); }
+html[data-nm-theme="cloudstudio"] .nm-game-logo { color: var(--cs-ink); font-weight: 800; letter-spacing: -.04em; }
+html[data-nm-theme="cloudstudio"] :is(.nm-game-scorebox, .nm-game-best, .nm-game-combo, .nm-game-lives) {
+  background: var(--cs-ink); border-color: var(--cs-ink); color: var(--cs-blue); border-radius: 16px;
+}
+html[data-nm-theme="cloudstudio"] :is(.nm-game-score, .nm-game-best-value) { color: var(--cs-blue); letter-spacing: -.03em; }
+html[data-nm-theme="cloudstudio"] .nm-game-label { font-family: var(--cs-mono); font-weight: 500; color: #9fbcc5; }
+html[data-nm-theme="cloudstudio"] .nm-game-combo-value { color: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-game-combo-bar { background: #26393c; }
+html[data-nm-theme="cloudstudio"] .nm-game-combo-fill { background: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-game-combo[data-hot="true"] { background: var(--cs-blue); }
+html[data-nm-theme="cloudstudio"] .nm-game-combo[data-hot="true"] :is(.nm-game-combo-value, .nm-game-combo-streak) { color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-game-combo[data-hot="true"] .nm-game-combo-fill { background: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"] .nm-game-card-wrap { background: rgba(199, 233, 242, .6); }
+html[data-nm-theme="cloudstudio"] .nm-game-card { background: var(--cs-ice); border: 1px solid var(--cs-ink); border-radius: 24px; box-shadow: 0 30px 70px -20px rgba(8, 13, 13, .45); }
+html[data-nm-theme="cloudstudio"] .nm-game-card-title { font-weight: 800; letter-spacing: -.04em; }
+html[data-nm-theme="cloudstudio"] .nm-game-final { color: var(--cs-ink); letter-spacing: -.05em; }
+html[data-nm-theme="cloudstudio"] .nm-game-badge { background: var(--cs-ink); color: var(--cs-blue); border: 0; border-radius: 999px; box-shadow: var(--cs-lift); }
+
+/* ==========================================================================
+   Login page (HUJI IdP)
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root body { background-color: var(--cs-sky) !important; color: var(--cs-ink); font-family: var(--nm-font); }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root header .navbar {
+  background: transparent !important;
+  border-block-end: 1px solid rgba(8, 13, 13, .14);
+  box-shadow: none;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root header .brand-logo { mix-blend-mode: multiply; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root header select {
+  background-color: var(--cs-well); border: 1px solid var(--cs-ink); border-radius: 999px; padding: .3rem .8rem; color: var(--cs-ink); font-family: var(--nm-font);
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .col-lg-7 img { border-radius: 20px; filter: saturate(.9); }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root h1 {
+  display: inline-block;
+  padding-block-end: .2em;
+  font-family: var(--nm-heading-font);
+  font-weight: 800 !important;
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 2.9rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.04em;
+  color: var(--cs-ink);
+  background: var(--cs-underline) left bottom / 100% .3em no-repeat;
+  animation: cs-draw 900ms cubic-bezier(.16, 1, .3, 1) 150ms both;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root :is(p, label, .ltr) { color: var(--cs-ink); }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane label {
+  font-family: var(--cs-mono); font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: #2c444a;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills { display: flex; flex-wrap: wrap; gap: 4px; background: var(--cs-ice); border-radius: 26px; padding: 4px; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills .nav-item { margin: 0; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills .nav-item a.nav-link { border-radius: 999px; padding: .45rem .9rem; color: var(--cs-ink); font-weight: 600; font-size: .875rem; background: transparent; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills .nav-item a.nav-link:hover { background: var(--cs-sky); }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .nav-pills .nav-item a.nav-link.active { background: var(--cs-ink) !important; color: var(--cs-blue) !important; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane .form-control {
+  block-size: 46px; background: var(--cs-well) !important; border: 1px solid #93bcc8; border-radius: 10px; color: var(--cs-ink); font-family: var(--nm-font); font-size: 1rem;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane .form-control:focus { outline: 2px solid var(--cs-ink); outline-offset: 0; border-color: var(--cs-ink); background: #fff; box-shadow: none; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane .btn-primary {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  block-size: 48px; padding: 0 1.6rem;
+  background: var(--cs-ink) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: var(--cs-blue) !important;
+  font-family: var(--nm-font);
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: none !important;
+  transition: background-color var(--cs-ease), transform var(--cs-press);
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane .btn-primary::after {
+  content: ""; inline-size: 1.05em; block-size: 1.05em; flex: none;
+  background: currentColor;
+  -webkit-mask: var(--cs-arrow) center / contain no-repeat;
+          mask: var(--cs-arrow) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane .btn-primary:hover { background: var(--cs-ink-2) !important; color: var(--cs-blue-hi) !important; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-pane .btn-primary:active { transform: scale(.97); }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root .tab-content a.nav-link { color: var(--cs-ink); text-decoration: underline; text-underline-offset: .22em; font-weight: 600; }
+/* the footer becomes the black ticker band */
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root footer.bg-gray { background: var(--cs-ink) !important; color: var(--cs-blue); border: 0; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root footer .footer { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.75rem; }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root footer :is(span, a) { color: var(--cs-blue) !important; font-family: var(--nm-font); }
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root footer .footer-h1 {
+  display: inline-flex; align-items: center; gap: 1.25rem;
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.4rem) !important; font-weight: 800 !important; letter-spacing: -.04em;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root footer .footer-h1::after {
+  content: ""; inline-size: .7em; block-size: .7em;
+  background: var(--cs-blue);
+  -webkit-mask: var(--cs-star) center / contain no-repeat;
+          mask: var(--cs-star) center / contain no-repeat;
+}
+html[data-nm-theme="cloudstudio"][data-nm-site="login"]:root footer :is(.footer-email, .footer-phone) { font-family: var(--cs-mono) !important; font-size: .8125rem; letter-spacing: .06em; }
+
+/* ==========================================================================
+   Narrow screens
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-link { font-size: 1.125rem; }
+  html[data-nm-theme="cloudstudio"] .secondary-navigation .nav-item + .nav-item::before { inline-size: 12px; block-size: 12px; margin-inline: .4rem; }
+  html[data-nm-theme="cloudstudio"] #page-calendar-view table.calendarmonth td { block-size: 3.4rem; padding: 3px !important; }
+  html[data-nm-theme="cloudstudio"] #page-calendar-view table.calendarmonth .eventname { display: none; }
+  html[data-nm-theme="cloudstudio"] #page-calendar-view table.calendarmonth ul { display: flex; flex-wrap: wrap; gap: 2px; }
+  html[data-nm-theme="cloudstudio"] #page-calendar-view .calendar-controls .current { font-size: 1.25rem !important; }
+  html[data-nm-theme="cloudstudio"] #page-calendar-view .calendar-controls .arrow_link { inline-size: 34px !important; padding: 0; justify-content: center; }
+  html[data-nm-theme="cloudstudio"] #page-calendar-view .calendar-controls .arrow_text { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+  html[data-nm-theme="cloudstudio"] .generaltable tbody th { inline-size: 40%; }
+}
+@media (max-width: 575.98px) {
+  html[data-nm-theme="cloudstudio"] #page-header { padding-block: .75rem .25rem; }
+  html[data-nm-theme="cloudstudio"] :is(.block.card, section.nm-block) > .card-body { padding: 1rem 1rem 1.05rem !important; }
+  html[data-nm-theme="cloudstudio"] .course-content li.section { padding: .85rem .9rem 1rem !important; }
+  html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top > .container-fluid { flex-wrap: nowrap; gap: .25rem; }
+  html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation { min-inline-size: 0; overflow-x: auto; scrollbar-width: none; }
+  html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navbar-nav { flex-wrap: nowrap; }
+  html[data-nm-theme="cloudstudio"] nav.navbar.fixed-top .primary-navigation .navigation .nav-link { padding-inline: .5rem !important; white-space: nowrap; }
+  html[data-nm-theme="cloudstudio"] .generaltable > :not(caption) > * > * { padding: .7rem .75rem !important; }
+  html[data-nm-theme="cloudstudio"] .nm-block-game .nm-game-teaser-art { block-size: 6rem; }
+}
+
+/* ==========================================================================
+   Motion off: drop every animation and transition this theme adds
+   ========================================================================== */
+html[data-nm-theme="cloudstudio"][data-nm-motion="off"] *,
+html[data-nm-theme="cloudstudio"][data-nm-motion="off"] *::before,
+html[data-nm-theme="cloudstudio"][data-nm-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+html[data-nm-theme="cloudstudio"][data-nm-motion="off"] :is(.btn, .nm-btn, .nm-icon-btn, .nm-sc-chip, #user-menu-toggle, .arrow_link):active { transform: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-nm-theme="cloudstudio"] *,
+  html[data-nm-theme="cloudstudio"] *::before,
+  html[data-nm-theme="cloudstudio"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html[data-nm-theme="cloudstudio"] :is(.btn, .nm-btn, .nm-icon-btn, .nm-sc-chip, #user-menu-toggle, .arrow_link):active { transform: none !important; }
+}

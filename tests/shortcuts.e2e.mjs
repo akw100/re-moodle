@@ -213,8 +213,9 @@ for (const theme of ['off', 'quiet-focus', 'campus-pop']) {
   ok(m.scrolls && m.fade && m.addVisible, `overflow scrolls horizontally with a fade, + Add stays visible (${JSON.stringify(m)})`);
   ok(m.headerH < 90, `header stays one row (${m.headerH}px)`);
   ok(m.titleW <= 141, `titles truncate at 140px (${m.titleW}px)`);
-  ok(m.letter, 'missing favicon falls back to a letter avatar');
+  // The letter appears once the service worker reports "no icon" for the host (a network round-trip), so wait for it.
   m.letter ||= !!await until(() => page.evaluate(() => !!document.querySelector('[data-id=m4] .nm-sc-letter')), 8000);
+  ok(m.letter, 'missing favicon falls back to a letter avatar');
   await page.screenshot({path: shot('overflow'), clip: {x: 0, y: 50, width: 900, height: 80}});
   await page.evaluate(() => { document.documentElement.dir = 'rtl'; document.body.classList.replace('dir-ltr', 'dir-rtl'); });
   await page.waitForTimeout(200);

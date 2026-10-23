@@ -2,31 +2,44 @@
    Theme hooks: .nm-block-game (dashboard card), .nm-game-btn (header), .nm-game-overlay (full-screen game),
    .nm-game-hud, .nm-game-scorebox, .nm-game-combo, .nm-game-lives, .nm-game-card (pause / game over), .nm-game-badge. */
 
-/* ---------- Dashboard card ---------- */
+/* ---------- Dashboard card ----------
+   One column at every width it gets (2/6 of HUJI's grid on desktop, full width on phones): a mini playfield that
+   grows to fill the card (so it matches the to-do card's height), the high score, then a full-width Play button. */
+.nm-block-game .card-body { display: flex; flex-direction: column; }
+.nm-block-game .nm-block-content { flex: 1 1 auto; display: flex; flex-direction: column; min-block-size: 0; container: nm-game / inline-size; }
 .nm-game-teaser {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem 1rem; align-items: center;
+  flex: 1 1 auto; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(5.25rem, 1fr) auto auto; gap: .75rem;
   font-family: var(--nm-font); color: var(--nm-text);
 }
 .nm-game-teaser-art {
-  position: relative; block-size: 7rem; overflow: hidden; cursor: pointer; padding: 0; font: inherit;
+  position: relative; display: block; inline-size: 100%; min-block-size: 5.25rem; overflow: hidden; cursor: pointer; padding: 0; margin: 0; font: inherit;
+  container-type: size; /* the falling cards measure the playfield height in cqh */
   border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nm-radius);
   background:
     repeating-linear-gradient(to bottom, transparent 0 21px, color-mix(in srgb, var(--nm-border) 70%, transparent) 21px 22px),
     var(--nm-surface-2);
 }
+/* Three fixed lanes (5% / 36% / 67%, each at most 28% wide), so a card is never cut by the frame: long names ellipsize. */
 .nm-game-drop {
-  position: absolute; inset-block-start: 0; inset-inline-start: calc(8% + var(--i) * 29%);
-  padding: .15rem .45rem; font-size: .72rem; font-weight: 700; white-space: nowrap; color: var(--nm-text);
+  --lane: calc(5% + var(--i) * 31%);
+  --fall: calc(100cqh - 4.1rem); /* from the top to just above the DEADLINE pill (1.15rem line + .65rem pill + card) */
+  position: absolute; inset-block-start: .6rem; inset-inline-start: var(--lane); max-inline-size: 28%;
+  display: inline-flex; align-items: center; gap: .25rem;
+  padding: .15rem .45rem; font-size: .72rem; font-weight: 700; line-height: 1.2rem; white-space: nowrap; color: var(--nm-text);
   background: var(--nm-surface); border: var(--nm-border-width) solid var(--nm-border); border-radius: calc(var(--nm-radius) * .6);
   box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  /* Calm / reduced motion: a still frame with the three cards at different heights. */
+  transform: translateY(calc(var(--fall) * (.1 + var(--i) * .38))) rotate(calc(var(--i) * 3deg - 3deg));
   animation: nm-game-fall 2.6s cubic-bezier(.5,0,.9,.6) calc(var(--i) * -.87s) infinite;
 }
-@keyframes nm-game-fall {
-  0% { transform: translateY(-120%) rotate(-6deg); opacity: 0; }
-  10% { opacity: 1; }
-  70% { transform: translateY(4.1rem) rotate(5deg); opacity: 1; }
-  78% { transform: translateY(3.8rem) scale(1.25) rotate(0); opacity: 1; }
-  100% { transform: translateY(3.8rem) scale(1.6); opacity: 0; }
+.nm-game-drop .nm-svg { flex: none; inline-size: 1em; block-size: 1em; color: var(--nm-text-muted); }
+.nm-game-drop-text { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; }
+@keyframes nm-game-fall { /* pops in inside the frame (never sliced by its top edge), falls, lands on the line, stamps out */
+  0% { transform: translateY(0) scale(.4) rotate(-10deg); opacity: 0; }
+  12% { transform: translateY(0) scale(1) rotate(-3deg); opacity: 1; }
+  70% { transform: translateY(var(--fall)) rotate(5deg); opacity: 1; }
+  78% { transform: translateY(var(--fall)) scale(1.18) rotate(0); opacity: 1; }
+  100% { transform: translateY(var(--fall)) scale(1.4); opacity: 0; }
 }
 .nm-game-teaser-line {
   position: absolute; inset-inline: 0; inset-block-end: 1.15rem; border-block-start: 2px dashed var(--nm-danger);
@@ -35,29 +48,48 @@
   position: absolute; inset-inline-start: .4rem; inset-block-start: -.65rem; padding: 0 .4rem; border-radius: 999px;
   background: var(--nm-danger); color: #fff; font-size: .6rem; font-weight: 900; letter-spacing: .08em; line-height: 1.2rem;
 }
-.nm-game-stats { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
-.nm-game-stat-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--nm-text-muted); }
-.nm-game-stat-value {
-  font-family: var(--nm-heading-font); font-size: 2.4rem; font-weight: 900; line-height: 1.05; color: var(--nm-accent-text);
-  font-variant-numeric: tabular-nums;
+.nm-game-stats {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: .75rem; min-inline-size: 0;
 }
-.nm-game-stat-sub { font-size: .85rem; color: var(--nm-text-muted); }
+.nm-game-stat-label {
+  grid-column: 1 / -1; display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--nm-text-muted);
+}
+.nm-game-stat-label .nm-svg { inline-size: 1.1em; block-size: 1.1em; }
+.nm-game-stat-value {
+  font-family: var(--nm-heading-font); font-size: 2.25rem; font-weight: 900; line-height: 1.05; color: var(--nm-accent-text);
+  font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nm-game-stat-sub { justify-self: end; font-size: .85rem; color: var(--nm-text-muted); white-space: nowrap; }
 .nm-game-stat-sub b { color: var(--nm-text); }
 .nm-game-play {
-  grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: .5rem;
-  padding: .75rem 1rem; font-size: 1.1rem; font-weight: 800; letter-spacing: .01em;
+  display: flex; align-items: center; justify-content: center; gap: .5rem; inline-size: 100%; min-inline-size: 0;
+  padding: .7rem 1rem; font-size: 1.05rem; font-weight: 800; letter-spacing: .01em; line-height: 1.2; white-space: nowrap;
   transition: transform .15s cubic-bezier(.3,1.8,.5,1), filter .15s;
 }
 .nm-game-play:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.06); }
 .nm-game-play:active { transform: translateY(1px) scale(.97); }
-.nm-game-play-icon { display: inline-grid; place-items: center; font-size: .85em; animation: nm-game-nudge 1.4s ease-in-out infinite; }
+.nm-game-play-icon { display: inline-grid; place-items: center; font-size: .8em; animation: nm-game-nudge 1.4s ease-in-out infinite; }
+.nm-game-play-icon .nm-svg { inline-size: 1em; block-size: 1em; vertical-align: 0; }
 @keyframes nm-game-nudge { 50% { transform: translateX(3px) scale(1.15); } }
+/* Narrow cards (tablet widths, a theme with wide padding): tighten so nothing wraps. */
+@container nm-game (max-width: 300px) {
+  .nm-game-play { padding-inline: .6rem; font-size: .95rem; gap: .4rem; }
+  .nm-game-stat-value { font-size: 1.9rem; }
+  .nm-game-drop { font-size: .66rem; padding-inline: .3rem; }
+}
+@container nm-game (max-width: 230px) {
+  .nm-game-stats { grid-template-columns: minmax(0, 1fr); }
+  .nm-game-stat-sub { justify-self: start; }
+  .nm-game-play { font-size: .85rem; }
+}
 .nm-game-btn { transition: transform .2s cubic-bezier(.3,1.8,.5,1); }
 .nm-game-btn:hover { transform: rotate(-12deg) scale(1.12); }
 
 /* ---------- Overlay ---------- */
 .nm-game-overlay {
-  position: fixed; inset: 0; z-index: 99990; overflow: hidden; isolation: isolate;
+  /* Above HUJI's fixed navbar (1030), drawers (1015-1035) and Bootstrap modals (1055); only confetti (max int) sits higher. */
+  position: fixed; inset: 0; z-index: 2147483000; overflow: hidden; isolation: isolate;
   background: var(--nm-bg); color: var(--nm-text); font-family: var(--nm-font);
   touch-action: none; user-select: none; -webkit-user-select: none; overscroll-behavior: contain;
   animation: nm-game-in .28s cubic-bezier(.2,1.4,.4,1);
@@ -75,13 +107,18 @@
   pointer-events: none;
 }
 .nm-game-hud button { pointer-events: auto; }
+.nm-game-hud .nm-icon-btn { flex: none; color: var(--nm-text); }
+.nm-game-hud .nm-icon-btn .nm-svg { inline-size: 1.15rem; block-size: 1.15rem; vertical-align: 0; }
+.nm-game-hud .nm-game-mute[aria-pressed="true"] { color: var(--nm-text-muted); }
+.nm-game-hud .nm-icon-btn:disabled { opacity: .45; cursor: default; }
 .nm-game-hud-start, .nm-game-hud-end { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .nm-game-hud-end { justify-content: flex-end; }
 .nm-game-hud-mid { padding-block-start: .6rem; }
 .nm-game-logo {
   font-family: var(--nm-heading-font); font-weight: 900; font-size: 1.1rem; letter-spacing: .02em; color: var(--nm-text-muted);
-  white-space: nowrap;
+  white-space: nowrap; display: inline-flex; align-items: center; gap: .35rem;
 }
+.nm-game-logo .nm-svg { inline-size: 1.05em; block-size: 1.05em; vertical-align: 0; }
 .nm-game-scorebox, .nm-game-best, .nm-game-combo, .nm-game-buff, .nm-game-lives {
   background: var(--nm-surface); border: var(--nm-border-width) solid var(--nm-border); border-radius: var(--nm-radius);
   box-shadow: var(--nm-shadow, none);
@@ -97,8 +134,10 @@
 .nm-game-best-value { font-family: var(--nm-heading-font); font-weight: 900; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
 .nm-game-best-new { border-color: var(--nm-warning); background: var(--nm-warning); color: #1d2125; animation: nm-game-wiggle .5s ease-in-out 3; }
 .nm-game-best-new .nm-game-label { color: inherit; }
-.nm-game-lives { display: flex; gap: .15rem; padding: .35rem .55rem; font-size: 1.35rem; line-height: 1; }
-.nm-game-heart { display: inline-block; transition: filter .3s, opacity .3s; }
+.nm-game-lives { display: flex; align-items: center; gap: .2rem; padding: .45rem .6rem; font-size: 1.3rem; line-height: 1; }
+.nm-game-heart { display: inline-grid; place-items: center; color: var(--nm-danger); transition: filter .3s, opacity .3s; }
+.nm-game-heart .nm-svg { inline-size: 1em; block-size: 1em; vertical-align: 0; }
+.nm-game-heart svg { fill: currentColor; }
 .nm-game-heart-lost { animation: nm-game-heartbreak .6s cubic-bezier(.3,1.6,.5,1) forwards; }
 @keyframes nm-game-heartbreak {
   0% { transform: scale(1); }
@@ -120,6 +159,7 @@
 .nm-game-combo[data-hot="true"] .nm-game-combo-value,
 .nm-game-combo[data-hot="true"] .nm-game-combo-streak { color: var(--nm-accent-contrast); }
 .nm-game-combo[data-hot="true"] .nm-game-combo-fill { background: var(--nm-accent-contrast); }
+.nm-game-buff .nm-svg { vertical-align: -.2em; }
 .nm-game-buff { padding: .45rem .7rem; font-weight: 800; font-size: .9rem; color: #6f4e37; background: #f6eadb; border-color: #c69c6d; font-variant-numeric: tabular-nums; }
 @keyframes nm-game-pop { from { transform: scale(.3); } }
 @keyframes nm-game-throb { to { transform: scale(1.08) rotate(-2deg); } }
@@ -146,7 +186,10 @@
   82% { transform: translateY(3px) rotate(.5deg); }
   100% { transform: none; }
 }
-.nm-game-card-emoji { font-size: 3rem; line-height: 1; animation: nm-game-wiggle 1.2s ease-in-out .7s infinite; }
+.nm-game-card-emoji { display: inline-grid; place-items: center; font-size: 3rem; line-height: 1; color: var(--nm-accent-text); animation: nm-game-wiggle 1.2s ease-in-out .7s infinite; }
+.nm-game-card-emoji .nm-svg { inline-size: 1em; block-size: 1em; vertical-align: 0; }
+.nm-game-card-emoji svg { stroke-width: 1.75; }
+.nm-game-paused .nm-game-card-emoji svg { fill: currentColor; }
 .nm-game-card-title { margin: .4rem 0 .1rem; font-family: var(--nm-heading-font); font-size: 1.6rem; font-weight: 900; color: var(--nm-text); }
 .nm-game-card-text { margin: .3rem 0 1rem; color: var(--nm-text-muted); }
 .nm-game-final {
@@ -156,6 +199,7 @@
 .nm-game-final-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1rem; margin: .7rem 0 1.2rem; font-size: .85rem; color: var(--nm-text-muted); }
 .nm-game-final-stats b { color: var(--nm-text); font-size: 1rem; }
 .nm-game-card-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.nm-game-card-actions .nm-btn .nm-svg { inline-size: .95em; block-size: .95em; vertical-align: -.12em; }
 .nm-game-card-actions .nm-btn { padding: .6rem 1.2rem; font-weight: 800; font-size: 1rem; transition: transform .15s cubic-bezier(.3,1.8,.5,1); }
 .nm-game-card-actions .nm-btn:hover { transform: translateY(-2px) scale(1.04); }
 .nm-game-again { animation: nm-game-throb .6s ease-in-out 1s infinite alternate; }
@@ -164,6 +208,7 @@
   position: absolute; inset-block-start: -1.1rem; inset-inline-end: -1rem; padding: .45rem .8rem;
   background: var(--nm-warning); color: #1d2125; font-family: var(--nm-heading-font); font-weight: 900; font-size: .95rem;
   border: 2px solid #1d2125; border-radius: .5rem; box-shadow: 3px 3px 0 #1d2125; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: .35rem;
   transform: rotate(8deg); animation: nm-game-sticker .6s cubic-bezier(.2,2,.4,1) .5s both, nm-game-wiggle 1s ease-in-out 1.2s infinite;
 }
 @keyframes nm-game-sticker { from { transform: rotate(40deg) scale(3); opacity: 0; } to { transform: rotate(8deg) scale(1); opacity: 1; } }
@@ -177,7 +222,6 @@
   .nm-game-hud-mid, .nm-game-best { display: none; }
   .nm-game-scorebox { min-inline-size: 6.5rem; }
   .nm-game-score { font-size: 1.6rem; }
-  .nm-game-teaser { grid-template-columns: 1fr; }
 }
 
 /* ---------- Calm mode (motion off in settings, or prefers-reduced-motion) ---------- */

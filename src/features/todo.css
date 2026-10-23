@@ -190,17 +190,23 @@
 .nm-todo-item.is-drop-before::before { inset-block-start: -1px; }
 .nm-todo-item.is-drop-after::after { inset-block-end: -1px; }
 
-/* ---- Empty state ---- */
-.nm-todo-empty { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.1rem .5rem .9rem; }
+/* ---- Empty state ----
+   One compact row (icon tile + two lines), aligned with the add row's "+" so it reads as a hint pointing up at it. */
+.nm-todo-empty {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .7rem; align-items: center;
+  margin-block: .15rem .1rem; padding: .55rem .5rem; text-align: start; cursor: text;
+  border-radius: var(--nm-radius);
+}
 .nm-todo-empty[hidden] { display: none; }
 .nm-todo-empty p { margin: 0; }
 .nm-todo-empty-art {
-  display: grid; place-items: center; inline-size: 3.25rem; block-size: 3.25rem; margin-block-end: .6rem;
-  border-radius: 50%; font-size: 1.6rem; background: var(--nm-surface-2);
-  box-shadow: 0 0 0 .4rem color-mix(in srgb, var(--nm-surface-2) 45%, transparent);
+  grid-row: 1 / span 2; display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem;
+  border-radius: calc(var(--nm-radius) * 1.2); font-size: 1.1rem; line-height: 1;
+  color: var(--nm-accent-text); background: color-mix(in srgb, var(--nm-accent) 12%, var(--nm-surface));
 }
-.nm-todo-empty-title { font-weight: 600; font-family: var(--nm-heading-font); }
-.nm-todo-empty-sub { margin-block-start: .15rem !important; font-size: .85rem; color: var(--nm-text-muted); max-inline-size: 24rem; }
+.nm-todo-empty-art .nm-svg { inline-size: 1.15em; block-size: 1.15em; vertical-align: 0; }
+.nm-todo-empty-title { align-self: end; font-weight: 600; font-size: .92rem; line-height: 1.3; font-family: var(--nm-heading-font); }
+.nm-todo-empty-sub { align-self: start; font-size: .8rem; line-height: 1.35; color: var(--nm-text-muted); }
 
 /* ---- Completed section ---- */
 .nm-todo-done { margin-block-start: .6rem; }

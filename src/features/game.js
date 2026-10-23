@@ -1,5 +1,5 @@
 // Arcade break: "Deadline Dash". Assignment cards fall; click them before they cross the DEADLINE line.
-// Dashboard only. Opens from a block card and a 🎮 header button into a full-screen canvas overlay.
+// Dashboard only. Opens from a block card and a gamepad header button into a full-screen canvas overlay.
 // Storage (chrome.storage.local): highscore (written the moment it's beaten), gamesPlayed, gameMuted.
 // Test hooks on .nm-game-overlay: data-nm-game-score/-state/-lives/-combo and data-nm-game-targets
 // (JSON [{x, y, kind}] in client px). html[data-nm-game-speed] multiplies fall speed and spawn rate.
@@ -54,7 +54,7 @@
     if (!content) return;
     const play = e => open(e.currentTarget);
     const art = NM.el('button', {class: 'nm-game-teaser-art', type: 'button', tabindex: '-1', 'aria-hidden': 'true', onclick: play},
-      ['Lab 4', 'Essay', 'Read ch. 7'].map((n, i) => NM.el('span', {class: 'nm-game-drop', style: `--i:${i}`}, '📄 ' + n)),
+      ['Lab 4', 'Essay', 'Read ch. 7'].map((n, i) => NM.el('span', {class: 'nm-game-drop', style: `--i:${i}`}, NM.icon('fileText'), NM.el('span', {class: 'nm-game-drop-text'}, n))),
       NM.el('span', {class: 'nm-game-teaser-line'}, NM.el('span', {}, 'DEADLINE')));
     teaser.best = NM.el('span', {class: 'nm-game-stat-value', 'data-nm-game-best': ''}, '0');
     teaser.played = NM.el('b', {}, '0');
@@ -66,7 +66,7 @@
         teaser.best,
         NM.el('span', {class: 'nm-game-stat-sub'}, teaser.played, teaser.playedLabel)),
       NM.el('button', {class: 'nm-btn nm-btn-primary nm-game-play', type: 'button', onclick: play},
-        NM.el('span', {class: 'nm-game-play-icon', 'aria-hidden': 'true'}, '▶'), ' Play Deadline Dash')));
+        NM.el('span', {class: 'nm-game-play-icon', 'aria-hidden': 'true'}, NM.icon('play')), ' Play Deadline Dash')));
   }
 
   function buildHeaderButton() {
@@ -173,7 +173,7 @@
     const ctx = canvas.getContext('2d');
     const scoreEl = el('span', {class: 'nm-game-score'}, '0');
     const bestEl = el('span', {class: 'nm-game-best-value'}, '0');
-    const hearts = [0, 1, 2].map(() => el('span', {class: 'nm-game-heart', 'aria-hidden': 'true'}, '❤️'));
+    const hearts = [0, 1, 2].map(() => el('span', {class: 'nm-game-heart', 'aria-hidden': 'true'}, NM.icon('heart')));
     const livesEl = el('div', {class: 'nm-game-lives', role: 'img', 'aria-label': '3 lives'}, hearts);
     const comboVal = el('span', {class: 'nm-game-combo-value'}, 'x1');
     const comboStreak = el('span', {class: 'nm-game-combo-streak'}, '');
@@ -181,10 +181,10 @@
     const comboEl = el('div', {class: 'nm-game-combo', hidden: true},
       el('div', {class: 'nm-game-combo-top'}, comboVal, comboStreak), el('span', {class: 'nm-game-combo-bar'}, comboFill));
     const buffTime = el('span', {}, '5.0');
-    const buffEl = el('div', {class: 'nm-game-buff', hidden: true}, '☕ ', buffTime, 's slow-mo');
+    const buffEl = el('div', {class: 'nm-game-buff', hidden: true}, NM.icon('coffee'), ' ', buffTime, 's slow-mo');
     const muteBtn = el('button', {class: 'nm-icon-btn nm-game-mute', type: 'button', onclick: () => { muted = !muted; NM.setLocal(KEY_MUTED, muted); syncHud(); }});
-    const pauseBtn = el('button', {class: 'nm-icon-btn nm-game-pause', type: 'button', title: 'Pause (Space / P)', 'aria-label': 'Pause', onclick: () => togglePause()}, '⏸');
-    const closeBtn = el('button', {class: 'nm-icon-btn nm-game-close', type: 'button', title: 'Close (Esc)', 'aria-label': 'Close game', onclick: () => close()}, '✕');
+    const pauseBtn = el('button', {class: 'nm-icon-btn nm-game-pause', type: 'button', title: 'Pause (Space / P)', 'aria-label': 'Pause', onclick: () => togglePause()}, NM.icon('pause'));
+    const closeBtn = el('button', {class: 'nm-icon-btn nm-game-close', type: 'button', title: 'Close (Esc)', 'aria-label': 'Close game', onclick: () => close()}, NM.icon('x'));
     const cardWrap = el('div', {class: 'nm-game-card-wrap', hidden: true});
     const live = el('div', {class: 'nm-game-sr', 'aria-live': 'polite'});
     const bestBox = el('div', {class: 'nm-game-best'}, el('span', {class: 'nm-game-label'}, 'Best'), bestEl);
@@ -194,7 +194,7 @@
         el('div', {class: 'nm-game-hud-start'},
           el('div', {class: 'nm-game-scorebox'}, el('span', {class: 'nm-game-label'}, 'Score'), scoreEl),
           comboEl, buffEl),
-        el('div', {class: 'nm-game-hud-mid'}, el('span', {class: 'nm-game-logo'}, '📄 Deadline Dash')),
+        el('div', {class: 'nm-game-hud-mid'}, el('span', {class: 'nm-game-logo'}, NM.icon('fileText'), ' Deadline Dash')),
         el('div', {class: 'nm-game-hud-end'}, livesEl, bestBox, muteBtn, pauseBtn, closeBtn)),
       cardWrap, live);
     document.body.append(overlay);
@@ -280,7 +280,7 @@
     function setState(s) {
       state = s;
       overlay.dataset.nmGameState = s;
-      pauseBtn.textContent = s === 'paused' ? '▶' : '⏸';
+      if (pauseBtn.dataset.icon !== (pauseBtn.dataset.icon = s === 'paused' ? 'play' : 'pause')) pauseBtn.replaceChildren(NM.icon(pauseBtn.dataset.icon));
       pauseBtn.setAttribute('aria-label', s === 'paused' ? 'Resume' : 'Pause');
       pauseBtn.disabled = !(s === 'playing' || s === 'paused');
     }
@@ -297,7 +297,7 @@
       overlay.dataset.nmGameLives = lives;
       overlay.dataset.nmGameCombo = mult;
       livesEl.setAttribute('aria-label', `${lives} ${lives === 1 ? 'life' : 'lives'} left`);
-      muteBtn.textContent = muted ? '🔇' : '🔊';
+      if (muteBtn.dataset.icon !== (muteBtn.dataset.icon = muted ? 'volumeX' : 'volume')) muteBtn.replaceChildren(NM.icon(muteBtn.dataset.icon));
       muteBtn.title = muted ? 'Unmute' : 'Mute';
       muteBtn.setAttribute('aria-label', muted ? 'Unmute sound' : 'Mute sound');
       muteBtn.setAttribute('aria-pressed', String(muted));
@@ -459,10 +459,10 @@
       setState('over');
       const record = score > startBest && score > 0;
       overlay.dataset.nmGameRecord = String(record);
-      const again = el('button', {class: 'nm-btn nm-btn-primary nm-game-again', type: 'button', onclick: () => newGame()}, '↻ Play again');
+      const again = el('button', {class: 'nm-btn nm-btn-primary nm-game-again', type: 'button', onclick: () => newGame()}, NM.icon('rotateCcw'), ' Play again');
       const card = el('div', {class: 'nm-game-card nm-game-over' + (record ? ' nm-game-record' : '')},
-        record && el('div', {class: 'nm-game-badge'}, '🏆 NEW HIGH SCORE!'),
-        el('div', {class: 'nm-game-card-emoji', 'aria-hidden': 'true'}, record ? '🎓' : '⏰'),
+        record && el('div', {class: 'nm-game-badge'}, NM.icon('trophy'), ' NEW HIGH SCORE!'),
+        el('div', {class: 'nm-game-card-emoji', 'aria-hidden': 'true'}, NM.icon(record ? 'graduationCap' : 'alarmClock')),
         el('h2', {class: 'nm-game-card-title'}, record ? 'Top of the class!' : 'Deadline passed!'),
         el('div', {class: 'nm-game-final'}, fmt(score)),
         el('div', {class: 'nm-game-final-stats'},
@@ -481,9 +481,9 @@
       const want = force ?? state === 'playing';
       if (want && state === 'playing') {
         setState('paused');
-        const resume = el('button', {class: 'nm-btn nm-btn-primary nm-game-resume', type: 'button', onclick: () => togglePause(false)}, '▶ Resume');
+        const resume = el('button', {class: 'nm-btn nm-btn-primary nm-game-resume', type: 'button', onclick: () => togglePause(false)}, NM.icon('play'), ' Resume');
         cardWrap.replaceChildren(el('div', {class: 'nm-game-card nm-game-paused'},
-          el('div', {class: 'nm-game-card-emoji', 'aria-hidden': 'true'}, '⏸'),
+          el('div', {class: 'nm-game-card-emoji', 'aria-hidden': 'true'}, NM.icon('pause')),
           el('h2', {class: 'nm-game-card-title'}, 'Paused'),
           el('p', {class: 'nm-game-card-text'}, 'The deadlines will wait. (Just this once.)'),
           el('div', {class: 'nm-game-card-actions'}, resume, el('button', {class: 'nm-btn nm-game-quit', type: 'button', onclick: () => close()}, 'Quit')),
