@@ -106,6 +106,14 @@ NM.feature('shortcuts', async () => {
   let previews = {};
   try { previews = await NM.getLocal('previews', {}) || {}; } catch {}
   const inflight = new Map();
+  const permissionCache = new Map();
+  let permissionVersion = 0;
+  const allowedFor = url => {
+    const origin = new URL(url).origin;
+    if (!permissionCache.has(origin)) permissionCache.set(origin,
+      chrome.runtime.sendMessage({type: 'nm-preview-permission', url}).then(r => !!r?.allowed, () => false));
+    return permissionCache.get(origin);
+  };
   // Successful previews stay fresh for 7 days; failures (site down, login wall, 403) are retried after a day.
   const fresh = url => { const c = previews[url]; return c && Date.now() - c.t < (c.error ? 864e5 : WEEK) ? c : null; };
   // Writes are queued so parallel fetches don't overwrite each other's entries; each merges into what other tabs cached.
@@ -118,7 +126,9 @@ NM.feature('shortcuts', async () => {
     previews = {...all, ...previews, [url]: entry};
     await NM.setLocal('previews', all);
   }).catch(() => {}));
-  function getPreview(url) {
+  async function getPreview(url) {
+    const version = permissionVersion;
+    if (!await allowedFor(url) || version !== permissionVersion) return {error: 'no-permission'};
     const c = fresh(url);
     if (c) return Promise.resolve(c);
     if (inflight.has(url)) return inflight.get(url);
@@ -126,7 +136,12 @@ NM.feature('shortcuts', async () => {
       let data;
       try { data = await chrome.runtime.sendMessage({type: 'nm-preview', url}); }
       catch (err) { return {error: String(err?.message || err)}; } // extension reloaded etc.: don't cache
+      if (version !== permissionVersion) return {error: 'no-permission'};
       if (!data) return {error: 'no response'};
+      if (data.error === 'no-permission') {
+        permissionCache.set(new URL(url).origin, Promise.resolve(false));
+        return data;
+      }
       const {title, ogTitle, siteName, description, image, finalUrl, favicon, error} = data;
       const entry = error ? {error, favicon, t: Date.now()} : {title, ogTitle, siteName, description, image, finalUrl, favicon, t: Date.now()};
       previews[url] = entry;
@@ -175,6 +190,27 @@ NM.feature('shortcuts', async () => {
   const spinner = el('span', {class: 'nm-sc-spinner', role: 'status', 'aria-label': 'Fetching page title', hidden: true});
   const nameField = el('div', {class: 'nm-sc-field'}, nameIn, spinner);
   const errEl = el('p', {id: 'nm-sc-error', class: 'nm-sc-error', role: 'alert'});
+  let hintDismissed = false;
+  const permissionHint = el('div', {class: 'nm-sc-permission-hint', hidden: true},
+    el('span', {}, 'Turn on link previews in the Re-Moodle toolbar menu to auto-fill names.'),
+    el('button', {type: 'button', class: 'nm-sc-hint-dismiss', 'aria-label': 'Dismiss link preview hint', onclick: () => { hintDismissed = true; permissionHint.hidden = true; }}, icon('x')));
+  async function updatePermissionHint() {
+    const state = await chrome.runtime.sendMessage({type: 'nm-preview-permission'}).catch(() => null);
+    permissionHint.hidden = hintDismissed || popState.mode !== 'add' || state?.allowed !== false;
+    if (!pop.hidden) place(pop, popState.anchor.getBoundingClientRect());
+  }
+  chrome.runtime.onMessage.addListener(msg => {
+    if (msg?.type !== 'nm-preview-permissions-changed') return;
+    permissionVersion++;
+    permissionCache.clear();
+    inflight.clear();
+    hideCard();
+    popState.seq++;
+    popState.lastUrl = null;
+    popState.fetched = null;
+    updatePermissionHint();
+    if (!pop.hidden) runPreview();
+  });
   const pv = el('div', {class: 'nm-sc-preview', 'aria-live': 'polite'});
   const popTitle = el('h2', {id: 'nm-sc-pop-title', class: 'nm-sc-pop-title'}, 'Add shortcut');
   const saveBtn = el('button', {type: 'submit', class: 'nm-btn nm-btn-primary nm-sc-save'}, 'Add');
@@ -185,7 +221,7 @@ NM.feature('shortcuts', async () => {
     popTitle,
     el('label', {class: 'nm-sc-label', for: 'nm-sc-url'}, 'Link'), urlIn,
     el('label', {class: 'nm-sc-label', for: 'nm-sc-name'}, 'Name'), nameField,
-    errEl, pv,
+    errEl, pv, permissionHint,
     el('div', {class: 'nm-sc-actions'}, delBtn, el('button', {type: 'button', class: 'nm-btn nm-sc-cancel', onclick: () => closePop(true)}, 'Cancel'), saveBtn),
     suggest);
   const pop = el('div', {id: 'nm-sc-pop', class: 'nm-sc-pop', role: 'dialog', 'aria-labelledby': 'nm-sc-pop-title', popover: 'manual', hidden: true}, form);
@@ -405,7 +441,7 @@ NM.feature('shortcuts', async () => {
     const it = byId(li.dataset.id);
     if (!it || blocked() || !li.isConnected) return;
     cardId = it.id;
-    const cached = previews[it.url]; // may be stale: show it while refreshing
+    const cached = await allowedFor(it.url) ? fresh(it.url) : null;
     const draw = (data, loading) => {
       if (cardId !== it.id || !li.isConnected) return;
       card.replaceChildren(...cardBody(it, data, loading).filter(Boolean));
@@ -413,7 +449,7 @@ NM.feature('shortcuts', async () => {
     };
     li.querySelector('.nm-sc-link').setAttribute('aria-describedby', 'nm-sc-card');
     draw(cached, !fresh(it.url) && !cached);
-    if (!fresh(it.url)) { draw(await getPreview(it.url), false); refreshIcons(); }
+    draw(await getPreview(it.url), false); refreshIcons();
   }
   list.addEventListener('pointerover', e => {
     const li = e.target.closest('.nm-sc-chip');
@@ -503,7 +539,7 @@ NM.feature('shortcuts', async () => {
         loading ? el('span', {class: 'nm-sc-skel'}) : el('strong', {class: 'nm-sc-preview-title'}, title),
         el('span', {class: 'nm-sc-preview-host', dir: 'ltr'}, hostOf(url)),
         !loading && data?.description && el('span', {class: 'nm-sc-preview-desc'}, data.description),
-        !loading && data?.error && el('span', {class: 'nm-sc-preview-desc'}, "Couldn't read the page, so the name comes from its address.")),
+        !loading && data?.error && data.error !== 'no-permission' && el('span', {class: 'nm-sc-preview-desc'}, "Couldn't read the page, so the name comes from its address.")),
       img || '');
   }
   async function runPreview() {
@@ -567,13 +603,14 @@ NM.feature('shortcuts', async () => {
     nameIn.value = item?.title || '';
     nameIn.placeholder = 'Fills in from the page';
     renderPv(null);
-    if (item) renderPv(item.url, previews[item.url] || {title: item.title});
+    if (item) renderPv(item.url, {title: item.title});
     renderSuggestions();
     addBtn.setAttribute('aria-expanded', String(mode === 'add'));
     popState.anchor = mode === 'edit' && opener ? opener.closest('.nm-sc-chip') : addBtn;
     place(pop, popState.anchor.getBoundingClientRect());
     urlIn.focus();
     if (item) urlIn.select();
+    updatePermissionHint();
     if (prefillUrl) runPreview();
   }
   function closePop(restoreFocus) {

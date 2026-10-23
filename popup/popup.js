@@ -53,3 +53,19 @@ chrome.storage.onChanged.addListener(ch => {
   if (ch.theme) mark(ch.theme.newValue);
   if (ch.voice) voice.value = ch.voice.newValue || 'mixed';
 });
+
+const previews = document.getElementById('previews');
+const previewOrigins = {origins: ['https://*/*', 'http://*/*']};
+const syncPreviews = async () => { previews.checked = await chrome.permissions.contains(previewOrigins); };
+syncPreviews();
+previews.addEventListener('change', async () => {
+  previews.disabled = true;
+  try {
+    // Invoke request directly from the checkbox gesture, before any await.
+    if (previews.checked) await chrome.permissions.request(previewOrigins);
+    else await chrome.permissions.remove(previewOrigins);
+  } catch { /* A dismissed request leaves the switch reflecting actual permissions. */ }
+  finally { await syncPreviews(); previews.disabled = false; }
+});
+chrome.permissions.onAdded.addListener(syncPreviews);
+chrome.permissions.onRemoved.addListener(syncPreviews);

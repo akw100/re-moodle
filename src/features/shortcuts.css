@@ -288,3 +288,8 @@ html[data-nm-motion="off"] .nm-sc-spinner { animation-duration: 1.6s; }
 .nm-sc-toast-undo:hover { background: color-mix(in srgb, var(--nm-surface) 26%, transparent); }
 
 .nm-sc-sr { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.nm-sc-permission-hint { display: flex; align-items: start; gap: 8px; color: var(--nm-text-muted); font-size: 12px; line-height: 1.4; }
+.nm-sc-permission-hint[hidden] { display: none; }
+.nm-sc-hint-dismiss { flex: none; border: 0; background: transparent; color: inherit; cursor: pointer; padding: 4px; }
+.nm-sc-hint-dismiss:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }

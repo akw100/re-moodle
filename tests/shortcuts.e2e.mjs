@@ -1,7 +1,6 @@
 // E2E for feature 5 (shortcuts bar) in real Chromium with the unpacked extension.
 //   node tests/shortcuts.e2e.mjs            (screenshots -> tests/tmp/shortcuts-*.png)
-// The "Example Domain" auto-fill is a real network fetch from the service worker; if the network is down,
-// example.com is stubbed (and the output says so).
+// Offline only: real default-denied permissions; test-only worker permission/fetch overrides for autofill.
 import {launch} from './harness.mjs';
 import {mkdirSync} from 'node:fs';
 
@@ -12,18 +11,107 @@ const ok = (cond, msg) => { console.log(`${cond ? '✓' : '✗'} ${msg}`); if (!
 const sc = h => h.getStorage('shortcuts').then(r => r.shortcuts || []);
 const until = async (fn, ms = 10000) => { const end = Date.now() + ms; let v; while (!(v = await fn()) && Date.now() < end) await new Promise(r => setTimeout(r, 100)); return v; };
 
-// ---------------------------------------------------------------- functional flows
+// No external requests: keep the harness's HUJI fixture routes, fulfill other assets locally.
+async function offline(h) {
+  await h.context.route(/^(?!https:\/\/(?:moodle\.huji\.ac\.il|idp\.cc\.huji\.ac\.il)\/).*$/, route =>
+    route.request().url().startsWith('chrome-extension:') ? route.continue() : route.fulfill({status: 404, body: ''}));
+}
+async function stubAutofill(h) {
+  await offline(h);
+  await h.sw.evaluate(() => {
+    // Test-only overrides: exercise the real handler, parser and UI without a native permission prompt or network.
+    chrome.permissions.contains = async () => true;
+    globalThis.fetch = async raw => {
+      const url = String(raw);
+      if (url.includes('nm-stub.test')) await new Promise(r => setTimeout(r, 1200));
+      const html = url.includes('nm-stub.test')
+        ? '<title>Lecture notes &amp; slides | Some Course Site</title><meta content="Weekly notes" property="og:description">'
+        : '<title>Example Domain</title>';
+      return new Response(html, {headers: {'content-type': 'text/html'}});
+    };
+  });
+}
+
+// ---------------------------------------------------------------- real default-denied path
 {
   const h = await launch();
-  const online = await h.sw.evaluate(async () => { try { return (await fetch('https://example.com/', {signal: AbortSignal.timeout(6000)})).ok; } catch { return false; } });
-  // Stubs served to the service worker's fetch: a slow page (to see the spinner and title cleanup), and example.com when offline.
-  await h.context.route('https://nm-stub.test/**', async route => {
-    await new Promise(r => setTimeout(r, 1200));
-    route.fulfill({contentType: 'text/html; charset=utf-8', body: '<html><head><title>Lecture notes &amp; slides | Some Course Site</title><meta content="Weekly notes" property="og:description"></head><body></body></html>'});
+  await offline(h);
+  await h.sw.evaluate(() => {
+    globalThis.previewFetches = 0;
+    globalThis.fetch = async () => { globalThis.previewFetches++; throw new Error('Unexpected fetch'); };
   });
-  if (!online) await h.context.route('https://example.com/**', r => r.fulfill({contentType: 'text/html', body: '<title>Example Domain</title>'}));
-  console.log(online ? '· network: online (real fetch of example.com)' : '· network: OFFLINE, example.com stubbed');
+  const popup = await h.context.newPage();
+  await popup.goto(h.sw.url().replace('src/background.js', 'popup/popup.html'));
+  ok(!await popup.isChecked('#previews'), 'toolbar switch is off with real unpacked default permissions');
+  const denied = await popup.evaluate(() => chrome.runtime.sendMessage({type: 'nm-preview', url: 'https://example.com/'}));
+  ok(denied.error === 'no-permission', 'real background returns no-permission');
+  const invalid = await popup.evaluate(() => chrome.runtime.sendMessage({type: 'nm-preview', url: 'file:///etc/passwd'}));
+  ok(invalid.error === 'http(s) only', 'background still rejects non-HTTP URLs');
+  await offline(h);
+  const page = await h.open('/my/');
+  await page.click('.nm-sc-add');
+  ok(await until(() => page.isVisible('.nm-sc-permission-hint')), 'quiet permission hint appears when previews are off');
+  await page.fill('#nm-sc-url', 'example.com');
+  ok(await until(async () => await page.inputValue('#nm-sc-name') === 'Example'), 'without permission, name falls back to prettified hostname');
+  ok(!/Couldn.t read|no-permission/.test(await page.innerText('.nm-sc-pop')), 'no permission error text is shown');
+  await page.screenshot({path: shot('permission-off'), clip: {x: 0, y: 0, width: 1280, height: 650}});
+  await page.click('.nm-sc-hint-dismiss');
+  await page.click('.nm-sc-save');
+  await page.hover('.nm-sc-chip');
+  await page.waitForSelector('.nm-sc-card:not([hidden])');
+  ok(await page.innerText('.nm-sc-card-title') === 'Example' && await page.locator('.nm-sc-card-img, .nm-sc-card-desc').count() === 0, 'denied hover card keeps title and host without rich metadata');
+  await page.click('.nm-sc-add');
+  ok(!await page.isVisible('.nm-sc-permission-hint'), 'hint dismissal persists for the session');
+  ok(await h.sw.evaluate(() => globalThis.previewFetches) === 0, 'denied preview and hover never fetch from the background');
+  // Simulate the native grant result only; click still exercises the actual popup gesture handler.
+  await popup.evaluate(() => {
+    window.previewGranted = false;
+    window.permissionCalls = [];
+    chrome.permissions.contains = async () => window.previewGranted;
+    chrome.permissions.request = async details => { window.permissionCalls.push(['request', details]); return window.previewGranted = true; };
+    chrome.permissions.remove = async details => { window.permissionCalls.push(['remove', details]); window.previewGranted = false; return true; };
+  });
+  await popup.click('#previews');
+  ok(await popup.isChecked('#previews'), 'toolbar enable reflects simulated successful grant');
+  await popup.screenshot({path: shot('toolbar'), fullPage: true});
+  await popup.click('#previews');
+  ok(!await popup.isChecked('#previews') && await popup.evaluate(() => window.permissionCalls.length === 2 && window.permissionCalls.every(([, d]) => d.origins.join() === 'https://*/*,http://*/*')), 'toolbar requests and removes exactly the optional HTTP/HTTPS origins');
+  await popup.evaluate(() => { chrome.permissions.request = async () => false; });
+  await popup.click('#previews');
+  ok(!await popup.isChecked('#previews'), 'declined permission request resets toolbar switch');
+  // Existing tab must recover from cached denial on the background notification, then drop rich cache on revocation.
+  await stubAutofill(h);
+  const notify = () => h.sw.evaluate(async () => {
+    for (const tab of await chrome.tabs.query({})) await chrome.tabs.sendMessage(tab.id, {type: 'nm-preview-permissions-changed'}).catch(() => {});
+  });
+  await notify();
+  await page.fill('#nm-sc-url', 'example.com/after-grant');
+  ok(await until(async () => await page.inputValue('#nm-sc-name') === 'Example Domain'), 'permission notification clears session denial and enables autofill in the existing tab');
+  await page.keyboard.press('Escape');
+  await page.click('.nm-sc-add');
+  ok(!await page.isVisible('.nm-sc-permission-hint'), 'enabled previews have no permission hint');
+  await h.sw.evaluate(() => {
+    chrome.permissions.contains = async () => false;
+    globalThis.previewFetches = 0;
+    globalThis.fetch = async () => { globalThis.previewFetches++; throw new Error('Unexpected fetch after revoke'); };
+  });
+  await notify();
+  await page.fill('#nm-sc-url', 'example.com/after-grant');
+  ok(await until(async () => await page.inputValue('#nm-sc-name') === 'Example'), 'revocation ignores previously cached page titles');
+  await page.keyboard.press('Escape');
+  await page.hover('.nm-sc-chip');
+  await page.waitForSelector('.nm-sc-card:not([hidden])');
+  ok(await h.sw.evaluate(() => globalThis.previewFetches) === 0, 'revoked previews do not fetch again');
+  await h.close();
+}
 
+// ---------------------------------------------------------------- functional flows (simulated grant)
+{
+  const h = await launch();
+  await stubAutofill(h);
+  console.log('· autofill: test-only worker permissions.contains and fetch overrides (no native grant, no network)');
+
+  await offline(h);
   const page = await h.open('/my/');
   const slotOrder = await page.evaluate(() => [...document.querySelector('.nm-header-slot').children].map(c => c.className));
   ok(slotOrder[0] === 'nm-sc-bar' && slotOrder.at(-1) === 'nm-theme-wrap', `bar is first in the header slot, theme picker last (${slotOrder.join(', ')})`);
@@ -47,10 +135,9 @@ const until = async (fn, ms = 10000) => { const end = Date.now() + ms; let v; wh
   ok(spun, 'spinner shows in the name field while fetching');
   if (spun) await page.screenshot({path: shot('spinner'), clip: {x: 0, y: 50, width: 1280, height: 480}});
   const stubName = await until(async () => (await page.inputValue('#nm-sc-name')) || null, 8000);
-  if (stubName === 'nm-stub' || stubName === 'Nm-stub') console.log('· (stub route not applied to service-worker fetches; skipped title-cleanup check)');
-  else ok(stubName === 'Lecture notes & slides', `title cleaned: "Lecture notes &amp; slides | Some Course Site" -> "${stubName}"`);
+  ok(stubName === 'Lecture notes & slides', `title cleaned: "Lecture notes &amp; slides | Some Course Site" -> "${stubName}"`);
 
-  // Real example: normalizes and auto-fills "Example Domain"
+  // Fixture example: normalizes and auto-fills "Example Domain"
   await page.fill('#nm-sc-name', '');
   await page.fill('#nm-sc-url', 'example.com');
   const name = await until(async () => { const v = await page.inputValue('#nm-sc-name'); return v && v !== 'Lecture notes & slides' ? v : null; }, 12000);
@@ -180,9 +267,13 @@ const FIVE = [
 ];
 for (const theme of ['off', 'quiet-focus', 'campus-pop']) {
   const h = await launch({storage: {theme, shortcuts: FIVE}});
+  await stubAutofill(h);
+  await offline(h);
   const page = await h.open('/my/');
   await page.waitForFunction(() => [...document.querySelectorAll('.nm-sc-chip img')].every(i => i.complete), null, {timeout: 8000}).catch(() => {});
   await page.hover('.nm-sc-chip[data-id=s4]');
+  // Keep the screenshot card open if layout or pointer movement crosses the chip boundary.
+  await page.locator('.nm-sc-chip[data-id=s4] .nm-sc-link').focus();
   await page.waitForSelector('.nm-sc-card:not([hidden]) .nm-sc-card-desc, .nm-sc-card:not([hidden]) .nm-sc-card-hint', {timeout: 10000});
   await page.waitForFunction(() => { const i = document.querySelector('.nm-sc-card-img'); return !i || i.complete; }, null, {timeout: 8000}).catch(() => {});
   await page.waitForTimeout(300);
@@ -202,6 +293,7 @@ for (const theme of ['off', 'quiet-focus', 'campus-pop']) {
   const many = [...FIVE, {id: 'm1', url: 'https://drive.google.com/', title: 'Google Drive'}, {id: 'm2', url: 'https://orbitlive.huji.ac.il/', title: 'Personal info'},
     {id: 'm3', url: 'https://www.wikipedia.org/', title: 'Wikipedia, the free encyclopedia'}, {id: 'm4', url: 'https://nosuchsite-nm.invalid/', title: 'No favicon here'}];
   const h = await launch({storage: {shortcuts: many}, viewport: {width: 900, height: 600}});
+  await offline(h);
   const page = await h.open('/my/');
   await page.waitForTimeout(1200);
   const m = await page.evaluate(() => {

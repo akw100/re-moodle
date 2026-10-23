@@ -7,7 +7,7 @@ Remodel the Moodle. A Chrome extension that makes HUJI's Moodle (`moodle.huji.ac
 - **My to-dos.** A personal to-do block with due dates, a Completed section, drag to reorder, and sync across your Chrome profiles.
 - **Header messages.** The "Dashboard" heading is replaced by a random funny line in one of 9 voices (tough love, hype, wholesome, sarcastic, stoic, chaotic, dramatic, dad jokes, mom). Some lines use your live deadlines. Click it to shuffle; pick a voice in the theme picker.
 - **Backgrounds.** Give any course card its own color, gradient, pattern or image, and tint any dashboard block.
-- **Shortcuts.** Link chips on the same line as the header message. Paste a URL and the name fills itself in; hover a chip for a preview card.
+- **Shortcuts.** Link chips on the same line as the header message. Paste a URL to add a shortcut; hover a chip for a preview card. Enable Link previews in the toolbar menu to auto-fill page titles and show richer previews.
 - **Confetti.** Fires every time you submit an assignment, finish a quiz or post in a forum, in each theme's own style.
 - **Deadline Dash.** A tiny arcade game in the Arcade break card. Click the falling assignments before the deadline line. Your high score is always saved.
 
@@ -69,5 +69,5 @@ Layout:
   Moodle's own JS doesn't run in the copies, so open dropdowns, the phone "More" menu and the live submit pages still deserve a look on the real site.
 
 Known limits:
-- The shortcuts preview needs the `<all_urls>` host permission to read other sites' titles.
+- Link previews are off by default. Enabling them requests optional HTTP/HTTPS site access; disabling them removes that access. Without it, shortcuts use names derived from their addresses.
 - To-dos live in `chrome.storage.sync`, which allows about 8 KB per key (roughly 80 to-dos).

@@ -1,6 +1,6 @@
-# Chrome Web Store submission: Re-Moodle 1.0.0
+# Chrome Web Store submission: Re-Moodle 1.0.1
 
-Upload `dist/re-moodle-1.0.0.zip`, built with `npm run package`. Store images are in `docs/store/`.
+Upload `dist/re-moodle-1.0.1.zip`, built with `npm run package`. Store images are in `docs/store/`.
 
 ## Listing
 - **Name:** Re-Moodle
@@ -28,8 +28,8 @@ Restyle and add study-organization features to the HUJI Moodle website (`moodle.
 - **`storage`:** saves your theme, to-dos, shortcuts, done/not-done overrides, backgrounds and high score in `chrome.storage` (sync and local). Nothing leaves the browser.
 - **Content scripts on `https://moodle.huji.ac.il/*`:** apply the themes and add the dashboard features. To mark submitted work as done, they read your upcoming events through Moodle's own AJAX endpoints, same-origin, with your existing session.
 - **Content script on `https://idp.cc.huji.ac.il/simplesaml/*`, the HUJI login page:** CSS only, plus a tiny script that sets the theme attribute. It never reads, changes or submits the login form, and never touches credentials.
-- **Host permission `<all_urls>`:** only used by the service worker when you add a shortcut. It fetches that one page you chose to read its title, description and preview image. No other site is contacted, and nothing is fetched in the background without your action.
-  - Broad host permissions trigger an in-depth review. If the reviewer pushes back, the alternative is `optional_host_permissions` requested at the moment you add a shortcut. That's a small code change.
+- **No host permissions are required.** The content scripts only match the two HUJI sites.
+- **Optional host permissions `https://*/*`, `http://*/*`:** requested only if the user turns on "Link previews" in the toolbar popup, with Chrome's own prompt. When granted, the service worker fetches only a page the user adds as a shortcut, to read its title and preview image. Off by default; without it, shortcuts use the favicon and the site's name from its address.
 
 ## Data usage disclosures (privacy form)
 - **Data collected:** none sent to the developer or any third party.

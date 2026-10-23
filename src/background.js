@@ -109,13 +109,35 @@ const faviconOk = host => fetch(`https://www.google.com/s2/favicons?domain=${enc
   {credentials: 'omit', signal: AbortSignal.timeout(TIMEOUT_MS)})
   .then(r => { r.body?.cancel().catch(() => {}); return r.ok; }, () => undefined);
 
+const PREVIEW_ORIGINS = ['https://*/*', 'http://*/*'];
+async function previewPermission(rawUrl) {
+  if (!rawUrl) return chrome.permissions.contains({origins: PREVIEW_ORIGINS});
+  const url = new URL(String(rawUrl));
+  if (!/^https?:$/.test(url.protocol)) throw new Error('http(s) only');
+  return await chrome.permissions.contains({origins: [`${url.origin}/*`]}) ||
+    await chrome.permissions.contains({origins: PREVIEW_ORIGINS});
+}
+
 chrome.runtime.onMessage.addListener((msg, sender, reply) => {
-  if (msg?.type !== 'nm-preview' || sender.id !== chrome.runtime.id) return;
-  let host = '';
-  try { host = new URL(msg.url).hostname; } catch {}
-  Promise.all([
-    preview(msg.url).catch(e => ({error: e?.name === 'TimeoutError' || e?.name === 'AbortError' ? 'timed out' : String(e?.message || e)})),
-    host ? faviconOk(host) : undefined,
-  ]).then(([data, favicon]) => reply({...data, favicon}));
+  if (!['nm-preview', 'nm-preview-permission'].includes(msg?.type) || sender.id !== chrome.runtime.id) return;
+  (async () => {
+    const allowed = await previewPermission(msg.url);
+    if (msg.type === 'nm-preview-permission') return {allowed};
+    if (!allowed) return {error: 'no-permission'};
+    const host = new URL(msg.url).hostname;
+    const [data, favicon] = await Promise.all([
+      preview(msg.url).catch(e => ({error: e?.name === 'TimeoutError' || e?.name === 'AbortError' ? 'timed out' : String(e?.message || e)})),
+      // A site-specific grant need not include Google's favicon service.
+      chrome.permissions.contains({origins: ['https://www.google.com/*']}).then(ok => ok ? faviconOk(host) : undefined),
+    ]);
+    return {...data, favicon};
+  })().then(reply, e => reply({error: String(e?.message || e)}));
   return true; // async reply
 });
+
+const permissionsChanged = async () => {
+  const tabs = await chrome.tabs.query({});
+  await Promise.all(tabs.map(tab => chrome.tabs.sendMessage(tab.id, {type: 'nm-preview-permissions-changed'}).catch(() => {})));
+};
+chrome.permissions.onAdded.addListener(permissionsChanged);
+chrome.permissions.onRemoved.addListener(permissionsChanged);
