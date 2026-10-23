@@ -303,9 +303,27 @@ html[data-nm-theme="campus-pop"] {
     pointer-events: none;
   }
   & #page-header .nm-header-slot { gap: .6rem; padding-top: .35rem; align-items: center; }
-  /* chips wrap onto a second line instead of scrolling under "+ Add" (the list box dissolves, as on phones) */
-  & body.pagelayout-mydashboard #page-header .nm-sc-bar { flex-wrap: wrap; row-gap: 12px; }
-  & body.pagelayout-mydashboard #page-header .nm-sc-list { display: contents; mask-image: none !important; }
+  /* Keep the list's scrolling box and edge fades on tablets and desktops. */
+  @media (min-width: 768px) {
+    & body.pagelayout-mydashboard #page-header .nm-sc-bar { flex-wrap: nowrap; }
+    & body.pagelayout-mydashboard #page-header .nm-theme-wrap { flex: none; }
+  }
+  @media (min-width: 1200px) {
+    & body.pagelayout-mydashboard #page-header .d-flex:has(> .nm-header-slot) { flex-wrap: nowrap; }
+    & body.pagelayout-mydashboard #page-header .nm-motd { max-inline-size: 32ch; }
+    & body.pagelayout-mydashboard #page-header .d-flex:has(> .nm-header-slot) > .me-auto:has(.nm-motd) { flex: 0 0 auto !important; }
+  }
+  @media (min-width: 768px) and (max-width: 1199.98px) {
+    & body.pagelayout-mydashboard #page-header .d-flex:has(> .nm-header-slot) { flex-wrap: wrap; }
+    & body.pagelayout-mydashboard #page-header .nm-header-slot {
+      flex-basis: 100%; margin-inline-start: 0; margin-block-start: .5rem;
+    }
+  }
+  /* Preserve the phone flow, including Add and Edit following the last chip. */
+  @media (max-width: 767.98px) {
+    & body.pagelayout-mydashboard #page-header .nm-sc-bar { flex-wrap: wrap; row-gap: 12px; }
+    & body.pagelayout-mydashboard #page-header .nm-sc-list { display: contents; mask-image: none !important; }
+  }
 
   /* Course page: a yellow poster, the teacher as a sticker */
   & body.pagelayout-course #page-header {
@@ -609,7 +627,8 @@ html[data-nm-theme="campus-pop"] {
   & .block.card > .card-body > .card-text.content {
     margin-top: 0 !important;
     padding: .35rem 1.25rem 1rem;
-    background: #FFF;
+    /* Include the panel padding in custom tints, not just the event rows. */
+    background: var(--nm-block-bg, #FFF);
     border: 1px solid #000;
     border-radius: 4px;
   }

@@ -409,3 +409,50 @@ html[data-nm-theme] .activityiconcontainer > img.activityicon[src*="/f/"] {
   inline-size: 60% !important; block-size: 60% !important; max-inline-size: none !important; max-block-size: none !important;
   margin: 0 !important; padding: 0 !important; object-fit: contain !important; transform: none !important; position: static !important;
 }
+
+/* ===== Course overview toolbar: shared container-responsive layout =====
+   Deliberately outrank theme/Bootstrap sizing, leaving colors, borders and fonts alone. */
+html[data-nm-theme] .block_myoverview { container: nm-overview / inline-size; }
+html[data-nm-theme] .block_myoverview [data-region="filter"] > .d-flex {
+  display: grid !important;
+  grid-template-columns: minmax(0, min(28%, 15rem)) minmax(0, 1fr) minmax(0, min(24%, 12rem)) minmax(0, min(18%, 8rem));
+  align-items: center !important; gap: 8px !important;
+}
+html[data-nm-theme] .block_myoverview [data-region="filter"] > .d-flex > * {
+  min-inline-size: 0; margin: 0 !important;
+}
+html[data-nm-theme] .block_myoverview [data-region="filter"] :is(.dropdown, .simplesearchform, .input-group) {
+  min-inline-size: 0; inline-size: 100%; flex-wrap: nowrap !important;
+}
+html[data-nm-theme] .block_myoverview [data-region="filter"] :is(.btn.dropdown-toggle, input.form-control) {
+  box-sizing: border-box; block-size: 40px !important; min-block-size: 40px !important;
+  min-inline-size: 0 !important; max-inline-size: 100%; inline-size: 100%;
+  margin-block: 0 !important; padding-block: 0 !important;
+}
+html[data-nm-theme] .block_myoverview [data-region="filter"] .btn.dropdown-toggle {
+  display: flex !important; align-items: center; justify-content: center; gap: 4px;
+  padding-inline: 8px !important;
+}
+html[data-nm-theme] .block_myoverview [data-region="filter"] .btn.dropdown-toggle > span {
+  min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+html[data-nm-theme] .block_myoverview [data-region="filter"] .btn.dropdown-toggle::after { flex: none; }
+/* Leave room for the active label beside theme-supplied prefixes (Clay's Show/View). */
+html[data-nm-theme] .block_myoverview [data-region="filter"] .btn.dropdown-toggle::before {
+  flex: none; margin-inline-end: 0 !important; padding-inline-end: 4px !important;
+}
+@container nm-overview (max-width: 580px) {
+  html[data-nm-theme] .block_myoverview [data-region="filter"] > .d-flex {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  html[data-nm-theme] .block_myoverview [data-region="filter"] > .d-flex > :has(.simplesearchform) {
+    grid-column: 1 / -1; grid-row: 1;
+  }
+}
+/* ===== End course overview toolbar ===== */
+
+/* Top row: both cards' VISIBLE boxes match in height in every theme. Some themes paint the card itself, others paint the
+   inner .card-body or .nm-block-content (Ahead), so the whole chain stretches to the row height. */
+#nm-top-row:not(#nm-x) > .nm-block { display: flex !important; flex-direction: column !important; align-self: stretch !important; }
+#nm-top-row:not(#nm-x) > .nm-block > .card-body { flex: 1 1 auto !important; display: flex !important; flex-direction: column !important; min-block-size: 0; }
+#nm-top-row:not(#nm-x) > .nm-block > .card-body > .nm-block-content { flex: 1 1 auto !important; }

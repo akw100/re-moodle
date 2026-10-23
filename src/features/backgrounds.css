@@ -51,7 +51,31 @@ html .nm-bg-host-block.nm-bg-frameless {
 .nm-bg-btn[aria-expanded="true"] { background: var(--nm-surface-2); border-color: var(--nm-accent); }
 
 .nm-bg-btn-course { position: absolute; z-index: 3; inset-block-start: 8px; inset-inline-end: 8px; }
-.nm-bg-btn-block { margin-block: -6px; margin-inline-start: auto; align-self: center; }
+/* Opacity hides the brush without removing its reserved slot. Order keeps it after
+   counts inserted asynchronously by upcoming.js; gap survives exhausted auto margins. */
+html .nm-bg-host-block :is(.d-flex, .nm-block-head):has(> .nm-bg-btn-block) {
+  align-items: center !important;
+  column-gap: 8px !important;
+}
+html .nm-bg-host-block .nm-bg-btn-block {
+  order: 10; margin-block: 0; margin-inline-start: auto; align-self: center;
+}
+html .nm-bg-host-block :is(.d-flex, .nm-block-head):has(> .nm-bg-btn-block) > .card-title {
+  margin-block: 0 !important; align-self: center;
+}
+html .nm-bg-host-block .nm-up-count { margin-inline-start: auto; }
+html .nm-bg-host-block .nm-up-count ~ .nm-bg-btn-block { margin-inline-start: 0; }
+
+/* Paint through structural wrappers without clipping dropdowns or focus rings. */
+html .nm-bg-host-block.nm-bg-set .nm-bg-clear { background: transparent !important; }
+html .nm-bg-host-block.nm-bg-set,
+html .nm-bg-host-block .nm-bg-surface { background-clip: border-box !important; }
+html .nm-bg-host-block.nm-bg-set {
+  --nm-text-muted: color-mix(in srgb, var(--nm-text) 90%, var(--nm-surface));
+}
+html .nm-bg-host-block.nm-bg-set.nm-up :is(h6, .date, .date a, .nm-up-count, .footer a, .nm-up-row-done a[data-event-id], .nm-up-done-help) {
+  color: var(--nm-text-muted) !important; opacity: 1 !important;
+}
 
 .nm-bg-host-course:is(:hover, :focus-within, .nm-bg-open) > .nm-bg-btn-course,
 .nm-bg-host-block:is(:hover, :focus-within, .nm-bg-open) .nm-bg-btn-block { opacity: 1; }
@@ -204,3 +228,13 @@ html[data-nm-theme="campus-pop"] .nm-bg-pop { --nm-bg-elev: 6px 6px 0 #000; }
 .nm-bg-url-prev.is-ok { block-size: 64px; margin-block-start: 8px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nm-text) 14%, transparent); }
 .nm-bg-msg { margin: 6px 0 0; font-size: .75rem; color: var(--nm-text-muted); }
 .nm-bg-msg.is-error { color: var(--nm-danger); }
+
+/* Daily Quest hard-codes its muted ink instead of using the shared token. */
+html[data-nm-theme="daily-quest"] .nm-bg-host-block.nm-bg-set.nm-up :is(.nm-up-opens, .nm-up-edit) {
+  color: var(--nm-text-muted) !important;
+}
+
+/* Expanded summaries can use a dark theme fill; follow their foreground. */
+html .nm-bg-host-block.nm-bg-set.nm-up .nm-up-done-hint {
+  color: inherit !important; opacity: 1 !important;
+}

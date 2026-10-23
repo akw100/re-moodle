@@ -88,10 +88,10 @@ NM.feature('backgrounds', async () => {
       {id: 'accent', name: 'Accent tint', css: tint('var(--nm-accent)')},
     ],
     gradient: [
-      {id: 'peach', name: 'Peach glow', css: `linear-gradient(160deg, ${tint('#f76b15', 84)}, ${tint('#e5484d', 94)})`},
-      {id: 'lagoon', name: 'Lagoon glow', css: `linear-gradient(160deg, ${tint('#14a3a3', 84)}, ${tint('#3fa7f5', 94)})`},
-      {id: 'lilac', name: 'Lilac glow', css: `linear-gradient(160deg, ${tint('#7c5cff', 84)}, ${tint('#f06595', 94)})`},
-      {id: 'accent', name: 'Accent glow', css: `linear-gradient(160deg, ${tint('var(--nm-accent)', 82)}, var(--nm-surface) 75%)`},
+      {id: 'peach', name: 'Peach glow', css: `linear-gradient(160deg, ${tint('#f76b15', 94)}, ${tint('#e5484d', 94)})`},
+      {id: 'lagoon', name: 'Lagoon glow', css: `linear-gradient(160deg, ${tint('#14a3a3', 94)}, ${tint('#3fa7f5', 94)})`},
+      {id: 'lilac', name: 'Lilac glow', css: `linear-gradient(160deg, ${tint('#7c5cff', 94)}, ${tint('#f06595', 94)})`},
+      {id: 'accent', name: 'Accent glow', css: `linear-gradient(160deg, ${tint('var(--nm-accent)', 94)}, var(--nm-surface) 75%)`},
     ],
     pattern: [
       {id: 'dots', name: 'Dots', css: `radial-gradient(${bInk} 1.3px, transparent 1.8px) 0 0 / 16px 16px, var(--nm-surface)`},
@@ -272,11 +272,12 @@ NM.feature('backgrounds', async () => {
     if ((b.dataset.nmBgSig || '') === sig) return;
     clearBlock(b);
     if (!css) return;
-    // Paint the element that actually draws the block's surface in this theme: the innermost of section /
-    // .card-body / content with a fill or a border. Frameless themes get the section, padded (.nm-bg-frameless).
+    // Paint the outermost visible panel, including its padding and rounded edges.
+    // Nested structural fills must not cover it; frameless themes get a padded section.
     const body = b.querySelector(':scope > .card-body');
     const chain = [b, body, body?.querySelector(':scope > .card-text, :scope > .nm-block-content')].filter(Boolean);
-    const target = chain.filter(painted).pop() || b;
+    const target = chain.find(painted) || b;
+    chain.slice(chain.indexOf(target) + 1).forEach(x => x.classList.add('nm-bg-clear'));
     blockTarget.set(b, target);
     b.classList.add('nm-bg-set');
     b.classList.toggle('nm-bg-frameless', !chain.some(painted));
@@ -301,6 +302,7 @@ NM.feature('backgrounds', async () => {
       x.style.removeProperty('--nm-block-bg');
       x.classList.remove('nm-bg-surface');
     }
+    b.querySelectorAll('.nm-bg-clear').forEach(x => x.classList.remove('nm-bg-clear'));
     blockTarget.delete(b);
     b.classList.remove('nm-bg-set', 'nm-bg-frameless');
     delete b.dataset.nmBgKind;
