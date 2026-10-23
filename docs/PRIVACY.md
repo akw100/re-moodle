@@ -12,4 +12,4 @@ Re-Moodle is a browser extension that restyles HUJI's Moodle and adds study feat
 
 **Your control.** Removing the extension deletes its local storage. You can also clear to-dos, shortcuts and backgrounds from inside the extension at any time.
 
-**Contact:** <your contact email>
+**Contact:** ayelet.wasserman@mail.huji.ac.il

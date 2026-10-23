@@ -37,7 +37,7 @@ Restyle and add study-organization features to the HUJI Moodle website (`moodle.
 - Certify: no sale of data, no use unrelated to the single purpose, no use for creditworthiness or lending.
 
 ## Privacy policy
-The store needs a public URL; `docs/PRIVACY.md` is the text. Host it somewhere public, e.g. a GitHub Pages page or a public gist, since the repo itself is private.
+Public URL: **https://akw100.github.io/re-moodle/**. It's GitHub Pages from the `gh-pages` branch, which contains only that page, so the rest of the private repo stays private. The source text is `docs/PRIVACY.md`; if you edit it, regenerate the page on `gh-pages`.
 
 ## Images
 - **Icon:** `icons/icon128.png`
