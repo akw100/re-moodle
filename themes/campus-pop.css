@@ -638,11 +638,11 @@ html[data-nm-theme="campus-pop"] {
   & .nm-top-row { gap: 1.5rem; }
   /* Course overview spans rows 1-2; an auto row 1 would soak up half its height and strand Announcements in blank space */
   @media (min-width: 768px) {
-    & body.pagelayout-mydashboard #block-region-content { grid-template-rows: auto 1fr; }
+    & body.pagelayout-mydashboard #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) { grid-template-rows: auto 1fr; }
     /* deadlines first: Upcoming events takes the top-right cell beside the courses, Announcements drops below it
-       (HUJI places these with inline grid-row styles, hence !important) */
-    & body.pagelayout-mydashboard:not(.editing) #block-region-content > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
-    & body.pagelayout-mydashboard:not(.editing) #block-region-content > .block_news_items { grid-row: 2 / 3 !important; }
+       (HUJI places these with inline grid-row styles, hence !important). Only for the stock block set (news item2, upcoming item3): a different set gets other columns from HUJI, and pinning just the rows would stack these blocks on top of the courses */
+    & body.pagelayout-mydashboard:not(.editing) #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
+    & body.pagelayout-mydashboard:not(.editing) #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) > .block_news_items { grid-row: 2 / 3 !important; }
   }
   @media (min-width: 768px) { & .block-region > .block.card { align-self: start; } }
   & .nm-block-game .nm-block-content { padding-block: 1rem; }

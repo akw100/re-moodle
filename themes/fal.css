@@ -660,8 +660,8 @@ html[data-nm-theme="fal"] .form-check-input:focus { border-color: var(--fal-char
 /* ---------- Course overview ---------- */
 html[data-nm-theme="fal"] .block_myoverview [data-region="filter"] .btn { min-block-size: 32px; }
 @media (min-width: 768px) {
-  html[data-nm-theme="fal"] body.pagelayout-mydashboard:not(.editing) #block-region-content > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
-  html[data-nm-theme="fal"] body.pagelayout-mydashboard:not(.editing) #block-region-content > .block_news_items { grid-row: 2 / 3 !important; align-self: start; }
+  html[data-nm-theme="fal"] body.pagelayout-mydashboard:not(.editing) #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
+  html[data-nm-theme="fal"] body.pagelayout-mydashboard:not(.editing) #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) > .block_news_items { grid-row: 2 / 3 !important; align-self: start; }
 }
 /* The course filters and model-style cards share a padded, outlined panel. */
 /* osiris pads these with an #page-my-index rule, so match its ID */

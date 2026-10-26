@@ -445,9 +445,9 @@ html[data-nm-theme="ahead"] .block.card:not(.nm-block-game) > .card-body > .card
 }
 /* what's due first: Upcoming takes the top of the right column, Announcements drops under it */
 @media (min-width: 768px) {
-  html[data-nm-theme="ahead"] body.pagelayout-mydashboard #block-region-content { grid-template-rows: auto 1fr; }
-  html[data-nm-theme="ahead"] body.pagelayout-mydashboard #block-region-content > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
-  html[data-nm-theme="ahead"] body.pagelayout-mydashboard #block-region-content > .block_news_items { grid-row: 2 / 3 !important; align-self: start; }
+  html[data-nm-theme="ahead"] body.pagelayout-mydashboard #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) { grid-template-rows: auto 1fr; }
+  html[data-nm-theme="ahead"] body.pagelayout-mydashboard #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) > .block_calendar_upcoming { grid-row: 1 / 2 !important; }
+  html[data-nm-theme="ahead"] body.pagelayout-mydashboard #block-region-content:has(> .block_news_items.item2):has(> .block_calendar_upcoming.item3) > .block_news_items { grid-row: 2 / 3 !important; align-self: start; }
 }
 /* block footers: a quiet purple link with a chevron */
 html[data-nm-theme="ahead"] .block .footer { margin-block-start: .75rem; padding: 0 .35rem; border: 0; }
