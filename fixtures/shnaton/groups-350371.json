@@ -1,0 +1,234 @@
+{
+ "350371": [
+  {
+   "id": 73952,
+   "code": "3-01",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": true,
+   "courseId": 350371,
+   "studySessionTypeId": 49,
+   "studySessionTypeCode": "3",
+   "studySessionTypeName": {
+    "he": "שעור ותרגיל",
+    "en": "Lesson and Exercise"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62157784,
+     "roomId": 61,
+     "courseId": 350371,
+     "period": 1,
+     "dayOfWeek": 1,
+     "startTime": 59400000,
+     "endTime": 68400000,
+     "isRecorded": true,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 73952,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 61,
+      "name": {
+       "he": "23206 חברה",
+       "en": "Soc_faculty23206"
+      },
+      "userCode": "128",
+      "building": {
+       "id": 71,
+       "name": {
+        "he": "גוש 3 חברה",
+        "en": null
+       },
+       "code": "110",
+       "campus": {
+        "id": 3,
+        "code": "0",
+        "name": {
+         "he": "הר הצופים",
+         "en": "Mt.Scopus"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759007893,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-12T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007894,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-19T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007895,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-26T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007896,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-02T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007897,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-09T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007898,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-16T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007899,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-23T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007900,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-30T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007901,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-14T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007902,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-21T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007903,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-28T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007904,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-04T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759007905,
+       "studySessionId": 62157784,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-11T00:00:00",
+       "scheduledDayOfWeek": 1,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 61,
+      "name": {
+       "he": "23206 חברה",
+       "en": "Soc_faculty23206"
+      },
+      "userCode": "128",
+      "building": {
+       "id": 71,
+       "name": {
+        "he": "גוש 3 חברה",
+        "en": null
+       },
+       "code": "110",
+       "campus": {
+        "id": 3,
+        "code": "0",
+        "name": {
+         "he": "הר הצופים",
+         "en": "Mt.Scopus"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 1,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  }
+ ]
+}

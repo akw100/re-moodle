@@ -69,3 +69,18 @@ previews.addEventListener('change', async () => {
 });
 chrome.permissions.onAdded.addListener(syncPreviews);
 chrome.permissions.onRemoved.addListener(syncPreviews);
+
+const shnaton = document.getElementById('shnaton');
+const shnatonOrigins = {origins: ['https://shnaton.huji.ac.il/*']};
+const syncShnaton = async () => { shnaton.checked = await chrome.permissions.contains(shnatonOrigins); };
+syncShnaton();
+shnaton.addEventListener('change', async () => {
+  shnaton.disabled = true;
+  try {
+    if (shnaton.checked) await chrome.permissions.request(shnatonOrigins);
+    else await chrome.permissions.remove(shnatonOrigins);
+  } catch { /* A dismissed request leaves the switch reflecting actual permissions. */ }
+  finally { await syncShnaton(); shnaton.disabled = false; }
+});
+chrome.permissions.onAdded.addListener(syncShnaton);
+chrome.permissions.onRemoved.addListener(syncShnaton);

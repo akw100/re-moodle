@@ -52,7 +52,7 @@
       popover: 'manual', hidden: true},
     el('div', {class: 'nm-theme-pop-head'},
       el('h2', {id: 'nm-theme-pop-title', class: 'nm-theme-pop-title'}, 'Theme')),
-    grid, voiceControl());
+    grid, voiceControl(), scheduleControl());
     const btn = el('button', {type: 'button', class: 'nm-icon-btn nm-theme-btn', title: 'Choose theme', 'aria-label': 'Choose theme',
       'aria-haspopup': 'dialog', 'aria-expanded': 'false', 'aria-controls': 'nm-theme-pop'}, NM.icon('palette'));
     slot.append(el('div', {class: 'nm-theme-wrap'}, btn));
@@ -137,6 +137,75 @@
 
     NM.watch('theme', id => { mark(id); if (isOpen()) requestAnimationFrame(place); });
     mark();
+  }
+
+  function scheduleControl() {
+    const {el} = NM;
+    const status = el('span', {class: 'nm-schedule-status', role: 'status'}, 'No schedule');
+    const shnatonStatus = el('span', {class: 'nm-shnaton-status', role: 'status'});
+    const groups = el('div', {class: 'nm-shnaton-groups'});
+    let fieldsKey = '';
+    NM.watchShnaton(({status, picks}) => {
+      shnatonStatus.textContent = status;
+      const fields = picks.map(({value, ...field}) => field), key = JSON.stringify(fields);
+      if (key !== fieldsKey) {
+        fieldsKey = key;
+        groups.replaceChildren(...fields.map(({code, title, type, options}, i) => {
+          const id = `nm-shnaton-group-${i}`;
+          const select = el('select', {id, class: 'nm-shnaton-select', dir: 'ltr'},
+            el('option', {value: '?', disabled: true}, 'Choose your group…'),
+            options.map(g => {
+              const [start, end] = g.meetings[0];
+              const day = new Intl.DateTimeFormat('en', {weekday: 'short', timeZone: 'UTC'}).format(
+                new Date(`${start.slice(0, 4)}-${start.slice(4, 6)}-${start.slice(6, 8)}T00:00:00Z`));
+              return el('option', {value: g.group}, `${g.group} · ${day} ${start.slice(9, 11)}:${start.slice(11, 13)}–${end.slice(9, 11)}:${end.slice(11, 13)}`);
+            }), el('option', {value: ''}, 'None of these'));
+          select.addEventListener('change', async () => {
+            select.disabled = true;
+            try { await NM.setShnatonGroup(code, type, select.value); }
+            catch { shnatonStatus.textContent = 'Could not save group. Try again.'; }
+            finally { select.disabled = false; }
+          });
+          return el('div', {class: 'nm-shnaton-field'},
+            el('label', {for: id}, `${code} ${title} · ${type}`), select);
+        }));
+      }
+      picks.forEach((pick, i) => {
+        groups.querySelectorAll('select')[i].value = pick.options.some(g => g.group === pick.value) || pick.value === '' ? pick.value : '?';
+      });
+    });
+    const input = el('input', {id: 'nm-schedule-file', type: 'file', accept: '.ics,text/calendar', hidden: true, 'aria-label': 'Import class schedule'});
+    const importBtn = el('button', {type: 'button', class: 'nm-btn', onclick: () => input.click()}, 'Import .ics');
+    const clear = el('button', {type: 'button', class: 'nm-btn', disabled: true, onclick: async () => {
+      try { await NM.setLocal('schedule', []); render([]); }
+      catch { status.textContent = 'Could not clear schedule. Try again.'; }
+    }}, 'Clear');
+    function render(events) {
+      status.textContent = events.length ? `${events.length} classes imported` : 'No schedule';
+      clear.disabled = !events.length;
+    }
+    NM.getLocal('schedule', []).then(render).catch(() => { status.textContent = 'Could not load schedule. Try again.'; });
+    chrome.storage.onChanged.addListener((changes, area) => {
+      if (area === 'local' && changes.schedule) render(changes.schedule.newValue || []);
+    });
+    input.addEventListener('change', async () => {
+      const file = input.files[0];
+      if (!file) return;
+      importBtn.disabled = clear.disabled = true;
+      try {
+        const events = NM.parseSchedule(await file.text());
+        if (!events.length) status.textContent = 'No usable classes. Choose another .ics file.';
+        else { await NM.setLocal('schedule', events); render(events); }
+      } catch { status.textContent = 'Could not import schedule. Try again.'; }
+      finally {
+        input.value = '';
+        importBtn.disabled = false;
+        clear.disabled = !(await NM.getLocal('schedule', []).catch(() => [])).length;
+      }
+    });
+    return el('div', {class: 'nm-voice nm-schedule', role: 'group', 'aria-labelledby': 'nm-schedule-label'},
+      el('span', {id: 'nm-schedule-label', class: 'nm-voice-label'}, 'Class schedule'),
+      el('div', {class: 'nm-schedule-actions'}, importBtn, clear), input, status, shnatonStatus, groups);
   }
 
   // "Header voice" under the tiles: which voice the dashboard's header message speaks in (features/motd.js).

@@ -1,0 +1,39 @@
+[
+ {
+  "id": 350371,
+  "name": {
+   "he": "ניהול התקשורת והפרסום בעידן הדיגיטלי",
+   "en": "Advertising and Communication Management in the Digital era "
+  },
+  "code": "55826",
+  "departmentId": 102,
+  "departmentName": {
+   "he": "מנהל עסקים",
+   "en": "Business Administration"
+  },
+  "facultyName": {
+   "he": "ביה\"ס למנהל עסקים",
+   "en": "Business School"
+  },
+  "academicPoints": 3,
+  "teacherCode": null,
+  "coursePeriod": 1,
+  "coursePeriodName": {
+   "he": "סמסטר א",
+   "en": "Semester A"
+  },
+  "coursePeriodOrder": 1,
+  "courseStructureType": "שעור ותרגיל מאוחד",
+  "courseStructureID": 8,
+  "startDate": null,
+  "endDate": null,
+  "lastYearGradeAvg": null,
+  "sugToar": "001",
+  "totalHours": 42,
+  "isLearning": 1,
+  "statusCourseCode": 2,
+  "year": 2027,
+  "groups": [],
+  "studySessionTypeName": null
+ }
+]

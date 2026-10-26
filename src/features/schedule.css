@@ -1,0 +1,25 @@
+/* Inverted so it never matches a category color; the tag's row is a flex row, so align to its baseline, not stretch. */
+.nm-ongoing {
+  display: inline-block; vertical-align: baseline; align-self: baseline; margin-inline-start: .4rem;
+  padding: .1rem .5rem; border: 1px solid var(--nm-text); border-radius: 999px;
+  background: var(--nm-text); color: var(--nm-surface);
+  font-size: .75rem; font-weight: 700; line-height: 1.4; white-space: nowrap;
+}
+.nm-schedule { flex-wrap: wrap; }
+.nm-schedule-actions { display: flex; gap: .4rem; }
+.nm-schedule .nm-btn { font-size: 13px; }
+.nm-schedule-status { flex-basis: 100%; font-size: 12px; color: var(--nm-text-muted); }
+.nm-schedule .nm-btn:hover { border-color: var(--nm-accent); }
+.nm-schedule .nm-btn:disabled { opacity: .6; cursor: default; }
+.nm-shnaton-status { flex-basis: 100%; font-size: 12px; color: var(--nm-text-muted); }
+.nm-shnaton-groups { flex-basis: 100%; min-inline-size: 0; display: grid; gap: .6rem; }
+.nm-shnaton-groups:empty { display: none; }
+.nm-shnaton-field { display: grid; gap: .25rem; min-inline-size: 0; font-size: 12px; }
+.nm-shnaton-field label { margin: 0; overflow-wrap: anywhere; }
+.nm-shnaton-select {
+  inline-size: 100%; min-inline-size: 0; padding: .35rem .5rem;
+  border: 1px solid var(--nm-border); border-radius: var(--nm-radius);
+  background: var(--nm-surface); color: var(--nm-text); font: inherit;
+}
+.nm-shnaton-select:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-shnaton-select:disabled { opacity: .6; }

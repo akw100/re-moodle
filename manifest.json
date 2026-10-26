@@ -100,6 +100,7 @@
         "src/features/backgrounds.js",
         "src/features/motd.js",
         "src/features/categories.js",
+        "src/features/schedule.js",
         "src/main.js"
       ],
       "css": [
@@ -108,7 +109,8 @@
         "src/features/shortcuts.css",
         "src/features/game.css",
         "src/features/backgrounds.css",
-        "src/features/motd.css"
+        "src/features/motd.css",
+        "src/features/schedule.css"
       ]
     }
   ]

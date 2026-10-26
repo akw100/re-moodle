@@ -733,6 +733,23 @@ html[data-nm-theme="campus-pop"] {
     box-shadow: none !important;
   }
   & :is(.course-card, .dashboard-card) .coursename .multiline { white-space: normal; display: inline; }
+  /* "Ongoing" (features/schedule.js) is the hero's sticker, stuck on the card's top corner. Start side, because the
+     background pencil (.nm-bg-btn-course) takes the end corner on hover. */
+  & :is(.course-card, .dashboard-card):has(.nm-ongoing) { position: relative; overflow: visible; }
+  & :is(.course-card, .dashboard-card) .nm-ongoing {
+    position: absolute; inset-block-start: -14px; inset-inline-start: -10px; z-index: 4;
+    display: grid; place-items: center;
+    inline-size: 68px; block-size: 68px; margin: 0; padding: 0;
+    border-radius: 50%;
+    background: var(--pop-yellow);
+    color: #000;
+    border: 1px solid #000;
+    box-shadow: 3px 3px 0 #000;
+    font: 700 .75rem/1 var(--pop-mono);
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    rotate: -12deg;
+  }
   & :is(.course-card, .dashboard-card) .categoryname {
     display: inline-block;
     margin-block: .55rem .1rem;

@@ -1,0 +1,39 @@
+[
+ {
+  "id": 508662,
+  "name": {
+   "he": "תכנות עם סוכני AI",
+   "en": "Agentic Programming"
+  },
+  "code": "67723",
+  "departmentId": 179,
+  "departmentName": {
+   "he": "מדעי המחשב",
+   "en": "Computer Science"
+  },
+  "facultyName": {
+   "he": "ביה\"ס להנדסה ולמדעי המחשב",
+   "en": "The School of Computer Science & Engineering"
+  },
+  "academicPoints": 2,
+  "teacherCode": null,
+  "coursePeriod": 1,
+  "coursePeriodName": {
+   "he": "סמסטר א",
+   "en": "Semester A"
+  },
+  "coursePeriodOrder": 1,
+  "courseStructureType": "שעור ומעבדה מפוצל",
+  "courseStructureID": 14,
+  "startDate": null,
+  "endDate": null,
+  "lastYearGradeAvg": null,
+  "sugToar": "001",
+  "totalHours": 28,
+  "isLearning": 1,
+  "statusCourseCode": 2,
+  "year": 2027,
+  "groups": [],
+  "studySessionTypeName": null
+ }
+]

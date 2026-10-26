@@ -1,0 +1,4057 @@
+{
+ "508662": [
+  {
+   "id": 95775,
+   "code": "7-05",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168328,
+     "roomId": 280,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 43200000,
+     "endTime": 49500000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95775,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759122793,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122794,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122795,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122796,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122797,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122798,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122799,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122800,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122801,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122802,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122803,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122804,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759122805,
+       "studySessionId": 62168328,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62168568,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 43200000,
+     "endTime": 49500000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": null,
+     "groupId": 95775,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759124059,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124060,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124061,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124062,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124063,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124064,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124065,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124066,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124067,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124068,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124069,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124070,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124071,
+       "studySessionId": 62168568,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169432,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 43200000,
+     "endTime": 49500000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95775,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759129444,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129445,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129446,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129447,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129448,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129449,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129450,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129451,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129452,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129453,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129454,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129455,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129456,
+       "studySessionId": 62169432,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 95807,
+   "code": "7-01",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168512,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 2,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95807,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759123696,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-13T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123697,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-20T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123698,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-03T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123699,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-10T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123700,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-17T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123701,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-24T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123702,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-01T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123703,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-15T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123704,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-22T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123705,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-29T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123706,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-05T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123707,
+       "studySessionId": 62168512,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-12T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 2,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169333,
+     "roomId": 280,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 2,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95807,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759128813,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-13T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128814,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-20T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128815,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-03T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128816,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-10T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128817,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-17T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128818,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-24T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128819,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-01T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128820,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-15T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128821,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-22T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128822,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-29T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128823,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-05T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759128824,
+       "studySessionId": 62169333,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-12T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 2,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169557,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 2,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95807,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759129988,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-13T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129989,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-20T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129990,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-03T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129991,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-10T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129992,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-17T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129993,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-24T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129994,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-01T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129995,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-15T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129996,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-22T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129997,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-29T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129998,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-05T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129999,
+       "studySessionId": 62169557,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-12T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 2,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 95819,
+   "code": "1-01",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": true,
+   "courseId": 508662,
+   "studySessionTypeId": 42,
+   "studySessionTypeCode": "1",
+   "studySessionTypeName": {
+    "he": "שעור",
+    "en": "Lesson"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62164852,
+     "roomId": null,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": null,
+     "startTime": null,
+     "endTime": null,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 2,
+     "groupId": 95819,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": null,
+     "studySessionSchedules": [],
+     "displayRoom": null,
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": null,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 95838,
+   "code": "7-02",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168408,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95838,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759123236,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123237,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123238,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123239,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123240,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123241,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123242,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123243,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123244,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123245,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123246,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123247,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123248,
+       "studySessionId": 62168408,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62168631,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95838,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759124464,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124465,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124466,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124467,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124468,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124469,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124470,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124471,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124472,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124473,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124474,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124475,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759124476,
+       "studySessionId": 62168631,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62168896,
+     "roomId": 280,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95838,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759126014,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126015,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126016,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126017,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126018,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126019,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126020,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126021,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126022,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126023,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126024,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126025,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126026,
+       "studySessionId": 62168896,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 95841,
+   "code": "7-03",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168087,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 46800000,
+     "endTime": 53100000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95841,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759121173,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121174,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121175,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121176,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121177,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121178,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121179,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121180,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121181,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121182,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121183,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121184,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121185,
+       "studySessionId": 62168087,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169129,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 46800000,
+     "endTime": 53100000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95841,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759127397,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127398,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127399,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127400,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127401,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127402,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127403,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127404,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127405,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127406,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127407,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127408,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759127409,
+       "studySessionId": 62169129,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169412,
+     "roomId": 280,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 46800000,
+     "endTime": 53100000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95841,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759129205,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129206,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129207,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129208,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129209,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129210,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129211,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129212,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129213,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129214,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129215,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129216,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759129217,
+       "studySessionId": 62169412,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 95883,
+   "code": "7-04",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168558,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 54000000,
+     "endTime": 60300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95883,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759123966,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123967,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123968,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123969,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123970,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123971,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123972,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123973,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123974,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123975,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123976,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123977,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759123978,
+       "studySessionId": 62168558,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169584,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 3,
+     "startTime": 54000000,
+     "endTime": 60300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95883,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759130133,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-14T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130134,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-21T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130135,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-28T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130136,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-04T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130137,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-11T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130138,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-18T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130139,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-25T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130140,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-02T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130141,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-16T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130142,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-23T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130143,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-30T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130144,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-06T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130145,
+       "studySessionId": 62169584,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-13T00:00:00",
+       "scheduledDayOfWeek": 3,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 3,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 95895,
+   "code": "7-06",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168090,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95895,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759121186,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121187,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121188,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121189,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121190,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121191,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121192,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121193,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121194,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121195,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121196,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121197,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759121198,
+       "studySessionId": 62168090,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169624,
+     "roomId": 280,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95895,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759130283,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130284,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130285,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130286,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130287,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130288,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130289,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130290,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130291,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130292,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130293,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130294,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130295,
+       "studySessionId": 62169624,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 280,
+      "name": {
+       "he": "A107",
+       "en": "A107"
+      },
+      "userCode": "3301",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    },
+    {
+     "id": 62169730,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 36000000,
+     "endTime": 42300000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 95895,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759130880,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130881,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130882,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130883,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130884,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130885,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130886,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130887,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130888,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130889,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130890,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130891,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759130892,
+       "studySessionId": 62169730,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 97908,
+   "code": "7-07",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168935,
+     "roomId": 279,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 2,
+     "startTime": 43200000,
+     "endTime": 49500000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 97908,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759126217,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-13T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126218,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-20T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126219,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-03T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126220,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-10T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126221,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-17T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126222,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-24T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126223,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-01T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126224,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-15T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126225,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-22T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126226,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-29T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126227,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-05T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759126228,
+       "studySessionId": 62168935,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-12T00:00:00",
+       "scheduledDayOfWeek": 2,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 279,
+      "name": {
+       "he": "A106",
+       "en": "A106"
+      },
+      "userCode": "3300",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 2,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  },
+  {
+   "id": 98008,
+   "code": "7-08",
+   "startDate": null,
+   "endDate": null,
+   "qualifyingAttendance": null,
+   "year": 2027,
+   "period": 1,
+   "periodName": {
+    "he": "סמסטר א'",
+    "en": "1st semester"
+   },
+   "languageName": {
+    "he": "עברית",
+    "en": "Hebrew"
+   },
+   "languageCode": "0",
+   "isClinic": false,
+   "isManageAssignments": false,
+   "courseId": 508662,
+   "studySessionTypeId": 10,
+   "studySessionTypeCode": "7",
+   "studySessionTypeName": {
+    "he": "מעבדה",
+    "en": "Laboratory"
+   },
+   "creationDate": "0001-01-01T00:00:00",
+   "studySessions": [
+    {
+     "id": 62168765,
+     "roomId": 278,
+     "courseId": 508662,
+     "period": 1,
+     "dayOfWeek": 4,
+     "startTime": 50400000,
+     "endTime": 56700000,
+     "isRecorded": false,
+     "isLiveBroadcast": false,
+     "teachingTypeId": 1,
+     "groupId": 98008,
+     "year": 2027,
+     "calendarFrequency": null,
+     "room": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "studySessionSchedules": [
+      {
+       "id": 759125368,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-15T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125369,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-22T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125370,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-10-29T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125371,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-05T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125372,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-12T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125373,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-19T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125374,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-11-26T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125375,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-03T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125376,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-17T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125377,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-24T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125378,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2026-12-31T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125379,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-07T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      },
+      {
+       "id": 759125380,
+       "studySessionId": 62168765,
+       "startTime": null,
+       "endTime": null,
+       "date": "2027-01-14T00:00:00",
+       "scheduledDayOfWeek": 4,
+       "roomId": null,
+       "room": null
+      }
+     ],
+     "displayRoom": {
+      "id": 278,
+      "name": {
+       "he": "A105",
+       "en": "A105"
+      },
+      "userCode": "3299",
+      "building": {
+       "id": 12,
+       "name": {
+        "he": "הנדסה",
+        "en": "Rothberg Building"
+       },
+       "code": "31",
+       "campus": {
+        "id": 1,
+        "code": "1",
+        "name": {
+         "he": "אדמונד י' ספרא",
+         "en": "Edmond J. Safra"
+        }
+       }
+      }
+     },
+     "hasVaryingRooms": false,
+     "hasVaryingSchedule": false,
+     "displayDayOfWeek": 4,
+     "displayStartTime": null,
+     "displayEndTime": null
+    }
+   ]
+  }
+ ]
+}

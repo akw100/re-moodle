@@ -110,6 +110,62 @@ const faviconOk = host => fetch(`https://www.google.com/s2/favicons?domain=${enc
   .then(r => { r.body?.cancel().catch(() => {}); return r.ok; }, () => undefined);
 
 const PREVIEW_ORIGINS = ['https://*/*', 'http://*/*'];
+const SHNATON_ORIGINS = ['https://shnaton.huji.ac.il/*'];
+
+function shnatonGroup(group) {
+  const slots = new Map();
+  const time = ms => Number.isFinite(ms) && ms >= 0 && ms < 86400000
+    ? [Math.floor(ms / 3600000), Math.floor(ms / 60000) % 60, Math.floor(ms / 1000) % 60].map(n => String(n).padStart(2, '0')).join('') : null;
+  for (const session of group.studySessions || []) {
+    for (const entry of session.studySessionSchedules || []) {
+      const date = entry.date?.slice(0, 10).replace(/-/g, '');
+      const start = time(entry.startTime ?? session.startTime), end = time(entry.endTime ?? session.endTime);
+      if (!/^\d{8}$/.test(date) || !start || !end || start >= end) continue;
+      const key = `${date}T${start}/${date}T${end}`;
+      if (!slots.has(key)) slots.set(key, new Map());
+      const rooms = slots.get(key), room = entry.room ?? session.room;
+      const building = room?.building?.name?.he || '', name = room?.name?.he || '';
+      if (!rooms.has(building)) rooms.set(building, new Set());
+      if (name) rooms.get(building).add(name);
+    }
+  }
+  const meetings = [...slots].sort(([a], [b]) => a.localeCompare(b)).map(([slot, rooms]) => [
+    ...slot.split('/'), [...rooms].map(([building, names]) => [building, [...names].sort().join(', ')].filter(Boolean).join(' · ')).filter(Boolean).join('; '),
+  ]);
+  return {group: group.code, type: group.studySessionTypeName?.he || '', meetings};
+}
+
+async function shnaton(codes, year) {
+  if (!Array.isArray(codes) || codes.length < 1 || codes.length > 20 ||
+      !codes.every(code => typeof code === 'string' && /^\d{5}$/.test(code)) ||
+      !['string', 'number'].includes(typeof year) || !/^\d{4}$/.test(year)) throw new Error('invalid request');
+  const get = async path => {
+    const res = await fetch(`https://shnaton.huji.ac.il/api/courses/${path}`, {
+      credentials: 'omit', headers: {Accept: 'application/json'}, signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  };
+  const lookups = await Promise.allSettled([...new Set(codes)].map(async code => [code, (await get(`code/${code}?year=${year}`))[0]?.id]));
+  const failed = lookups.find(r => r.status === 'rejected');
+  if (failed) throw failed.reason;
+  const found = lookups.map(r => r.value);
+  const ids = [...new Set(found.map(([, id]) => id).filter(id => id != null))];
+  const groups = ids.length ? await get(`groups-with-sessions?year=${year}&courseIds=${ids.join(',')}`) : {};
+  return {courses: Object.fromEntries(found.map(([code, id]) => [code, (groups[id] || []).map(shnatonGroup).filter(g => g.meetings.length)]))};
+}
+
+chrome.runtime.onMessage.addListener((msg, sender, reply) => {
+  if (!['nm-shnaton', 'nm-shnaton-permission'].includes(msg?.type) || sender.id !== chrome.runtime.id) return;
+  (async () => {
+    const allowed = await chrome.permissions.contains({origins: SHNATON_ORIGINS});
+    if (msg.type === 'nm-shnaton-permission') return {allowed};
+    if (!allowed) return {error: 'no-permission'};
+    return shnaton(msg.codes, msg.year);
+  })().then(reply, e => reply({error: String(e?.message || e)}));
+  return true;
+});
+
 async function previewPermission(rawUrl) {
   if (!rawUrl) return chrome.permissions.contains({origins: PREVIEW_ORIGINS});
   const url = new URL(String(rawUrl));
@@ -137,7 +193,8 @@ chrome.runtime.onMessage.addListener((msg, sender, reply) => {
 
 const permissionsChanged = async () => {
   const tabs = await chrome.tabs.query({});
-  await Promise.all(tabs.map(tab => chrome.tabs.sendMessage(tab.id, {type: 'nm-preview-permissions-changed'}).catch(() => {})));
+  await Promise.all(tabs.flatMap(tab => ['nm-preview-permissions-changed', 'nm-shnaton-permissions-changed'].map(type =>
+    chrome.tabs.sendMessage(tab.id, {type}).catch(() => {}))));
 };
 chrome.permissions.onAdded.addListener(permissionsChanged);
 chrome.permissions.onRemoved.addListener(permissionsChanged);
